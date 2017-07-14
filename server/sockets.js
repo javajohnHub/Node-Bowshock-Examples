@@ -5,11 +5,6 @@ let fs = require('fs');
     io.sockets.on('connection', function(socket) {
        console.log('connected', socket.id)
 
-        socket.on('drip', () => {
-            socket.emit('drop');
-            console.log('apod recieved')
-        })
-
         socket.on('get apod', (date) => {
             let formatted_date = format_date(date);
             bowshock.apod(formatted_date)
