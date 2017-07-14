@@ -47,6 +47,15 @@ let fs = require('fs');
                             console.log(e)
                         })
                     })
+        socket.on('get stats', () => {
+            bowshock.neows.stats()
+                .then((result) => {
+                        socket.emit('send stats', result)
+                    }
+                ).catch((e) => {
+                console.log(e)
+            })
+        })
 
     });
 
