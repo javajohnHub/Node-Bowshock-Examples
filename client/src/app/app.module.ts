@@ -13,8 +13,11 @@ import { HomeComponent } from './components/home/home.component';
 import { NoContentComponent } from './components/no-content/no-content';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ApodComponent } from './components/apod/apod.component';
-
-import {CollapseModule } from 'ngx-bootstrap';
+import {MarsComponent} from './components/mars/mars.component';
+import {CuriosityComponent} from './components/mars/curiosity/curiosity.component';
+import {OpportunityComponent} from './components/mars/opportunity/opportunity.component';
+import {SpiritComponent} from './components/mars/spirit/spirit.component';
+import {BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
 @NgModule({
@@ -23,7 +26,11 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     HomeComponent,
     NoContentComponent,
     NavbarComponent,
-    ApodComponent
+    ApodComponent,
+    MarsComponent,
+    CuriosityComponent,
+    OpportunityComponent,
+    SpiritComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +38,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     HttpModule,
     routing,
     CollapseModule.forRoot(),
+    BsDropdownModule.forRoot(),
     NgxMyDatePickerModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],

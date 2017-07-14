@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 export class NavbarComponent {
   public isCollapsed:boolean = false;
   public status:{isopen:boolean} = {isopen: false};
-
+  public rovers:Array<string> = ['curiosity', 'opportunity', 'spirit'];
   constructor(private router: Router){
 
   }

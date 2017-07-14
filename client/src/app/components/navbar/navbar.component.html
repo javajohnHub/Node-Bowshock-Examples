@@ -13,6 +13,12 @@
       <ul class="nav navbar-nav" >
         <li><a routerLink="/">Home</a></li>
         <li><a routerLink="/apod">Apod</a></li>
+        <li class="nav-item dropdown" dropdown>
+          <a  role="button" class="nav-link dropdownToggle" dropdownToggle>Mars <b class="caret"></b></a>
+          <ul  class="dropdown-menu" >
+            <li *ngFor="let roverChoice of rovers"><a class="dropdown-item"  [routerLink]="['./mars', roverChoice]" >{{roverChoice}}</a></li>
+          </ul>
+        </li>
       </ul>
         </div>
     <nav class="visible-xs hidden-md-up">
