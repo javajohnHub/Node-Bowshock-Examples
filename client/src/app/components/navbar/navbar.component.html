@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Bowshock</a>
+    </div>
+      <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav" >
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/apod">Apod</a></li>
+      </ul>
+        </div>
+    <nav class="visible-xs hidden-md-up">
+      <ul class="nav nav-pills nav-stacked scrollable-menu" [collapse]="!isCollapsed" (click)="isCollapsed = !isCollapsed;true"  >
+        <li class="nav-item" ><a class="nav-link" routerLink="/">Home</a></li>
+        <li class="nav-item" ><a class="nav-link" routerLink="/apod">Apod</a></li>
+      </ul>
+    </nav>
+    </div>
+  </nav>
