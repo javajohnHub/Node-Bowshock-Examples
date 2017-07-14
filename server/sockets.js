@@ -9,14 +9,44 @@ let fs = require('fs');
             let formatted_date = format_date(date);
             bowshock.apod(formatted_date)
                 .then((result) => {
-                    socket.emit('send apod', result)
+                        socket.emit('send apod', result)
                     }
                 ).catch((e) => {
                 console.log(e)
             })
-
-
         })
+            socket.on('get curiosity', (date) => {
+                let formatted_date = format_date(date);
+                bowshock.mars.curiosity(formatted_date)
+                    .then((result) => {
+                            socket.emit('send curiosity', result)
+                        }
+                    ).catch((e) => {
+                    console.log(e)
+                })
+            })
+
+                socket.on('get opportunity', (date) => {
+                    let formatted_date = format_date(date);
+                    bowshock.mars.opportunity(formatted_date)
+                        .then((result) => {
+                                socket.emit('send opportunity', result)
+                            }
+                        ).catch((e) => {
+                        console.log(e)
+                    })
+                })
+
+                    socket.on('get spirit', (date) => {
+                        let formatted_date = format_date(date);
+                        bowshock.mars.spirit(formatted_date)
+                            .then((result) => {
+                                    socket.emit('send spirit', result)
+                                }
+                            ).catch((e) => {
+                            console.log(e)
+                        })
+                    })
 
     });
 
