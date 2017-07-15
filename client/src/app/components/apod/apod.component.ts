@@ -60,7 +60,7 @@ export class ApodComponent {
   myOptions: INgxMyDpOptions = {
     dateFormat: 'yyyy-mm-dd',
   };
-  model: Object = { date: { year: 2017, month: 7, day: 14 } };
+  model: Object = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
 
   constructor(private sanitizer: DomSanitizer) {
     this.socket = SocketService.getInstance();
