@@ -1,7 +1,6 @@
 module.exports = function(io) {
 let bowshock = require('node-bowshock');
-let fs = require('fs');
-
+let rp = require('request-promise');
     io.sockets.on('connection', function(socket) {
        console.log('connected', socket.id)
 
@@ -57,6 +56,43 @@ let fs = require('fs');
             })
         })
 
+        socket.on('get feed', (date) => {
+            let formatted_date = format_date(date);
+            bowshock.neows.feed(formatted_date)
+                .then((result) => {
+                        socket.emit('send feed', result)
+                    }
+                ).catch((e) => {
+                console.log(e)
+            })
+        })
+        socket.on('get next', (url) => {
+            var options = {
+                uri: url,
+                json: true
+            };
+            rp(options)
+                .then(function (result) {
+                    socket.emit('send next', result)
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        })
+
+        socket.on('get previous', (url) => {
+            var options = {
+                uri: url,
+                json: true
+            };
+            rp(options)
+                .then(function (result) {
+                    socket.emit('send next', result)
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        })
     });
 
     function format_date(date) {

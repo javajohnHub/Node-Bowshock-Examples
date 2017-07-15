@@ -8,6 +8,8 @@ import {MarsComponent} from './components/mars/mars.component';
 import {CuriosityComponent} from './components/mars/curiosity/curiosity.component';
 import {OpportunityComponent} from './components/mars/opportunity/opportunity.component';
 import {SpiritComponent} from './components/mars/spirit/spirit.component';
+import {NeowsComponent} from './components/neows/neows.component';
+import {FeedComponent} from './components/neows/feed/feed.component';
 const routes: Routes = [
   {
     path: '',
@@ -22,8 +24,10 @@ const routes: Routes = [
       { path: 'curiosity', component: CuriosityComponent},
       {path: 'opportunity', component: OpportunityComponent},
       {path: 'spirit', component: SpiritComponent}
-
-      /*{ path: 'books', component: BookSearchComponent }*/
+    ]},
+  { path: 'neows', component: NeowsComponent,
+    children: [
+      { path: 'feed', component: FeedComponent}
     ]},
   { path: '**',    component: NoContentComponent },
 ];

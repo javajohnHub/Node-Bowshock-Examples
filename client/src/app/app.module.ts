@@ -17,8 +17,13 @@ import {MarsComponent} from './components/mars/mars.component';
 import {CuriosityComponent} from './components/mars/curiosity/curiosity.component';
 import {OpportunityComponent} from './components/mars/opportunity/opportunity.component';
 import {SpiritComponent} from './components/mars/spirit/spirit.component';
+import {NeowsComponent} from './components/neows/neows.component';
+import {FeedComponent} from './components/neows/feed/feed.component';
+
 import {BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
+import { PaginationModule } from 'ngx-bootstrap';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +35,9 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     MarsComponent,
     CuriosityComponent,
     OpportunityComponent,
-    SpiritComponent
+    SpiritComponent,
+    NeowsComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +46,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     routing,
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
+    PaginationModule.forRoot(),
     NgxMyDatePickerModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
