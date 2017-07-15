@@ -5,6 +5,7 @@ let rp = require('request-promise');
        console.log('connected', socket.id)
 
         socket.on('get apod', (date) => {
+            console.log(date);
             let formatted_date = format_date(date);
             bowshock.apod(formatted_date)
                 .then((result) => {

@@ -44,9 +44,10 @@ export class OpportunityComponent {
     this.socket.on('send opportunity', (data) => {
       this.pictures = JSON.parse(data);
     });
-
+    this.socket.emit('get opportunity', this.model['date'] );
   }
   onDateChanged(event: IMyDateModel): void {
+    console.log(event.date);
     this.socket.emit('get opportunity', event.date );
   }
 

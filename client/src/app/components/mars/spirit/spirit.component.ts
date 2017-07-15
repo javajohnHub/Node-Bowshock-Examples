@@ -44,6 +44,7 @@ export class SpiritComponent {
     this.socket.on('send spirit', (data) => {
       this.pictures = JSON.parse(data);
     });
+    this.socket.emit('get spirit', this.model['date'] );
 
   }
   onDateChanged(event: IMyDateModel): void {

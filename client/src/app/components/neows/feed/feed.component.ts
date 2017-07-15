@@ -78,6 +78,7 @@ export class FeedComponent {
       this.near_earth_objects = this.neows['near_earth_objects'];
     });
 
+    this.socket.emit('get feed', this.model['date'] );
   }
   onDateChanged(event: IMyDateModel): void {
     this.socket.emit('get feed', event.date );

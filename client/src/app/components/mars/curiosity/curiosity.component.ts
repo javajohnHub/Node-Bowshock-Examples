@@ -38,12 +38,13 @@ export class CuriosityComponent {
   myOptions: INgxMyDpOptions = {
     dateFormat: 'yyyy-mm-dd',
   };
-  model: Object = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
+  model: Object = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() - 1 } };
   constructor() {
     this.socket = SocketService.getInstance();
     this.socket.on('send curiosity', (data) => {
       this.pictures = JSON.parse(data);
     });
+    this.socket.emit('get curiosity', this.model['date'] );
 
   }
   onDateChanged(event: IMyDateModel): void {

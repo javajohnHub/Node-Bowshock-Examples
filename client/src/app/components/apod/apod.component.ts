@@ -68,7 +68,7 @@ export class ApodComponent {
       this.apod = JSON.parse(data);
       this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(this.apod['url']);
     });
-
+    this.socket.emit('get apod', this.model['date'] );
   }
   onDateChanged(event: IMyDateModel): void {
     this.socket.emit('get apod', event.date );
