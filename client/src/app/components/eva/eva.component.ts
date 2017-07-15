@@ -8,7 +8,18 @@ import {SocketService} from '../../shared/socket.service';
     <div>
       <h1 class="text-center">EVA</h1>
       <div *ngIf="eva">
-        {{eva | json}}
+        <ng-container *ngFor="let walk of eva">
+          <div>
+            EVA number: {{walk.eva}}<br/>
+            Country: {{walk.country}}<br/>
+            Crew: {{walk.crew}}<br/>
+            Date: {{walk.date}}<br/>
+            Duration: {{walk.duration}}<br/>
+            Vehicle: {{walk.vehicle}}<br/>
+            Purpose: {{walk.purpose}}<br/><br/><hr/>
+            
+          </div>
+        </ng-container>
       </div>
     </div>
   `,
