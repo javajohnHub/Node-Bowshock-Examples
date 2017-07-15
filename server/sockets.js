@@ -61,6 +61,7 @@ let rp = require('request-promise');
             let formatted_date = format_date(date);
             bowshock.neows.feed(formatted_date)
                 .then((result) => {
+                        console.log(formatted_date, result.hasOwnProperty(formatted_date))
                         socket.emit('send feed', result)
                     }
                 ).catch((e) => {
