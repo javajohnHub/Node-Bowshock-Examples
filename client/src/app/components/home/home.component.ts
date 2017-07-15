@@ -15,16 +15,19 @@ import {SocketService} from '../../shared/socket.service';
       Source: <a href="{{stats.nasa_jpl_url}}">{{stats.source}}</a><br/>
 
     </div>
+    
   `
 })
 export class HomeComponent {
   socket: any;
   stats: {};
-  constructor() {
+  constructor( ) {
     this.socket = SocketService.getInstance();
     this.socket.on('send stats', (data) => {
       this.stats = JSON.parse(data);
     });
     this.socket.emit('get stats');
   }
+
+
 }

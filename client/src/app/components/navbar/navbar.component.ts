@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 
+
 @Component({
   moduleId: module.id,
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ export class NavbarComponent {
   public status:{isopen:boolean} = {isopen: false};
   public rovers:Array<string> = ['curiosity', 'opportunity', 'spirit'];
   public neows:Array<string> = ['feed'];
-  constructor(private router: Router){
+  constructor(private router: Router,){
 
   }
 
@@ -28,5 +29,7 @@ export class NavbarComponent {
     $event.stopPropagation();
     this.status.isopen = !this.status.isopen;
   }
+
+
 
 }
