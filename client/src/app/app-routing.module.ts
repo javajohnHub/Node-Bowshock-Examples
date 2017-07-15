@@ -10,6 +10,7 @@ import {OpportunityComponent} from './components/mars/opportunity/opportunity.co
 import {SpiritComponent} from './components/mars/spirit/spirit.component';
 import {NeowsComponent} from './components/neows/neows.component';
 import {FeedComponent} from './components/neows/feed/feed.component';
+import {EvaComponent} from './components/eva/eva.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'apod',
     component: ApodComponent
+  },
+  {
+    path: 'eva',
+    component: EvaComponent
   },
   { path: 'mars', component: MarsComponent,
     children: [

@@ -25,7 +25,9 @@
             <li *ngFor="let neowChoice of neows"><a class="dropdown-item"  [routerLink]="['./neows', neowChoice]" >{{neowChoice}}</a></li>
           </ul>
         </li>
+        <li><a routerLink="/eva">EVA</a></li>
       </ul>
+
         </div>
     <nav class="visible-xs hidden-md-up">
       <ul class="nav nav-pills nav-stacked scrollable-menu" [collapse]="!isCollapsed" (click)="isCollapsed = !isCollapsed;true"  >
