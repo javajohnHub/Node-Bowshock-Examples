@@ -93,6 +93,16 @@ let rp = require('request-promise');
                     console.log(err);
                 });
         })
+
+        socket.on('get eva', () => {
+            bowshock.eva()
+                .then((result) => {
+                        socket.emit('recieve eva', result)
+                    }
+                ).catch((e) => {
+                console.log(e)
+            })
+        })
     });
 
     function format_date(date) {
