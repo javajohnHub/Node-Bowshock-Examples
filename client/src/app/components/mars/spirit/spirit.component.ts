@@ -37,7 +37,7 @@ export class SpiritComponent {
   myOptions: INgxMyDpOptions = {
     dateFormat: 'yyyy-mm-dd',
   };
-  model: Object = { date: { year: 2010, month: 3, day: 22 } };
+  model: Object = { date: { year: 2010, month: 3, day: 21 } };
 
   constructor() {
     this.socket = SocketService.getInstance();
