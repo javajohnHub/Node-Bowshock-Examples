@@ -22,8 +22,8 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
       </form>
     </div>
     <div *ngIf="neows">
-      <button (click)="previous(prev)" class="previous">&laquo; Previous</button>
-      <button (click)="next_page(next)" class="next">Next &raquo;</button>
+      <button (click)="previous(prev)">&laquo; Previous</button>
+      <button class="pull-right"(click)="next_page(next)">Next &raquo;</button><br/><br/>
       <ng-container>
         Element Count: {{element_count}}<br/>
         {{near_earth_objects | json}}<br/>
