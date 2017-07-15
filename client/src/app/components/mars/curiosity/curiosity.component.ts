@@ -25,8 +25,11 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
       <ng-container *ngFor="let picture of pictures.photos">
         <img class="img-responsive" src="{{picture.img_src}}">
       </ng-container>
-
+      <div *ngIf="pictures.photos.length == 0">
+        <h1 class="text-center">No Photos Found</h1>
+      </div>
     </div>
+    
   `
 })
 export class CuriosityComponent {
@@ -36,7 +39,6 @@ export class CuriosityComponent {
     dateFormat: 'yyyy-mm-dd',
   };
   model: Object = { date: { year: 2017, month: 7, day: 14 } };
-
   constructor() {
     this.socket = SocketService.getInstance();
     this.socket.on('send curiosity', (data) => {
@@ -47,5 +49,6 @@ export class CuriosityComponent {
   onDateChanged(event: IMyDateModel): void {
     this.socket.emit('get curiosity', event.date );
   }
+
 
 }

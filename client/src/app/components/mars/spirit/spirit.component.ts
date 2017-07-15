@@ -25,7 +25,9 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
       <ng-container *ngFor="let picture of pictures.photos">
         <img class="img-responsive" src="{{picture.img_src}}">
       </ng-container>
-
+      <div *ngIf="pictures.photos.length == 0">
+        <h1 class="text-center">No Photos Found</h1>
+      </div>
     </div>
   `
 })
