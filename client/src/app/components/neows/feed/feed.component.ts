@@ -24,9 +24,30 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
     <div *ngIf="neows">
       <button (click)="previous(prev)">&laquo; Previous</button>
       <button class="pull-right"(click)="next_page(next)">Next &raquo;</button><br/><br/>
-      <ng-container>
+      <ng-container *ngIf="objects">
         Element Count: {{element_count}}<br/>
-        {{near_earth_objects | json}}<br/>
+        <ng-container *ngFor="let object of objects;">
+          Reference ID: {{object.neo_reference_id}}<br/>
+          Name: <a href="{{object.nasa_jpl_url}}">{{object.name}}</a><br/>
+          Potentially Hazardous: {{object.is_potentially_hazardous_asteroid}}<br/>
+          Absolute Magnitude: {{object.absolute_magnitude_h}}<br/>
+          Estimated diameter min km: {{object.estimated_diameter.kilometers.estimated_diameter_min}}<br/>
+          Estimated diameter max km: {{object.estimated_diameter.kilometers.estimated_diameter_max}}<br/>
+          Estimated diameter min meters: {{object.estimated_diameter.meters.estimated_diameter_min}}<br/>
+          Estimated diameter max meters: {{object.estimated_diameter.meters.estimated_diameter_max}}<br/>
+          Estimated diameter min miles: {{object.estimated_diameter.miles.estimated_diameter_min}}<br/>
+          Estimated diameter max miles: {{object.estimated_diameter.miles.estimated_diameter_max}}<br/>
+          Estimated diameter min feet: {{object.estimated_diameter.feet.estimated_diameter_min}}<br/>
+          Estimated diameter max feet: {{object.estimated_diameter.feet.estimated_diameter_max}}<br/>
+          <ng-container *ngFor="let approach_data of object.close_approach_data">
+            Close Approach Date: {{approach_data.close_approach_date}}<br/>
+            Epoch Date Close Approach: {{approach_data.epoch_date_close_approach}}<br/>
+            {{approach_data.relative_velocity | json}}<br/>
+            {{approach_data.miss_distance | json}}<br/>
+          </ng-container>
+          <br/>
+        </ng-container>
+        {{objects | json}}
       </ng-container>
     </div>
   `
@@ -39,16 +60,14 @@ export class FeedComponent {
   };
   model: Object = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
 
-  totalItems: number;
   currentPage: string;
   next: string;
   prev: string;
-  smallnumPages: number;
 
   element_count: number;
   near_earth_objects: {};
   date;
-
+  objects: any = [];
   constructor() {
     this.socket = SocketService.getInstance();
     this.socket.on('send feed', (data) => {
@@ -58,6 +77,11 @@ export class FeedComponent {
       this.prev = this.neows['links'].prev;
       this.element_count = this.neows['element_count'];
       this.near_earth_objects = this.neows['near_earth_objects'];
+      Object.keys(this.near_earth_objects).forEach((date, object) => {
+        if (this.near_earth_objects[date] !== undefined) {
+          this.objects = this.near_earth_objects[date];
+        }
+      });
     });
 
     this.socket.on('send previous', (data) => {
@@ -67,6 +91,11 @@ export class FeedComponent {
       this.prev = this.neows['links'].prev;
       this.element_count = this.neows['element_count'];
       this.near_earth_objects = this.neows['near_earth_objects'];
+      Object.keys(this.near_earth_objects).forEach((date, object) => {
+        if (this.near_earth_objects[date] !== undefined) {
+          this.objects = this.near_earth_objects[date];
+        }
+      });
     });
 
     this.socket.on('send next', (data) => {
@@ -76,6 +105,11 @@ export class FeedComponent {
       this.prev = this.neows['links'].prev;
       this.element_count = this.neows['element_count'];
       this.near_earth_objects = this.neows['near_earth_objects'];
+      Object.keys(this.near_earth_objects).forEach((date, object) => {
+        if (this.near_earth_objects[date] !== undefined) {
+          this.objects = this.near_earth_objects[date];
+        }
+      });
     });
 
     this.socket.emit('get feed', this.model['date'] );

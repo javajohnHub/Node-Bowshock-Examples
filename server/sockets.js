@@ -61,7 +61,6 @@ let rp = require('request-promise');
             let formatted_date = format_date(date);
             bowshock.neows.feed(formatted_date)
                 .then((result) => {
-                        console.log(formatted_date, result.hasOwnProperty(formatted_date))
                         socket.emit('send feed', result)
                     }
                 ).catch((e) => {
@@ -89,7 +88,7 @@ let rp = require('request-promise');
             };
             rp(options)
                 .then(function (result) {
-                    socket.emit('send next', result)
+                    socket.emit('send previous', result)
                 })
                 .catch(function (err) {
                     console.log(err);
