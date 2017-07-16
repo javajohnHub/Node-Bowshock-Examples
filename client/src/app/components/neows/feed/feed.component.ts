@@ -30,7 +30,8 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
             <div *ngFor="let key of keys(object)">
               Reference ID: {{object[key].neo_reference_id}}<br/>
               Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
-              Potentially Hazardous: {{object[key].is_potentially_hazardous_asteroid}}<br/>
+              Potentially Hazardous: <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
+              {{object[key].is_potentially_hazardous_asteroid}}</span><br/>
               Absolute Magnitude: {{object[key].absolute_magnitude_h}}<br/>
               Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
               Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
@@ -143,5 +144,12 @@ export class FeedComponent {
 
   keys(data) : Array<string> {
     return Object.keys(data);
+  }
+  getColor(hazardous: boolean) {
+    if (hazardous) {
+      return 'red';
+    }else {
+      return 'green';
+    }
   }
 }
