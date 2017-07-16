@@ -57,7 +57,8 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
               </ng-container>
             </div>
           </ng-container>
-          
+        <button (click)="previous(prev)">&laquo; Previous</button>
+        <button class="pull-right"(click)="next_page(next)">Next &raquo;</button><br/><br/>
         </ng-container>
       
     </div>
@@ -102,9 +103,9 @@ export class FeedComponent {
       this.prev = this.neows['links'].prev;
       this.element_count = this.neows['element_count'];
       this.near_earth_objects = this.neows['near_earth_objects'];
+      this.objects = [];
       Object.keys(this.near_earth_objects).forEach((date, object) => {
         if (this.near_earth_objects[date] !== undefined) {
-          this.objects = [];
           this.objects.push(this.near_earth_objects[date]);
         }
       });
@@ -117,9 +118,9 @@ export class FeedComponent {
       this.prev = this.neows['links'].prev;
       this.element_count = this.neows['element_count'];
       this.near_earth_objects = this.neows['near_earth_objects'];
+      this.objects = [];
       Object.keys(this.near_earth_objects).forEach((date, object) => {
         if (this.near_earth_objects[date] !== undefined) {
-          this.objects = [];
           this.objects.push(this.near_earth_objects[date]);
         }
       });
