@@ -23,9 +23,10 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
     </div>
     <div *ngIf="neows">
       <button (click)="previous(prev)">&laquo; Previous</button>
+      <span class="text-center">Element Count: {{element_count}}</span>
       <button class="pull-right"(click)="next_page(next)">Next &raquo;</button><br/><br/>
       <ng-container *ngIf="objects">
-        Element Count: {{element_count}}<br/>
+        
         <ng-container *ngFor="let object of objects;let i = index">
             <div *ngFor="let key of keys(object)">
               Reference ID: {{object[key].neo_reference_id}}<br/>
