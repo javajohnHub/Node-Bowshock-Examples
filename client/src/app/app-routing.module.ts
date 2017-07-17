@@ -11,6 +11,7 @@ import {SpiritComponent} from './components/mars/spirit/spirit.component';
 import {NeowsComponent} from './components/neows/neows.component';
 import {FeedComponent} from './components/neows/feed/feed.component';
 import {EvaComponent} from './components/eva/eva.component';
+import {TodayComponent} from './components/neows/today/today.component';
 const routes: Routes = [
   {
     path: '',
@@ -32,7 +33,8 @@ const routes: Routes = [
     ]},
   { path: 'neows', component: NeowsComponent,
     children: [
-      { path: 'feed', component: FeedComponent}
+      { path: 'feed', component: FeedComponent},
+      { path: 'today', component: TodayComponent}
     ]},
   { path: '**',    component: NoContentComponent },
 ];

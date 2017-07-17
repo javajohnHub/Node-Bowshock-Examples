@@ -104,6 +104,18 @@ let rp = require('request-promise');
                 console.log(e)
             })
         })
+
+        socket.on('get today', () => {
+            console.log(bowshock.neows.today())
+            bowshock.neows.today()
+                .then((result) => {
+                console.log(result)
+                        socket.emit('send today', result)
+                    }
+                ).catch((e) => {
+                console.log(e)
+            })
+        })
     });
 
     function format_date(date) {

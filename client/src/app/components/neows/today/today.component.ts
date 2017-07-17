@@ -1,30 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {SocketService} from '../../../shared/socket.service';
-import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
+
 
 @Component({
-  selector: 'app-neows-feed',
+  selector: 'app-neows-today',
   template: `
     <div>
-      <h1 class="text-center">Neows Feed</h1>
-      <form>
-        <div class="input-group">
-          <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
-                 [(ngModel)]="model" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"
-                 disabled/>
-
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
-                <i class="glyphicon glyphicon-calendar"></i>
-            </button>
-        </span>
-        </div>
-      </form>
+      <h1 class="text-center">Neows Today</h1>
+      
     </div>
     <div *ngIf="neows">
-      <button (click)="previous(prev)">&laquo; Previous</button>
+      <button (click)="previous(prev)">&laquo; Yesterday</button>
       <span class="text-center">Element Count: {{element_count}}</span>
-      <button class="pull-right" (click)="next_page(next)">Next &raquo;</button>
+      <button class="pull-right" (click)="next_page(next)">Tomorrow &raquo;</button>
       <br/><br/>
       <ng-container *ngIf="objects">
 
@@ -54,30 +42,45 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
               Miss Distance: <br/>
               Astronomical: {{approach_data.miss_distance.astronomical}}<br/>
               Lunar: {{approach_data.miss_distance.lunar}}<br/>
-              Kilometers: {{approach_data.miss_distance.kilometers}}<br/>
+              Kilometers: {{approach_data.miss_distance.kilometers}}<br/>a
               Miles: {{approach_data.miss_distance.miles}}<br/>
-              Orbiting body: {{approach_data.orbiting_body}}<br/>
-              <br/>
-              <hr/>
-            </ng-container>
+              Orbiting body: {{approach_data.orbiting_body}}<br/><br/>
+              </ng-container>
+            Orbital Data: <br/>
+                Orbit ID: {{object[key].orbital_data.orbit_id}}<br/>
+                Orbit determination date: {{object[key].orbital_data.orbit_determination_date}}<br/>
+            Orbit uncertainty: {{object[key].orbital_data.orbit_uncertainty}}<br/>
+            Min orbit itersection: {{object[key].orbital_data.orbit_uncertainty}}<br/>
+            Jupitor tisserand invariant: {{object[key].orbital_data.orbit_uncertainty}}<br/>
+            Epoch osculation: {{object[key].orbital_data.epoch_osculation}}<br/>
+            Eccentricity: {{object[key].orbital_data.eccentricity}}<br/>
+            Semi major axis: {{object[key].orbital_data.semi_major_axis}}<br/>
+            Inclination: {{object[key].orbital_data.inclination}}<br/>
+            Ascending node longitude: {{object[key].orbital_data.ascending_node_longitude}}<br/>
+            Orbital period: {{object[key].orbital_data.orbital_period}}<br/>
+            Perihelion distance: {{object[key].orbital_data.perihelion_distance}}<br/>
+            Perihelion argument: {{object[key].orbital_data.perihelion_argument}}<br/>
+            Perihelion time: {{object[key].orbital_data.perihelion_time}}<br/>
+            Aphelion distance: {{object[key].orbital_data.aphelion_distance}}<br/>
+            Mean anomaly: {{object[key].orbital_data.mean_anomaly}}<br/>
+            Mean motion: {{object[key].orbital_data.mean_motion}}<br/>
+            Equinox: {{object[key].orbital_data.equinox}}<br/>
+            <br/>
+            <hr/>
+
           </div>
         </ng-container>
-        <button (click)="previous(prev)">&laquo; Previous</button>
-        <button class="pull-right" (click)="next_page(next)">Next &raquo;</button>
+        <button (click)="previous(prev)">&laquo; Yesterday</button>
+        <button class="pull-right" (click)="next_page(next)">Tomorrow &raquo;</button>
         <br/><br/>
       </ng-container>
 
     </div>
   `
 })
-export class FeedComponent implements OnInit {
+export class TodayComponent implements OnInit {
   socket: any;
   neows: {};
-  myOptions: INgxMyDpOptions = {
-    dateFormat: 'yyyy-mm-dd',
-  };
-  model: Object = {date: {year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()}};
-
   currentPage: string;
   next: string;
   prev: string;
@@ -89,7 +92,7 @@ export class FeedComponent implements OnInit {
 
   constructor() {
     this.socket = SocketService.getInstance();
-    this.socket.on('send feed', (data) => {
+    this.socket.on('send today', (data) => {
       this.neows = JSON.parse(data);
       this.currentPage = this.neows['links'].self;
       this.next = this.neows['links'].next;
@@ -134,18 +137,13 @@ export class FeedComponent implements OnInit {
       });
     });
 
-    this.socket.emit('get feed', this.model['date']);
+    this.socket.emit('get today');
 
 
   }
 
   ngOnInit() {
 
-  }
-
-  onDateChanged(event: IMyDateModel): void {
-    this.socket.emit('get feed', event.date);
-    this.date = event.date;
   }
 
   previous(url) {

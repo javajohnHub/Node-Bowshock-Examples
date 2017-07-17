@@ -19,12 +19,12 @@ import {OpportunityComponent} from './components/mars/opportunity/opportunity.co
 import {SpiritComponent} from './components/mars/spirit/spirit.component';
 import {NeowsComponent} from './components/neows/neows.component';
 import {FeedComponent} from './components/neows/feed/feed.component';
+import {TodayComponent} from './components/neows/today/today.component';
 import { EvaComponent } from './components/eva/eva.component';
 
 import {BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { PaginationModule } from 'ngx-bootstrap';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
-
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     SpiritComponent,
     NeowsComponent,
     FeedComponent,
-    EvaComponent
+    EvaComponent,
+    TodayComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,9 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
-    NgxMyDatePickerModule
+    NgxMyDatePickerModule,
+
+
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

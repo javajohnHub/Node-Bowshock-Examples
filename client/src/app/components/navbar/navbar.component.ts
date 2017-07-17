@@ -11,8 +11,8 @@ export class NavbarComponent {
   public isCollapsed:boolean = false;
   public status:{isopen:boolean} = {isopen: false};
   public rovers:Array<string> = ['curiosity', 'opportunity', 'spirit'];
-  public neows:Array<string> = ['feed'];
-  constructor(private router: Router,){
+  public neows:Array<string> = ['feed', 'today'];
+  constructor(private router: Router){
 
   }
 

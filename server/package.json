@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "cd ../client && ng build --prod && cd ../server && node ./bin/www",
     "back": "node ./bin/www"
   },
   "dependencies": {
