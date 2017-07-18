@@ -7,15 +7,13 @@ import {SocketService} from '../../../shared/socket.service';
   template: `
     <div>
       <h1 class="text-center">Neows Today</h1>
-      
+      <h3 *ngIf="neows" class="text-center">Element Count: {{element_count}}</h3>
     </div>
     <div *ngIf="neows">
       <ul class="pager">
         <li class="previous"><a (click)="previous(prev)">&laquo; Previous</a></li>
         <li class="next"><a (click)="next_page(next)">Next &raquo;</a></li>
       </ul>
-      <h3 class="text-center">Element Count: {{element_count}}</h3>
-      <br/>
       <ng-container *ngIf="objects">
 
         <ng-container *ngFor="let object of objects;let i = index">
@@ -68,10 +66,6 @@ import {SocketService} from '../../../shared/socket.service';
               Mean anomaly: {{object[key].orbital_data.mean_anomaly}}<br/>
               Mean motion: {{object[key].orbital_data.mean_motion}}<br/>
               Equinox: {{object[key].orbital_data.equinox}}<br/>
-              <br/>
-              <hr/>
-
-          
             </app-zippy>
           </div>
         </ng-container>

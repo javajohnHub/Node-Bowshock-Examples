@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-  background-color: #337ab7;
-}
+
 #scroll{
   display: block; /* Hidden by default */
   position: fixed; /* Fixed/sticky position */
@@ -27,3 +25,4 @@ body{
 .previous{
   cursor: pointer !important;
 }
+

@@ -7,6 +7,7 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
   template: `
     <div>
       <h1 class="text-center">Neows Feed</h1>
+      <h3 *ngIf="neows" class="text-center">Element Count: {{element_count}}</h3>
       <form>
         <div class="input-group">
           <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
@@ -26,8 +27,6 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
         <li class="previous"><a (click)="previous(prev)">&laquo; Previous</a></li>
         <li class="next"><a (click)="next_page(next)">Next &raquo;</a></li>
       </ul>
-      <h3 class="text-center">Element Count: {{element_count}}</h3>
-      <br/>
       <ng-container *ngIf="objects">
 
         <ng-container *ngFor="let object of objects;let i = index">
@@ -60,8 +59,6 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
               Kilometers: {{approach_data.miss_distance.kilometers}}<br/>
               Miles: {{approach_data.miss_distance.miles}}<br/>
               Orbiting body: {{approach_data.orbiting_body}}<br/>
-              <br/>
-              <hr/>
             </ng-container>
             </app-zippy>
           </div>
@@ -71,7 +68,6 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
           <li class="previous"><a (click)="previous(prev)">&laquo; Previous</a></li>
           <li class="next"><a (click)="next_page(next)">Next &raquo;</a></li>
         </ul>
-        <br/><br/>
       </ng-container>
 
     </div>
