@@ -30,6 +30,7 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
 
         <ng-container *ngFor="let object of objects;let i = index">
           <div *ngFor="let key of keys(object)">
+            <app-zippy title="{{object[key].name}}">
             Reference ID: {{object[key].neo_reference_id}}<br/>
             Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
             Potentially Hazardous: <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
@@ -60,7 +61,9 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
               <br/>
               <hr/>
             </ng-container>
+            </app-zippy>
           </div>
+          
         </ng-container>
         <button (click)="previous(prev)">&laquo; Previous</button>
         <button class="pull-right" (click)="next_page(next)">Next &raquo;</button>

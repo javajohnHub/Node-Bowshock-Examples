@@ -18,61 +18,61 @@ import {SocketService} from '../../../shared/socket.service';
 
         <ng-container *ngFor="let object of objects;let i = index">
           <div *ngFor="let key of keys(object)">
-            Reference ID: {{object[key].neo_reference_id}}<br/>
-            Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
-            Potentially Hazardous: <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
+            <app-zippy title="{{object[key].name}}">
+              Reference ID: {{object[key].neo_reference_id}}<br/>
+              Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
+              Potentially Hazardous: <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
               {{object[key].is_potentially_hazardous_asteroid}}</span><br/>
-            Absolute Magnitude: {{object[key].absolute_magnitude_h}}<br/>
-            Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
-            Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
-            Estimated diameter max km: {{object[key].estimated_diameter.kilometers.estimated_diameter_max}}<br/>
-            Estimated diameter min meters: {{object[key].estimated_diameter.meters.estimated_diameter_min}}<br/>
-            Estimated diameter max meters: {{object[key].estimated_diameter.meters.estimated_diameter_max}}<br/>
-            Estimated diameter min miles: {{object[key].estimated_diameter.miles.estimated_diameter_min}}<br/>
-            Estimated diameter max miles: {{object[key].estimated_diameter.miles.estimated_diameter_max}}<br/>
-            Estimated diameter min feet: {{object[key].estimated_diameter.feet.estimated_diameter_min}}<br/>
-            Estimated diameter max feet: {{object[key].estimated_diameter.feet.estimated_diameter_max}}<br/>
-            <ng-container *ngFor="let approach_data of object[key].close_approach_data">
-              Close Approach Date: {{approach_data.close_approach_date}}<br/>
-              Epoch Date Close Approach: {{approach_data.epoch_date_close_approach}}<br/><br/>
-              Relative Velocity: <br/>
-              kps: {{approach_data.relative_velocity.kilometers_per_second}}<br/>
-              kph: {{approach_data.relative_velocity.kilometers_per_hour}}<br/>
-              mph: {{approach_data.relative_velocity.miles_per_hour}}<br/><br/>
-              Miss Distance: <br/>
-              Astronomical: {{approach_data.miss_distance.astronomical}}<br/>
-              Lunar: {{approach_data.miss_distance.lunar}}<br/>
-              Kilometers: {{approach_data.miss_distance.kilometers}}<br/>a
-              Miles: {{approach_data.miss_distance.miles}}<br/>
-              Orbiting body: {{approach_data.orbiting_body}}<br/><br/>
+              Absolute Magnitude: {{object[key].absolute_magnitude_h}}<br/>
+              Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
+              Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
+              Estimated diameter max km: {{object[key].estimated_diameter.kilometers.estimated_diameter_max}}<br/>
+              Estimated diameter min meters: {{object[key].estimated_diameter.meters.estimated_diameter_min}}<br/>
+              Estimated diameter max meters: {{object[key].estimated_diameter.meters.estimated_diameter_max}}<br/>
+              Estimated diameter min miles: {{object[key].estimated_diameter.miles.estimated_diameter_min}}<br/>
+              Estimated diameter max miles: {{object[key].estimated_diameter.miles.estimated_diameter_max}}<br/>
+              Estimated diameter min feet: {{object[key].estimated_diameter.feet.estimated_diameter_min}}<br/>
+              Estimated diameter max feet: {{object[key].estimated_diameter.feet.estimated_diameter_max}}<br/>
+              <ng-container *ngFor="let approach_data of object[key].close_approach_data">
+                Close Approach Date: {{approach_data.close_approach_date}}<br/>
+                Epoch Date Close Approach: {{approach_data.epoch_date_close_approach}}<br/><br/>
+                Relative Velocity: <br/>
+                kps: {{approach_data.relative_velocity.kilometers_per_second}}<br/>
+                kph: {{approach_data.relative_velocity.kilometers_per_hour}}<br/>
+                mph: {{approach_data.relative_velocity.miles_per_hour}}<br/><br/>
+                Miss Distance: <br/>
+                Astronomical: {{approach_data.miss_distance.astronomical}}<br/>
+                Lunar: {{approach_data.miss_distance.lunar}}<br/>
+                Kilometers: {{approach_data.miss_distance.kilometers}}<br/>a
+                Miles: {{approach_data.miss_distance.miles}}<br/>
+                Orbiting body: {{approach_data.orbiting_body}}<br/><br/>
               </ng-container>
-            Orbital Data: <br/>
-                Orbit ID: {{object[key].orbital_data.orbit_id}}<br/>
-                Orbit determination date: {{object[key].orbital_data.orbit_determination_date}}<br/>
-            Orbit uncertainty: {{object[key].orbital_data.orbit_uncertainty}}<br/>
-            Min orbit itersection: {{object[key].orbital_data.orbit_uncertainty}}<br/>
-            Jupitor tisserand invariant: {{object[key].orbital_data.orbit_uncertainty}}<br/>
-            Epoch osculation: {{object[key].orbital_data.epoch_osculation}}<br/>
-            Eccentricity: {{object[key].orbital_data.eccentricity}}<br/>
-            Semi major axis: {{object[key].orbital_data.semi_major_axis}}<br/>
-            Inclination: {{object[key].orbital_data.inclination}}<br/>
-            Ascending node longitude: {{object[key].orbital_data.ascending_node_longitude}}<br/>
-            Orbital period: {{object[key].orbital_data.orbital_period}}<br/>
-            Perihelion distance: {{object[key].orbital_data.perihelion_distance}}<br/>
-            Perihelion argument: {{object[key].orbital_data.perihelion_argument}}<br/>
-            Perihelion time: {{object[key].orbital_data.perihelion_time}}<br/>
-            Aphelion distance: {{object[key].orbital_data.aphelion_distance}}<br/>
-            Mean anomaly: {{object[key].orbital_data.mean_anomaly}}<br/>
-            Mean motion: {{object[key].orbital_data.mean_motion}}<br/>
-            Equinox: {{object[key].orbital_data.equinox}}<br/>
-            <br/>
-            <hr/>
+              Orbital Data: <br/>
+              Orbit ID: {{object[key].orbital_data.orbit_id}}<br/>
+              Orbit determination date: {{object[key].orbital_data.orbit_determination_date}}<br/>
+              Orbit uncertainty: {{object[key].orbital_data.orbit_uncertainty}}<br/>
+              Min orbit itersection: {{object[key].orbital_data.orbit_uncertainty}}<br/>
+              Jupitor tisserand invariant: {{object[key].orbital_data.orbit_uncertainty}}<br/>
+              Epoch osculation: {{object[key].orbital_data.epoch_osculation}}<br/>
+              Eccentricity: {{object[key].orbital_data.eccentricity}}<br/>
+              Semi major axis: {{object[key].orbital_data.semi_major_axis}}<br/>
+              Inclination: {{object[key].orbital_data.inclination}}<br/>
+              Ascending node longitude: {{object[key].orbital_data.ascending_node_longitude}}<br/>
+              Orbital period: {{object[key].orbital_data.orbital_period}}<br/>
+              Perihelion distance: {{object[key].orbital_data.perihelion_distance}}<br/>
+              Perihelion argument: {{object[key].orbital_data.perihelion_argument}}<br/>
+              Perihelion time: {{object[key].orbital_data.perihelion_time}}<br/>
+              Aphelion distance: {{object[key].orbital_data.aphelion_distance}}<br/>
+              Mean anomaly: {{object[key].orbital_data.mean_anomaly}}<br/>
+              Mean motion: {{object[key].orbital_data.mean_motion}}<br/>
+              Equinox: {{object[key].orbital_data.equinox}}<br/>
+              <br/>
+              <hr/>
 
+          
+            </app-zippy>
           </div>
         </ng-container>
-        <button (click)="previous(prev)">&laquo; Yesterday</button>
-        <button class="pull-right" (click)="next_page(next)">Tomorrow &raquo;</button>
-        <br/><br/>
       </ng-container>
 
     </div>

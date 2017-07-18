@@ -21,7 +21,7 @@ import {NeowsComponent} from './components/neows/neows.component';
 import {FeedComponent} from './components/neows/feed/feed.component';
 import {TodayComponent} from './components/neows/today/today.component';
 import { EvaComponent } from './components/eva/eva.component';
-
+import { ZippyComponent } from './components/zippy/zippy.component';
 import {BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { PaginationModule } from 'ngx-bootstrap';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
@@ -40,7 +40,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     NeowsComponent,
     FeedComponent,
     EvaComponent,
-    TodayComponent
+    TodayComponent,
+    ZippyComponent
   ],
   imports: [
     BrowserModule,
