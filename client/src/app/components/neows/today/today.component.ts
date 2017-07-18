@@ -10,10 +10,12 @@ import {SocketService} from '../../../shared/socket.service';
       
     </div>
     <div *ngIf="neows">
-      <button (click)="previous(prev)">&laquo; Yesterday</button>
-      <span class="text-center">Element Count: {{element_count}}</span>
-      <button class="pull-right" (click)="next_page(next)">Tomorrow &raquo;</button>
-      <br/><br/>
+      <ul class="pager">
+        <li class="previous"><a (click)="previous(prev)">&laquo; Previous</a></li>
+        <li class="next"><a (click)="next_page(next)">Next &raquo;</a></li>
+      </ul>
+      <h3 class="text-center">Element Count: {{element_count}}</h3>
+      <br/>
       <ng-container *ngIf="objects">
 
         <ng-container *ngFor="let object of objects;let i = index">

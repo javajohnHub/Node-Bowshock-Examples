@@ -22,10 +22,12 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
       </form>
     </div>
     <div *ngIf="neows">
-      <button (click)="previous(prev)">&laquo; Previous</button>
-      <span class="text-center">Element Count: {{element_count}}</span>
-      <button class="pull-right" (click)="next_page(next)">Next &raquo;</button>
-      <br/><br/>
+      <ul class="pager">
+        <li class="previous"><a (click)="previous(prev)">&laquo; Previous</a></li>
+        <li class="next"><a (click)="next_page(next)">Next &raquo;</a></li>
+      </ul>
+      <h3 class="text-center">Element Count: {{element_count}}</h3>
+      <br/>
       <ng-container *ngIf="objects">
 
         <ng-container *ngFor="let object of objects;let i = index">
@@ -65,8 +67,10 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
           </div>
           
         </ng-container>
-        <button (click)="previous(prev)">&laquo; Previous</button>
-        <button class="pull-right" (click)="next_page(next)">Next &raquo;</button>
+        <ul class="pager">
+          <li class="previous"><a (click)="previous(prev)">&laquo; Previous</a></li>
+          <li class="next"><a (click)="next_page(next)">Next &raquo;</a></li>
+        </ul>
         <br/><br/>
       </ng-container>
 
