@@ -26,3 +26,7 @@
   cursor: pointer !important;
 }
 
+.center{
+  margin: auto;
+  width: 100%;
+}

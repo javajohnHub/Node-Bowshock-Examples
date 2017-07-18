@@ -19,11 +19,11 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
             </button>
         </span>
         </div>
-      </form>
+      </form><br/>
     </div>
     <div *ngIf="pictures">
       <ng-container *ngFor="let picture of pictures.photos">
-        <img class="img-responsive" src="{{picture.img_src}}">
+        <img class="img-responsive center" src="{{picture.img_src}}"><br/>
       </ng-container>
       <div *ngIf="pictures.photos.length == 0">
         <h1 class="text-center">No Photos Found</h1>
