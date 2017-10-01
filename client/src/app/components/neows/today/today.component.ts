@@ -23,7 +23,22 @@ import {SocketService} from '../../../shared/socket.service';
               Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
               Potentially Hazardous: <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
               {{object[key].is_potentially_hazardous_asteroid}}</span><br/>
-              Absolute Magnitude: {{object[key].absolute_magnitude_h}}<br/>
+              <div style="display: block">
+                <canvas baseChart
+                        [datasets]="[{data: [object[key].absolute_magnitude_h], label: object[key].name}]"
+                        [labels]="['absolute magnitude']"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType"
+                ></canvas>
+                <canvas baseChart
+                        [datasets]="[{data: [object[key].estimated_diameter.miles.estimated_diameter_min, object[key].estimated_diameter.miles.estimated_diameter_max], label: object[key].name}]"
+                        [labels]="['est dia min miles', 'est dia max miles']"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType2"
+                ></canvas>
+              </div>
               Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
               Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
               Estimated diameter max km: {{object[key].estimated_diameter.kilometers.estimated_diameter_max}}<br/>
@@ -46,6 +61,7 @@ import {SocketService} from '../../../shared/socket.service';
                 Kilometers: {{approach_data.miss_distance.kilometers}}<br/>a
                 Miles: {{approach_data.miss_distance.miles}}<br/>
                 Orbiting body: {{approach_data.orbiting_body}}<br/><br/>
+                
               </ng-container>
               Orbital Data: <br/>
               Orbit ID: {{object[key].orbital_data.orbit_id}}<br/>
@@ -66,11 +82,13 @@ import {SocketService} from '../../../shared/socket.service';
               Mean anomaly: {{object[key].orbital_data.mean_anomaly}}<br/>
               Mean motion: {{object[key].orbital_data.mean_motion}}<br/>
               Equinox: {{object[key].orbital_data.equinox}}<br/>
+              
             </app-zippy>
           </div>
         </ng-container>
+        
       </ng-container>
-
+      
     </div>
   `
 })
@@ -80,11 +98,19 @@ export class TodayComponent implements OnInit {
   currentPage: string;
   next: string;
   prev: string;
-
+  labels: any = [];
   element_count: number;
   near_earth_objects: {};
   date;
   objects: any = [];
+  public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+  public barChartType:string = 'bar';
+  public barChartType2:string = 'doughnut';
+  public barChartLegend:boolean = true;
 
   constructor() {
     this.socket = SocketService.getInstance();
@@ -100,6 +126,13 @@ export class TodayComponent implements OnInit {
           this.objects.push(this.near_earth_objects[date]);
         }
       });
+      this.objects.forEach((object) => {
+        object.forEach(data => {
+          this.labels.push(data.name)
+          console.log(data)
+
+        })
+      })
     });
 
     this.socket.on('send previous', (data) => {
@@ -131,6 +164,7 @@ export class TodayComponent implements OnInit {
           this.objects.push(this.near_earth_objects[date]);
         }
       });
+
     });
 
     this.socket.emit('get today');

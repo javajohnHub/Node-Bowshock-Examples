@@ -25,6 +25,7 @@ import { ZippyComponent } from './components/zippy/zippy.component';
 import {BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { PaginationModule } from 'ngx-bootstrap';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
     NgxMyDatePickerModule,
+    ChartsModule
 
 
   ],

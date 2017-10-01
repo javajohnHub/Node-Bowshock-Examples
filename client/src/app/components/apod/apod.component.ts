@@ -53,6 +53,8 @@ import {DomSanitizer} from "@angular/platform-browser";
       height: 100%;
     }`]
 })
+
+
 export class ApodComponent {
   socket: any;
   apod: {};
