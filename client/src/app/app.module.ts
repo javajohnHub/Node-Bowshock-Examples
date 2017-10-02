@@ -52,7 +52,7 @@ import { ChartsModule } from 'ng2-charts';
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
-    NgxMyDatePickerModule.forRoot(),
+    NgxMyDatePickerModule,
     ChartsModule
 
 
