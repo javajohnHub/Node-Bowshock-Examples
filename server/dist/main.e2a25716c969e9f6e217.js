@@ -71348,7 +71348,7 @@ var ApodComponent = /** @class */ (function () {
     function ApodComponent(sanitizer) {
         var _this = this;
         this.sanitizer = sanitizer;
-        this.model = this.getTodaysDate()['date'];
+        this.model = this.getTodaysDate()['str'];
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on("send apod", function (data) {
             _this.apod = data;

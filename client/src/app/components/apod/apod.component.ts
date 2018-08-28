@@ -53,7 +53,7 @@ export class ApodComponent {
   safe_url: any;
   model: Date;
   constructor(private sanitizer: DomSanitizer) {
-    this.model = this.getTodaysDate()['date'];
+    this.model = this.getTodaysDate()['str'];
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
