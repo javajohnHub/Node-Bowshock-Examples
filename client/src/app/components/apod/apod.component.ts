@@ -7,11 +7,11 @@ import { DomSanitizer } from "@angular/platform-browser";
   template: `    
     <div class="ui-g-12">
       <h1>Apod</h1>
-      <form>
+     
         <div class="ui-g-10 ui-g-offset-1">
             <p-calendar showButtonBar="true" style="display: block;" [(ngModel)]="model" dateFormat="yy.mm.dd" [maxDate]="model"></p-calendar>
         </div>
-      </form>
+      
     </div>
     <div *ngIf="apod">
       <h2>{{apod.title}}</h2>
