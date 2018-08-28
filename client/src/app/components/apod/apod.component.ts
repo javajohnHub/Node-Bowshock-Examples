@@ -67,11 +67,11 @@ export class ApodComponent {
   onDateChanged(event): void {
     
     this.model = this.getTodaysDate(event);
-    console.log(this.model);
+    console.log(event);
     //this.socket.emit("get apod", this.model.toString());
   }
 
-  getTodaysDate(stringDate?: string): Date {
+  getTodaysDate(stringDate?: string ): Date {
     let myDate;
     if(stringDate){
       myDate = new Date(stringDate);
