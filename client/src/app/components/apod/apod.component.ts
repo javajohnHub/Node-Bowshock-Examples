@@ -54,9 +54,9 @@ export class ApodComponent {
   model: Date;
   maxDateValue: Date;
   constructor(private sanitizer: DomSanitizer) {
-    let year = new Date().getFullYear();
-    let month = new Date().getMonth() + 1;
-    let day = new Date().getDate();
+    const year: number = new Date().getFullYear();
+    const month: number = new Date().getMonth() + 1;
+    const day: number = new Date().getDate();
     this.model = new Date(`${year}-${month}-${day}`);
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
