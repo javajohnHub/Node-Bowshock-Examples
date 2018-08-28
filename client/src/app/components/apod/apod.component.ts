@@ -54,23 +54,23 @@ export class ApodComponent {
   model: Date;
   constructor(private sanitizer: DomSanitizer) {
     this.model = this.getTodaysDate();
-    console.log(this.model);
-    // this.socket = SocketService.getInstance();
-    // this.socket.on("send apod", data => {
-    //   this.apod = data;
-    //   this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
-    //     this.apod["url"]
-    //   );
-    // });
+    this.socket = SocketService.getInstance();
+    this.socket.on("send apod", data => {
+      this.apod = data;
+      this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
+        this.apod["url"]
+      );
+    });
 
-    // this.socket.emit("get apod", this.model);
+    this.socket.emit("get apod", this.model);
   }
   onDateChanged(event): void {
-    console.log(event.date);
-    //this.socket.emit("get apod", event.date);
+    console.log(event);
+    this.model = this.getTodaysDate(event);
+    this.socket.emit("get apod", this.model);
   }
 
-  getTodaysDate(): Date {
+  getTodaysDate(stringDate?: string): Date {
     const myDate = new Date();
     const myYear = myDate.getFullYear();
     const myMonth = myDate.getMonth() + 1;
