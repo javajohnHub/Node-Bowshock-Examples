@@ -32,11 +32,10 @@ module.exports = function(io) {
       });
     });
     socket.on("get stats", () => {
-      let stats = bowshock.neows.stats();
-      console.log(stats);
-      socket.emit("send stats", stats).then(stats => {
+      bowshock.neows.stats().then(stats => {
         socket.emit("send stats", stats);
-      });
+      });;
+      
     });
 
     socket.on("get feed", date => {
