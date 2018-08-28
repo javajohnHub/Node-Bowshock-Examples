@@ -20,7 +20,7 @@ import {SocketService} from '../../shared/socket.service';
 })
 export class HomeComponent {
   socket: any;
-  stats: {};
+  stats: any = {};
   constructor( ) {
     this.socket = SocketService.getInstance();
     this.socket.on('send stats', (data) => {

@@ -117,6 +117,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var HomeComponent = (function () {
     function HomeComponent() {
         var _this = this;
+        this.stats = {};
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('send stats', function (data) {
             console.log(data);
