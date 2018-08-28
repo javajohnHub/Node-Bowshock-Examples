@@ -57,8 +57,7 @@ export class ApodComponent {
     const year: number = new Date().getFullYear();
     const month: number = new Date().getMonth() + 1;
     const day: number = new Date().getDate();
-    const myDate = new Date(`${year}-${month}-${day}`);
-    this.model = this.getDate(myDate.toString());
+    this.model = this.getTodaysDate();
     console.log(this.model);
     // this.socket = SocketService.getInstance();
     // this.socket.on("send apod", data => {
@@ -75,11 +74,11 @@ export class ApodComponent {
     //this.socket.emit("get apod", event.date);
   }
 
-  getDate(date: string) {
-    const myDate = new Date(date);
+  getTodaysDate() {
+    const myDate = new Date();
     const myYear = myDate.getFullYear();
-    let myMonth = myDate.getMonth() + 1;
-    let day = myDate.getDate();
+    const myMonth = myDate.getMonth() + 1;
+    const day = myDate.getDate();
     let stringMonth;
     let stringDay;
     if (day < 10) {
