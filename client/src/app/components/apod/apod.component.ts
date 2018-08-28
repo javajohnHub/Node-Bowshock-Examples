@@ -8,10 +8,8 @@ import { DomSanitizer } from '@angular/platform-browser';
     <div class="ui-g-12">
       <h1>Apod</h1>
       <form>
-        <div class='form-group'>
+        <div>
             <p-calendar [(ngModel)]='model'></p-calendar>
-          <span class='input-group-btn'>
-        </span>
         </div>
       </form>
     </div>

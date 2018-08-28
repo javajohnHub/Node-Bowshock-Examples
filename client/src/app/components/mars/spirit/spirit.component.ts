@@ -1,23 +1,19 @@
 import { Component } from '@angular/core';
 import {SocketService} from '../../../shared/socket.service';
-import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
+
 
 @Component({
   selector: 'app-spirit',
   template: `
     <div>
-      <h1 class="text-center">Spirit</h1>
+      <h1>Spirit</h1>
       <form>
         <div class="input-group">
-          <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
-                 [(ngModel)]="model" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"
-                 disabled/>
-
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
-                <i class="glyphicon glyphicon-calendar"></i>
-            </button>
-        </span>
+        <form>
+        <div>
+            <p-calendar [(ngModel)]='model'></p-calendar>
+        </div>
+      </form>
         </div>
       </form><br/>
     </div>
@@ -34,9 +30,6 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
 export class SpiritComponent {
   socket: any;
   pictures: {};
-  myOptions: INgxMyDpOptions = {
-    dateFormat: 'yyyy-mm-dd',
-  };
   model: Object = { date: { year: 2010, month: 3, day: 21 } };
 
   constructor() {
@@ -47,7 +40,7 @@ export class SpiritComponent {
     this.socket.emit('get spirit', this.model['date'] );
 
   }
-  onDateChanged(event: IMyDateModel): void {
+  onDateChanged(event): void {
     this.socket.emit('get spirit', event.date );
   }
 
