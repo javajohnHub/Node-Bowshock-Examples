@@ -87,6 +87,6 @@ export class ApodComponent {
       stringMonth = '0' + myMonth;
     }
 
-    return `${myYear} + "-" + ${stringMonth || myMonth} + "-" + ${stringDay || day}`;
+    return `${myYear}-${stringMonth || myMonth}-${stringDay || day}`;
   }
 }
