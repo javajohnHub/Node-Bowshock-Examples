@@ -51,9 +51,9 @@ export class ApodComponent {
   socket: any;
   apod: {};
   safe_url: any;
-  model: string;
+  model: Date;
   constructor(private sanitizer: DomSanitizer) {
-    this.model = this.getTodaysDate().toString();
+    this.model = this.getTodaysDate();
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
@@ -66,7 +66,7 @@ export class ApodComponent {
   }
   onDateChanged(event): void {
     console.log(event);
-    this.model = this.getTodaysDate(event).toString();
+    this.model = this.getTodaysDate(event);
     this.socket.emit("get apod", this.model);
   }
 
