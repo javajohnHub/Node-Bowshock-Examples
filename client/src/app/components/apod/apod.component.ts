@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { SocketService } from '../../shared/socket.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component } from "@angular/core";
+import { SocketService } from "../../shared/socket.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-apod',
+  selector: "app-apod",
   template: `    
     <div class="ui-g-12">
       <h1>Apod</h1>
       <form>
         <div class="ui-g-10 ui-g-offset-1">
-            <p-calendar [(ngModel)]="model" name="apodDate"></p-calendar>
+            <p-calendar [(ngModel)]="model"></p-calendar>
         </div>
       </form>
     </div>
@@ -51,28 +51,25 @@ export class ApodComponent {
   socket: any;
   apod: {};
   safe_url: any;
-  model: Object = {};
+  model: Date;
 
   constructor(private sanitizer: DomSanitizer) {
-    this.model = {
-      date: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-        day: new Date().getDate()
-      }
-    };
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth() + 1;
+    let day = new Date().getDate();
+    this.model = new Date(`${year}-${month}-${day}`);
     this.socket = SocketService.getInstance();
-    this.socket.on('send apod', data => {
+    this.socket.on("send apod", data => {
       this.apod = data;
       this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.apod['url']
+        this.apod["url"]
       );
     });
-    console.log(this.model['date'])
-    this.socket.emit('get apod', this.model['date']);
+    console.log(this.model);
+    this.socket.emit("get apod", this.model);
   }
   onDateChanged(event): void {
-    console.log(event.date)
-    this.socket.emit('get apod', event.date);
+    console.log(event.date);
+    this.socket.emit("get apod", event.date);
   }
 }
