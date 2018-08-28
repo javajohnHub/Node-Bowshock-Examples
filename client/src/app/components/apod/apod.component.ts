@@ -58,19 +58,20 @@ export class ApodComponent {
     const month: number = new Date().getMonth() + 1;
     const day: number = new Date().getDate();
     this.model = new Date(`${year}-${month}-${day}`);
+    
     console.log(this.model)
-    this.socket = SocketService.getInstance();
-    this.socket.on("send apod", data => {
-      this.apod = data;
-      this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.apod["url"]
-      );
-    });
-    console.log(this.model);
-    this.socket.emit("get apod", this.model);
+    // this.socket = SocketService.getInstance();
+    // this.socket.on("send apod", data => {
+    //   this.apod = data;
+    //   this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
+    //     this.apod["url"]
+    //   );
+    // });
+    
+    // this.socket.emit("get apod", this.model);
   }
   onDateChanged(event): void {
     console.log(event.date);
-    this.socket.emit("get apod", event.date);
+    //this.socket.emit("get apod", event.date);
   }
 }
