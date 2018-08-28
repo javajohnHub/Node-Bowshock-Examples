@@ -53,7 +53,7 @@ export class ApodComponent {
   safe_url: any;
   model: Date;
   constructor(private sanitizer: DomSanitizer) {
-    this.model = this.getTodaysDate();
+    this.model = this.getTodaysDate()['date'];
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
@@ -62,35 +62,38 @@ export class ApodComponent {
       );
     });
 
-    //this.socket.emit("get apod", this.model.toString());
+    this.socket.emit("get apod", this.model);
   }
   onDateChanged(event): void {
-    
-    this.model = this.getTodaysDate(event);
-    console.log(event);
-    //this.socket.emit("get apod", this.model.toString());
+    this.model = this.getTodaysDate(event)['str'];
+    console.log(this.model);
+    this.socket.emit("get apod", this.model);
   }
 
-  getTodaysDate(stringDate?: string ): Date {
+  getTodaysDate(stringDate?: string): Object {
     let myDate;
-    if(stringDate){
+    if (stringDate) {
       myDate = new Date(stringDate);
-    }else{
+    } else {
       myDate = new Date();
     }
-    
+
     const myYear = myDate.getFullYear();
     const myMonth = myDate.getMonth() + 1;
     const day = myDate.getDate();
     let stringMonth;
     let stringDay;
+
     if (day < 10) {
-      stringDay = '0' + day;
+      stringDay = "0" + day;
     }
     if (myMonth < 10) {
-      stringMonth = '0' + myMonth;
+      stringMonth = "0" + myMonth;
     }
-
-    return new Date(`${myYear}-${stringMonth || myMonth}-${stringDay || day}`);
+    const obj: any = {
+      str: `${myYear}-${stringMonth || myMonth}-${stringDay || day}`,
+      date: new Date(`${myYear}-${stringMonth || myMonth}-${stringDay || day}`)
+    };
+    return obj;
   }
 }
