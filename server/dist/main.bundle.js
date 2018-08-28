@@ -165,7 +165,7 @@ var CuriosityComponent = (function () {
         this.model = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() - 1 } };
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('send curiosity', function (data) {
-            console.log(data.data);
+            console.log(data);
             _this.pictures = data;
         });
         this.socket.emit('get curiosity', this.model['date']);
