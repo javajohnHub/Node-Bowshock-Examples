@@ -615,7 +615,7 @@ var SocketService = (function () {
      * within the same application to the same resource
      */
     function SocketService() {
-        this.url = 'localhost:4200'; //'https://node-bowshock.herokuapp.com'; ;
+        this.url = 'https://node-bowshock.herokuapp.com';
         if (!SocketService.isCreating) {
             throw new Error('This is a real singleton. Get an instance via var socket = SocketService.getInsance(); !');
         }
