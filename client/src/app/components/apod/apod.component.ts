@@ -9,7 +9,7 @@ import { DomSanitizer } from "@angular/platform-browser";
       <h1>Apod</h1>
       <form>
         <div class="ui-g-10 ui-g-offset-1">
-            <p-calendar [(ngModel)]="model"></p-calendar>
+            <p-calendar showButtonBar="true" style="display: block;" [(ngModel)]="model" dateFormat="yy.mm.dd" [maxDate]="model"></p-calendar>
         </div>
       </form>
     </div>
@@ -52,7 +52,7 @@ export class ApodComponent {
   apod: {};
   safe_url: any;
   model: Date;
-
+  maxDateValue: Date;
   constructor(private sanitizer: DomSanitizer) {
     let year = new Date().getFullYear();
     let month = new Date().getMonth() + 1;
