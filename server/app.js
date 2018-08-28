@@ -13,7 +13,7 @@ var app = express();
 
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, './server', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, './', 'favicon.ico')));
 app.use(logger('dev'));
 
 app.use(bodyParser.json());
