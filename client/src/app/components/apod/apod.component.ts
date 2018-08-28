@@ -58,6 +58,7 @@ export class ApodComponent {
     const month: number = new Date().getMonth() + 1;
     const day: number = new Date().getDate();
     this.model = new Date(`${year}-${month}-${day}`);
+    console.log(this.model)
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
