@@ -39,10 +39,11 @@ let rp = require('request-promise');
                         
                     })
         socket.on('get stats', () => {
-            bowshock.neows.stats()
-            .then((data) => {
-                socket.emit('send stats', data)
-            })
+            let stats = bowshock.neows.stats();
+            console.log('stats', stats)
+           
+                socket.emit('send stats', bowshock.neows.stats())
+            
             
         })
 
