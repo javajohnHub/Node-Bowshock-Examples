@@ -13,6 +13,7 @@ module.exports = function(io) {
     });
     socket.on("get curiosity", date => {
       let formatted_date = format_date(date);
+      console.log(formatted_date)
       bowshock.mars.curiosity(formatted_date).then(rover => {
         socket.emit("send curiosity", rover);
       });
