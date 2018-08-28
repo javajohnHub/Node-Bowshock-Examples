@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'dist')));
 app.engine('html', cons.swig)
-app.set('views', path.join(__dirname, 'views'));
+app.set('dist', path.join(__dirname, 'dist'));
 app.set('view engine', 'html');
 
 
@@ -43,7 +43,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({error: err});
 });
 
 module.exports = app;

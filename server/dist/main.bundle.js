@@ -164,11 +164,10 @@ var CuriosityComponent = (function () {
         };
         this.model = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() - 1 } };
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
+        this.socket.emit('get curiosity', this.model['date']);
         this.socket.on('send curiosity', function (data) {
-            console.log(data);
             _this.pictures = data;
         });
-        this.socket.emit('get curiosity', this.model['date']);
     }
     CuriosityComponent.prototype.onDateChanged = function (event) {
         this.socket.emit('get curiosity', event.date);
@@ -614,7 +613,7 @@ var SocketService = (function () {
      * within the same application to the same resource
      */
     function SocketService() {
-        this.url = 'https://node-bowshock.herokuapp.com';
+        this.url = 'localhost:4200'; //'https://node-bowshock.herokuapp.com';
         if (!SocketService.isCreating) {
             throw new Error('This is a real singleton. Get an instance via var socket = SocketService.getInsance(); !');
         }

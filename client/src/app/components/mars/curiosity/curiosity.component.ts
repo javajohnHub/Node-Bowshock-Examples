@@ -41,11 +41,11 @@ export class CuriosityComponent {
   model: Object = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() - 1 } };
   constructor() {
     this.socket = SocketService.getInstance();
+    this.socket.emit('get curiosity', this.model['date'] );
     this.socket.on('send curiosity', (data) => {
-      console.log(data)
       this.pictures = data;
     });
-    this.socket.emit('get curiosity', this.model['date'] );
+    
 
   }
   onDateChanged(event: IMyDateModel): void {
