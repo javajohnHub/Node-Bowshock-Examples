@@ -52,7 +52,6 @@ export class ApodComponent {
   apod: {};
   safe_url: any;
   model: string;
-  maxDateValue: Date;
   constructor(private sanitizer: DomSanitizer) {
     const year: number = new Date().getFullYear();
     const month: number = new Date().getMonth() + 1;
