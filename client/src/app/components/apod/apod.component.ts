@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
       <h1>Apod</h1>
       <form>
         <div class="ui-g-10 ui-g-offset-1">
-            <p-calendar [(ngModel)]="model"></p-calendar>
+            <p-calendar [(ngModel)]="model" [ngModelOptions]="{standalone: true}"></p-calendar>
         </div>
       </form>
     </div>

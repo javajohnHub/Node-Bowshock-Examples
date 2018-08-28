@@ -11,7 +11,7 @@ import {SocketService} from '../../../shared/socket.service';
         <div class="form-group">
         <form>
         <div>
-            <p-calendar [(ngModel)]="model"></p-calendar>
+            <p-calendar [(ngModel)]="model" [ngModelOptions]="{standalone: true}"></p-calendar>
         </div>
       </form>
         </div>
