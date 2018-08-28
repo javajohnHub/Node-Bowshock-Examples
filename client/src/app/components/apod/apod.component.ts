@@ -51,15 +51,16 @@ export class ApodComponent {
   socket: any;
   apod: {};
   safe_url: any;
-  model: Object = {
-    date: {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
-      day: new Date().getDate()
-    }
-  };
+  model: Object = {};
 
   constructor(private sanitizer: DomSanitizer) {
+    this.model = {
+      date: {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+        day: new Date().getDate()
+      }
+    };
     this.socket = SocketService.getInstance();
     this.socket.on('send apod', data => {
       this.apod = data;
