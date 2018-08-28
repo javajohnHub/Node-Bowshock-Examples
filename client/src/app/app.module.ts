@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import {
   LocationStrategy,
   HashLocationStrategy
@@ -22,10 +22,8 @@ import {FeedComponent} from './components/neows/feed/feed.component';
 import {TodayComponent} from './components/neows/today/today.component';
 import { EvaComponent } from './components/eva/eva.component';
 import { ZippyComponent } from './components/zippy/zippy.component';
-import {BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
-import { PaginationModule } from 'ngx-bootstrap';
-import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
-import { ChartsModule } from 'ng2-charts';
+
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -47,13 +45,9 @@ import { ChartsModule } from 'ng2-charts';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     routing,
-    CollapseModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    PaginationModule.forRoot(),
-    NgxMyDatePickerModule.forRoot(),
-    ChartsModule
+    CalendarModule
 
 
   ],
