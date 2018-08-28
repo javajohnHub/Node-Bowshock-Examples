@@ -1,24 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {SocketService} from '../../../shared/socket.service';
-import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
 
 @Component({
   selector: 'app-neows-feed',
   template: `
     <div>
-      <h1 class="text-center">Neows Feed</h1>
-      <h3 *ngIf="neows" class="text-center">Element Count: {{element_count}}</h3>
+      <h1>Neows Feed</h1>
+      <h3 *ngIf="neows">Element Count: {{element_count}}</h3>
       <form>
         <div class="input-group">
-          <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
-                 [(ngModel)]="model" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"
-                 disabled/>
-
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
-                <i class="glyphicon glyphicon-calendar"></i>
-            </button>
-        </span>
+        <form>
+        <div>
+            <p-calendar [(ngModel)]='model'></p-calendar>
+        </div>
+      </form>
         </div>
       </form>
     </div>
@@ -76,9 +71,6 @@ import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
 export class FeedComponent implements OnInit {
   socket: any;
   neows: {};
-  myOptions: INgxMyDpOptions = {
-    dateFormat: 'yyyy-mm-dd',
-  };
   model: Object = {date: {year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()}};
 
   currentPage: string;
@@ -146,7 +138,7 @@ export class FeedComponent implements OnInit {
 
   }
 
-  onDateChanged(event: IMyDateModel): void {
+  onDateChanged(event): void {
     this.socket.emit('get feed', event.date);
     this.date = event.date;
   }
