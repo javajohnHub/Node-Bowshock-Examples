@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../shared/socket.service";
 import { DomSanitizer } from "@angular/platform-browser";
-import { helpers} from 'node-bowshock/src/lib/helpers';
+
 @Component({
   selector: "app-apod",
   template: `    
@@ -51,15 +51,15 @@ export class ApodComponent {
   socket: any;
   apod: {};
   safe_url: any;
-  model: Date;
+  model: string;
   maxDateValue: Date;
   constructor(private sanitizer: DomSanitizer) {
     const year: number = new Date().getFullYear();
     const month: number = new Date().getMonth() + 1;
     const day: number = new Date().getDate();
-    this.model = new Date(`${year}-${month}-${day}`);
-    helpers.format_date(this.model);
-    console.log(this.model)
+    const myDate = new Date(`${year}-${month}-${day}`);
+    this.model = this.getDate(myDate.toString());
+    console.log(this.model);
     // this.socket = SocketService.getInstance();
     // this.socket.on("send apod", data => {
     //   this.apod = data;
@@ -67,11 +67,28 @@ export class ApodComponent {
     //     this.apod["url"]
     //   );
     // });
-    
+
     // this.socket.emit("get apod", this.model);
   }
   onDateChanged(event): void {
     console.log(event.date);
     //this.socket.emit("get apod", event.date);
+  }
+
+  getDate(date: string) {
+    const myDate = new Date(date);
+    const myYear = myDate.getFullYear();
+    let myMonth = myDate.getMonth() + 1;
+    let day = myDate.getDate();
+    let stringMonth;
+    let stringDay;
+    if (day < 10) {
+      stringDay = '0' + day;
+    }
+    if (myMonth < 10) {
+      stringMonth = '0' + myMonth;
+    }
+
+    return `${myYear} + "-" + ${stringMonth || myMonth} + "-" + ${stringDay || day}`;
   }
 }
