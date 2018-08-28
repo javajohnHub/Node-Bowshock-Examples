@@ -7,65 +7,29 @@ let rp = require('request-promise');
         socket.on('get apod', (date) => {
             console.log(date);
             let formatted_date = format_date(date);
-            bowshock.apod(formatted_date)
-                .then((result) => {
-                        socket.emit('send apod', result)
-                    }
-                ).catch((e) => {
-                console.log(e)
-            })
+            socket.emit('send apod', bowshock.apod(formatted_date))
         })
             socket.on('get curiosity', (date) => {
                 let formatted_date = format_date(date);
-                bowshock.mars.curiosity(formatted_date)
-                    .then((result) => {
-                            socket.emit('send curiosity', result)
-                        }
-                    ).catch((e) => {
-                    console.log(e)
-                })
+                socket.emit('send curiosity',  bowshock.mars.curiosity(formatted_date))
             })
 
                 socket.on('get opportunity', (date) => {
                     let formatted_date = format_date(date);
-                    bowshock.mars.opportunity(formatted_date)
-                        .then((result) => {
-                                socket.emit('send opportunity', result)
-                            }
-                        ).catch((e) => {
-                        console.log(e)
-                    })
+                    socket.emit('send opportunity',bowshock.mars.opportunity(formatted_date))
                 })
 
                     socket.on('get spirit', (date) => {
                         let formatted_date = format_date(date);
-                        bowshock.mars.spirit(formatted_date)
-                            .then((result) => {
-                                    socket.emit('send spirit', result)
-                                }
-                            ).catch((e) => {
-                            console.log(e)
-                        })
+                        socket.emit('send spirit', bowshock.mars.spirit(formatted_date))
                     })
         socket.on('get stats', () => {
-            bowshock.neows.stats()
-                .then((result) => {
-                        socket.emit('send stats', result)
-                    }
-                ).catch((e) => {
-                console.log(e)
-            })
+            socket.emit('send stats',bowshock.neows.stats())
         })
 
         socket.on('get feed', (date) => {
             let formatted_date = format_date(date);
-            bowshock.neows.feed(formatted_date)
-                .then((result) => {
-                        socket.emit('send feed', result)
-                    }
-                ).catch((e) => {
-                console.log(e)
-            })
+            socket.emit('send feed', bowshock.neows.feed(formatted_date))
         })
         socket.on('get next', (url) => {
             var options = {
@@ -96,25 +60,11 @@ let rp = require('request-promise');
         })
 
         socket.on('get eva', () => {
-            bowshock.eva()
-                .then((result) => {
-                        socket.emit('recieve eva', result)
-                    }
-                ).catch((e) => {
-                console.log(e)
-            })
+            socket.emit('recieve eva', bowshock.eva())
         })
 
         socket.on('get today', () => {
-            console.log(bowshock.neows.today())
-            bowshock.neows.today()
-                .then((result) => {
-                console.log(result)
-                        socket.emit('send today', result)
-                    }
-                ).catch((e) => {
-                console.log(e)
-            })
+            socket.emit('send today', bowshock.neows.today())
         })
     });
 
