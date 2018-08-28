@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../shared/socket.service";
 import { DomSanitizer } from "@angular/platform-browser";
-
+import { helpers} from 'node-bowshock/src/lib/helpers';
 @Component({
   selector: "app-apod",
   template: `    
@@ -58,7 +58,7 @@ export class ApodComponent {
     const month: number = new Date().getMonth() + 1;
     const day: number = new Date().getDate();
     this.model = new Date(`${year}-${month}-${day}`);
-    
+    helpers.format_date(this.model);
     console.log(this.model)
     // this.socket = SocketService.getInstance();
     // this.socket.on("send apod", data => {
