@@ -9,17 +9,17 @@ import { DomSanitizer } from '@angular/platform-browser';
       <h1>Apod</h1>
       <form>
         <div>
-            <p-calendar [(ngModel)]='model'></p-calendar>
+            <p-calendar [(ngModel)]="model"></p-calendar>
         </div>
       </form>
     </div>
-    <div *ngIf='apod'>
+    <div *ngIf="apod">
       <h2>{{apod.title}}</h2>
       {{apod.copyright}} {{apod.date}}<br/>
-      <div *ngIf='apod.media_type == 'image''>
-      <img class='ui-fluid' src='{{apod.hdurl}}'>
+      <div *ngIf="apod.media_type == 'image'">
+      <img class="ui-fluid" src="{{apod.hdurl}}">
       </div>
-      <div *ngIf='apod.media_type == 'video'' class='video-container'>
+      <div *ngIf="apod.media_type == 'video'" class="video-container">
         <iframe width='420' height='315'
                 [src]='safe_url'>
         </iframe>

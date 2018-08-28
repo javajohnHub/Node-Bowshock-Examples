@@ -7,7 +7,7 @@ import {
   HashLocationStrategy
 } from '@angular/common';
 import {routing} from './app-routing.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NoContentComponent } from './components/no-content/no-content';
@@ -15,7 +15,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ApodComponent } from './components/apod/apod.component';
 import {MarsComponent} from './components/mars/mars.component';
 import {CuriosityComponent} from './components/mars/curiosity/curiosity.component';
-import {OpportunityComponent} from './components/mars/opportunity/opportunity.component';
 import {SpiritComponent} from './components/mars/spirit/spirit.component';
 import {NeowsComponent} from './components/neows/neows.component';
 import {FeedComponent} from './components/neows/feed/feed.component';
@@ -24,6 +23,7 @@ import { EvaComponent } from './components/eva/eva.component';
 import { ZippyComponent } from './components/zippy/zippy.component';
 
 import {CalendarModule} from 'primeng/calendar';
+import { OpportunityComponent } from './components/mars/opportunity/opportunity.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +44,7 @@ import {CalendarModule} from 'primeng/calendar';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     routing,

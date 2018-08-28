@@ -43,11 +43,11 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
+              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true,
+              "buildOptimizer": false,
+              "serviceWorker": false,
               "baseHref": "/",
               "fileReplacements": [
                 {
