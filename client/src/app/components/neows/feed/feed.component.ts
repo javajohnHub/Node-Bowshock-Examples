@@ -93,7 +93,7 @@ export class FeedComponent implements OnInit {
   constructor() {
     this.socket = SocketService.getInstance();
     this.socket.on('send feed', (data) => {
-      this.neows = JSON.parse(data);
+      this.neows = data;
       this.currentPage = this.neows['links'].self;
       this.next = this.neows['links'].next;
       this.prev = this.neows['links'].prev;

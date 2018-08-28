@@ -115,7 +115,7 @@ export class TodayComponent implements OnInit {
   constructor() {
     this.socket = SocketService.getInstance();
     this.socket.on('send today', (data) => {
-      this.neows = JSON.parse(data);
+      this.neows = data;
       this.currentPage = this.neows['links'].self;
       this.next = this.neows['links'].next;
       this.prev = this.neows['links'].prev;
@@ -127,9 +127,8 @@ export class TodayComponent implements OnInit {
         }
       });
       this.objects.forEach((object) => {
-        object.forEach(data => {
-          this.labels.push(data.name)
-          console.log(data)
+        object.forEach(obj => {
+          this.labels.push(obj.name)
 
         })
       })

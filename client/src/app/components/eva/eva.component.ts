@@ -32,7 +32,7 @@ export class EvaComponent {
   constructor() {
     this.socket = SocketService.getInstance();
     this.socket.on('recieve eva', (data) => {
-      this.eva = JSON.parse(data);
+      this.eva = data;
     });
     this.socket.emit('get eva');
 

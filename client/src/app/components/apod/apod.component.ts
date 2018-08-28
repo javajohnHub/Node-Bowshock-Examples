@@ -67,7 +67,7 @@ export class ApodComponent {
   constructor(private sanitizer: DomSanitizer) {
     this.socket = SocketService.getInstance();
     this.socket.on('send apod', (data) => {
-      this.apod = JSON.parse(data);
+      this.apod = data;
       this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(this.apod['url']);
     });
     this.socket.emit('get apod', this.model['date'] );

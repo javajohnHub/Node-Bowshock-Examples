@@ -42,7 +42,7 @@ export class SpiritComponent {
   constructor() {
     this.socket = SocketService.getInstance();
     this.socket.on('send spirit', (data) => {
-      this.pictures = JSON.parse(data);
+      this.pictures = data;
     });
     this.socket.emit('get spirit', this.model['date'] );
 

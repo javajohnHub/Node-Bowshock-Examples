@@ -42,7 +42,7 @@ export class CuriosityComponent {
   constructor() {
     this.socket = SocketService.getInstance();
     this.socket.on('send curiosity', (data) => {
-      this.pictures = JSON.parse(data);
+      this.pictures = data;
     });
     this.socket.emit('get curiosity', this.model['date'] );
 

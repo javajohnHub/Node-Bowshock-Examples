@@ -30,7 +30,7 @@ var ApodComponent = (function () {
         this.model = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('send apod', function (data) {
-            _this.apod = JSON.parse(data);
+            _this.apod = data;
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod['url']);
         });
         this.socket.emit('get apod', this.model['date']);
@@ -77,7 +77,7 @@ var EvaComponent = (function () {
         var _this = this;
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('recieve eva', function (data) {
-            _this.eva = JSON.parse(data);
+            _this.eva = data;
         });
         this.socket.emit('get eva');
     }
@@ -120,7 +120,7 @@ var HomeComponent = (function () {
         this.stats = {};
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('send stats', function (stats) {
-            _this.stats = JSON.parse(stats);
+            _this.stats = stats;
         });
         this.socket.emit('get stats');
     }
@@ -165,7 +165,7 @@ var CuriosityComponent = (function () {
         this.model = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() - 1 } };
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('send curiosity', function (data) {
-            _this.pictures = JSON.parse(data);
+            _this.pictures = data;
         });
         this.socket.emit('get curiosity', this.model['date']);
     }
@@ -247,12 +247,11 @@ var OpportunityComponent = (function () {
         this.model = { date: { year: 2017, month: 2, day: 20 } };
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('send opportunity', function (data) {
-            _this.pictures = JSON.parse(data);
+            _this.pictures = data;
         });
         this.socket.emit('get opportunity', this.model['date']);
     }
     OpportunityComponent.prototype.onDateChanged = function (event) {
-        console.log(event.date);
         this.socket.emit('get opportunity', event.date);
     };
     return OpportunityComponent;
@@ -296,7 +295,7 @@ var SpiritComponent = (function () {
         this.model = { date: { year: 2010, month: 3, day: 21 } };
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('send spirit', function (data) {
-            _this.pictures = JSON.parse(data);
+            _this.pictures = data;
         });
         this.socket.emit('get spirit', this.model['date']);
     }
@@ -345,7 +344,7 @@ var FeedComponent = (function () {
         this.objects = [];
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('send feed', function (data) {
-            _this.neows = JSON.parse(data);
+            _this.neows = data;
             _this.currentPage = _this.neows['links'].self;
             _this.next = _this.neows['links'].next;
             _this.prev = _this.neows['links'].prev;
@@ -490,7 +489,7 @@ var TodayComponent = (function () {
         this.barChartLegend = true;
         this.socket = __WEBPACK_IMPORTED_MODULE_1__shared_socket_service__["a" /* SocketService */].getInstance();
         this.socket.on('send today', function (data) {
-            _this.neows = JSON.parse(data);
+            _this.neows = data;
             _this.currentPage = _this.neows['links'].self;
             _this.next = _this.neows['links'].next;
             _this.prev = _this.neows['links'].prev;
@@ -502,9 +501,8 @@ var TodayComponent = (function () {
                 }
             });
             _this.objects.forEach(function (object) {
-                object.forEach(function (data) {
-                    _this.labels.push(data.name);
-                    console.log(data);
+                object.forEach(function (obj) {
+                    _this.labels.push(obj.name);
                 });
             });
         });
