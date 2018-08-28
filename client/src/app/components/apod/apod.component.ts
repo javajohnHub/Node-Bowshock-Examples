@@ -65,8 +65,9 @@ export class ApodComponent {
     this.socket.emit("get apod", this.model.toString());
   }
   onDateChanged(event): void {
-    console.log(event);
+    
     this.model = this.getTodaysDate(event);
+    console.log(this.model);
     this.socket.emit("get apod", this.model.toString());
   }
 
