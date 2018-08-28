@@ -7,53 +7,62 @@ let rp = require('request-promise');
         socket.on('get apod', (date) => {
             console.log(date);
             let formatted_date = format_date(date);
-            bowshock.apod(formatted_date).then((data) => {
-                socket.emit('send apod', data)
-            })
+            bowshock.apod(formatted_date).subscribe((data) => {
+                data.then((apod) => {
+                    socket.emit('send apod', apod)
+                })
+            });
             
         })
             socket.on('get curiosity', (date) => {
                 let formatted_date = format_date(date);
-                bowshock.mars.curiosity(formatted_date)
-                .then((data) => {
-                    socket.emit('send curiosity', data )
-                })
+                bowshock.mars.curiosity(formatted_date).subscribe((data) => {
+                    data.then((rover) => {
+                        socket.emit('send curiosity', rover)
+                    })
+                });
                 
             })
 
                 socket.on('get opportunity', (date) => {
                     let formatted_date = format_date(date);
-                    bowshock.mars.opportunity(formatted_date)
-                    .then((data) => {
-                        socket.emit('send opportunity',data)
-                    })
-                    
+                    bowshock.mars.opportunity(formatted_date).subscribe((data) => {
+                        data.then((rover) => {
+                            socket.emit('send opportunity',rover)
+                        })
+                    });              
                 })
 
                     socket.on('get spirit', (date) => {
                         let formatted_date = format_date(date);
-                        bowshock.mars.spirit(formatted_date)
-                        .then((data) => {
-                            socket.emit('send spirit', data)
-                        })
+                        bowshock.mars.spirit(formatted_date).subscribe((data) => {
+                            data.then((rover) => {
+                                socket.emit('send spirit', rover)
+                            })
+                        }); 
+            
                         
                     })
         socket.on('get stats', () => {
-            let stats = bowshock.neows.stats();
-            console.log('stats', stats)
+            bowshock.neows.stats().subscribe((data) => {
+                data.then((stats) => {
+                    socket.emit('send stats', stats)
+                })
+            });
+            
            
-                socket.emit('send stats', bowshock.neows.stats())
+               
             
             
         })
 
         socket.on('get feed', (date) => {
             let formatted_date = format_date(date);
-            bowshock.neows.feed(formatted_date)
-            .then((data) => {
-                socket.emit('send feed', data)
-            })
-            
+            bowshock.neows.feed(formatted_date).subscribe((data) => {
+                data.then((feed) => {
+                    socket.emit('send feed', feed)
+                })
+            });  
         })
         socket.on('get next', (url) => {
             var options = {
@@ -84,18 +93,21 @@ let rp = require('request-promise');
         })
 
         socket.on('get eva', () => {
-            bowshock.eva()
-            .then((data) => {
-                socket.emit('recieve eva', data)
-            })
+            bowshock.eva().subscribe((data) => {
+                data.then((eva) => {
+                    socket.emit('recieve eva', eva)
+                })
+            });
             
         })
 
         socket.on('get today', () => {
-            bowshock.neows.today()
-            .then((data) => {
-                socket.emit('send today', data)
-            })
+            bowshock.neows.today().subscribe((data) => {
+                data.then((today) => {
+                    socket.emit('send today', today)
+                })
+            });
+
             
         })
     });
