@@ -23,11 +23,8 @@ export class HomeComponent {
   stats: any = {};
   constructor( ) {
     this.socket = SocketService.getInstance();
-    this.socket.on('send stats', (data) => {
-      data.then((stats) => {
-        console.log(stats)
-        this.stats = JSON.parse(stats);
-      })
+    this.socket.on('send stats', (stats) => {
+      this.stats = JSON.parse(stats);
     });
     this.socket.emit('get stats');
   }
