@@ -51,9 +51,9 @@ export class ApodComponent {
   socket: any;
   apod: {};
   safe_url: any;
-  model: Date;
+  model: string;
   constructor(private sanitizer: DomSanitizer) {
-    this.model = this.getTodaysDate();
+    this.model = this.getTodaysDate().toString();
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
@@ -66,12 +66,18 @@ export class ApodComponent {
   }
   onDateChanged(event): void {
     console.log(event);
-    this.model = this.getTodaysDate(event);
+    this.model = this.getTodaysDate(event).toString();
     this.socket.emit("get apod", this.model);
   }
 
   getTodaysDate(stringDate?: string): Date {
-    const myDate = new Date();
+    let myDate;
+    if(stringDate){
+      myDate = new Date(stringDate);
+    }else{
+      myDate = new Date();
+    }
+    
     const myYear = myDate.getFullYear();
     const myMonth = myDate.getMonth() + 1;
     const day = myDate.getDate();
