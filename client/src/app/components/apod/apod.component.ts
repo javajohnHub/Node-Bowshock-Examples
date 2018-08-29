@@ -67,11 +67,12 @@ export class ApodComponent {
     this.socket = SocketService.getInstance();
     if(this.apod && myYear != undefined && myMonth != undefined && day != undefined){
       console.log(dateStr)
-      this.socket.emit("get apod", dateStr)
+      this.socket.emit("get apod", dateStr.toString())
     }else{
       console.log('undefined')
     }
     this.socket.on("send apod", data => {
+      console.log('data', data)
       this.apod = data;
       this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
         this.apod["url"]
@@ -93,7 +94,7 @@ export class ApodComponent {
     let dateStr = myYear +'-' + myMonth + '-'+ day;
     if(myYear != undefined && myMonth != undefined && day != undefined){
       console.log(myYear +'-' + myMonth + '-'+ day)
-      this.socket.emit("get apod", dateStr)
+      this.socket.emit("get apod", dateStr.toString())
     }else{
       console.log('undefined')
     }

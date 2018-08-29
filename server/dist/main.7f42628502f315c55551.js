@@ -71362,12 +71362,13 @@ var ApodComponent = /** @class */ (function () {
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         if (this.apod && myYear != undefined && myMonth != undefined && day != undefined) {
             console.log(dateStr);
-            this.socket.emit("get apod", dateStr);
+            this.socket.emit("get apod", dateStr.toString());
         }
         else {
             console.log('undefined');
         }
         this.socket.on("send apod", function (data) {
+            console.log('data', data);
             _this.apod = data;
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
@@ -71384,7 +71385,7 @@ var ApodComponent = /** @class */ (function () {
         var dateStr = myYear + '-' + myMonth + '-' + day;
         if (myYear != undefined && myMonth != undefined && day != undefined) {
             console.log(myYear + '-' + myMonth + '-' + day);
-            this.socket.emit("get apod", dateStr);
+            this.socket.emit("get apod", dateStr.toString());
         }
         else {
             console.log('undefined');
