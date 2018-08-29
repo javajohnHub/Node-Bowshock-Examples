@@ -102,6 +102,6 @@ console.log(this.maxDate.toString())
     }
     console.log(stringMonth)
     console.log(`"${myYear}-${stringMonth || myMonth}-${stringDay || day}"`.toString())
-    return `${myYear}-${stringMonth || myMonth}-${stringDay || day}`.toString();
+    return `"${myYear}-${stringMonth || myMonth}-${stringDay || day}"`.toString();
   }
 }

@@ -71389,7 +71389,7 @@ var ApodComponent = /** @class */ (function () {
         }
         console.log(stringMonth);
         console.log(("\"" + myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day) + "\"").toString());
-        return (myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day)).toString();
+        return ("\"" + myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day) + "\"").toString();
     };
     return ApodComponent;
 }());
