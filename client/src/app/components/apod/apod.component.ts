@@ -52,10 +52,17 @@ export class ApodComponent {
   apod: {};
   safe_url: any;
   model: Date;
-  maxDate: string;
+  maxDate: Date;
   constructor(private sanitizer: DomSanitizer) {
-    //this.model = this.getTodaysDate();
-    this.maxDate = this.getTodaysDate();
+    let myDate = new Date();
+    const myYear = myDate.getFullYear();
+    console.log(myYear)
+    const myMonth = myDate.getMonth() + 1;
+    console.log(myMonth)
+    const day = myDate.getDate();
+    console.log(day)
+    this.model = myDate;
+    this.maxDate = new Date(this.model);
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
@@ -63,58 +70,23 @@ export class ApodComponent {
         this.apod["url"]
       );
     });
-console.log(this.maxDate)
 
   if(this.maxDate){
-    this.socket.emit("get apod", this.maxDate)
+    this.socket.emit("get apod", this.model.getFullYear()+'-' + (this.model.getMonth()+1) + '-'+this.model.getDate())
   }
 
   }
   onDateChanged(event): void {
-    this.model = new Date(this.getTodaysDate(event));
-    let model = this.model.toISOString().split("T")[0];
-    console.log(model)
-    if(model){
-      this.socket.emit("get apod", model);
-    }
-    
-  }
-
-  getTodaysDate(stringDate?: string): string {
-    let myDate;
-    let stringMonth;
-    let stringDay;
-
-    
-    if (stringDate) {
-      myDate = new Date(stringDate);
-    } else {
-      myDate = new Date();
-      console.log(myDate)
-    }
-
+    let myDate = new Date(event);
     const myYear = myDate.getFullYear();
     console.log(myYear)
     const myMonth = myDate.getMonth() + 1;
     console.log(myMonth)
     const day = myDate.getDate();
     console.log(day)
-    if (day < 10) {
-      stringDay = "0" + day;
-    }
-    if (myMonth < 10) {
-      stringMonth = "0" + myMonth;
-    }
-    console.log(stringMonth)
-    console.log(`${myYear}-${stringMonth || myMonth}-${stringDay || day}`)
-    if(!stringMonth && !stringMonth){
-      return `${myYear}-${myMonth}-${day}`;
-    }
-    if(!stringMonth && stringMonth){
-      return `${myYear}-${stringMonth}-${day}`;
-    }
-    if(!stringMonth && stringDay){
-      return `${myYear}-${myMonth}-${stringDay}`;
+    this.model = myDate;
+    if(this.model){
+      this.socket.emit("get apod", this.model.getFullYear()+'-' + (this.model.getMonth()+1) + '-'+this.model.getDate());
     }
     
   }

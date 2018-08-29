@@ -71348,59 +71348,35 @@ var ApodComponent = /** @class */ (function () {
     function ApodComponent(sanitizer) {
         var _this = this;
         this.sanitizer = sanitizer;
-        //this.model = this.getTodaysDate();
-        this.maxDate = this.getTodaysDate();
-        this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
-        this.socket.on("send apod", function (data) {
-            _this.apod = data;
-            _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
-        });
-        console.log(this.maxDate);
-        if (this.maxDate) {
-            this.socket.emit("get apod", this.maxDate);
-        }
-    }
-    ApodComponent.prototype.onDateChanged = function (event) {
-        this.model = new Date(this.getTodaysDate(event));
-        var model = this.model.toISOString().split("T")[0];
-        console.log(model);
-        if (model) {
-            this.socket.emit("get apod", model);
-        }
-    };
-    ApodComponent.prototype.getTodaysDate = function (stringDate) {
-        var myDate;
-        var stringMonth;
-        var stringDay;
-        if (stringDate) {
-            myDate = new Date(stringDate);
-        }
-        else {
-            myDate = new Date();
-            console.log(myDate);
-        }
+        var myDate = new Date();
         var myYear = myDate.getFullYear();
         console.log(myYear);
         var myMonth = myDate.getMonth() + 1;
         console.log(myMonth);
         var day = myDate.getDate();
         console.log(day);
-        if (day < 10) {
-            stringDay = "0" + day;
+        this.model = myDate;
+        this.maxDate = new Date(this.model);
+        this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
+        this.socket.on("send apod", function (data) {
+            _this.apod = data;
+            _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
+        });
+        if (this.maxDate) {
+            this.socket.emit("get apod", this.model.getFullYear() + '-' + (this.model.getMonth() + 1) + '-' + this.model.getDate());
         }
-        if (myMonth < 10) {
-            stringMonth = "0" + myMonth;
-        }
-        console.log(stringMonth);
-        console.log(myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day));
-        if (!stringMonth && !stringMonth) {
-            return myYear + "-" + myMonth + "-" + day;
-        }
-        if (!stringMonth && stringMonth) {
-            return myYear + "-" + stringMonth + "-" + day;
-        }
-        if (!stringMonth && stringDay) {
-            return myYear + "-" + myMonth + "-" + stringDay;
+    }
+    ApodComponent.prototype.onDateChanged = function (event) {
+        var myDate = new Date(event);
+        var myYear = myDate.getFullYear();
+        console.log(myYear);
+        var myMonth = myDate.getMonth() + 1;
+        console.log(myMonth);
+        var day = myDate.getDate();
+        console.log(day);
+        this.model = myDate;
+        if (this.model) {
+            this.socket.emit("get apod", this.model.getFullYear() + '-' + (this.model.getMonth() + 1) + '-' + this.model.getDate());
         }
     };
     return ApodComponent;
