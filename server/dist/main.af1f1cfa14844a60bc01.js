@@ -71342,6 +71342,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApodComponent", function() { return ApodComponent; });
 /* harmony import */ var _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../shared/socket.service */ "./src/app/shared/socket.service.ts");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
 
 
 var ApodComponent = /** @class */ (function () {
@@ -71359,20 +71361,22 @@ var ApodComponent = /** @class */ (function () {
         var myDate = new Date();
         this.model = myDate;
         this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
-        var strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-        if (strDate.length === 10) {
-            strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-            this.socket.emit("get apod", strDate);
-        }
+        this.strDate = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
+        this.strDate.subscribe(function (str) { return _this.socket.emit("get apod", str); });
+    };
+    ApodComponent.prototype.nGOnDestroy = function () {
+        this.strDate.unsubscribe();
+        this.strDateChanged.unsubscribe();
     };
     ApodComponent.prototype.onDateChanged = function (event) {
+        var _this = this;
         var myDate = new Date(event);
         this.model = myDate;
-        var strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-        if (strDate.length === 10) {
-            strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-            this.socket.emit("get apod", strDate);
-        }
+        this.strDateChanged = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
+        this.strDateChanged.subscribe(function (str) {
+            _this.socket.emit("get apod", str);
+            _this.strDateChanged.unsubscribe();
+        });
     };
     return ApodComponent;
 }());

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../shared/socket.service";
 import { DomSanitizer } from "@angular/platform-browser";
-
+import {of} from 'rxjs';
 @Component({
   selector: "app-apod",
   template: `    
@@ -52,6 +52,8 @@ export class ApodComponent {
   safe_url: any;
   model: Date;
   maxDate: Date;
+  strDate;
+  strDateChanged;
   constructor(private sanitizer: DomSanitizer) {
   }
 
@@ -68,22 +70,22 @@ export class ApodComponent {
     let myDate = new Date();
     this.model = myDate;
     this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate())
-    let strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-    if(strDate.length === 10){
-      strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-      this.socket.emit("get apod", strDate)
-    }
-    
-    
+    this.strDate = of(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
+    this.strDate.subscribe((str) => this.socket.emit("get apod", str))
+  }
+
+  nGOnDestroy(){
+this.strDate.unsubscribe();
+this.strDateChanged.unsubscribe();
   }
   onDateChanged(event): void {
     let myDate = new Date(event);
     this.model = myDate;
-    let strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-    if(strDate.length === 10){
-      strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-      this.socket.emit("get apod", strDate)
-    }
-    
+
+    this.strDateChanged = of(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
+    this.strDateChanged.subscribe((str) => {
+      this.socket.emit("get apod", str);
+      this.strDateChanged.unsubscribe();
+    })
   }
 }
