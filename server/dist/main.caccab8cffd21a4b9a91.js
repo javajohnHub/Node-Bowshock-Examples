@@ -71348,7 +71348,7 @@ var ApodComponent = /** @class */ (function () {
     function ApodComponent(sanitizer) {
         var _this = this;
         this.sanitizer = sanitizer;
-        this.model = new Date(this.getTodaysDate());
+        //this.model = this.getTodaysDate();
         this.maxDate = this.model.toISOString().split("T")[0];
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on("send apod", function (data) {
@@ -71356,7 +71356,7 @@ var ApodComponent = /** @class */ (function () {
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         console.log(this.model, this.maxDate);
-        this.socket.emit("get apod", this.maxDate);
+        this.socket.emit("get apod", this.getTodaysDate());
     }
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(this.getTodaysDate(event));
