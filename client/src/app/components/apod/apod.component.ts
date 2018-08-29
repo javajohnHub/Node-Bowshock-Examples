@@ -53,6 +53,15 @@ export class ApodComponent {
   model: Date;
   maxDate: Date;
   constructor(private sanitizer: DomSanitizer) {
+    this.socket = SocketService.getInstance();
+    
+    this.socket.on("send apod", data => {
+      console.log('data', data)
+      this.apod = data;
+      this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
+        this.apod["url"]
+      );
+    });
     let myDate = new Date();
     const myYear = myDate.getFullYear();
     console.log(myYear)
@@ -64,21 +73,12 @@ export class ApodComponent {
     let dateStr = myYear +'-' + myMonth + '-'+ day;
     console.log(dateStr)
     this.maxDate = new Date(dateStr)
-    this.socket = SocketService.getInstance();
-    if(this.apod && myYear != undefined && myMonth != undefined && day != undefined){
+    if(dateStr){
       console.log(dateStr)
       this.socket.emit("get apod", dateStr.toString())
     }else{
       console.log('undefined')
     }
-    this.socket.on("send apod", data => {
-      console.log('data', data)
-      this.apod = data;
-      this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.apod["url"]
-      );
-    });
-
   
 
   }
