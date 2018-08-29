@@ -68,32 +68,15 @@ export class ApodComponent {
       );
     });
     let myDate = new Date();
-    this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate())
-    myDate;
-    this.maxDate;
     this.model = myDate;
-this.model;
-    this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-    this.strDateChanged;
-      if(this.strDateChanged.length === 10){
-        this.socket.emit("get apod", JSON.stringify(this.strDateChanged))
-      }else{
-        console.log(this.strDateChanged)
-      }
+    this.socket.emit("get apod", this.model)
   }
 
   onDateChanged(event): void {
     let myDate = new Date(event);
-    myDate;
     this.model = myDate;
-this.model;
-    this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-    this.strDateChanged;
-      if(this.strDateChanged.length === 10){
-        this.socket.emit("get apod", JSON.stringify(this.strDateChanged))
-      }else{
-        console.log(this.strDateChanged)
-      }
+    this.socket.emit("get apod", this.model)
+      
      
   }
 }

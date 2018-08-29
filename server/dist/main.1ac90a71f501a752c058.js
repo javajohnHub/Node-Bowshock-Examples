@@ -71357,33 +71357,13 @@ var ApodComponent = /** @class */ (function () {
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         var myDate = new Date();
-        this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
-        myDate;
-        this.maxDate;
         this.model = myDate;
-        this.model;
-        this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-        this.strDateChanged;
-        if (this.strDateChanged.length === 10) {
-            this.socket.emit("get apod", JSON.stringify(this.strDateChanged));
-        }
-        else {
-            console.log(this.strDateChanged);
-        }
+        this.socket.emit("get apod", this.model);
     };
     ApodComponent.prototype.onDateChanged = function (event) {
         var myDate = new Date(event);
-        myDate;
         this.model = myDate;
-        this.model;
-        this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
-        this.strDateChanged;
-        if (this.strDateChanged.length === 10) {
-            this.socket.emit("get apod", JSON.stringify(this.strDateChanged));
-        }
-        else {
-            console.log(this.strDateChanged);
-        }
+        this.socket.emit("get apod", this.model);
     };
     return ApodComponent;
 }());
