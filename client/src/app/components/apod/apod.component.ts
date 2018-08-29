@@ -9,7 +9,7 @@ import { DomSanitizer } from "@angular/platform-browser";
       <h1>Apod</h1>
      
         <div class="ui-g-10 ui-g-offset-1">
-            <p-calendar showButtonBar="true" (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy.mm.dd" [maxDate]="model"></p-calendar>
+            <p-calendar (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy.mm.dd" [maxDate]="model" [readonlyInput]="true"></p-calendar>
         </div>
       
     </div>
