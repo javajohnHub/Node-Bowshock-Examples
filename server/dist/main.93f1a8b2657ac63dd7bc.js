@@ -71354,12 +71354,13 @@ var ApodComponent = /** @class */ (function () {
             _this.apod = data;
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
-        this.socket.emit("get apod", this.model.toISOString().split("T")[0]);
+        console.log(this.model);
+        //this.socket.emit("get apod", this.model);
     }
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = this.getTodaysDate(event)['str'];
         console.log(this.model);
-        this.socket.emit("get apod", this.model.toISOString().split("T")[0]);
+        //this.socket.emit("get apod", this.model);
     };
     ApodComponent.prototype.getTodaysDate = function (stringDate) {
         var myDate;
