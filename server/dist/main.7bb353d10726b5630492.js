@@ -71356,14 +71356,15 @@ var ApodComponent = /** @class */ (function () {
         var day = myDate.getDate();
         console.log(day);
         this.model = myDate;
-        this.maxDate = this.model.getFullYear() + '-' + (this.model.getMonth() + 1) + '-' + this.model.getDate();
+        this.maxDate = new Date(myYear + '-' + myMonth + '-' + day);
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on("send apod", function (data) {
             _this.apod = data;
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         if (this.maxDate) {
-            this.socket.emit("get apod", this.maxDate);
+            console.log(this.maxDate);
+            this.socket.emit("get apod", myYear + '-' + myMonth + '-' + day);
         }
     }
     ApodComponent.prototype.onDateChanged = function (event) {
@@ -71376,7 +71377,7 @@ var ApodComponent = /** @class */ (function () {
         console.log(day);
         this.model = myDate;
         if (this.model) {
-            this.socket.emit("get apod", this.model.getFullYear() + '-' + (this.model.getMonth() + 1) + '-' + this.model.getDate());
+            this.socket.emit("get apod", myYear + '-' + myMonth + '-' + day);
         }
     };
     return ApodComponent;
