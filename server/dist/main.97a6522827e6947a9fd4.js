@@ -71357,46 +71357,13 @@ var ApodComponent = /** @class */ (function () {
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         var myDate = new Date();
-        var myYear = myDate.getFullYear();
-        console.log(myYear);
-        var myMonth = myDate.getMonth() + 1;
-        console.log(myMonth);
-        var day = myDate.getDate();
-        console.log(day);
         this.model = myDate;
-        var dateStr = myYear + '-' + myMonth + '-' + day;
-        console.log(dateStr);
-        this.maxDate = new Date(dateStr);
-        if (myDate.getFullYear() != undefined && myDate.getMonth() + 1 != undefined && myDate.getDate() != undefined && dateStr.length == 10) {
-            console.log(dateStr);
-            setTimeout(function () {
-                _this.socket.emit("get apod", dateStr);
-            }, 1000);
-        }
-        else {
-            console.log('undefined');
-        }
+        this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
+        this.socket.emit("get apod", myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
     };
     ApodComponent.prototype.onDateChanged = function (event) {
-        var _this = this;
         var myDate = new Date(event);
-        var myYear = myDate.getFullYear();
-        console.log(myYear);
-        var myMonth = myDate.getMonth() + 1;
-        console.log(myMonth);
-        var day = myDate.getDate();
-        console.log(day);
-        this.model = myDate;
-        var dateStr = myYear + '-' + myMonth + '-' + day;
-        if (myYear.toString() != 'undefined' && myMonth.toString() != 'undefined' && day.toString() != 'undefined') {
-            console.log();
-            setTimeout(function () {
-                _this.socket.emit("get apod", myYear + '-' + myMonth + '-' + day);
-            }, 1000);
-        }
-        else {
-            console.log('undefined');
-        }
+        this.socket.emit("get apod", myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
     };
     return ApodComponent;
 }());
