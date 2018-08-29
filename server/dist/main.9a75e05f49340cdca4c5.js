@@ -71366,6 +71366,8 @@ var ApodComponent = /** @class */ (function () {
     };
     ApodComponent.prototype.getTodaysDate = function (stringDate) {
         var myDate;
+        var stringMonth;
+        var stringDay;
         if (stringDate) {
             myDate = new Date(stringDate);
         }
@@ -71379,16 +71381,14 @@ var ApodComponent = /** @class */ (function () {
         console.log(myMonth);
         var day = myDate.getDate();
         console.log(day);
-        var stringMonth;
-        var stringDay;
         if (day < 10) {
             stringDay = "0" + day;
         }
         if (myMonth < 10) {
             stringMonth = "0" + myMonth;
         }
-        console.log(stringDay, stringMonth);
-        console.log((myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day)).toString());
+        console.log(stringMonth);
+        console.log(("\"" + myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day) + "\"").toString());
         return (myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day)).toString();
     };
     return ApodComponent;

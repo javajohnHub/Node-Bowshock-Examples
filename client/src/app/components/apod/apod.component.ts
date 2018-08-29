@@ -77,6 +77,10 @@ console.log(this.maxDate.toString())
 
   getTodaysDate(stringDate?: string): string {
     let myDate;
+    let stringMonth;
+    let stringDay;
+
+    
     if (stringDate) {
       myDate = new Date(stringDate);
     } else {
@@ -90,17 +94,14 @@ console.log(this.maxDate.toString())
     console.log(myMonth)
     const day = myDate.getDate();
     console.log(day)
-    let stringMonth;
-    let stringDay;
-
     if (day < 10) {
       stringDay = "0" + day;
     }
     if (myMonth < 10) {
       stringMonth = "0" + myMonth;
     }
-    console.log(stringDay, stringMonth)
-    console.log(`${myYear}-${stringMonth || myMonth}-${stringDay || day}`.toString())
+    console.log(stringMonth)
+    console.log(`"${myYear}-${stringMonth || myMonth}-${stringDay || day}"`.toString())
     return `${myYear}-${stringMonth || myMonth}-${stringDay || day}`.toString();
   }
 }
