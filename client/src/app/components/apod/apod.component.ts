@@ -70,6 +70,7 @@ export class ApodComponent {
     this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate())
     let strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
     if(strDate.length === 10){
+      strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
       this.socket.emit("get apod", strDate)
     }
     
@@ -80,6 +81,7 @@ export class ApodComponent {
     this.model = myDate;
     let strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
     if(strDate.length === 10){
+      strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
       this.socket.emit("get apod", strDate)
     }
     

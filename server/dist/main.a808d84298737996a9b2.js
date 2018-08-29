@@ -71361,6 +71361,7 @@ var ApodComponent = /** @class */ (function () {
         this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
         var strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
         if (strDate.length === 10) {
+            strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
             this.socket.emit("get apod", strDate);
         }
     };
@@ -71369,6 +71370,7 @@ var ApodComponent = /** @class */ (function () {
         this.model = myDate;
         var strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
         if (strDate.length === 10) {
+            strDate = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
             this.socket.emit("get apod", strDate);
         }
     };
