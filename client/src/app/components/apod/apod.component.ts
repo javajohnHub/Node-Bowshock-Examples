@@ -63,17 +63,16 @@ export class ApodComponent {
         this.apod["url"]
       );
     });
-console.log(this.maxDate)
-setTimeout(() => {
+console.log(this.maxDate.toString())
+
   this.socket.emit("get apod", this.maxDate.toString())
-},1000)
-    ;
+
   }
   onDateChanged(event): void {
     this.model = new Date(this.getTodaysDate(event));
     let model = this.model.toISOString().split("T")[0];
-    console.log(this.model, this.maxDate, model.toString())
-    this.socket.emit("get apod", model);
+    console.log(model)
+    this.socket.emit("get apod", model.toString());
   }
 
   getTodaysDate(stringDate?: string): string {
