@@ -7,7 +7,7 @@ import { DomSanitizer } from "@angular/platform-browser";
   template: `    
     <div class="ui-g-12">
       <h1>Apod</h1>
-     
+     {{model}}
         <div class="ui-g-10 ui-g-offset-1">
             <p-calendar (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy.mm.dd" [maxDate]="model" [readonlyInput]="true"></p-calendar>
         </div>
