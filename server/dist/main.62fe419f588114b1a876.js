@@ -71365,7 +71365,7 @@ var ApodComponent = /** @class */ (function () {
         var dateStr = myYear + '-' + myMonth + '-' + day;
         console.log(dateStr);
         this.maxDate = new Date(dateStr);
-        if (myYear.toString() != 'undefined' && myMonth.toString() != 'undefined' && day.toString() != 'undefined') {
+        if (myYear.toString() != undefined && myMonth.toString() != undefined && day.toString() != undefined && dateStr.length == 10) {
             console.log(dateStr);
             setTimeout(function () {
                 _this.socket.emit("get apod", dateStr);
