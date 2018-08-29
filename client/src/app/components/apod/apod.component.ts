@@ -66,7 +66,7 @@ export class ApodComponent {
 console.log(this.maxDate)
 setTimeout(() => {
   this.socket.emit("get apod", this.maxDate.toString())
-},100)
+},1000)
     ;
   }
   onDateChanged(event): void {
