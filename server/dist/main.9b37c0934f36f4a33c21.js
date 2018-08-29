@@ -71356,7 +71356,7 @@ var ApodComponent = /** @class */ (function () {
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         console.log(this.model, this.maxDate);
-        this.socket.emit("get apod", this.maxDate);
+        this.socket.emit("get apod", this.model);
     }
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(this.getTodaysDate(event));
