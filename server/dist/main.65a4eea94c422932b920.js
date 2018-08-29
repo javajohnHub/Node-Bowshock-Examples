@@ -71349,7 +71349,7 @@ var ApodComponent = /** @class */ (function () {
         var _this = this;
         this.sanitizer = sanitizer;
         //this.model = this.getTodaysDate();
-        this.maxDate = new Date(this.getTodaysDate()).toISOString().split("T")[0].toString();
+        this.maxDate = this.getTodaysDate();
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on("send apod", function (data) {
             _this.apod = data;
