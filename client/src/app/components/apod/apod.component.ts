@@ -7,7 +7,6 @@ import { DomSanitizer } from "@angular/platform-browser";
   template: `    
     <div class="ui-g-12">
       <h1>Apod</h1>
-     {{maxDate}}
         <div class="ui-g-10 ui-g-offset-1">
             <p-calendar (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
         </div>
@@ -66,6 +65,12 @@ export class ApodComponent {
     console.log(dateStr)
     this.maxDate = new Date(dateStr)
     this.socket = SocketService.getInstance();
+    if(this.apod && myYear != undefined && myMonth != undefined && day != undefined){
+      console.log(dateStr)
+      this.socket.emit("get apod", dateStr)
+    }else{
+      console.log('undefined')
+    }
     this.socket.on("send apod", data => {
       this.apod = data;
       this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -73,12 +78,7 @@ export class ApodComponent {
       );
     });
 
-  if(myYear != undefined && myMonth != undefined && day != undefined){
-    console.log(myYear +'-' + myMonth + '-'+ day)
-    this.socket.emit("get apod", dateStr)
-  }else{
-    console.log('undefined')
-  }
+  
 
   }
   onDateChanged(event): void {
