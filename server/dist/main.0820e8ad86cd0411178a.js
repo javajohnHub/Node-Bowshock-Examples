@@ -71356,13 +71356,13 @@ var ApodComponent = /** @class */ (function () {
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         console.log(this.maxDate.toString());
-        this.socket.emit("get apod", this.maxDate.toString());
+        this.socket.emit("get apod", this.maxDate);
     }
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(this.getTodaysDate(event));
         var model = this.model.toISOString().split("T")[0];
         console.log(model);
-        this.socket.emit("get apod", model.toString());
+        this.socket.emit("get apod", model);
     };
     ApodComponent.prototype.getTodaysDate = function (stringDate) {
         var myDate;
@@ -71388,8 +71388,16 @@ var ApodComponent = /** @class */ (function () {
             stringMonth = "0" + myMonth;
         }
         console.log(stringMonth);
-        console.log(("\"" + myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day) + "\"").toString());
-        return ("\"" + myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day) + "\"").toString();
+        console.log(myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day));
+        if (!stringMonth && !stringMonth) {
+            return myYear + "-" + myMonth + "-" + day;
+        }
+        if (!stringMonth && stringMonth) {
+            return myYear + "-" + stringMonth + "-" + day;
+        }
+        if (!stringMonth && stringDay) {
+            return myYear + "-" + myMonth + "-" + stringDay;
+        }
     };
     return ApodComponent;
 }());

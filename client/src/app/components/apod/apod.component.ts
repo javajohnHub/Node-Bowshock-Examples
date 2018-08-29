@@ -65,14 +65,14 @@ export class ApodComponent {
     });
 console.log(this.maxDate.toString())
 
-  this.socket.emit("get apod", this.maxDate.toString())
+  this.socket.emit("get apod", this.maxDate)
 
   }
   onDateChanged(event): void {
     this.model = new Date(this.getTodaysDate(event));
     let model = this.model.toISOString().split("T")[0];
     console.log(model)
-    this.socket.emit("get apod", model.toString());
+    this.socket.emit("get apod", model);
   }
 
   getTodaysDate(stringDate?: string): string {
@@ -101,7 +101,16 @@ console.log(this.maxDate.toString())
       stringMonth = "0" + myMonth;
     }
     console.log(stringMonth)
-    console.log(`"${myYear}-${stringMonth || myMonth}-${stringDay || day}"`.toString())
-    return `"${myYear}-${stringMonth || myMonth}-${stringDay || day}"`.toString();
+    console.log(`${myYear}-${stringMonth || myMonth}-${stringDay || day}`)
+    if(!stringMonth && !stringMonth){
+      return `${myYear}-${myMonth}-${day}`;
+    }
+    if(!stringMonth && stringMonth){
+      return `${myYear}-${stringMonth}-${day}`;
+    }
+    if(!stringMonth && stringDay){
+      return `${myYear}-${myMonth}-${stringDay}`;
+    }
+    
   }
 }
