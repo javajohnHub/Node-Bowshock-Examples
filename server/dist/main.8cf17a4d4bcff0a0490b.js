@@ -71355,14 +71355,14 @@ var ApodComponent = /** @class */ (function () {
             _this.apod = data;
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
-        console.log(this.model, this.maxDate);
-        this.socket.emit("get apod", JSON.parse(this.maxDate));
+        console.log(this.model, new Date(this.maxDate));
+        this.socket.emit("get apod", new Date(this.maxDate));
     }
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(this.getTodaysDate(event));
         var model = this.model.toISOString().split("T")[0];
         console.log(this.model, this.maxDate, model);
-        this.socket.emit("get apod", JSON.parse(model));
+        this.socket.emit("get apod", model);
     };
     ApodComponent.prototype.getTodaysDate = function (stringDate) {
         var myDate;
