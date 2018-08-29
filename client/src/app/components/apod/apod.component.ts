@@ -53,6 +53,9 @@ export class ApodComponent {
   model: Date;
   maxDate: Date;
   constructor(private sanitizer: DomSanitizer) {
+  }
+
+  ngOnInit(){
     this.socket = SocketService.getInstance();
     
     this.socket.on("send apod", data => {
@@ -73,7 +76,7 @@ export class ApodComponent {
     let dateStr = myYear +'-' + myMonth + '-'+ day;
     console.log(dateStr)
     this.maxDate = new Date(dateStr)
-    if(myYear.toString() != undefined && myMonth.toString() != undefined && day.toString() != undefined && dateStr.length == 10){
+    if(myDate.getFullYear() != undefined && myDate.getMonth() + 1 != undefined && myDate.getDate() != undefined && dateStr.length == 10){
       console.log(dateStr)
       setTimeout(() => {
         this.socket.emit("get apod", dateStr)
@@ -82,8 +85,6 @@ export class ApodComponent {
     }else{
       console.log('undefined')
     }
-  
-
   }
   onDateChanged(event): void {
     let myDate = new Date(event);

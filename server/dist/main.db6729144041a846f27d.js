@@ -71323,7 +71323,7 @@ function View_ApodComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODUL
         var pd_1 = ((_co.model = $event) !== false);
         ad = (pd_1 && ad);
     } return ad; }, _node_modules_primeng_components_calendar_calendar_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_Calendar_0"], _node_modules_primeng_components_calendar_calendar_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_Calendar"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](512, null, primeng_components_dom_domhandler__WEBPACK_IMPORTED_MODULE_3__["DomHandler"], primeng_components_dom_domhandler__WEBPACK_IMPORTED_MODULE_3__["DomHandler"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](6, 1294336, null, 1, primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__["Calendar"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], primeng_components_dom_domhandler__WEBPACK_IMPORTED_MODULE_3__["DomHandler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]], { dateFormat: [0, "dateFormat"], maxDate: [1, "maxDate"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 1, { templates: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](1024, null, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NG_VALUE_ACCESSOR"], function (p0_0) { return [p0_0]; }, [primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__["Calendar"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](9, 671744, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgModel"], [[8, null], [8, null], [8, null], [6, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NG_VALUE_ACCESSOR"]]], { model: [0, "model"] }, { update: "ngModelChange" }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](2048, null, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControl"], null, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgModel"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](11, 16384, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatus"], [[4, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControl"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ApodComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](13, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_9 = "yy-mm-dd"; var currVal_10 = _co.maxDate; _ck(_v, 6, 0, currVal_9, currVal_10); var currVal_11 = _co.model; _ck(_v, 9, 0, currVal_11); var currVal_12 = _co.apod; _ck(_v, 13, 0, currVal_12); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 6).filled; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 6).focus; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 11).ngClassUntouched; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 11).ngClassTouched; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 11).ngClassPristine; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 11).ngClassDirty; var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 11).ngClassValid; var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 11).ngClassInvalid; var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 11).ngClassPending; _ck(_v, 4, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8); }); }
-function View_ApodComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "app-apod", [], null, null, null, View_ApodComponent_0, RenderType_ApodComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _apod_component__WEBPACK_IMPORTED_MODULE_6__["ApodComponent"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__["DomSanitizer"]], null, null)], null, null); }
+function View_ApodComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "app-apod", [], null, null, null, View_ApodComponent_0, RenderType_ApodComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _apod_component__WEBPACK_IMPORTED_MODULE_6__["ApodComponent"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__["DomSanitizer"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ApodComponentNgFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("app-apod", _apod_component__WEBPACK_IMPORTED_MODULE_6__["ApodComponent"], View_ApodComponent_Host_0, {}, {}, []);
 
 
@@ -71346,8 +71346,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var ApodComponent = /** @class */ (function () {
     function ApodComponent(sanitizer) {
-        var _this = this;
         this.sanitizer = sanitizer;
+    }
+    ApodComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on("send apod", function (data) {
             console.log('data', data);
@@ -71365,7 +71367,7 @@ var ApodComponent = /** @class */ (function () {
         var dateStr = myYear + '-' + myMonth + '-' + day;
         console.log(dateStr);
         this.maxDate = new Date(dateStr);
-        if (myYear.toString() != undefined && myMonth.toString() != undefined && day.toString() != undefined && dateStr.length == 10) {
+        if (myDate.getFullYear() != undefined && myDate.getMonth() + 1 != undefined && myDate.getDate() != undefined && dateStr.length == 10) {
             console.log(dateStr);
             setTimeout(function () {
                 _this.socket.emit("get apod", dateStr);
@@ -71374,7 +71376,7 @@ var ApodComponent = /** @class */ (function () {
         else {
             console.log('undefined');
         }
-    }
+    };
     ApodComponent.prototype.onDateChanged = function (event) {
         var _this = this;
         var myDate = new Date(event);
