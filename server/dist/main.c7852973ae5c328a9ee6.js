@@ -71342,8 +71342,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApodComponent", function() { return ApodComponent; });
 /* harmony import */ var _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../shared/socket.service */ "./src/app/shared/socket.service.ts");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-
 
 
 var ApodComponent = /** @class */ (function () {
@@ -71359,36 +71357,33 @@ var ApodComponent = /** @class */ (function () {
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         var myDate = new Date();
-        this.model = myDate;
         this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
-        this.strDate = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
-        this.strDate.subscribe(function (str) {
-            if (str.length === 10) {
-                _this.socket.emit("get apod", str);
-            }
-            else {
-                console.log(str);
-            }
-        });
-    };
-    ApodComponent.prototype.nGOnDestroy = function () {
-        this.strDate.unsubscribe();
-        this.strDateChanged.unsubscribe();
+        myDate;
+        this.maxDate;
+        this.model = myDate;
+        this.model;
+        this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
+        this.strDateChanged;
+        if (this.strDateChanged.length === 10) {
+            this.socket.emit("get apod", this.strDateChanged);
+        }
+        else {
+            console.log(this.strDateChanged);
+        }
     };
     ApodComponent.prototype.onDateChanged = function (event) {
-        var _this = this;
         var myDate = new Date(event);
+        myDate;
         this.model = myDate;
-        this.strDateChanged = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
-        this.strDateChanged.subscribe(function (str) {
-            if (str.length === 10) {
-                _this.socket.emit("get apod", str);
-            }
-            else {
-                console.log(str);
-            }
-            _this.strDateChanged.unsubscribe();
-        });
+        this.model;
+        this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
+        this.strDateChanged;
+        if (this.strDateChanged.length === 10) {
+            this.socket.emit("get apod", this.strDateChanged);
+        }
+        else {
+            console.log(this.strDateChanged);
+        }
     };
     return ApodComponent;
 }());

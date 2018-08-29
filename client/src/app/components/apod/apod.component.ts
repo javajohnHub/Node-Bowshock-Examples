@@ -68,35 +68,32 @@ export class ApodComponent {
       );
     });
     let myDate = new Date();
-    this.model = myDate;
     this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate())
-    this.strDate = of(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
-    this.strDate.subscribe((str) => {
-      if(str.length === 10){
-        this.socket.emit("get apod", str)
+    myDate;
+    this.maxDate;
+    this.model = myDate;
+this.model;
+    this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
+    this.strDateChanged;
+      if(this.strDateChanged.length === 10){
+        this.socket.emit("get apod", this.strDateChanged)
       }else{
-        console.log(str)
+        console.log(this.strDateChanged)
       }
-      
-    })
   }
 
-  nGOnDestroy(){
-this.strDate.unsubscribe();
-this.strDateChanged.unsubscribe();
-  }
   onDateChanged(event): void {
     let myDate = new Date(event);
+    myDate;
     this.model = myDate;
-
-    this.strDateChanged = of(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
-    this.strDateChanged.subscribe((str) => {
-      if(str.length === 10){
-        this.socket.emit("get apod", str)
+this.model;
+    this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
+    this.strDateChanged;
+      if(this.strDateChanged.length === 10){
+        this.socket.emit("get apod", this.strDateChanged)
       }else{
-        console.log(str)
+        console.log(this.strDateChanged)
       }
-      this.strDateChanged.unsubscribe();
-    })
+     
   }
 }
