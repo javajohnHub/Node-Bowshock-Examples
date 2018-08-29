@@ -71365,7 +71365,7 @@ var ApodComponent = /** @class */ (function () {
         this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
         this.strDateChanged;
         if (this.strDateChanged.length === 10) {
-            this.socket.emit("get apod", this.strDateChanged);
+            this.socket.emit("get apod", JSON.stringify(this.strDateChanged));
         }
         else {
             console.log(this.strDateChanged);
@@ -71379,7 +71379,7 @@ var ApodComponent = /** @class */ (function () {
         this.strDateChanged = myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate();
         this.strDateChanged;
         if (this.strDateChanged.length === 10) {
-            this.socket.emit("get apod", this.strDateChanged);
+            this.socket.emit("get apod", JSON.stringify(this.strDateChanged));
         }
         else {
             console.log(this.strDateChanged);
