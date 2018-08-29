@@ -62,12 +62,12 @@ export class ApodComponent {
       );
     });
 
-    this.socket.emit("get apod", this.model);
+    this.socket.emit("get apod", this.model.toISOString().split("T")[0]);
   }
   onDateChanged(event): void {
     this.model = this.getTodaysDate(event)['str'];
     console.log(this.model);
-    this.socket.emit("get apod", this.model);
+    this.socket.emit("get apod", this.model.toISOString().split("T")[0]);
   }
 
   getTodaysDate(stringDate?: string): Object {
