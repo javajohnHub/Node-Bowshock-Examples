@@ -89,7 +89,7 @@ module.exports = function(io) {
   });
 
   function format_date(date) {
-    var year = date.getYear();
+    var year = date.getFullYear();
     var month = date.getMonth();
     var day = date.day();
     if (month < 10) month = "0" + month;
