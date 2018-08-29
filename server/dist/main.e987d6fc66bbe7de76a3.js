@@ -71347,6 +71347,7 @@ __webpack_require__.r(__webpack_exports__);
 var ApodComponent = /** @class */ (function () {
     function ApodComponent(sanitizer) {
         this.sanitizer = sanitizer;
+        this.model = new Date();
     }
     ApodComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -71356,13 +71357,10 @@ var ApodComponent = /** @class */ (function () {
             _this.apod = data;
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
-        var myDate = new Date();
-        this.model = myDate;
         this.socket.emit("get apod", this.model);
     };
     ApodComponent.prototype.onDateChanged = function (event) {
-        var myDate = new Date(event);
-        this.model = myDate;
+        this.model = new Date(event);
         this.socket.emit("get apod", this.model);
     };
     return ApodComponent;

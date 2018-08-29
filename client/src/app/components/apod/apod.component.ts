@@ -50,7 +50,7 @@ export class ApodComponent {
   socket: any;
   apod: {};
   safe_url: any;
-  model: Date;
+  model = new Date();
   maxDate: Date;
   strDate;
   strDateChanged;
@@ -59,7 +59,6 @@ export class ApodComponent {
 
   ngOnInit(){
     this.socket = SocketService.getInstance();
-    
     this.socket.on("send apod", data => {
       console.log('data', data)
       this.apod = data;
@@ -67,16 +66,11 @@ export class ApodComponent {
         this.apod["url"]
       );
     });
-    let myDate = new Date();
-    this.model = myDate;
     this.socket.emit("get apod", this.model)
   }
 
   onDateChanged(event): void {
-    let myDate = new Date(event);
-    this.model = myDate;
+    this.model = new Date(event);
     this.socket.emit("get apod", this.model)
-      
-     
   }
 }
