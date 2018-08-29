@@ -9,7 +9,7 @@ import { DomSanitizer } from "@angular/platform-browser";
       <h1>Apod</h1>
      
         <div class="ui-g-10 ui-g-offset-1">
-            <p-calendar showButtonBar="true" (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy.mm.dd" [maxDate]="model"></p-calendar>
+            <p-calendar showButtonBar="true" (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy.mm.dd" [maxDate]="maxDate"></p-calendar>
         </div>
       
     </div>
@@ -52,8 +52,10 @@ export class ApodComponent {
   apod: {};
   safe_url: any;
   model: Date;
+  maxDate: string;
   constructor(private sanitizer: DomSanitizer) {
-    this.model = this.getTodaysDate()['str'];
+    this.model = new Date(this.getTodaysDate());
+    this.maxDate = this.model.toISOString().split("T")[0];
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
@@ -61,16 +63,17 @@ export class ApodComponent {
         this.apod["url"]
       );
     });
-console.log(this.model)
+console.log(this.model, this.maxDate)
     //this.socket.emit("get apod", this.model);
   }
   onDateChanged(event): void {
-    this.model = this.getTodaysDate(event)['str'];
-    console.log(this.model);
+    this.model = new Date(this.getTodaysDate(event));
+    let model = this.model.toISOString().split("T")[0];
+    console.log(this.model, this.maxDate, model)
     //this.socket.emit("get apod", this.model);
   }
 
-  getTodaysDate(stringDate?: string): Object {
+  getTodaysDate(stringDate?: string): string {
     let myDate;
     if (stringDate) {
       myDate = new Date(stringDate);
@@ -90,10 +93,7 @@ console.log(this.model)
     if (myMonth < 10) {
       stringMonth = "0" + myMonth;
     }
-    const obj: any = {
-      str: `${myYear}-${stringMonth || myMonth}-${stringDay || day}`,
-      date: new Date(`${myYear}-${stringMonth || myMonth}-${stringDay || day}`)
-    };
-    return obj;
+    
+    return `${myYear}-${stringMonth || myMonth}-${stringDay || day}`;
   }
 }
