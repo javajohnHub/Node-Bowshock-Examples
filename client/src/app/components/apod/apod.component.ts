@@ -65,7 +65,7 @@ export class ApodComponent {
     });
 console.log(this.maxDate)
 setTimeout(() => {
-  this.socket.emit("get apod", this.getTodaysDate())
+  this.socket.emit("get apod", this.maxDate)
 },100)
     ;
   }

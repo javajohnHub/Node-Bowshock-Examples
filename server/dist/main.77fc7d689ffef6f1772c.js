@@ -71357,7 +71357,7 @@ var ApodComponent = /** @class */ (function () {
         });
         console.log(this.maxDate);
         setTimeout(function () {
-            _this.socket.emit("get apod", _this.getTodaysDate());
+            _this.socket.emit("get apod", _this.maxDate);
         }, 100);
     }
     ApodComponent.prototype.onDateChanged = function (event) {
