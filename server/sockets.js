@@ -89,12 +89,22 @@ module.exports = function(io) {
   });
 
   function format_date(date) {
-    var year = date.getFullYear();
+    if(date) {
+      var year = date.getFullYear();
     var month = date.getMonth();
     var day = date.getDay();
     if (month < 10) month = "0" + month;
     if (day < 10) day = "0" + day;
 
+    
+    }else{
+      var myDate = new Date();
+      var year = myDate.getFullYear();
+    var month = myDate.getMonth();
+    var day = myDate.getDay();
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+    }
     return `${year}-${month}-${day}`;
   }
 };
