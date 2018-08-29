@@ -75,7 +75,10 @@ export class ApodComponent {
     this.maxDate = new Date(dateStr)
     if(dateStr){
       console.log(dateStr)
-      this.socket.emit("get apod", myYear +'-' + myMonth + '-'+ day)
+      setTimeout(() => {
+        this.socket.emit("get apod", dateStr)
+      }, 1000)
+      
     }else{
       console.log('undefined')
     }
@@ -94,7 +97,9 @@ export class ApodComponent {
     let dateStr = myYear +'-' + myMonth + '-'+ day;
     if(myYear != undefined && myMonth != undefined && day != undefined){
       console.log()
+      setTimeout(() => {
       this.socket.emit("get apod", myYear +'-' + myMonth + '-'+ day)
+      },1000)
     }else{
       console.log('undefined')
     }
