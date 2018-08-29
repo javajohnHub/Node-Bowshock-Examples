@@ -71355,8 +71355,10 @@ var ApodComponent = /** @class */ (function () {
             _this.apod = data;
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
-        console.log(this.model, this.maxDate);
-        this.socket.emit("get apod", this.getTodaysDate());
+        console.log(this.maxDate);
+        setTimeout(function () {
+            _this.socket.emit("get apod", _this.getTodaysDate());
+        }, 100);
     }
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(this.getTodaysDate(event));
