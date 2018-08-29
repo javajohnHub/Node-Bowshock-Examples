@@ -55,7 +55,7 @@ export class ApodComponent {
   maxDate: string;
   constructor(private sanitizer: DomSanitizer) {
     //this.model = this.getTodaysDate();
-    this.maxDate = new Date(this.getTodaysDate()).toISOString().split("T")[0];
+    this.maxDate = new Date(this.getTodaysDate()).toISOString().split("T")[0].toString();
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
