@@ -71,7 +71,14 @@ export class ApodComponent {
     this.model = myDate;
     this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate())
     this.strDate = of(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
-    this.strDate.subscribe((str) => this.socket.emit("get apod", str))
+    this.strDate.subscribe((str) => {
+      if(str.length === 10){
+        this.socket.emit("get apod", str)
+      }else{
+        console.log(str)
+      }
+      
+    })
   }
 
   nGOnDestroy(){
@@ -84,7 +91,11 @@ this.strDateChanged.unsubscribe();
 
     this.strDateChanged = of(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
     this.strDateChanged.subscribe((str) => {
-      this.socket.emit("get apod", str);
+      if(str.length === 10){
+        this.socket.emit("get apod", str)
+      }else{
+        console.log(str)
+      }
       this.strDateChanged.unsubscribe();
     })
   }

@@ -71362,7 +71362,14 @@ var ApodComponent = /** @class */ (function () {
         this.model = myDate;
         this.maxDate = new Date(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
         this.strDate = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
-        this.strDate.subscribe(function (str) { return _this.socket.emit("get apod", str); });
+        this.strDate.subscribe(function (str) {
+            if (str.length === 10) {
+                _this.socket.emit("get apod", str);
+            }
+            else {
+                console.log(str);
+            }
+        });
     };
     ApodComponent.prototype.nGOnDestroy = function () {
         this.strDate.unsubscribe();
@@ -71374,7 +71381,12 @@ var ApodComponent = /** @class */ (function () {
         this.model = myDate;
         this.strDateChanged = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(myDate.getFullYear() + '-' + myDate.getMonth() + 1 + '-' + myDate.getDate());
         this.strDateChanged.subscribe(function (str) {
-            _this.socket.emit("get apod", str);
+            if (str.length === 10) {
+                _this.socket.emit("get apod", str);
+            }
+            else {
+                console.log(str);
+            }
             _this.strDateChanged.unsubscribe();
         });
     };
