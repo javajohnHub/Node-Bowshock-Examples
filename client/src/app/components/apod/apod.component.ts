@@ -7,7 +7,7 @@ import { DomSanitizer } from "@angular/platform-browser";
   template: `    
     <div class="ui-g-12">
       <h1>Apod</h1>
-     {{model}}
+     {{maxDate}}
         <div class="ui-g-10 ui-g-offset-1">
             <p-calendar (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy.mm.dd" [maxDate]="model" [readonlyInput]="true"></p-calendar>
         </div>
@@ -64,13 +64,13 @@ export class ApodComponent {
       );
     });
 console.log(this.model, this.maxDate)
-    this.socket.emit("get apod", this.model);
+    this.socket.emit("get apod", JSON.parse(this.maxDate));
   }
   onDateChanged(event): void {
     this.model = new Date(this.getTodaysDate(event));
     let model = this.model.toISOString().split("T")[0];
     console.log(this.model, this.maxDate, model)
-    //this.socket.emit("get apod", this.model);
+    this.socket.emit("get apod", JSON.parse(model));
   }
 
   getTodaysDate(stringDate?: string): string {
