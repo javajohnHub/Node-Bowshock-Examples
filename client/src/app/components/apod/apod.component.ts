@@ -81,11 +81,15 @@ console.log(this.maxDate.toString())
       myDate = new Date(stringDate);
     } else {
       myDate = new Date();
+      console.log(myDate)
     }
 
     const myYear = myDate.getFullYear();
+    console.log(myYear)
     const myMonth = myDate.getMonth() + 1;
+    console.log(myMonth)
     const day = myDate.getDate();
+    console.log(day)
     let stringMonth;
     let stringDay;
 
@@ -95,6 +99,8 @@ console.log(this.maxDate.toString())
     if (myMonth < 10) {
       stringMonth = "0" + myMonth;
     }
+    console.log(stringDay, stringMonth)
+    console.log(`${myYear}-${stringMonth || myMonth}-${stringDay || day}`)
     return `${myYear}-${stringMonth || myMonth}-${stringDay || day}`;
   }
 }

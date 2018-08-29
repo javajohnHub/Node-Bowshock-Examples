@@ -71371,10 +71371,14 @@ var ApodComponent = /** @class */ (function () {
         }
         else {
             myDate = new Date();
+            console.log(myDate);
         }
         var myYear = myDate.getFullYear();
+        console.log(myYear);
         var myMonth = myDate.getMonth() + 1;
+        console.log(myMonth);
         var day = myDate.getDate();
+        console.log(day);
         var stringMonth;
         var stringDay;
         if (day < 10) {
@@ -71383,6 +71387,8 @@ var ApodComponent = /** @class */ (function () {
         if (myMonth < 10) {
             stringMonth = "0" + myMonth;
         }
+        console.log(stringDay, stringMonth);
+        console.log(myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day));
         return myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day);
     };
     return ApodComponent;
