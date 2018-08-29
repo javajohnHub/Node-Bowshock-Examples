@@ -71357,13 +71357,13 @@ var ApodComponent = /** @class */ (function () {
         });
         console.log(this.maxDate);
         setTimeout(function () {
-            _this.socket.emit("get apod", _this.maxDate);
+            _this.socket.emit("get apod", _this.maxDate.toString());
         }, 100);
     }
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(this.getTodaysDate(event));
         var model = this.model.toISOString().split("T")[0];
-        console.log(this.model, this.maxDate, model);
+        console.log(this.model, this.maxDate, model.toString());
         this.socket.emit("get apod", model);
     };
     ApodComponent.prototype.getTodaysDate = function (stringDate) {
@@ -71385,7 +71385,6 @@ var ApodComponent = /** @class */ (function () {
         if (myMonth < 10) {
             stringMonth = "0" + myMonth;
         }
-        console.log(myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day));
         return myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day);
     };
     return ApodComponent;
