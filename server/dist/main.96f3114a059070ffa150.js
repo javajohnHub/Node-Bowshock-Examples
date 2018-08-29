@@ -71356,14 +71356,14 @@ var ApodComponent = /** @class */ (function () {
         var day = myDate.getDate();
         console.log(day);
         this.model = myDate;
-        this.maxDate = new Date(this.model);
+        this.maxDate = this.model.getFullYear() + '-' + (this.model.getMonth() + 1) + '-' + this.model.getDate();
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on("send apod", function (data) {
             _this.apod = data;
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         if (this.maxDate) {
-            this.socket.emit("get apod", this.model.getFullYear() + '-' + (this.model.getMonth() + 1) + '-' + this.model.getDate());
+            this.socket.emit("get apod", this.maxDate);
         }
     }
     ApodComponent.prototype.onDateChanged = function (event) {
