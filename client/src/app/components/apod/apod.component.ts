@@ -9,7 +9,7 @@ import { DomSanitizer } from "@angular/platform-browser";
       <h1>Apod</h1>
      {{maxDate}}
         <div class="ui-g-10 ui-g-offset-1">
-            <p-calendar (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="model" [readonlyInput]="true"></p-calendar>
+            <p-calendar (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
         </div>
       
     </div>
@@ -62,7 +62,9 @@ export class ApodComponent {
     const day = myDate.getDate();
     console.log(day)
     this.model = myDate;
-    this.maxDate = new Date(myYear +'-' + myMonth + '-'+ day)
+    let dateStr = myYear +'-' + myMonth + '-'+ day;
+    console.log(dateStr)
+    this.maxDate = new Date(dateStr)
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
@@ -71,9 +73,11 @@ export class ApodComponent {
       );
     });
 
-  if(this.maxDate){
-    console.log(this.maxDate)
+  if(myYear != undefined && myMonth != undefined && day != undefined){
+    console.log(myYear +'-' + myMonth + '-'+ day)
     this.socket.emit("get apod", myYear +'-' + myMonth + '-'+ day)
+  }else{
+    console.log('undefined')
   }
 
   }
@@ -86,8 +90,12 @@ export class ApodComponent {
     const day = myDate.getDate();
     console.log(day)
     this.model = myDate;
-    if(this.model){
-      this.socket.emit("get apod", myYear +'-' + myMonth + '-'+ day);
+    let dateStr = myYear +'-' + myMonth + '-'+ day;
+    if(myYear != undefined && myMonth != undefined && day != undefined){
+      console.log(myYear +'-' + myMonth + '-'+ day)
+      this.socket.emit("get apod", dateStr)
+    }else{
+      console.log('undefined')
     }
     
   }
