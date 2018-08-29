@@ -71385,6 +71385,7 @@ var ApodComponent = /** @class */ (function () {
         if (myMonth < 10) {
             stringMonth = "0" + myMonth;
         }
+        console.log(myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day));
         return myYear + "-" + (stringMonth || myMonth) + "-" + (stringDay || day);
     };
     return ApodComponent;
