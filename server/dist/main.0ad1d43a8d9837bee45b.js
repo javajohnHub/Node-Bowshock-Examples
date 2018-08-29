@@ -71366,7 +71366,7 @@ var ApodComponent = /** @class */ (function () {
         });
         if (myYear != undefined && myMonth != undefined && day != undefined) {
             console.log(myYear + '-' + myMonth + '-' + day);
-            this.socket.emit("get apod", myYear + '-' + myMonth + '-' + day);
+            this.socket.emit("get apod", dateStr);
         }
         else {
             console.log('undefined');
