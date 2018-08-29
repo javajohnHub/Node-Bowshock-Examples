@@ -71365,7 +71365,7 @@ var ApodComponent = /** @class */ (function () {
         var dateStr = myYear + '-' + myMonth + '-' + day;
         console.log(dateStr);
         this.maxDate = new Date(dateStr);
-        if (dateStr) {
+        if (myYear.toString() != 'undefined' && myMonth.toString() != 'undefined' && day.toString() != 'undefined') {
             console.log(dateStr);
             setTimeout(function () {
                 _this.socket.emit("get apod", dateStr);
@@ -71386,7 +71386,7 @@ var ApodComponent = /** @class */ (function () {
         console.log(day);
         this.model = myDate;
         var dateStr = myYear + '-' + myMonth + '-' + day;
-        if (myYear != undefined && myMonth != undefined && day != undefined) {
+        if (myYear.toString() != 'undefined' && myMonth.toString() != 'undefined' && day.toString() != 'undefined') {
             console.log();
             setTimeout(function () {
                 _this.socket.emit("get apod", myYear + '-' + myMonth + '-' + day);
