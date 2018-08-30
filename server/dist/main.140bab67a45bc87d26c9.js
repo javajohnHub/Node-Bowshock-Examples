@@ -74031,8 +74031,10 @@ var NavbarComponent = /** @class */ (function () {
                         icon: "pi pi-fw pi-external-link",
                         routerLink: ["/"],
                         command: function ($event) {
+                            var item;
+                            item.expanded = true;
                             console.log($event);
-                            _this.el.handleClick($event, false);
+                            _this.el.handleClick($event, item);
                         }
                     },
                     {
