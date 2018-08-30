@@ -25,7 +25,7 @@ import { ZippyComponent } from './components/zippy/zippy.component';
 import {CalendarModule} from 'primeng/calendar';
 import {GalleriaModule} from 'primeng/galleria';
 import { OpportunityComponent } from './components/mars/opportunity/opportunity.component';
-
+import {CardModule} from 'primeng/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +50,8 @@ import { OpportunityComponent } from './components/mars/opportunity/opportunity.
     HttpClientModule,
     routing,
     CalendarModule,
-    GalleriaModule
+    GalleriaModule,
+    CardModule
 
 
   ],

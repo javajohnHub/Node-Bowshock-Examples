@@ -5,27 +5,32 @@ import {of} from 'rxjs';
 @Component({
   selector: "app-apod",
   template: `    
-    <div class="ui-g-12">
+    <div class="ui-g">
       <h1>Apod</h1>
-        <div class="ui-g-10 ui-g-offset-1">
+        <div class="ui-g-12">
             <p-calendar (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
         </div>
       
     </div>
     <div *ngIf="apod">
-      <!--<h2>{{apod.title}}</h2>-->
-      {{apod.copyright}} {{apod.date}}<br/>
+     
+
       <div *ngIf="apod.media_type == 'image'">
-      <!--<img src="{{apod.hdurl}}">-->
-      <p-galleria [images]="[{source: apod.hdurl, alt:'Description for Image', title: apod.title}]" panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
+      <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+      <p-header>
+          <img src="Card" src="{{apod.hdurl}}">
+      </p-header>
+      <div>{{apod.explanation}}</div>
+      <p-footer>
+      </p-footer>
+  </p-card>
       </div>
       <div *ngIf="apod.media_type == 'video'" class="video-container">
         <iframe width='420' height='315'
                 [src]='safe_url'>
         </iframe>
        
-      </div><br/>
-      {{apod.explanation}}<br/>
+      </div>
       
     </div>
   `,
