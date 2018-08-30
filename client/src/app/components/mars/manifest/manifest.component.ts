@@ -10,7 +10,7 @@ import {SelectItem} from 'primeng/api';
         <div class="ui-inputgroup">
         <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         </div>
-        <div class="ui-inputgroup">
+        <div class="ui-inputgroup" *ngIf="sols">
         <p-dropdown [options]="sols" [(ngModel)]="selectedSol" (onChange)="solSelected(selectedSol)"></p-dropdown>        
         </div>
 
