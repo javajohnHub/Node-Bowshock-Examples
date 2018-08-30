@@ -73653,8 +73653,8 @@ var ManifestComponent = /** @class */ (function () {
         this.cameras = [{ label: "Select Camera", value: null }];
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
+            _this.sols = [{ label: "Select Sol", value: null }];
             if (_this.manifest) {
-                _this.sols = [{ label: "Select Sol", value: null }];
                 // this.manifest.photos.forEach(photo => {
                 //   this.sols.push(photo.sol);
                 //   photo.cameras.forEach(camera => {
