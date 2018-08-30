@@ -31,6 +31,12 @@
   cursor: pointer !important; }
 .previous {
   cursor: pointer !important; }
+img {
+  max-width: 100%;
+  max-height: 100%; }
+.square {
+  height: 90%;
+  width: 90%; }
 .center {
   margin: auto;
   width: 100%; }

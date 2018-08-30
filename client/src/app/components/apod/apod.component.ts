@@ -15,10 +15,10 @@ import {of} from 'rxjs';
     <div *ngIf="apod">
      
 
-      <div *ngIf="apod.media_type == 'image'" style="position: 'relative'">
-      <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" [style]="{position: 'relative', width: '100%', top: 0,left: 0}" styleClass="ui-card-shadow">
-      <p-header>
-          <img src="Card" src="{{apod.hdurl}}">
+      <div *ngIf="apod.media_type == 'image'" style="position: 'relative'" >
+      <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
+      <p-header class="square">
+          <img class="center" src="{{apod.hdurl}}">
       </p-header>
       <div>{{apod.explanation}}</div>
       <p-footer>
