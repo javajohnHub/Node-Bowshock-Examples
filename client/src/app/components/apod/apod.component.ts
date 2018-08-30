@@ -9,7 +9,7 @@ import {of} from 'rxjs';
       <h1>Apod</h1>
         <div class="ui-g-10 ui-g-offset-1">
         <p-calendar [(ngModel)]="model"></p-calendar>
-            <!--<p-calendar (ngModelChange)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>-->
+            <p-calendar (change)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
         </div>
       
     </div>
@@ -60,10 +60,9 @@ export class ApodComponent {
 
   ngOnInit(){
     this.model = new Date();
-    console.log(this.model)
+    
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
-      console.log('data', data)
       this.apod = data;
       this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
         this.apod["url"]
@@ -72,6 +71,7 @@ export class ApodComponent {
     let myDate = this.model.toISOString().split('T')[0]
     let last = parseInt(myDate.split('-')[2]) -1;
     let str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
+    this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last)
     this.socket.emit("get apod", str)
   }
 
