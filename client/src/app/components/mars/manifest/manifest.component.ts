@@ -76,7 +76,8 @@ export class ManifestComponent {
       this.manifest = manifest.photo_manifest;
       this.photos = [];
       this.manifest.photos.forEach(photo => {
-        for(let i = 0; i < photo.max_sol; i++){
+        console.log(this.manifest.max_sol)
+        for(let i = 0; i < this.manifest.max_sol; i++){
           this.sols.push({ label: photo.sol, value: photo.sol });
           photo.cameras.forEach(camera => {
             this.cameras.push({ label: camera, value: camera });

@@ -73659,7 +73659,8 @@ var ManifestComponent = /** @class */ (function () {
             _this.manifest = manifest.photo_manifest;
             _this.photos = [];
             _this.manifest.photos.forEach(function (photo) {
-                for (var i = 0; i < photo.max_sol; i++) {
+                console.log(_this.manifest.max_sol);
+                for (var i = 0; i < _this.manifest.max_sol; i++) {
                     _this.sols.push({ label: photo.sol, value: photo.sol });
                     photo.cameras.forEach(function (camera) {
                         _this.cameras.push({ label: camera, value: camera });
