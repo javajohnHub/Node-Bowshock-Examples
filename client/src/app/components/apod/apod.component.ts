@@ -69,12 +69,12 @@ export class ApodComponent {
         this.apod["url"]
       );
     });
-    this.socket.emit("get apod", this.model.toISOString().split('T')[0])
+    this.socket.emit("get apod", this.model)
   }
 
   onDateChanged(event): void {
     this.model = new Date(event);
-    this.socket.emit("get apod",this.model.toISOString().split('T')[0])
+    this.socket.emit("get apod",this.model)
       
      
   }
