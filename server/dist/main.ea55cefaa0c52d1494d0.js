@@ -73651,7 +73651,7 @@ var ManifestComponent = /** @class */ (function () {
             { label: "Spirit", value: "spirit" }
         ];
         this.cameras = [{ label: "Select Camera", value: null }];
-        this.sols = [{ label: "Select Sol", value: null }];
+        this.sols = [{ label: "Select Sol", value: null }, { label: 0, value: 0 }];
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
             if (_this.manifest) {
