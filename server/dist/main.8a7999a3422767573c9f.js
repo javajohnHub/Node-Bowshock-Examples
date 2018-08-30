@@ -73652,15 +73652,30 @@ var ManifestComponent = /** @class */ (function () {
         this.socket.on('send rover by sol ', function (manifest) {
             _this.manifest = manifest.photo_manifest;
         });
+        this.socket.on('send rover by sol and camera ', function (manifest) {
+            _this.manifest = manifest.photo_manifest;
+        });
     }
     ManifestComponent.prototype.roverSelected = function (selectedRover) {
         this.socket.emit('get manifest', selectedRover);
     };
     ManifestComponent.prototype.cameraSelected = function (selectedCamera) {
-        this.socket.emit('get rover by camera', selectedCamera);
+        this.selectedCamera = selectedCamera;
+        if (!this.selectedSol) {
+            this.socket.emit('get rover by camera', selectedCamera);
+        }
+        else {
+            this.socket.emit('get rover by camera', { camera: selectedCamera, sol: this.selectedSol });
+        }
     };
     ManifestComponent.prototype.solSelected = function (selectedSol) {
-        this.socket.emit('get rover by sol', selectedSol);
+        this.selectedSol = selectedSol;
+        if (!this.selectedCamera) {
+            this.socket.emit('get rover by sol', selectedSol);
+        }
+        else {
+            this.socket.emit('get rover by sol', { sol: selectedSol, camera: this.selectedCamera });
+        }
     };
     return ManifestComponent;
 }());

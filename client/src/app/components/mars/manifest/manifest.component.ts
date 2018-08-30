@@ -88,6 +88,9 @@ export class ManifestComponent {
     this.socket.on('send rover by sol ', (manifest) => {
       this.manifest = manifest.photo_manifest;
     });
+    this.socket.on('send rover by sol and camera ', (manifest) => {
+      this.manifest = manifest.photo_manifest;
+    });
     
   }
   
@@ -96,10 +99,22 @@ export class ManifestComponent {
   }
 
   cameraSelected(selectedCamera): void {
-    this.socket.emit('get rover by camera', selectedCamera )
+    this.selectedCamera = selectedCamera;
+    if(!this.selectedSol){
+      this.socket.emit('get rover by camera', selectedCamera )
+    }else{
+      this.socket.emit('get rover by camera', {camera: selectedCamera, sol: this.selectedSol})
+    }
+    
   }
   solSelected(selectedSol): void {
-    this.socket.emit('get rover by sol', selectedSol )
+    this.selectedSol = selectedSol;
+    if(!this.selectedCamera){
+      this.socket.emit('get rover by sol', selectedSol )
+    }else{
+      this.socket.emit('get rover by sol', {sol: selectedSol, camera: this.selectedCamera} )
+    }
+    
   }
 
 
