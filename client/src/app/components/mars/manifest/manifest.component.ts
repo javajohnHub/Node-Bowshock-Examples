@@ -11,8 +11,7 @@ import {SelectItem} from 'primeng/api';
         <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         </div>
     </div>
-    {{manifest | json}}
-
+    <div class="ui-g-12" *ngIf="manifest">
     {{manifest.name}}
     {{manifest.landing_date}}
     {{manifest.launch_date}}
@@ -20,7 +19,7 @@ import {SelectItem} from 'primeng/api';
     {{manifest.max_sol}}
     {{manifest.max_date}}
     {{manifest.total_photos}}
- <div class="ui-g-12" *ngFor="let item of manifest.photos">
+    <div class="ui-g-12" *ngFor="let item of manifest.photos">
  {{item.sol}}
  {{item.earth_date}}
  {{item.total_photos}}
@@ -28,6 +27,10 @@ import {SelectItem} from 'primeng/api';
  {{item.camera}}
  </div>
  </div>
+    </div>
+
+    
+ 
   </div>
     
     
