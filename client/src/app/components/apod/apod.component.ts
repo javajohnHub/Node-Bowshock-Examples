@@ -49,7 +49,11 @@ import {of} from 'rxjs';
         height: 0;
         overflow: hidden;
       }
-      
+      .video-container iframe {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
     `
   ]
 })
