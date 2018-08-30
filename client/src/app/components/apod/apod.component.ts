@@ -17,7 +17,7 @@ import {of} from 'rxjs';
       {{apod.copyright}} {{apod.date}}<br/>
       <div *ngIf="apod.media_type == 'image'">
       <!--<img src="{{apod.hdurl}}">-->
-      <p-galleria [images]="{source: apod.hdurl, alt:'Description for Image', title: apod.title}" panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
+      <p-galleria [images]="[{source: apod.hdurl, alt:'Description for Image', title: apod.title}]" panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
       </div>
       <div *ngIf="apod.media_type == 'video'" class="video-container">
         <iframe width='420' height='315'
