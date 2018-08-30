@@ -71358,16 +71358,15 @@ var ApodComponent = /** @class */ (function () {
         });
         var myDate = this.model.toISOString().split('T')[0];
         var last = parseInt(myDate.split('-')[2]) - 1;
-        var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last + 1;
-        this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last);
+        var today = last + 1;
+        var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
+        this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today);
         this.socket.emit("get apod", str);
     };
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(event);
         var myDate = this.model.toISOString().split('T')[0];
-        var last = parseInt(myDate.split('-')[2]) - 1;
-        var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-        this.socket.emit("get apod", str);
+        this.socket.emit("get apod", myDate);
     };
     return ApodComponent;
 }());
