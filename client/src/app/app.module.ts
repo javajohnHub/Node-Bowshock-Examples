@@ -23,6 +23,7 @@ import { EvaComponent } from './components/eva/eva.component';
 import { ZippyComponent } from './components/zippy/zippy.component';
 
 import {CalendarModule} from 'primeng/calendar';
+import {GalleriaModule} from 'primeng/galleria';
 import { OpportunityComponent } from './components/mars/opportunity/opportunity.component';
 
 @NgModule({
@@ -48,7 +49,8 @@ import { OpportunityComponent } from './components/mars/opportunity/opportunity.
     FormsModule,
     HttpClientModule,
     routing,
-    CalendarModule
+    CalendarModule,
+    GalleriaModule
 
 
   ],

@@ -13,16 +13,17 @@ import {of} from 'rxjs';
       
     </div>
     <div *ngIf="apod">
-    {{apod | json}}
-      <h2>{{apod.title}}</h2>
+      <!--<h2>{{apod.title}}</h2>-->
       {{apod.copyright}} {{apod.date}}<br/>
       <div *ngIf="apod.media_type == 'image'">
-      <img src="{{apod.hdurl || apod.url}}">
+      <!--<img src="{{apod.hdurl}}">-->
+      <p-galleria [images]="{source: apod.hdurl, alt:'Description for Image', title: apod.title}" panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
       </div>
       <div *ngIf="apod.media_type == 'video'" class="video-container">
         <iframe width='420' height='315'
                 [src]='safe_url'>
         </iframe>
+       
       </div><br/>
       {{apod.explanation}}<br/>
       
@@ -60,11 +61,9 @@ export class ApodComponent {
 
   ngOnInit(){
     this.model = new Date();
-    
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
-      console.log(this.apod)
       this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
         this.apod["url"]
       );
