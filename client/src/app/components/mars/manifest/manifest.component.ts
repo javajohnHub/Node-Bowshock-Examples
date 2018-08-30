@@ -11,13 +11,6 @@ import { SelectItem } from "primeng/api";
         <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         <p-dropdown [options]="sols" [(ngModel)]="selectedSol" (onChange)="solSelected(selectedSol)"></p-dropdown>        
         </div>
-        <div class="ui-inputgroup">
-        
-        </div>
-        <div class="ui-inputgroup">
-                
-        </div>
-
     </div>
     <div *ngIf="manifest && manifest.name">
     <ul>
@@ -37,10 +30,10 @@ import { SelectItem } from "primeng/api";
   <li>Total Photos: {{item.total_photos}}</li>
   
  Cameras:
- <p-dropdown [options]="item.cameras" [(ngModel)]="selectedCamera" (onChange)="cameraSelected(selectedCamera)"></p-dropdown>
- <div class="ui-g-12" *ngFor="let camera of item.cameras">
+ <p-dropdown [options]="cameras" [(ngModel)]="selectedCamera" (onChange)="cameraSelected(selectedCamera)"></p-dropdown>
+ <div class="ui-g-12" *ngFor="let camera of cameras">
  
- <li>{{camera}}</li>
+ <li>{{camera | json}}</li>
  </div>
  </div>
     </div>
