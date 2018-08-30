@@ -28,10 +28,7 @@
               }
             ],
             "styles": [
-              "src/app/styles/global.scss",
-              "/client/node_modules/primeicons/primeicons.css",
-  "/client/node_modules/primeng/resources/themes/nova-light/theme.css",
-  "/client/node_modules/primeng/resources/primeng.min.css"
+              "src/app/styles/global.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
