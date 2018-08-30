@@ -75,16 +75,18 @@ export class ManifestComponent {
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
       this.photos = [];
+      for(let i = 0; i < this.manifest.total_photos; i++){
       this.manifest.photos.forEach(photo => {
         console.log(this.manifest.max_sol, photo.total_photos)
-        for(let i = 0; i < photo.total_photos; i++){
+        
           this.sols.push({ label: photo.sol, value: photo.sol });
           photo.cameras.forEach(camera => {
             this.cameras.push({ label: camera, value: camera });
           });
-        }
+        
         
       });
+    }
     });
     
     this.socket.on("send rover by param", photos => {
