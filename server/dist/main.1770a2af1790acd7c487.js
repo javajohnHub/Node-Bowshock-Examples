@@ -71354,6 +71354,7 @@ var ApodComponent = /** @class */ (function () {
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on("send apod", function (data) {
             _this.apod = data;
+            console.log(_this.apod);
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         var myDate = this.model.toISOString().split('T')[0];

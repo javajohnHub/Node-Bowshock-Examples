@@ -63,6 +63,7 @@ export class ApodComponent {
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       this.apod = data;
+      console.log(this.apod)
       this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(
         this.apod["url"]
       );
