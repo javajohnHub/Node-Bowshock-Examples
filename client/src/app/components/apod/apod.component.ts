@@ -13,6 +13,7 @@ import {of} from 'rxjs';
       
     </div>
     <div *ngIf="apod">
+    {{apod | json}}
       <h2>{{apod.title}}</h2>
       {{apod.copyright}} {{apod.date}}<br/>
       <div *ngIf="apod.media_type == 'image'">
