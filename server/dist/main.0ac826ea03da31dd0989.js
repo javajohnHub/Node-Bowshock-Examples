@@ -74020,7 +74020,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var NavbarComponent = /** @class */ (function () {
     function NavbarComponent() {
-        var _this = this;
         this.items = [
             {
                 label: "Navigation",
@@ -74029,12 +74028,7 @@ var NavbarComponent = /** @class */ (function () {
                     {
                         label: "Home",
                         icon: "pi pi-fw pi-external-link",
-                        routerLink: ["/"],
-                        command: function ($event) {
-                            $event.item.expanded = false;
-                            console.log($event.item.expanded);
-                            _this.el.handleClick($event.originalEvent, $event.item);
-                        }
+                        routerLink: ["/"]
                     },
                     {
                         label: "APOD",

@@ -19,12 +19,7 @@ export class NavbarComponent {
           {
             label: "Home",
             icon: "pi pi-fw pi-external-link",
-            routerLink: ["/"],
-            command: ($event) => {
-              $event.item.expanded = false;
-              console.log($event.item.expanded)
-              this.el.handleClick($event.originalEvent, $event.item);
-            }
+            routerLink: ["/"]
           },
           {
             label: "APOD",
