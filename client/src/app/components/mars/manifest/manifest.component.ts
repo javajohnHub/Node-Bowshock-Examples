@@ -42,7 +42,11 @@ import { SelectItem } from "primeng/api";
  </div>
     </div>
 
-    
+    <div class="ui-g-12" *ngIf="photos.length > 0">
+    <div *ngFor="let photo of photos;">
+      <img src="{{photo.img_src}}"/>
+    </div>
+    </div>
  
   </div>
     
@@ -69,7 +73,7 @@ export class ManifestComponent {
       { label: "Spirit", value: "spirit" }
     ];
     this.cameras = [{ label: "Select Camera", value: null }];
-    this.sols = [{ label: "Select Sol", value: null },{ label: 0, value: 0 }];
+    this.sols = [{ label: "Select Sol", value: null },{ label: '0', value: 0 }];
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
       this.photos = [];
