@@ -73655,6 +73655,7 @@ var ManifestComponent = /** @class */ (function () {
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
             if (_this.manifest) {
+                console.log(_this.manifest);
                 // this.manifest.photos.forEach(photo => {
                 //   this.sols.push(photo.sol);
                 //   photo.cameras.forEach(camera => {

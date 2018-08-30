@@ -74,7 +74,7 @@ export class ManifestComponent {
       this.manifest = manifest.photo_manifest;
       
       if (this.manifest) {
-        
+        console.log(this.manifest)
         // this.manifest.photos.forEach(photo => {
         //   this.sols.push(photo.sol);
         //   photo.cameras.forEach(camera => {
