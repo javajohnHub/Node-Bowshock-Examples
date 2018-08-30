@@ -83,9 +83,9 @@ export class ManifestComponent {
       }
     });
     
-    // this.socket.on("send rover by param", photos => {
-    //   this.photos = photos;
-    // });
+    this.socket.on("send rover by param", photos => {
+      this.photos = photos;
+    });
   }
 
   roverSelected(selectedRover): void {

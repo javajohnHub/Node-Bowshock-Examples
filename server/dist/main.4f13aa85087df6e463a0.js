@@ -73663,9 +73663,9 @@ var ManifestComponent = /** @class */ (function () {
                 //});
             }
         });
-        // this.socket.on("send rover by param", photos => {
-        //   this.photos = photos;
-        // });
+        this.socket.on("send rover by param", function (photos) {
+            _this.photos = photos;
+        });
     }
     ManifestComponent.prototype.roverSelected = function (selectedRover) {
         this.selectedRover = selectedRover;
