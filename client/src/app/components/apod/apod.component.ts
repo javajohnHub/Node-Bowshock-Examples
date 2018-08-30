@@ -16,7 +16,7 @@ import {of} from 'rxjs';
       <h2>{{apod.title}}</h2>
       {{apod.copyright}} {{apod.date}}<br/>
       <div *ngIf="apod.media_type == 'image'">
-      <img class="ui-fluid" src="{{apod.hdurl}}">
+      <img src="{{apod.hdurl || apod.url}}">
       </div>
       <div *ngIf="apod.media_type == 'video'" class="video-container">
         <iframe width='420' height='315'
