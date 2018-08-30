@@ -32,7 +32,7 @@ import {of} from 'rxjs';
         [src]='safe_url'>
 </iframe>
         </p-header>
-        <div>{{apod.explanation}}</div>
+        <div style="height: 100%;">{{apod.explanation}}</div>
         <p-footer>
         </p-footer>
     </p-card>
@@ -44,8 +44,8 @@ import {of} from 'rxjs';
     `
       .video-container {
         
-        height: 80%;
-        overflow: hidden;
+        
+    
       }
       .video-container iframe {
         
