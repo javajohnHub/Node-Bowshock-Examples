@@ -12,9 +12,9 @@ import {of} from 'rxjs';
         </div>
       
     
-    <div *ngIf="apod">
+    <div *ngIf="apod" class="ui-g-12">
      
-
+    
       <div *ngIf="apod.media_type == 'image'" style="position: 'relative'" >
       <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
       <p-header class="square">
@@ -50,9 +50,8 @@ import {of} from 'rxjs';
         overflow: hidden;
       }
       .video-container iframe {
-        position: relative;
-        top: 0;
-        left: 0;
+        width: 100%;
+        height: 100%
       }
     `
   ]
