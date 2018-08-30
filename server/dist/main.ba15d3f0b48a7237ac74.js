@@ -73658,14 +73658,16 @@ var ManifestComponent = /** @class */ (function () {
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
             _this.photos = [];
-            for (var i = 0; i < _this.manifest.total_photos; i++) {
-                _this.manifest.photos.forEach(function (photo) {
-                    console.log(_this.manifest.max_sol, photo.total_photos);
-                    _this.sols.push({ label: photo.sol, value: photo.sol });
-                    photo.cameras.forEach(function (camera) {
-                        _this.cameras.push({ label: camera, value: camera });
+            if (_this.manifest) {
+                for (var i = 0; i < _this.manifest.total_photos; i++) {
+                    _this.manifest.photos.forEach(function (photo) {
+                        console.log(_this.manifest.max_sol, photo.total_photos);
+                        _this.sols.push({ label: photo.sol, value: photo.sol });
+                        photo.cameras.forEach(function (camera) {
+                            _this.cameras.push({ label: camera, value: camera });
+                        });
                     });
-                });
+                }
             }
         });
         this.socket.on("send rover by param", function (photos) {
