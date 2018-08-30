@@ -21,7 +21,7 @@ export class NavbarComponent {
             icon: "pi pi-fw pi-external-link",
             routerLink: ["/"],
             command: ($event) => {
-              $event.item.expanded = true;
+              $event.item.expanded = false;
               console.log($event)
               this.el.handleClick($event.originalEvent, $event.item);
             }
