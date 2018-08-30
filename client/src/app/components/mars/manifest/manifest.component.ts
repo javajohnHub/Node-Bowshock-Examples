@@ -19,7 +19,7 @@ import { SelectItem } from "primeng/api";
         </div>
 
     </div>
-    <div *ngIf="manifest.name">
+    <div *ngIf="manifest && manifest.name">
     <ul>
     <li>Rover: {{manifest.name}}</li>
     <li>Landing Date: {{manifest.landing_date}}</li>
@@ -58,7 +58,7 @@ import { SelectItem } from "primeng/api";
 })
 export class ManifestComponent {
   socket: any;
-  manifest;
+  manifest: any = {};
   selectedRover;
   selectedCamera;
   cameras;
