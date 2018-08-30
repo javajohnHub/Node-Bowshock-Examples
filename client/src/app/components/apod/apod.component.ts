@@ -27,12 +27,12 @@ import {of} from 'rxjs';
       </div>
       <div *ngIf="apod.media_type == 'video'" class="video-container">
         <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
-        <p-header class="square" style="position: relative">
+        <p-header class="square" style="position: absolute">
         <iframe
         [src]='safe_url'>
 </iframe>
         </p-header>
-        <div style="position: relative">{{apod.explanation}}</div>
+        <div style="position: absolute">{{apod.explanation}}</div>
         <p-footer>
         </p-footer>
     </p-card>
