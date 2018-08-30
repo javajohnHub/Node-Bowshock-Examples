@@ -75,12 +75,12 @@ export class ManifestComponent {
       
       if (this.manifest) {
         console.log(this.manifest)
-        // this.manifest.photos.forEach(photo => {
-        //   this.sols.push(photo.sol);
-        //   photo.cameras.forEach(camera => {
-        //     this.cameras.push({ label: camera, value: camera });
-        //   });
-        //});
+        this.manifest.photos.forEach(photo => {
+          this.sols.push(photo.sol);
+          photo.cameras.forEach(camera => {
+            this.cameras.push({ label: camera, value: camera });
+          });
+        });
       }
     });
     this.socket.emit("get manifest", {rover: 'curiosity'});

@@ -73656,12 +73656,12 @@ var ManifestComponent = /** @class */ (function () {
             _this.manifest = manifest.photo_manifest;
             if (_this.manifest) {
                 console.log(_this.manifest);
-                // this.manifest.photos.forEach(photo => {
-                //   this.sols.push(photo.sol);
-                //   photo.cameras.forEach(camera => {
-                //     this.cameras.push({ label: camera, value: camera });
-                //   });
-                //});
+                _this.manifest.photos.forEach(function (photo) {
+                    _this.sols.push(photo.sol);
+                    photo.cameras.forEach(function (camera) {
+                        _this.cameras.push({ label: camera, value: camera });
+                    });
+                });
             }
         });
         this.socket.emit("get manifest", { rover: 'curiosity' });
