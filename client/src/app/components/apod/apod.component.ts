@@ -43,14 +43,12 @@ import {of} from 'rxjs';
   styles: [
     `
       .video-container {
-        position: relative;
-        height: 0;
+        
+        height: 80%;
         overflow: hidden;
       }
       .video-container iframe {
-        position: absolute;
-        top: 60px;
-        left: 0;
+        
         width: 100%;
         height: 100%
       }
