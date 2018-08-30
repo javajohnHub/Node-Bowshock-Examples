@@ -66,7 +66,7 @@ export class ApodComponent {
         this.apod["url"]
       );
     });
-    this.socket.emit("get apod", this.model)
+    this.socket.emit("get apod", "2018-08-29")
   }
 
   onDateChanged(event): void {
