@@ -5,10 +5,7 @@ module.exports = function(io) {
     console.log("connected", socket.id);
 
     socket.on("get apod", date => {
-      console.log(date)
-      let formatted_date = format_date(date);
-      console.log(formatted_date)
-      bowshock.apod(formatted_date).then(apod => {
+      bowshock.apod(date).then(apod => {
         socket.emit("send apod", apod);
       });
     });
