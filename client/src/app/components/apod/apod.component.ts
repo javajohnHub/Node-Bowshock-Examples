@@ -25,7 +25,7 @@ import {of} from 'rxjs';
       </p-footer>
   </p-card>
       </div>
-      <div *ngIf="apod.media_type == 'video'" class="video-container">
+      <div *ngIf="apod.media_type == 'video'">
         <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
         <p-header class="square">
         <iframe
