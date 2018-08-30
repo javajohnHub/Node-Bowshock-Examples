@@ -5,7 +5,7 @@ import {of} from 'rxjs';
 @Component({
   selector: "app-apod",
   template: `    
-  <h1 class="ui-g ui-g-offset-6">Apod</h1>
+  <h1 class="ui-g ui-g-offset-5">Apod</h1>
     <div class="ui-g ui-fluid">
         <div class="ui-g-12">
             <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
@@ -27,12 +27,12 @@ import {of} from 'rxjs';
       </div>
       <div *ngIf="apod.media_type == 'video'" class="video-container">
         <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
-        <p-header class="square" style="position: absolute">
+        <p-header class="square">
         <iframe
         [src]='safe_url'>
 </iframe>
         </p-header>
-        <div style="position: absolute">{{apod.explanation}}</div>
+        <div>{{apod.explanation}}</div>
         <p-footer>
         </p-footer>
     </p-card>
