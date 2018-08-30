@@ -12,6 +12,7 @@ import {NeowsComponent} from './components/neows/neows.component';
 import {FeedComponent} from './components/neows/feed/feed.component';
 import {EvaComponent} from './components/eva/eva.component';
 import {TodayComponent} from './components/neows/today/today.component';
+import { ManifestComponent } from './components/mars/manifest/manifest.component';
 const routes: Routes = [
   {
     path: '',
@@ -29,7 +30,8 @@ const routes: Routes = [
     children: [
       { path: 'curiosity', component: CuriosityComponent},
       {path: 'opportunity', component: OpportunityComponent},
-      {path: 'spirit', component: SpiritComponent}
+      {path: 'spirit', component: SpiritComponent},
+      {path: 'manifest', component: ManifestComponent}
     ]},
   { path: 'neows', component: NeowsComponent,
     children: [

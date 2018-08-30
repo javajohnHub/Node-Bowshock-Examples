@@ -27,7 +27,8 @@ import {GalleriaModule} from 'primeng/galleria';
 import { OpportunityComponent } from './components/mars/opportunity/opportunity.component';
 import {CardModule} from 'primeng/card';
 import {PanelMenuModule} from 'primeng/panelmenu';
-
+import {DropdownModule} from 'primeng/dropdown'
+import { ManifestComponent } from './components/mars/manifest/manifest.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     FeedComponent,
     EvaComponent,
     TodayComponent,
-    ZippyComponent
+    ZippyComponent,
+    ManifestComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     CalendarModule,
     GalleriaModule,
     CardModule,
-    PanelMenuModule
+    PanelMenuModule,
+    DropdownModule
 
 
   ],
