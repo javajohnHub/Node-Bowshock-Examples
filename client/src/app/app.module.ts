@@ -26,6 +26,8 @@ import {CalendarModule} from 'primeng/calendar';
 import {GalleriaModule} from 'primeng/galleria';
 import { OpportunityComponent } from './components/mars/opportunity/opportunity.component';
 import {CardModule} from 'primeng/card';
+import {PanelMenuModule} from 'primeng/panelmenu';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,8 @@ import {CardModule} from 'primeng/card';
     routing,
     CalendarModule,
     GalleriaModule,
-    CardModule
+    CardModule,
+    PanelMenuModule
 
 
   ],

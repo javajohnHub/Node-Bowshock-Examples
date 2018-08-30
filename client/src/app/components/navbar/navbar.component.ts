@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
-
+import {MenuItem} from 'primeng/api';
 
 @Component({
   moduleId: module.id,
@@ -8,27 +8,27 @@ import {Router} from '@angular/router';
   templateUrl: 'navbar.component.html'
 })
 export class NavbarComponent {
-  public isCollapsed:boolean = false;
-  public status:{isopen:boolean} = {isopen: false};
+  items: MenuItem[];
+
   public rovers:Array<string> = ['curiosity', 'opportunity', 'spirit'];
   public neows:Array<string> = ['feed', 'today'];
+
+  
   constructor(private router: Router){
-
+    this.items = [
+      {
+          label: 'Navigation',
+          icon: 'pi pi-pw pi-file',
+          items: [
+              {label: 'Open', icon: 'pi pi-fw pi-external-link'},
+              {separator: true},
+              {label: 'Quit', icon: 'pi pi-fw pi-times'}
+          ]
+      }
+    ]
   }
 
-  public collapsed(event:any):void {
-    console.log(event);
-  }
-
-  public expanded(event:any):void {
-    console.log(event);
-  }
-
-  public toggleDropdown($event: MouseEvent): void {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.status.isopen = !this.status.isopen;
-  }
+  
 
 
 
