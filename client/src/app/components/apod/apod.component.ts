@@ -75,7 +75,5 @@ export class ApodComponent {
   onDateChanged(event): void {
     this.model = new Date(event);
     this.socket.emit("get apod",this.model)
-      
-     
   }
 }
