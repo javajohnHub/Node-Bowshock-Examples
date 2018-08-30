@@ -60,6 +60,7 @@ export class ManifestComponent {
   photos;
   rovers: SelectItem[];
   constructor() {
+    
     this.socket = SocketService.getInstance();
     this.rovers = [
       { label: "Select Rover", value: null },
@@ -72,15 +73,16 @@ export class ManifestComponent {
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
       if (this.manifest) {
-        this.sols = [];
-        this.manifest.photos.forEach(photo => {
-          this.sols.push(photo.sol);
-          photo.cameras.forEach(camera => {
-            this.cameras.push({ label: camera, value: camera });
-          });
-        });
+        // this.sols = [];
+        // this.manifest.photos.forEach(photo => {
+        //   this.sols.push(photo.sol);
+        //   photo.cameras.forEach(camera => {
+        //     this.cameras.push({ label: camera, value: camera });
+        //   });
+        //});
       }
     });
+    
     // this.socket.on("send rover by param", photos => {
     //   this.photos = photos;
     // });
@@ -88,6 +90,7 @@ export class ManifestComponent {
 
   roverSelected(selectedRover): void {
     this.selectedRover = selectedRover;
+    this.socket.emit("get manifest", {rover: 'this.selectedRover'});
   }
 
   cameraSelected(selectedCamera): void {

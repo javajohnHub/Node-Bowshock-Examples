@@ -73654,13 +73654,13 @@ var ManifestComponent = /** @class */ (function () {
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
             if (_this.manifest) {
-                _this.sols = [];
-                _this.manifest.photos.forEach(function (photo) {
-                    _this.sols.push(photo.sol);
-                    photo.cameras.forEach(function (camera) {
-                        _this.cameras.push({ label: camera, value: camera });
-                    });
-                });
+                // this.sols = [];
+                // this.manifest.photos.forEach(photo => {
+                //   this.sols.push(photo.sol);
+                //   photo.cameras.forEach(camera => {
+                //     this.cameras.push({ label: camera, value: camera });
+                //   });
+                //});
             }
         });
         // this.socket.on("send rover by param", photos => {
@@ -73669,6 +73669,7 @@ var ManifestComponent = /** @class */ (function () {
     }
     ManifestComponent.prototype.roverSelected = function (selectedRover) {
         this.selectedRover = selectedRover;
+        this.socket.emit("get manifest", { rover: 'this.selectedRover' });
     };
     ManifestComponent.prototype.cameraSelected = function (selectedCamera) {
         this.selectedCamera = selectedCamera;
