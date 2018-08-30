@@ -54,9 +54,9 @@ export class ManifestComponent {
   selectedRover;
   selectedCamera;
   cameras;
-  sols = [];
+  sols;
   selectedSol;
-  photos = [];
+  photos;
   rovers: SelectItem[];
   constructor() {
     this.socket = SocketService.getInstance();

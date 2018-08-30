@@ -73644,8 +73644,6 @@ __webpack_require__.r(__webpack_exports__);
 var ManifestComponent = /** @class */ (function () {
     function ManifestComponent() {
         var _this = this;
-        this.sols = [];
-        this.photos = [];
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.rovers = [
             { label: "Select Rover", value: null },
