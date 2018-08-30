@@ -74033,7 +74033,7 @@ var NavbarComponent = /** @class */ (function () {
                         command: function ($event) {
                             $event.item.expanded = true;
                             console.log($event);
-                            _this.el.handleClick($event, $event.item);
+                            _this.el.handleClick($event.originalEvent, $event.item);
                         }
                     },
                     {

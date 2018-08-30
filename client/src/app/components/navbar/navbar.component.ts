@@ -23,7 +23,7 @@ export class NavbarComponent {
             command: ($event) => {
               $event.item.expanded = true;
               console.log($event)
-              this.el.handleClick($event, $event.item);
+              this.el.handleClick($event.originalEvent, $event.item);
             }
           },
           {
