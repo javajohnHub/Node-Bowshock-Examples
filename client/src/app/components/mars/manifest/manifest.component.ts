@@ -18,7 +18,7 @@ import { SelectItem } from "primeng/api";
         </div>
 
     </div>
-    <div *ngIf="manifest">
+    <div *ngIf="manifest.name">
     <ul>
     <li>Rover: {{manifest.name}}</li>
     <li>Landing Date: {{manifest.landing_date}}</li>
@@ -43,7 +43,7 @@ import { SelectItem } from "primeng/api";
     </div>
 
     <div class="ui-g-12" *ngIf="photos.length > 0">
-    <div *ngFor="let photo of photos;">
+    <div *ngFor="let photo of photos.photos;">
       <img src="{{photo.img_src}}"/>
     </div>
     </div>
