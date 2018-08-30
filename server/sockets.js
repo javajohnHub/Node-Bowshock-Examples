@@ -20,14 +20,16 @@ module.exports = function(io) {
     });
 
     socket.on("get manifest", rover => {
-      
+      console.log(rover)
       if(!rover.sol && !rover.camera){
         bowshock.mars.manifest(rover).then(manifest => {
+          console.log(manifest)
           socket.emit("send manifest", manifest);
         });
       }
       if(rover.sol || rover.camera){
         bowshock.mars.manifest(rover).then(photos => {
+          console.log(photos)
           socket.emit("send rover by param", photos);
         });
       }
