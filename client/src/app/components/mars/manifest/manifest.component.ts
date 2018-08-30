@@ -67,17 +67,17 @@ export class ManifestComponent {
       { label: "Spirit", value: "spirit" }
     ];
     this.cameras = [{ label: "Select Camera", value: null }];
-    if (this.manifest) {
-      this.manifest.photos.forEach(photo => {
-        this.sols.push(photo.sol);
-        photo.cameras.forEach(camera => {
-          this.cameras.push({ label: camera, value: camera });
-        });
-      });
-    }
-
+    
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
+      if (this.manifest) {
+        this.manifest.photos.forEach(photo => {
+          this.sols.push(photo.sol);
+          photo.cameras.forEach(camera => {
+            this.cameras.push({ label: camera, value: camera });
+          });
+        });
+      }
     });
     this.socket.on("send rover by camera", manifest => {
       this.photos = manifest;

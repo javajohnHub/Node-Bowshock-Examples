@@ -73654,16 +73654,16 @@ var ManifestComponent = /** @class */ (function () {
             { label: "Spirit", value: "spirit" }
         ];
         this.cameras = [{ label: "Select Camera", value: null }];
-        if (this.manifest) {
-            this.manifest.photos.forEach(function (photo) {
-                _this.sols.push(photo.sol);
-                photo.cameras.forEach(function (camera) {
-                    _this.cameras.push({ label: camera, value: camera });
-                });
-            });
-        }
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
+            if (_this.manifest) {
+                _this.manifest.photos.forEach(function (photo) {
+                    _this.sols.push(photo.sol);
+                    photo.cameras.forEach(function (camera) {
+                        _this.cameras.push({ label: camera, value: camera });
+                    });
+                });
+            }
         });
         this.socket.on("send rover by camera", function (manifest) {
             _this.photos = manifest;
