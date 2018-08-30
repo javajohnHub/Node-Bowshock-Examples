@@ -10,6 +10,11 @@ import {SelectItem} from 'primeng/api';
         <div class="ui-inputgroup">
         <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         </div>
+        <div class="ui-inputgroup">
+    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+    <input type="number" pInputText placeholder="Sol" max="manifest.photos.length - 1">         
+</div>
+
     </div>
     <div *ngIf="manifest">
     <ul>
@@ -27,6 +32,9 @@ import {SelectItem} from 'primeng/api';
   <li>Sol: {{item.sol}}</li>
   <li>Earth Date: {{item.earth_date}}</li>
   <li>Total Photos: {{item.total_photos}}</li>
+  <div class="ui-inputgroup">
+        <p-dropdown [options]="item.cameras" [(ngModel)]="selectedCamera" (onChange)="cameraSelected(selectedCamera)"></p-dropdown>        
+        </div>
  Cameras:
  <div class="ui-g-12" *ngFor="let camera of item.cameras">
  <li>{{camera}}</li>
@@ -45,6 +53,8 @@ export class ManifestComponent {
   socket: any;
   manifest;
   selectedRover;
+  selectedCamera;
+  cameras;
   rovers: SelectItem[];
   constructor() {
     this.socket = SocketService.getInstance();
@@ -54,6 +64,19 @@ export class ManifestComponent {
             {label: 'Opportunity', value: 'opportunity'},
             {label: 'Spirit', value: 'spirit'},
     ]
+    this.cameras = [
+      {label:'Select Camera', value:null}
+          
+  ]
+  if(this.manifest){
+    this.manifest.photos.forEach((photo) => {
+      photo.cameras.forEach((camera) => {
+        this.cameras.push({label: camera, value: camera})
+      })
+    })
+    
+  }
+  
     this.socket.on('send manifest', (manifest) => {
       this.manifest = manifest.photo_manifest;
     });

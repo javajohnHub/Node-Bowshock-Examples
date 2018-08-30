@@ -29,6 +29,7 @@ import {CardModule} from 'primeng/card';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {DropdownModule} from 'primeng/dropdown'
 import { ManifestComponent } from './components/mars/manifest/manifest.component';
+import {InputTextModule} from 'primeng/inputtext';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { ManifestComponent } from './components/mars/manifest/manifest.component
     GalleriaModule,
     CardModule,
     PanelMenuModule,
-    DropdownModule
+    DropdownModule,
+    InputTextModule
 
 
   ],
