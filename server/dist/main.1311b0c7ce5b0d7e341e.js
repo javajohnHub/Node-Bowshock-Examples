@@ -71362,7 +71362,10 @@ var ApodComponent = /** @class */ (function () {
     };
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(event);
-        this.socket.emit("get apod", this.model);
+        var myDate = this.model.toISOString().split('T')[0];
+        var last = parseInt(myDate.split('-')[2]) - 1;
+        var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
+        this.socket.emit("get apod", str);
     };
     return ApodComponent;
 }());
