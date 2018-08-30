@@ -73656,7 +73656,6 @@ var ManifestComponent = /** @class */ (function () {
         this.sols = [{ label: "Select Sol", value: null }, { label: '0', value: 0 }];
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
-            _this.photos = [];
             if (_this.manifest) {
                 console.log(_this.manifest);
                 _this.manifest.photos.forEach(function (photo) {
@@ -73670,7 +73669,6 @@ var ManifestComponent = /** @class */ (function () {
         this.socket.emit("get manifest", { rover: 'curiosity' });
         this.socket.on("send rover by param", function (photos) {
             console.log(photos);
-            _this.manifest = [];
             _this.photos = photos;
         });
     }
