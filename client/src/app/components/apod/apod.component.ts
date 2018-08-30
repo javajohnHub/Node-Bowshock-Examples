@@ -26,10 +26,16 @@ import {of} from 'rxjs';
   </p-card>
       </div>
       <div *ngIf="apod.media_type == 'video'" class="video-container">
-        <iframe width='420' height='315'
-                [src]='safe_url'>
-        </iframe>
-       
+        <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
+        <p-header class="square">
+        <iframe
+        [src]='safe_url'>
+</iframe>
+        </p-header>
+        <div>{{apod.explanation}}</div>
+        <p-footer>
+        </p-footer>
+    </p-card>
       </div>
       
     </div>

@@ -31,7 +31,7 @@
   cursor: pointer !important; }
 .previous {
   cursor: pointer !important; }
-img {
+img, iframe {
   max-width: 100%;
   max-height: 100%; }
 .square {
