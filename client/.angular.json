@@ -29,9 +29,9 @@
             ],
             "styles": [
               "src/app/styles/global.scss",
-              "node_modules/primeicons/primeicons.css",
-  "node_modules/primeng/resources/themes/nova-light/theme.css",
-  "node_modules/primeng/resources/primeng.min.css"
+              "/client/node_modules/primeicons/primeicons.css",
+  "/client/node_modules/primeng/resources/themes/nova-light/theme.css",
+  "/client/node_modules/primeng/resources/primeng.min.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
