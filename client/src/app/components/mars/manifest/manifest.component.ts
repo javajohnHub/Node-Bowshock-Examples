@@ -12,9 +12,22 @@ import {SelectItem} from 'primeng/api';
         </div>
     </div>
     {{manifest | json}}
- <!--<div class="ui-g-12" *ngFor="let item of manifest">
- {{item | json}}
- </div>-->
+
+    {{manifest.name}}
+    {{manifest.landing_date}}
+    {{manifest.launch_date}}
+    {{manifest.status}}
+    {{manifest.max_sol}}
+    {{manifest.max_date}}
+    {{manifest.total_photos}}
+ <div class="ui-g-12" *ngFor="let item of manifest.photos">
+ {{item.sol}}
+ {{item.earth_date}}
+ {{item.total_photos}}
+ <div class="ui-g-12" *ngFor="let camera of item.cameras">
+ {{item.camera}}
+ </div>
+ </div>
   </div>
     
     
@@ -34,7 +47,7 @@ export class ManifestComponent {
             {label: 'Spirit', value: 'spirit'},
     ]
     this.socket.on('send manifest', (manifest) => {
-      this.manifest = manifest;
+      this.manifest = manifest.photo_manifest;
     });
     
   }
