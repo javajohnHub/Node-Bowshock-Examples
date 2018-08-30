@@ -13,23 +13,22 @@ import {SelectItem} from 'primeng/api';
     </div>
     <div *ngIf="manifest">
     <ul>
-    <li>{{manifest.name}}</li>
-    <li>{{manifest.landing_date}}</li>
-    <li>{{manifest.launch_date}}</li>
-    <li>{{manifest.status}}</li>
-    <li>{{manifest.max_sol}}</li>
-    <li>{{manifest.max_date}}</li>
-    <li>{{manifest.total_photos}}</li>
+    <li>Rover: {{manifest.name}}</li>
+    <li>Landing Date: {{manifest.landing_date}}</li>
+    <li>Launch Date: {{manifest.launch_date}}</li>
+    <li>Status: {{manifest.status}}</li>
+    <li>Max Sol: {{manifest.max_sol}}</li>
+    <li>Max Date: {{manifest.max_date}}</li>
+    <li>Total Photos: {{manifest.total_photos}}</li>
     </ul>
-    Photos
+    Photos:
   <div *ngFor="let item of manifest.photos">
-  {{item | json}}
- {{item.sol}}
- {{item.earth_date}}
- {{item.total_photos}}
+  <li>Sol: {{item.sol}}</li>
+  <li>Earth Date: {{item.earth_date}}</li>
+  <li>Total Photos: {{item.total_photos}}</li>
+ Cameras:
  <div class="ui-g-12" *ngFor="let camera of item.cameras">
- {{camera | json}}
- {{item.camera}}
+ <li>Camera: {{item.camera}}</li>
  </div>
  </div>
     </div>
