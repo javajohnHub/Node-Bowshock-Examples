@@ -54,8 +54,9 @@ export class ManifestComponent {
   selectedRover;
   selectedCamera;
   cameras;
-  sols;
+  sols = [];
   selectedSol;
+  photos = [];
   rovers: SelectItem[];
   constructor() {
     this.socket = SocketService.getInstance();
@@ -79,13 +80,13 @@ export class ManifestComponent {
       this.manifest = manifest.photo_manifest;
     });
     this.socket.on("send rover by camera", manifest => {
-      this.manifest = manifest.photo_manifest;
+      this.photos = manifest;
     });
     this.socket.on("send rover by sol ", manifest => {
-      this.manifest = manifest.photo_manifest;
+      this.photos = manifest;
     });
     this.socket.on("send rover by sol and camera ", manifest => {
-      this.manifest = manifest.photo_manifest;
+      this.photos  = manifest;
     });
   }
 
@@ -98,9 +99,9 @@ export class ManifestComponent {
     this.selectedCamera = selectedCamera;
     if (this.selectedRover) {
       if (!this.selectedSol) {
-        this.socket.emit("get rover by camera", {rover: this.selectedRover, camera: this.selectedCamera});
+        this.socket.emit("get manifest", {rover: this.selectedRover, camera: this.selectedCamera});
       } else {
-        this.socket.emit("get rover by camera", {
+        this.socket.emit("get manifest", {
           rover: this.selectedRover,
           camera: this.selectedCamera,
           sol: this.selectedSol
@@ -114,9 +115,9 @@ export class ManifestComponent {
     this.selectedSol = selectedSol;
     if (this.selectedRover) {
       if (!this.selectedCamera) {
-        this.socket.emit("get rover by sol", {rover: this.selectedRover, sol: this.selectedSol});
+        this.socket.emit("get manifest", {rover: this.selectedRover, sol: this.selectedSol});
       } else {
-        this.socket.emit("get rover by sol", {
+        this.socket.emit("get manifest", {
           rover: this.selectedRover,
           sol: this.selectedSol,
           camera: this.selectedCamera

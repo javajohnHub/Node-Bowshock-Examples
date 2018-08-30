@@ -56881,6 +56881,24 @@ exports.ObjectUtils = ObjectUtils;
 
 /***/ }),
 
+/***/ "./node_modules/primeng/panelmenu.js":
+/*!*******************************************!*\
+  !*** ./node_modules/primeng/panelmenu.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* Shorthand */
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(/*! ./components/panelmenu/panelmenu */ "./node_modules/primeng/components/panelmenu/panelmenu.js"));
+
+/***/ }),
+
 /***/ "./node_modules/rxjs/_esm5/index.js":
 /*!******************************************!*\
   !*** ./node_modules/rxjs/_esm5/index.js ***!
@@ -73626,6 +73644,8 @@ __webpack_require__.r(__webpack_exports__);
 var ManifestComponent = /** @class */ (function () {
     function ManifestComponent() {
         var _this = this;
+        this.sols = [];
+        this.photos = [];
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.rovers = [
             { label: "Select Rover", value: null },
@@ -73646,13 +73666,13 @@ var ManifestComponent = /** @class */ (function () {
             _this.manifest = manifest.photo_manifest;
         });
         this.socket.on("send rover by camera", function (manifest) {
-            _this.manifest = manifest.photo_manifest;
+            _this.photos = manifest;
         });
         this.socket.on("send rover by sol ", function (manifest) {
-            _this.manifest = manifest.photo_manifest;
+            _this.photos = manifest;
         });
         this.socket.on("send rover by sol and camera ", function (manifest) {
-            _this.manifest = manifest.photo_manifest;
+            _this.photos = manifest;
         });
     }
     ManifestComponent.prototype.roverSelected = function (selectedRover) {
@@ -73663,10 +73683,10 @@ var ManifestComponent = /** @class */ (function () {
         this.selectedCamera = selectedCamera;
         if (this.selectedRover) {
             if (!this.selectedSol) {
-                this.socket.emit("get rover by camera", { rover: this.selectedRover, camera: this.selectedCamera });
+                this.socket.emit("get manifest", { rover: this.selectedRover, camera: this.selectedCamera });
             }
             else {
-                this.socket.emit("get rover by camera", {
+                this.socket.emit("get manifest", {
                     rover: this.selectedRover,
                     camera: this.selectedCamera,
                     sol: this.selectedSol
@@ -73681,10 +73701,10 @@ var ManifestComponent = /** @class */ (function () {
         this.selectedSol = selectedSol;
         if (this.selectedRover) {
             if (!this.selectedCamera) {
-                this.socket.emit("get rover by sol", { rover: this.selectedRover, sol: this.selectedSol });
+                this.socket.emit("get manifest", { rover: this.selectedRover, sol: this.selectedSol });
             }
             else {
-                this.socket.emit("get rover by sol", {
+                this.socket.emit("get manifest", {
                     rover: this.selectedRover,
                     sol: this.selectedSol,
                     camera: this.selectedCamera
@@ -73977,7 +73997,7 @@ __webpack_require__.r(__webpack_exports__);
 var styles_NavbarComponent = [];
 var RenderType_NavbarComponent = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 2, styles: styles_NavbarComponent, data: {} });
 
-function View_NavbarComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "p-panelMenu", [], null, null, null, _node_modules_primeng_components_panelmenu_panelmenu_ngfactory__WEBPACK_IMPORTED_MODULE_1__["View_PanelMenu_0"], _node_modules_primeng_components_panelmenu_panelmenu_ngfactory__WEBPACK_IMPORTED_MODULE_1__["RenderType_PanelMenu"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, primeng_components_panelmenu_panelmenu__WEBPACK_IMPORTED_MODULE_2__["PanelMenu"], [], { model: [0, "model"], style: [1, "style"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵpod"](2, { "width": 0 })], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.items; var currVal_1 = _ck(_v, 2, 0, "100%"); _ck(_v, 1, 0, currVal_0, currVal_1); }, null); }
+function View_NavbarComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](402653184, 1, { el: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 2, "p-panelMenu", [], null, null, null, _node_modules_primeng_components_panelmenu_panelmenu_ngfactory__WEBPACK_IMPORTED_MODULE_1__["View_PanelMenu_0"], _node_modules_primeng_components_panelmenu_panelmenu_ngfactory__WEBPACK_IMPORTED_MODULE_1__["RenderType_PanelMenu"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 49152, [[1, 4], ["el", 4]], 0, primeng_components_panelmenu_panelmenu__WEBPACK_IMPORTED_MODULE_2__["PanelMenu"], [], { model: [0, "model"], style: [1, "style"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵpod"](3, { "width": 0 })], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.items; var currVal_1 = _ck(_v, 3, 0, "100%"); _ck(_v, 2, 0, currVal_0, currVal_1); }, null); }
 function View_NavbarComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "app-navbar", [], null, null, null, View_NavbarComponent_0, RenderType_NavbarComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _navbar_component__WEBPACK_IMPORTED_MODULE_3__["NavbarComponent"], [], null, null)], null, null); }
 var NavbarComponentNgFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("app-navbar", _navbar_component__WEBPACK_IMPORTED_MODULE_3__["NavbarComponent"], View_NavbarComponent_Host_0, {}, {}, []);
 
@@ -73995,8 +74015,12 @@ var NavbarComponentNgFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavbarComponent", function() { return NavbarComponent; });
+/* harmony import */ var primeng_panelmenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primeng/panelmenu */ "./node_modules/primeng/panelmenu.js");
+/* harmony import */ var primeng_panelmenu__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(primeng_panelmenu__WEBPACK_IMPORTED_MODULE_0__);
+
 var NavbarComponent = /** @class */ (function () {
     function NavbarComponent() {
+        var _this = this;
         this.items = [
             {
                 label: "Navigation",
@@ -74005,7 +74029,11 @@ var NavbarComponent = /** @class */ (function () {
                     {
                         label: "Home",
                         icon: "pi pi-fw pi-external-link",
-                        routerLink: ["/"]
+                        routerLink: ["/"],
+                        command: function ($event) {
+                            console.log($event);
+                            _this.el.handleClick($event, false);
+                        }
                     },
                     {
                         label: "APOD",

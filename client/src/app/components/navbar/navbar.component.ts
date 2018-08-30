@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { MenuItem } from "primeng/api";
+import { PanelMenu, BasePanelMenuItem } from "primeng/panelmenu";
 
 @Component({
   moduleId: module.id,
@@ -8,7 +9,7 @@ import { MenuItem } from "primeng/api";
 })
 export class NavbarComponent {
   items: MenuItem[];
-
+  @ViewChild('el') el: BasePanelMenuItem;
   constructor() {
     this.items = [
       {
@@ -18,7 +19,11 @@ export class NavbarComponent {
           {
             label: "Home",
             icon: "pi pi-fw pi-external-link",
-            routerLink: ["/"]
+            routerLink: ["/"],
+            command: ($event) => {
+              console.log($event)
+              this.el.handleClick($event, false);
+            }
           },
           {
             label: "APOD",

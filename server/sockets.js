@@ -20,22 +20,30 @@ module.exports = function(io) {
     });
 
     socket.on("get manifest", rover => {
-      bowshock.mars.manifest(rover).then(manifest => {
-        socket.emit("send manifest", manifest);
-      });
+      if(!rover.sol && !rover.camera){
+        bowshock.mars.manifest(rover).then(manifest => {
+          socket.emit("send manifest", manifest);
+        });
+      }
+      if(rover.sol && !rover.camera){
+        bowshock.mars.manifest(rover).then(manifest => {
+          socket.emit("send rover by sol", manifest);
+        });
+      }
+      if(rover.camera && !rover.sol){
+        bowshock.mars.manifest(rover).then(manifest => {
+          socket.emit("send rover by camera", manifest);
+        });
+      }
+      if(rover.camera && rover.sol){
+        bowshock.mars.manifest(rover).then(manifest => {
+          socket.emit("send rover by sol and camera", manifest);
+        });
+      }
+
+      
     });
 
-    socket.on("get rover by sol", sol => {
-      bowshock.mars.manifest(sol).then(manifest => {
-        socket.emit("send rover by sol", manifest);
-      });
-    });
-
-    socket.on("get rover by camera", camera => {
-      bowshock.mars.manifest(camera).then(manifest => {
-        socket.emit("send rover by camera", manifest);
-      });
-    });
 
     socket.on("get opportunity", date => {
       let formatted_date = format_date(date);
