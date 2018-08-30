@@ -4,44 +4,52 @@ import {SocketService} from '../../../shared/socket.service';
 @Component({
   selector: 'app-curiosity',
   template: `
-    <div>
-      <h1 class="text-center">Curiosity</h1>
-      <form>
-        <div class="form-group">
-        <form>
-        <div>
-            <p-calendar [(ngModel)]='model' [ngModelOptions]="{standalone: true}"></p-calendar>
-        </div>
-      </form>
-        </div>
-      </form><br/>
-    </div>
-    <div *ngIf="pictures">
+  <h1 class="ui-g ui-g-offset-5">Curiosity</h1>
+  <div class="ui-g ui-fluid">
+      <div class="ui-g-12">
+          <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+      </div>
+    
+  
+  
+  <div *ngIf="pictures" class="ui-g-12">
       <ng-container *ngFor="let picture of pictures.photos">
-        <img class="ui-fluid center" src="{{picture.img_src}}"><br/>
+      <img class="center" src="{{picture.img_src}}">
       </ng-container>
       <div *ngIf="pictures.photos.length == 0">
         <h1>No Photos Found</h1>
       </div>
     </div>
+  
+  </div>
+    
     
   `
 })
 export class CuriosityComponent {
   socket: any;
   pictures: {};
-  model: Object = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() - 1 } };
+  model: Date;
+  maxDate: Date;
   constructor() {
+    this.model = new Date();
     this.socket = SocketService.getInstance();
-    this.socket.emit('get curiosity', this.model['date'] );
+    
     this.socket.on('send curiosity', (data) => {
       this.pictures = data;
     });
-    
-
+    let myDate = this.model.toISOString().split('T')[0]
+    let last = parseInt(myDate.split('-')[2]) -1;
+    let today = last + 1;
+    let str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
+    this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today)
+    this.socket.emit('get curiosity', str );
   }
+  
   onDateChanged(event): void {
-    this.socket.emit('get curiosity', event.date );
+    this.model = new Date(event);
+    let myDate = this.model.toISOString().split('T')[0]
+    this.socket.emit('get curiosity', myDate )
   }
 
 

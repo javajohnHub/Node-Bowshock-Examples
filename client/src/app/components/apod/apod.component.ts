@@ -57,8 +57,6 @@ export class ApodComponent {
   safe_url: any;
   model: Date;
   maxDate: Date;
-  strDate;
-  strDateChanged;
   constructor(private sanitizer: DomSanitizer) {
   }
 
