@@ -8,7 +8,7 @@ import {SelectItem} from 'primeng/api';
   <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="ui-inputgroup">
-        <p-dropdown [options]="rovers" [ngModel]="selectedRover" (onChange)="roverSelected()"></p-dropdown>        
+        <p-dropdown [options]="rovers" [ngModel]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         </div>
     </div>
  <div class="ui-g-12" *ngFor="let item of manifest">
@@ -38,9 +38,9 @@ export class ManifestComponent {
     
   }
   
-  roverSelected(): void {
-      console.log(this.selectedRover)
-    this.socket.emit('get manifest', this.selectedRover )
+  roverSelected(selectedRover): void {
+      console.log(selectedRover)
+    this.socket.emit('get manifest', selectedRover )
   }
 
 
