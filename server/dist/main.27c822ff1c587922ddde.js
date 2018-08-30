@@ -73659,7 +73659,7 @@ var ManifestComponent = /** @class */ (function () {
             _this.manifest = manifest.photo_manifest;
             _this.photos = [];
             if (_this.manifest) {
-                for (var i = 0; i < _this.manifest.total_photos; i++) {
+                for (var i = 0; i < _this.manifest.photos.length; i++) {
                     _this.manifest.photos.forEach(function (photo) {
                         console.log(_this.manifest.max_sol, photo.total_photos);
                         _this.sols.push({ label: photo.sol, value: photo.sol });

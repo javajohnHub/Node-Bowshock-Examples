@@ -76,7 +76,7 @@ export class ManifestComponent {
       this.manifest = manifest.photo_manifest;
       this.photos = [];
       if(this.manifest){
-        for(let i = 0; i < this.manifest.total_photos; i++){
+        for(let i = 0; i < this.manifest.photos.length; i++){
           this.manifest.photos.forEach(photo => {
             console.log(this.manifest.max_sol, photo.total_photos)
             
