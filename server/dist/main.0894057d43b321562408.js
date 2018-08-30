@@ -73657,7 +73657,7 @@ var ManifestComponent = /** @class */ (function () {
             if (_this.manifest) {
                 console.log(_this.manifest);
                 _this.manifest.photos.forEach(function (photo) {
-                    _this.sols.push(photo.sol);
+                    _this.sols.push({ label: photo.sol, value: photo.sol });
                     photo.cameras.forEach(function (camera) {
                         _this.cameras.push({ label: camera, value: camera });
                     });
