@@ -73539,7 +73539,6 @@ var ManifestComponent = /** @class */ (function () {
         });
     }
     ManifestComponent.prototype.roverSelected = function (selectedRover) {
-        console.log(selectedRover);
         this.socket.emit('get manifest', selectedRover);
     };
     return ManifestComponent;

@@ -39,7 +39,6 @@ export class ManifestComponent {
   }
   
   roverSelected(selectedRover): void {
-      console.log(selectedRover)
     this.socket.emit('get manifest', selectedRover )
   }
 
