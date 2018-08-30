@@ -25,7 +25,7 @@ import {of} from 'rxjs';
       </p-footer>
   </p-card>
       </div>
-      <div *ngIf="apod.media_type == 'video'">
+      <div *ngIf="apod.media_type == 'video'" class="video-container">
         <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
         <p-header class="square">
         <iframe
@@ -43,7 +43,6 @@ import {of} from 'rxjs';
   styles: [
     `
       .video-container {
-        position: relative;
         padding-bottom: 56.25%;
         padding-top: 35px;
         height: 0;
