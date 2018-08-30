@@ -22,7 +22,7 @@ export class NavbarComponent {
             routerLink: ["/"],
             command: ($event) => {
               $event.item.expanded = false;
-              console.log($event)
+              console.log($event.item.expanded)
               this.el.handleClick($event.originalEvent, $event.item);
             }
           },

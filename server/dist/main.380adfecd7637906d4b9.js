@@ -74032,7 +74032,7 @@ var NavbarComponent = /** @class */ (function () {
                         routerLink: ["/"],
                         command: function ($event) {
                             $event.item.expanded = false;
-                            console.log($event);
+                            console.log($event.item.expanded);
                             _this.el.handleClick($event.originalEvent, $event.item);
                         }
                     },
