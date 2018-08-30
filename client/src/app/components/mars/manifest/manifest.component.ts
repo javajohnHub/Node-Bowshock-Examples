@@ -10,8 +10,11 @@ import { SelectItem } from "primeng/api";
         <div class="ui-inputgroup">
         <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         </div>
-        <div class="ui-inputgroup" *ngIf="sols">
+        <div class="ui-inputgroup">
         <p-dropdown [options]="sols" [(ngModel)]="selectedSol" (onChange)="solSelected(selectedSol)"></p-dropdown>        
+        </div>
+        <div class="ui-inputgroup">
+        <p-dropdown [options]="cameras" [(ngModel)]="selectedCamera" (onChange)="cameraSelected(selectedCamera)"></p-dropdown>        
         </div>
 
     </div>
@@ -31,9 +34,7 @@ import { SelectItem } from "primeng/api";
   <li>Sol: {{item.sol}}</li>
   <li>Earth Date: {{item.earth_date}}</li>
   <li>Total Photos: {{item.total_photos}}</li>
-  <div class="ui-inputgroup">
-        <p-dropdown [options]="item.cameras" [(ngModel)]="selectedCamera" (onChange)="cameraSelected(selectedCamera)"></p-dropdown>        
-        </div>
+  
  Cameras:
  <div class="ui-g-12" *ngFor="let camera of item.cameras">
  <li>{{camera}}</li>
