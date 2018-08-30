@@ -44,7 +44,9 @@ export class OpportunityComponent {
     this.socket.emit('get opportunity', str );
   }
   onDateChanged(event): void {
-    this.socket.emit('get opportunity', event.date );
+    this.model = new Date(event);
+    let myDate = this.model.toISOString().split('T')[0]
+    this.socket.emit('get opportunity', myDate );
   }
 
 }
