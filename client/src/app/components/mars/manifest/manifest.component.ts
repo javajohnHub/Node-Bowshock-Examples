@@ -11,9 +11,8 @@ import {SelectItem} from 'primeng/api';
         <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         </div>
         <div class="ui-inputgroup">
-    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-    <input type="number" pInputText placeholder="Sol" max="manifest.photos.length - 1">         
-</div>
+        <p-dropdown [options]="sols" [(ngModel)]="selectedSol" (onChange)="solSelected(selectedSol)"></p-dropdown>        
+        </div>
 
     </div>
     <div *ngIf="manifest">
@@ -55,6 +54,8 @@ export class ManifestComponent {
   selectedRover;
   selectedCamera;
   cameras;
+  sols;
+  selectedSol;
   rovers: SelectItem[];
   constructor() {
     this.socket = SocketService.getInstance();
@@ -70,6 +71,7 @@ export class ManifestComponent {
   ]
   if(this.manifest){
     this.manifest.photos.forEach((photo) => {
+      this.sols.push(photo.sol)
       photo.cameras.forEach((camera) => {
         this.cameras.push({label: camera, value: camera})
       })
@@ -80,11 +82,24 @@ export class ManifestComponent {
     this.socket.on('send manifest', (manifest) => {
       this.manifest = manifest.photo_manifest;
     });
+    this.socket.on('send rover by camera', (manifest) => {
+      this.manifest = manifest.photo_manifest;
+    });
+    this.socket.on('send rover by sol ', (manifest) => {
+      this.manifest = manifest.photo_manifest;
+    });
     
   }
   
   roverSelected(selectedRover): void {
     this.socket.emit('get manifest', selectedRover )
+  }
+
+  cameraSelected(selectedCamera): void {
+    this.socket.emit('get rover by camera', selectedCamera )
+  }
+  solSelected(selectedSol): void {
+    this.socket.emit('get rover by sol', selectedSol )
   }
 
 

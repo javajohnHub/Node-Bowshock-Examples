@@ -24,6 +24,19 @@ module.exports = function(io) {
         socket.emit("send manifest", manifest);
       });
     });
+
+    socket.on("get rover by sol", sol => {
+      bowshock.mars.manifest(sol).then(manifest => {
+        socket.emit("send rover by sol", manifest);
+      });
+    });
+
+    socket.on("get rover by camera", camera => {
+      bowshock.mars.manifest(camera).then(manifest => {
+        socket.emit("send rover by camera", manifest);
+      });
+    });
+
     socket.on("get opportunity", date => {
       let formatted_date = format_date(date);
       bowshock.mars.opportunity(formatted_date).then(rover => {
