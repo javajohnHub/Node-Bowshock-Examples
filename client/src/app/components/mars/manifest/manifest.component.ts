@@ -45,7 +45,7 @@ import { SelectItem } from "primeng/api";
  </div>
     </div>
 
-    <div class="ui-g-12" *ngIf="photos.length > 0">
+    <div class="ui-g-12" *ngIf="photos">
     <div *ngFor="let photo of photos.photos;">
       <img src="{{photo.img_src}}"/>
     </div>
