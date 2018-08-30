@@ -21,8 +21,6 @@ import {of} from 'rxjs';
           <img class="center" src="{{apod.hdurl}}">
       </p-header>
       <div>{{apod.explanation}}</div>
-      <p-footer>
-      </p-footer>
   </p-card>
       </div>
       <div *ngIf="apod.media_type == 'video'" class="video-container">
@@ -33,8 +31,6 @@ import {of} from 'rxjs';
 </iframe>
         </p-header>
         <div style="height: 100%;">{{apod.explanation}}</div>
-        <p-footer>
-        </p-footer>
     </p-card>
       </div>
       </div>
