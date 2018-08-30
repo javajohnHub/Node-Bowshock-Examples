@@ -73663,14 +73663,8 @@ var ManifestComponent = /** @class */ (function () {
                 });
             }
         });
-        this.socket.on("send rover by camera", function (manifest) {
-            _this.photos = manifest;
-        });
-        this.socket.on("send rover by sol ", function (manifest) {
-            _this.photos = manifest;
-        });
-        this.socket.on("send rover by sol and camera ", function (manifest) {
-            _this.photos = manifest;
+        this.socket.on("send rover by param", function (photos) {
+            _this.photos = photos;
         });
     }
     ManifestComponent.prototype.roverSelected = function (selectedRover) {

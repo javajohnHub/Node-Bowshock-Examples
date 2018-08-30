@@ -79,14 +79,8 @@ export class ManifestComponent {
         });
       }
     });
-    this.socket.on("send rover by camera", manifest => {
-      this.photos = manifest;
-    });
-    this.socket.on("send rover by sol ", manifest => {
-      this.photos = manifest;
-    });
-    this.socket.on("send rover by sol and camera ", manifest => {
-      this.photos  = manifest;
+    this.socket.on("send rover by param", photos => {
+      this.photos = photos;
     });
   }
 
