@@ -11,9 +11,10 @@ import {SelectItem} from 'primeng/api';
         <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         </div>
     </div>
- <div class="ui-g-12" *ngFor="let item of manifest">
+    {{manifest | json}}
+ <!--<div class="ui-g-12" *ngFor="let item of manifest">
  {{item | json}}
- </div>
+ </div>-->
   </div>
     
     
