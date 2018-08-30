@@ -73657,18 +73657,18 @@ var ManifestComponent = /** @class */ (function () {
     }
     ManifestComponent.prototype.roverSelected = function (selectedRover) {
         this.selectedRover = selectedRover;
-        this.socket.emit("get manifest", { rover: selectedRover });
+        this.socket.emit("get manifest", { rover: this.selectedRover });
     };
     ManifestComponent.prototype.cameraSelected = function (selectedCamera) {
         this.selectedCamera = selectedCamera;
         if (this.selectedRover) {
             if (!this.selectedSol) {
-                this.socket.emit("get rover by camera", { rover: this.selectedRover, camera: selectedCamera });
+                this.socket.emit("get rover by camera", { rover: this.selectedRover, camera: this.selectedCamera });
             }
             else {
                 this.socket.emit("get rover by camera", {
                     rover: this.selectedRover,
-                    camera: selectedCamera,
+                    camera: this.selectedCamera,
                     sol: this.selectedSol
                 });
             }
@@ -73681,12 +73681,12 @@ var ManifestComponent = /** @class */ (function () {
         this.selectedSol = selectedSol;
         if (this.selectedRover) {
             if (!this.selectedCamera) {
-                this.socket.emit("get rover by sol", { rover: this.selectedRover, sol: selectedSol });
+                this.socket.emit("get rover by sol", { rover: this.selectedRover, sol: this.selectedSol });
             }
             else {
                 this.socket.emit("get rover by sol", {
                     rover: this.selectedRover,
-                    sol: selectedSol,
+                    sol: this.selectedSol,
                     camera: this.selectedCamera
                 });
             }
@@ -74160,7 +74160,7 @@ var FeedComponent = /** @class */ (function () {
         var last = parseInt(myDate.split('-')[2]) - 1;
         var today = last + 1;
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-        this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today);
+        this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today + 1);
         this.socket.on('send feed', function (data) {
             _this.neows = data;
             _this.currentPage = _this.neows['links'].self;
@@ -74207,6 +74207,7 @@ var FeedComponent = /** @class */ (function () {
     FeedComponent.prototype.ngOnInit = function () {
     };
     FeedComponent.prototype.onDateChanged = function (event) {
+        console.log(event);
         this.model = new Date(event);
         var myDate = this.model.toISOString().split('T')[0];
         this.socket.emit('get feed', myDate);
