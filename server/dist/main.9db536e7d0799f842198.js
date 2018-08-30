@@ -73644,7 +73644,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var ManifestComponent = /** @class */ (function () {
     function ManifestComponent() {
-        var _this = this;
         this.manifest = {};
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.rovers = [
@@ -73654,28 +73653,27 @@ var ManifestComponent = /** @class */ (function () {
             { label: "Spirit", value: "spirit" }
         ];
         this.cameras = [{ label: "Select Camera", value: null }];
-        this.sols = [{ label: "Select Sol", value: null }, { label: '0', value: 0 }];
-        this.socket.on("send manifest", function (manifest) {
-            _this.manifest = manifest.photo_manifest;
-            if (_this.manifest) {
-                console.log(_this.manifest);
-                _this.manifest.photos.forEach(function (photo) {
-                    _this.sols.push({ label: photo.sol, value: photo.sol });
-                    photo.cameras.forEach(function (camera) {
-                        _this.cameras.push({ label: camera, value: camera });
-                    });
-                });
-            }
-        });
-        this.socket.emit("get manifest", { rover: 'curiosity' });
-        this.socket.on("send rover by param", function (photos) {
-            console.log(photos);
-            _this.photos = photos;
-        });
+        this.sols = [{ label: "Select Sol", value: null }, { label: '0', value: '0' }];
     }
     ManifestComponent.prototype.roverSelected = function (selectedRover) {
+        var _this = this;
         this.selectedRover = selectedRover;
+        this.socket.on("send manifest", function (manifest) {
+            _this.manifest = manifest.photo_manifest;
+            _this.photos = [];
+            _this.manifest.photos.forEach(function (photo) {
+                _this.sols.push({ label: photo.sol, value: photo.sol });
+                photo.cameras.forEach(function (camera) {
+                    _this.cameras.push({ label: camera, value: camera });
+                });
+            });
+        });
         this.socket.emit("get manifest", { rover: this.selectedRover });
+        this.socket.on("send rover by param", function (photos) {
+            console.log(photos);
+            _this.manifest = [];
+            _this.photos = photos;
+        });
     };
     ManifestComponent.prototype.cameraSelected = function (selectedCamera) {
         this.selectedCamera = selectedCamera;

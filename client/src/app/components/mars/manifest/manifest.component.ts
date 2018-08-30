@@ -69,30 +69,32 @@ export class ManifestComponent {
       { label: "Spirit", value: "spirit" }
     ];
     this.cameras = [{ label: "Select Camera", value: null }];
-    this.sols = [{ label: "Select Sol", value: null },{ label: '0', value: 0 }];
-    this.socket.on("send manifest", manifest => {
-      this.manifest = manifest.photo_manifest;
-      
-      if (this.manifest) {
-        console.log(this.manifest)
-        this.manifest.photos.forEach(photo => {
-          this.sols.push({ label: photo.sol, value: photo.sol });
-          photo.cameras.forEach(camera => {
-            this.cameras.push({ label: camera, value: camera });
-          });
-        });
-      }
-    });
-    this.socket.emit("get manifest", {rover: 'curiosity'});
-    this.socket.on("send rover by param", photos => {
-      console.log(photos)
-      this.photos = photos;
-    });
+    this.sols = [{ label: "Select Sol", value: null },{ label: '0', value: '0' }];
+    
+   
+    
   }
 
   roverSelected(selectedRover): void {
+    
     this.selectedRover = selectedRover;
+    this.socket.on("send manifest", manifest => {
+      this.manifest = manifest.photo_manifest;
+      this.photos = [];
+      this.manifest.photos.forEach(photo => {
+        this.sols.push({ label: photo.sol, value: photo.sol });
+        photo.cameras.forEach(camera => {
+          this.cameras.push({ label: camera, value: camera });
+        });
+      });
+    });
     this.socket.emit("get manifest", {rover: this.selectedRover});
+    
+    this.socket.on("send rover by param", photos => {
+      console.log(photos)
+      this.manifest = [];
+      this.photos = photos;
+    });
   }
 
   cameraSelected(selectedCamera): void {
