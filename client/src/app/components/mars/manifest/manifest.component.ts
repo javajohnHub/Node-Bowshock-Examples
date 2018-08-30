@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import {SocketService} from '../../../shared/socket.service';
-import {SelectItem} from 'primeng/api';
+import { Component } from "@angular/core";
+import { SocketService } from "../../../shared/socket.service";
+import { SelectItem } from "primeng/api";
 @Component({
-  selector: 'app-manifest',
+  selector: "app-manifest",
   template: `
   <h1 class="ui-g ui-g-offset-5">Manifest</h1>
   <div class="ui-g ui-fluid">
@@ -60,62 +60,70 @@ export class ManifestComponent {
   constructor() {
     this.socket = SocketService.getInstance();
     this.rovers = [
-        {label:'Select Rover', value:null},
-            {label: 'Curiosity', value: 'curiosity'},
-            {label: 'Opportunity', value: 'opportunity'},
-            {label: 'Spirit', value: 'spirit'},
-    ]
-    this.cameras = [
-      {label:'Select Camera', value:null}
-          
-  ]
-  if(this.manifest){
-    this.manifest.photos.forEach((photo) => {
-      this.sols.push(photo.sol)
-      photo.cameras.forEach((camera) => {
-        this.cameras.push({label: camera, value: camera})
-      })
-    })
-    
+      { label: "Select Rover", value: null },
+      { label: "Curiosity", value: "curiosity" },
+      { label: "Opportunity", value: "opportunity" },
+      { label: "Spirit", value: "spirit" }
+    ];
+    this.cameras = [{ label: "Select Camera", value: null }];
+    if (this.manifest) {
+      this.manifest.photos.forEach(photo => {
+        this.sols.push(photo.sol);
+        photo.cameras.forEach(camera => {
+          this.cameras.push({ label: camera, value: camera });
+        });
+      });
+    }
+
+    this.socket.on("send manifest", manifest => {
+      this.manifest = manifest.photo_manifest;
+    });
+    this.socket.on("send rover by camera", manifest => {
+      this.manifest = manifest.photo_manifest;
+    });
+    this.socket.on("send rover by sol ", manifest => {
+      this.manifest = manifest.photo_manifest;
+    });
+    this.socket.on("send rover by sol and camera ", manifest => {
+      this.manifest = manifest.photo_manifest;
+    });
   }
-  
-    this.socket.on('send manifest', (manifest) => {
-      this.manifest = manifest.photo_manifest;
-    });
-    this.socket.on('send rover by camera', (manifest) => {
-      this.manifest = manifest.photo_manifest;
-    });
-    this.socket.on('send rover by sol ', (manifest) => {
-      this.manifest = manifest.photo_manifest;
-    });
-    this.socket.on('send rover by sol and camera ', (manifest) => {
-      this.manifest = manifest.photo_manifest;
-    });
-    
-  }
-  
+
   roverSelected(selectedRover): void {
-    this.socket.emit('get manifest', selectedRover )
+    this.selectedRover = selectedRover;
+    this.socket.emit("get manifest", { rover: selectedRover });
   }
 
   cameraSelected(selectedCamera): void {
     this.selectedCamera = selectedCamera;
-    if(!this.selectedSol){
-      this.socket.emit('get rover by camera', selectedCamera )
-    }else{
-      this.socket.emit('get rover by camera', {camera: selectedCamera, sol: this.selectedSol})
+    if (this.selectedRover) {
+      if (!this.selectedSol) {
+        this.socket.emit("get rover by camera", {rover: this.selectedRover, camera: selectedCamera});
+      } else {
+        this.socket.emit("get rover by camera", {
+          rover: this.selectedRover,
+          camera: selectedCamera,
+          sol: this.selectedSol
+        });
+      }
+    } else {
+      console.log("must select a rover first");
     }
-    
   }
   solSelected(selectedSol): void {
     this.selectedSol = selectedSol;
-    if(!this.selectedCamera){
-      this.socket.emit('get rover by sol', selectedSol )
-    }else{
-      this.socket.emit('get rover by sol', {sol: selectedSol, camera: this.selectedCamera} )
+    if (this.selectedRover) {
+      if (!this.selectedCamera) {
+        this.socket.emit("get rover by sol", {rover: this.selectedRover, sol: selectedSol});
+      } else {
+        this.socket.emit("get rover by sol", {
+          rover: this.selectedRover,
+          sol: selectedSol,
+          camera: this.selectedCamera
+        });
+      }
+    } else {
+      console.log("must select a rover first");
     }
-    
   }
-
-
 }
