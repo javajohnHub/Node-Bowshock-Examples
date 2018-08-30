@@ -27,8 +27,8 @@ import {of} from 'rxjs';
       </div>
       <div *ngIf="apod.media_type == 'video'" class="video-container">
         <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
-        <p-header class="square">
-        <iframe
+        <p-header>
+        <iframe height="600" width="413"
         [src]='safe_url'>
 </iframe>
         </p-header>
