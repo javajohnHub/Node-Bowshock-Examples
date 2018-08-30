@@ -8,7 +8,7 @@ import {of} from 'rxjs';
     <div class="ui-g ui-fluid">
       <h1>Apod</h1>
         <div class="ui-g-12 ui-md-4">
-            <p-calendar [inline]="true" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+            <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
         </div>
       
     </div>
