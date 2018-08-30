@@ -5,13 +5,13 @@ import {of} from 'rxjs';
 @Component({
   selector: "app-apod",
   template: `    
-  <h1 class="center" >Apod</h1>
+  <h1 class="center">Apod</h1>
     <div class="ui-g ui-fluid">
         <div class="ui-g-12">
             <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
         </div>
       
-    </div>
+    
     <div *ngIf="apod">
      
 
@@ -37,7 +37,7 @@ import {of} from 'rxjs';
         </p-footer>
     </p-card>
       </div>
-      
+      </div>
     </div>
   `,
   styles: [
