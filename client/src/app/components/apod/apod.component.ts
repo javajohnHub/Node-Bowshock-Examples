@@ -5,9 +5,9 @@ import {of} from 'rxjs';
 @Component({
   selector: "app-apod",
   template: `    
+  <h1 class="center" >Apod</h1>
     <div class="ui-g ui-fluid">
-      <h1>Apod</h1>
-        <div class="ui-g-12 ui-md-4">
+        <div class="ui-g-12">
             <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
         </div>
       
