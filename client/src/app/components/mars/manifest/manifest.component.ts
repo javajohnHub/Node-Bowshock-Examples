@@ -71,13 +71,6 @@ export class ManifestComponent {
     this.cameras = [{ label: "Select Camera", value: null }];
     this.sols = [{ label: "Select Sol", value: null },{ label: '0', value: '0' }];
     
-   
-    
-  }
-
-  roverSelected(selectedRover): void {
-    
-    this.selectedRover = selectedRover;
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
       this.photos = [];
@@ -88,19 +81,25 @@ export class ManifestComponent {
         });
       });
     });
-    this.socket.emit("get manifest", {rover: this.selectedRover});
     
     this.socket.on("send rover by param", photos => {
       console.log(photos)
       this.manifest = [];
       this.photos = photos;
     });
+    
+  }
+
+  roverSelected(selectedRover): void {
+    
+    
   }
 
   cameraSelected(selectedCamera): void {
     this.selectedCamera = selectedCamera;
     if (this.selectedRover) {
       if (!this.selectedSol) {
+        
         this.socket.emit("get manifest", {rover: this.selectedRover, camera: this.selectedCamera});
       } else {
         this.socket.emit("get manifest", {
