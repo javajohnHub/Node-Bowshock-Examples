@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {SocketService} from '../../../shared/socket.service';
-
+import {SelectItem} from 'primeng/api';
 @Component({
   selector: 'app-manifest',
   template: `
@@ -23,10 +23,15 @@ export class ManifestComponent {
   socket: any;
   manifest;
   selectedRover;
-  rovers;
+  rovers: SelectItem[];
   constructor() {
     this.socket = SocketService.getInstance();
-    this.rovers = ['Curiousity', 'Opportunity', 'Spirit']
+    this.rovers = [
+        {label:'Select Rover', value:null},
+            {label: 'Curiosity', value: 'curiosity'},
+            {label: 'Opportunity', value: 'opportunity'},
+            {label: 'Spirit', value: 'spirit'},
+    ]
     this.socket.on('send manifest', (manifest) => {
       this.manifest = manifest;
     });

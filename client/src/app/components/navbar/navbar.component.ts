@@ -37,7 +37,7 @@ export class NavbarComponent {
               {
                 label: "Curiosity",
                 icon: "pi pi-fw pi-times",
-                routerLink: ["/mars/curiousity"]
+                routerLink: ["/mars/curiosity"]
               },
               {
                 label: "Opportunity",

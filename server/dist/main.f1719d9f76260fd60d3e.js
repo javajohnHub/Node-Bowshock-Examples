@@ -73528,7 +73528,12 @@ var ManifestComponent = /** @class */ (function () {
     function ManifestComponent() {
         var _this = this;
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
-        this.rovers = ['Curiousity', 'Opportunity', 'Spirit'];
+        this.rovers = [
+            { label: 'Select Rover', value: null },
+            { label: 'Curiosity', value: 'curiosity' },
+            { label: 'Opportunity', value: 'opportunity' },
+            { label: 'Spirit', value: 'spirit' },
+        ];
         this.socket.on('send manifest', function (manifest) {
             _this.manifest = manifest;
         });
@@ -73865,7 +73870,7 @@ var NavbarComponent = /** @class */ (function () {
                             {
                                 label: "Curiosity",
                                 icon: "pi pi-fw pi-times",
-                                routerLink: ["/mars/curiousity"]
+                                routerLink: ["/mars/curiosity"]
                             },
                             {
                                 label: "Opportunity",
