@@ -73659,10 +73659,12 @@ var ManifestComponent = /** @class */ (function () {
             _this.manifest = manifest.photo_manifest;
             _this.photos = [];
             _this.manifest.photos.forEach(function (photo) {
-                _this.sols.push({ label: photo.sol, value: photo.sol });
-                photo.cameras.forEach(function (camera) {
-                    _this.cameras.push({ label: camera, value: camera });
-                });
+                for (var i = 0; i < photo.max_sol; i++) {
+                    _this.sols.push({ label: photo.sol, value: photo.sol });
+                    photo.cameras.forEach(function (camera) {
+                        _this.cameras.push({ label: camera, value: camera });
+                    });
+                }
             });
         });
         this.socket.on("send rover by param", function (photos) {
