@@ -15,8 +15,8 @@ import {of} from 'rxjs';
     <div *ngIf="apod">
      
 
-      <div *ngIf="apod.media_type == 'image'">
-      <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+      <div *ngIf="apod.media_type == 'image'" style="position: 'relative'">
+      <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" [style]="{position: 'absolute', width: '100%', top: 0,left: 0}" styleClass="ui-card-shadow">
       <p-header>
           <img src="Card" src="{{apod.hdurl}}">
       </p-header>
