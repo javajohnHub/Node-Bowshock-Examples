@@ -44,10 +44,7 @@ import {of} from 'rxjs';
     `
       .video-container {
         position: absolute;
-        padding-bottom: 56.25%;
-        padding-top: 35px;
-        height: 0;
-        overflow: hidden;
+
       }
       .video-container iframe {
         width: 100%;
