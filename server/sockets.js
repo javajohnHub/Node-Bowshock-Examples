@@ -21,22 +21,22 @@ module.exports = function(io) {
 
     socket.on("get manifest", rover => {
       if(!rover.sol && !rover.camera){
-        bowshock.mars.manifest(rover).then(manifest => {
+        bowshock.mars.manifest(rover.rover).then(manifest => {
           socket.emit("send manifest", manifest);
         });
       }
       if(rover.sol && !rover.camera){
-        bowshock.mars.manifest(rover).then(manifest => {
+        bowshock.mars.manifest(rover.rover).then(manifest => {
           socket.emit("send rover by sol", manifest);
         });
       }
       if(rover.camera && !rover.sol){
-        bowshock.mars.manifest(rover).then(manifest => {
+        bowshock.mars.manifest(rover.rover).then(manifest => {
           socket.emit("send rover by camera", manifest);
         });
       }
       if(rover.camera && rover.sol){
-        bowshock.mars.manifest(rover).then(manifest => {
+        bowshock.mars.manifest(rover.rover).then(manifest => {
           socket.emit("send rover by sol and camera", manifest);
         });
       }
