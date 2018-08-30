@@ -11,19 +11,24 @@ import {SelectItem} from 'primeng/api';
         <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         </div>
     </div>
-    <div class="ui-g-12" *ngIf="manifest">
-    {{manifest.name}}
-    {{manifest.landing_date}}
-    {{manifest.launch_date}}
-    {{manifest.status}}
-    {{manifest.max_sol}}
-    {{manifest.max_date}}
-    {{manifest.total_photos}}
-    <div class="ui-g-12" *ngFor="let item of manifest.photos">
+    <div *ngIf="manifest">
+    <ul>
+    <li>{{manifest.name}}</li>
+    <li>{{manifest.landing_date}}</li>
+    <li>{{manifest.launch_date}}</li>
+    <li>{{manifest.status}}</li>
+    <li>{{manifest.max_sol}}</li>
+    <li>{{manifest.max_date}}</li>
+    <li>{{manifest.total_photos}}</li>
+    </ul>
+    Photos
+  <div *ngFor="let item of manifest.photos">
+  {{item | json}}
  {{item.sol}}
  {{item.earth_date}}
  {{item.total_photos}}
  <div class="ui-g-12" *ngFor="let camera of item.cameras">
+ {{camera | json}}
  {{item.camera}}
  </div>
  </div>
