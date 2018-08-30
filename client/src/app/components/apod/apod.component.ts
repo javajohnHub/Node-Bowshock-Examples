@@ -15,7 +15,7 @@ import {of} from 'rxjs';
     <div *ngIf="apod" class="ui-g-12">
      
     
-      <div *ngIf="apod.media_type == 'image'" style="position: 'relative'" >
+      <div *ngIf="apod.media_type == 'image'" style="position: relative" >
       <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
       <p-header class="square">
           <img class="center" src="{{apod.hdurl}}">
@@ -43,14 +43,14 @@ import {of} from 'rxjs';
   styles: [
     `
       .video-container {
-        position: 'relative';
+        position: relative;
         padding-bottom: 56.25%;
         padding-top: 35px;
         height: 0;
         overflow: hidden;
       }
       .video-container iframe {
-        position: 'absolute';
+        position: absolute;
         top: 60px;
         left: 0;
         width: 100%;
