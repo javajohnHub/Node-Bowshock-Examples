@@ -5,12 +5,13 @@ module.exports = function(io) {
     console.log("connected", socket.id);
 
     socket.on("get apod", date => {
+      console.log(date)
       bowshock.apod(date).then(apod => {
         socket.emit("send apod", apod);
       });
     });
     socket.on("get curiosity", date => {
-      console.log(date)
+      
       let formatted_date = format_date(date);
       
       bowshock.mars.curiosity(formatted_date).then(rover => {
