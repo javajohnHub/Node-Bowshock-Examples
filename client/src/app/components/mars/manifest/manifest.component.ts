@@ -21,14 +21,15 @@ import {SelectItem} from 'primeng/api';
     <li>Max Date: {{manifest.max_date}}</li>
     <li>Total Photos: {{manifest.total_photos}}</li>
     </ul>
-    Photos:
+    
   <div *ngFor="let item of manifest.photos">
+  Photos:
   <li>Sol: {{item.sol}}</li>
   <li>Earth Date: {{item.earth_date}}</li>
   <li>Total Photos: {{item.total_photos}}</li>
  Cameras:
  <div class="ui-g-12" *ngFor="let camera of item.cameras">
- <li>Camera: {{item.camera}}</li>
+ <li>{{camera}}</li>
  </div>
  </div>
     </div>
