@@ -60,6 +60,7 @@ export class ApodComponent {
 
   ngOnInit(){
     this.model = new Date();
+    console.log(this.model)
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {
       console.log('data', data)
@@ -68,7 +69,7 @@ export class ApodComponent {
         this.apod["url"]
       );
     });
-    this.socket.emit("get apod", new Date(this.model))
+    this.socket.emit("get apod", this.model)
   }
 
   onDateChanged(event): void {

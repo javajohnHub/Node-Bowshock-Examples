@@ -71348,13 +71348,14 @@ var ApodComponent = /** @class */ (function () {
     ApodComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.model = new Date();
+        console.log(this.model);
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on("send apod", function (data) {
             console.log('data', data);
             _this.apod = data;
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
-        this.socket.emit("get apod", new Date(this.model));
+        this.socket.emit("get apod", this.model);
     };
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(event);
