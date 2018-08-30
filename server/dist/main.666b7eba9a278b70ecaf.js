@@ -71356,7 +71356,7 @@ var ApodComponent = /** @class */ (function () {
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         var myDate = this.model.toISOString().split('T')[0];
-        var last = parseInt(myDate.split('-')[-1]) - 1;
+        var last = parseInt(myDate.split('-')[2]) - 1;
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
         this.socket.emit("get apod", str);
     };

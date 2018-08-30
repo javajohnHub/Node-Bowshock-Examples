@@ -70,7 +70,7 @@ export class ApodComponent {
       );
     });
     let myDate = this.model.toISOString().split('T')[0]
-    let last = parseInt(myDate.split('-')[-1]) -1;
+    let last = parseInt(myDate.split('-')[2]) -1;
     let str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
     this.socket.emit("get apod", str)
   }
