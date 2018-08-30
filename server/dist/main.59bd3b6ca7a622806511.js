@@ -73651,9 +73651,9 @@ var ManifestComponent = /** @class */ (function () {
             { label: "Spirit", value: "spirit" }
         ];
         this.cameras = [{ label: "Select Camera", value: null }];
+        this.sols = [{ label: "Select Sol", value: null }];
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
-            _this.sols = [{ label: "Select Sol", value: null }];
             if (_this.manifest) {
                 // this.manifest.photos.forEach(photo => {
                 //   this.sols.push(photo.sol);
@@ -73663,6 +73663,7 @@ var ManifestComponent = /** @class */ (function () {
                 //});
             }
         });
+        this.socket.emit("get manifest", { rover: 'curiosity' });
         this.socket.on("send rover by param", function (photos) {
             _this.photos = photos;
         });

@@ -69,10 +69,10 @@ export class ManifestComponent {
       { label: "Spirit", value: "spirit" }
     ];
     this.cameras = [{ label: "Select Camera", value: null }];
-    
+    this.sols = [{ label: "Select Sol", value: null }];
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
-      this.sols = [{ label: "Select Sol", value: null }];
+      
       if (this.manifest) {
         
         // this.manifest.photos.forEach(photo => {
@@ -83,7 +83,7 @@ export class ManifestComponent {
         //});
       }
     });
-    
+    this.socket.emit("get manifest", {rover: 'curiosity'});
     this.socket.on("send rover by param", photos => {
       this.photos = photos;
     });
