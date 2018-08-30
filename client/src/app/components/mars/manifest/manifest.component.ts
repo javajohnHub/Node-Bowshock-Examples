@@ -8,7 +8,7 @@ import {SelectItem} from 'primeng/api';
   <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="ui-inputgroup">
-        <p-dropdown [options]="rovers" [ngModel]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
+        <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
         </div>
     </div>
  <div class="ui-g-12" *ngFor="let item of manifest">
