@@ -73654,7 +73654,7 @@ var ManifestComponent = /** @class */ (function () {
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
             if (_this.manifest) {
-                // this.sols = [];
+                _this.sols = [{ label: "Select Sol", value: null }];
                 // this.manifest.photos.forEach(photo => {
                 //   this.sols.push(photo.sol);
                 //   photo.cameras.forEach(camera => {
@@ -73669,7 +73669,7 @@ var ManifestComponent = /** @class */ (function () {
     }
     ManifestComponent.prototype.roverSelected = function (selectedRover) {
         this.selectedRover = selectedRover;
-        this.socket.emit("get manifest", { rover: 'this.selectedRover' });
+        this.socket.emit("get manifest", { rover: this.selectedRover });
     };
     ManifestComponent.prototype.cameraSelected = function (selectedCamera) {
         this.selectedCamera = selectedCamera;
