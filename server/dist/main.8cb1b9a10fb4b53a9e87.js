@@ -73658,7 +73658,7 @@ var ManifestComponent = /** @class */ (function () {
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
             _this.photos = [];
-            if (_this.manifest) {
+            if (manifest) {
                 for (var i = 0; i < _this.manifest.photos.length; i++) {
                     _this.manifest.photos.forEach(function (photo) {
                         console.log(_this.manifest.max_sol, photo.total_photos);
