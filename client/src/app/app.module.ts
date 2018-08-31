@@ -31,6 +31,7 @@ import {DropdownModule} from 'primeng/dropdown'
 import { ManifestComponent } from './components/mars/manifest/manifest.component';
 import {InputTextModule} from 'primeng/inputtext';
 import {DataScrollerModule} from 'primeng/datascroller';
+import {ButtonModule} from 'primeng/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,9 @@ import {DataScrollerModule} from 'primeng/datascroller';
     PanelMenuModule,
     DropdownModule,
     InputTextModule,
-    DataScrollerModule
+    DataScrollerModule,
+    ButtonModule
+    
 
 
   ],

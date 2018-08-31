@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../../shared/socket.service";
 import { SelectItem } from "primeng/api";
-import { Subscription, of } from "rxjs";
 @Component({
   selector: "app-manifest",
   templateUrl: "manifest.component.html"
@@ -15,6 +14,8 @@ export class ManifestComponent {
   sols;
   selectedSol;
   photos;
+  emptyPhotos;
+  emptyManifest = [];
   rovers: SelectItem[];
   constructor() {
     
@@ -36,7 +37,7 @@ export class ManifestComponent {
 
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
-      this.photos = null;
+      this.emptyManifest = [];
     });
     this.socket.emit("get manifest", {
       rover: 'curiosity'
@@ -44,17 +45,13 @@ export class ManifestComponent {
     this.selectedRover = 'curiosity';
     this.socket.on("send rover by param", photos => {
       console.log(photos);
-      this.manifest = null;
       this.photos = photos.photos;
+      this.emptyPhotos = [];
     });
     
   }
 
-  getManifest(){
-    this.socket.emit("get manifest", {
-      rover: this.selectedRover
-    });
-  }
+  
   ngOndestroy(){
   }
   roverSelected(selectedRover): void {
