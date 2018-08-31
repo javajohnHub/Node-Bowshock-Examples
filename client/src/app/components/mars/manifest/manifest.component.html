@@ -37,7 +37,7 @@
                         <div class="ui-g-10 ui-sm-6">{{rover.total_photos}}</div>
                     </div>
 
-                    <div *ngFor="let photo of rover.photos">
+                    <div *ngFor="let photo of rover.photos; let i=index" >
                         <div class="ui-g">
                             <div class="ui-g-2 ui-sm-6">Sol: </div>
                             <div class="ui-g-10 ui-sm-6">{{photo.sol}}</div>
@@ -49,10 +49,10 @@
                             <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
                         </div>
 
-                        <div *ngFor="let camera of cameras">
+                        <div *ngFor="let camera of rover.photos[i].cameras">
                             <div class="ui-g">
                                 <div class="ui-g-2 ui-sm-6">Camera: </div>
-                                <div class="ui-g-10 ui-sm-6">{{camera}}</div>
+                                <div class="ui-g-10 ui-sm-6" *ngFor="let cam of camera">{{cam}}</div>
                             </div>
                     
                         </div>
