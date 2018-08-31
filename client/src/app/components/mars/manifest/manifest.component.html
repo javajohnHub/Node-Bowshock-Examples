@@ -1,0 +1,66 @@
+<h1 class="ui-g ui-g-offset-5">Manifest</h1>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="ui-inputgroup">
+            <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
+            <p-dropdown [options]="sols" [(ngModel)]="selectedSol" (onChange)="solSelected(selectedSol)"></p-dropdown>
+            <p-dropdown [options]="cameras" [(ngModel)]="selectedCamera" (onChange)="cameraSelected(selectedCamera)"></p-dropdown>
+        </div>
+    </div>
+    <p-dataScroller [value]="[manifest]" [rows]="2" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos">
+        <p-header>
+            Manifest for {{manifest.name}}
+        </p-header>
+        <ng-template let-rover pTemplate="item" let-i="index">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-3">
+
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <div class="ui-g">
+                        <div class="ui-g-2 ui-sm-6">Rover: </div>
+                        <div class="ui-g-10 ui-sm-6">{{rover.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
+
+                        <div class="ui-g-2 ui-sm-6">Landing Date: </div>
+                        <div class="ui-g-10 ui-sm-6">{{rover.landing_date}}</div>
+
+                        <div class="ui-g-2 ui-sm-6">Launch Date: </div>
+                        <div class="ui-g-10 ui-sm-6">{{rover.launch_date}}</div>
+
+                        <div class="ui-g-2 ui-sm-6">Max Sol: </div>
+                        <div class="ui-g-10 ui-sm-6">{{rover.max_sol}}</div>
+
+                        <div class="ui-g-2 ui-sm-6">Max Date: </div>
+                        <div class="ui-g-10 ui-sm-6">{{rover.max_date}}</div>
+
+                        <div class="ui-g-2 ui-sm-6">Total Photos: </div>
+                        <div class="ui-g-10 ui-sm-6">{{rover.total_photos}}</div>
+                    </div>
+
+                    <ng-template let-photo pTemplate="item" let-k="index">
+                        <div class="ui-g">
+                            <div class="ui-g-2 ui-sm-6">Sol: </div>
+                            <div class="ui-g-10 ui-sm-6">{{photo.sol}}</div>
+
+                            <div class="ui-g-2 ui-sm-6">Earth Date: </div>
+                            <div class="ui-g-10 ui-sm-6">{{photo.earth_date}}</div>
+
+                            <div class="ui-g-2 ui-sm-6">Total Photos: </div>
+                            <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
+                        </div>
+
+                        <ng-template let-camera pTemplate="item" let-j="index">
+                            <div class="ui-g">
+                                <div class="ui-g-2 ui-sm-6">Camera: </div>
+                                <div class="ui-g-10 ui-sm-6">{{camera.camera}}</div>
+                            </div>
+                    
+                        </ng-template>
+                
+                    </ng-template>
+                </div>
+                </div>
+                </ng-template>
+    </p-dataScroller>
+    </div>
+    

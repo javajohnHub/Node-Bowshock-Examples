@@ -3,52 +3,7 @@ import { SocketService } from "../../../shared/socket.service";
 import { SelectItem } from "primeng/api";
 @Component({
   selector: "app-manifest",
-  template: `
-  <h1 class="ui-g ui-g-offset-5">Manifest</h1>
-  <div class="ui-g ui-fluid">
-    <div class="ui-g-12">
-        <div class="ui-inputgroup">
-        <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>        
-        <p-dropdown [options]="sols" [(ngModel)]="selectedSol" (onChange)="solSelected(selectedSol)"></p-dropdown>        
-        <p-dropdown [options]="cameras" [(ngModel)]="selectedCamera" (onChange)="cameraSelected(selectedCamera)"></p-dropdown>
-        </div>
-    </div>
-    <div *ngIf="manifest && manifest.name">
-    <ul>
-    <li>Rover: {{manifest.name}}</li>
-    <li>Landing Date: {{manifest.landing_date}}</li>
-    <li>Launch Date: {{manifest.launch_date}}</li>
-    <li>Status: {{manifest.status}}</li>
-    <li>Max Sol: {{manifest.max_sol}}</li>
-    <li>Max Date: {{manifest.max_date}}</li>
-    <li>Total Photos: {{manifest.total_photos}}</li>
-    </ul>
-    
-  <div *ngFor="let item of manifest.photos">
-  Photos:
-  <li>Sol: {{item.sol}}</li>
-  <li>Earth Date: {{item.earth_date}}</li>
-  <li>Total Photos: {{item.total_photos}}</li>
-  
- Cameras:
- 
- <div class="ui-g-12" *ngFor="let camera of cameras">
- 
- <li>{{camera | json}}</li>
- </div>
- </div>
-    </div>
-
-    <div class="ui-g-12" *ngIf="photos">
-    <div *ngFor="let photo of photos.photos;">
-      <img src="{{photo.img_src}}"/>
-    </div>
-    </div>
- 
-  </div>
-    
-    
-  `
+  templateUrl: "manifest.component.html"
 })
 export class ManifestComponent {
   socket: any;
@@ -87,6 +42,9 @@ export class ManifestComponent {
     
   }
 
+  loadData(event){
+    console.log(event)
+  }
   ngOnInit(){
     if(this.manifest){
       for(let i = 0; i < this.manifest.photos.length; i++){
@@ -139,6 +97,13 @@ export class ManifestComponent {
       }
     } else {
       console.log("must select a rover first");
+    }
+  }
+  getColor(active: string) {
+    if (active !== 'active') {
+      return 'red';
+    } else {
+      return 'green';
     }
   }
 }
