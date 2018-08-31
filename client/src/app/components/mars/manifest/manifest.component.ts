@@ -50,6 +50,11 @@ export class ManifestComponent {
     
   }
 
+  getManifest(){
+    this.socket.emit("get manifest", {
+      rover: this.selectedRover
+    });
+  }
   ngOndestroy(){
   }
   roverSelected(selectedRover): void {
