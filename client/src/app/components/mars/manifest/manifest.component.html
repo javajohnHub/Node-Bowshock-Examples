@@ -5,7 +5,7 @@
             <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
         </div>
     </div>
-    <p-dataScroller [value]="[manifest]" [rows]="1" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos">
+    <p-dataScroller [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos">
         <p-header>
             Manifest for {{manifest.name}}
         </p-header>
