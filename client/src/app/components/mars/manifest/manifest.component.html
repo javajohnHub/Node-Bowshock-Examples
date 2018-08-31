@@ -47,9 +47,9 @@
                             <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
                         </div>
 
-                        <div *ngFor="let camera of rover.photos[i].cameras">
+                        <div *ngFor="let camera of rover.photos[i].cameras; let first = first" >
                             <div class="ui-g">
-                                <div class="ui-g-2 ui-sm-6">Camera: </div>
+                                <div class="ui-g-2 ui-sm-6" *ngIf="first">Camera: </div>
                                 <div class="ui-g-10 ui-sm-6" (click)="cameraChosen(camera)"><a>{{camera}}</a></div>
                             </div>
                     

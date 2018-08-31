@@ -13,7 +13,6 @@ export class ManifestComponent {
   selectedCamera;
   cameras;
   sols;
-  solsSub;
   selectedSol;
   photos;
   rovers: SelectItem[];
@@ -46,42 +45,16 @@ export class ManifestComponent {
     this.socket.emit("get manifest", {
       rover: 'curiosity'
     });
-    
+    this.selectedRover = 'curiosity';
     this.socket.on("send rover by param", photos => {
       console.log(photos);
       this.manifest = [];
       this.photos = photos;
     });
-    setTimeout(() => {
-      if (this.manifest) {
-        for (let i = 0; i < parseInt(this.manifest.total_photos); i++) {
-          for (let j = 0; j < parseInt(this.manifest[i].photos.length); j++) {
-            this.sols.push({
-              label: this.manifest[i].photos[j].sol,
-              value: this.manifest[i].photos[j].sol
-            });
-            for (
-              let k = 0;
-              k < parseInt(this.manifest[i].photos[j].cameras.length);
-              k++
-            ) {
-              this.cameras.push({
-                label: this.manifest[i].photos[j].cameras[k].camera,
-                value: this.manifest[i].photos[j].cameras[k].camera
-              });
-            }
-          }
-        }
-        this.solsSub = of(this.sols).subscribe((sols) => {
-          this.sols = sols;
-        });
-      }
-    }, 1000)
     
   }
 
   ngOndestroy(){
-    this.solsSub.unsubscribe();
   }
   roverSelected(selectedRover): void {
     this.selectedRover = selectedRover;
