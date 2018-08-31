@@ -54,6 +54,11 @@ export class ManifestComponent {
   
   ngOndestroy(){
   }
+  backClicked(){
+    this.socket.emit("get manifest", {
+      rover: this.selectedRover
+    });
+  }
   roverSelected(selectedRover): void {
     this.selectedRover = selectedRover;
     this.socket.emit("get manifest", {
