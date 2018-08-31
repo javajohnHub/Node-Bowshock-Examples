@@ -61,41 +61,18 @@ export class ManifestComponent {
 
   cameraChosen(selectedCamera): void {
     this.selectedCamera = selectedCamera;
-    if (this.selectedRover) {
-      if (!this.selectedSol) {
-        this.socket.emit("get manifest", {
-          rover: this.selectedRover,
-          camera: this.selectedCamera
-        });
-      } else {
-        this.socket.emit("get manifest", {
-          rover: this.selectedRover,
-          camera: this.selectedCamera,
-          sol: this.selectedSol
-        });
-      }
-    } else {
-      console.log("must select a rover first");
-    }
+    this.socket.emit("get manifest", {
+      rover: this.selectedRover,
+      camera: this.selectedCamera
+    });
   }
   solChosen(selectedSol): void {
     this.selectedSol = selectedSol;
-    if (this.selectedRover) {
-      if (!this.selectedCamera) {
-        this.socket.emit("get manifest", {
-          rover: this.selectedRover,
-          sol: this.selectedSol
-        });
-      } else {
-        this.socket.emit("get manifest", {
-          rover: this.selectedRover,
-          sol: this.selectedSol,
-          camera: this.selectedCamera
-        });
-      }
-    } else {
-      console.log("must select a rover first");
-    }
+    
+      this.socket.emit("get manifest", {
+        rover: this.selectedRover,
+        sol: this.selectedSol
+      });
   }
   getColor(active: string) {
     if (active !== "active") {
