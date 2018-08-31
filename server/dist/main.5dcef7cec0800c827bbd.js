@@ -73944,8 +73944,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var ManifestComponent = /** @class */ (function () {
     function ManifestComponent() {
-        var _this = this;
         this.manifest = {};
+    }
+    ManifestComponent.prototype.loadData = function (event) {
+        console.log(event);
+    };
+    ManifestComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.rovers = [
             { label: "Select Rover", value: null },
@@ -73970,31 +73975,27 @@ var ManifestComponent = /** @class */ (function () {
             _this.manifest = [];
             _this.photos = photos;
         });
-    }
-    ManifestComponent.prototype.loadData = function (event) {
-        console.log(event);
-    };
-    ManifestComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        if (this.manifest) {
-            for (var i = 0; i < parseInt(this.manifest.total_photos); i++) {
-                for (var j = 0; j < parseInt(this.manifest[i].photos.length); j++) {
-                    this.sols.push({
-                        label: this.manifest[i].photos[j].sol,
-                        value: this.manifest[i].photos[j].sol
-                    });
-                    for (var k = 0; k < parseInt(this.manifest[i].photos[j].cameras.length); k++) {
-                        this.cameras.push({
-                            label: this.manifest[i].photos[j].cameras[k].camera,
-                            value: this.manifest[i].photos[j].cameras[k].camera
+        setTimeout(function () {
+            if (_this.manifest) {
+                for (var i = 0; i < parseInt(_this.manifest.total_photos); i++) {
+                    for (var j = 0; j < parseInt(_this.manifest[i].photos.length); j++) {
+                        _this.sols.push({
+                            label: _this.manifest[i].photos[j].sol,
+                            value: _this.manifest[i].photos[j].sol
                         });
+                        for (var k = 0; k < parseInt(_this.manifest[i].photos[j].cameras.length); k++) {
+                            _this.cameras.push({
+                                label: _this.manifest[i].photos[j].cameras[k].camera,
+                                value: _this.manifest[i].photos[j].cameras[k].camera
+                            });
+                        }
                     }
                 }
+                _this.solsSub = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(_this.sols).subscribe(function (sols) {
+                    _this.sols = sols;
+                });
             }
-            this.solsSub = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.sols).subscribe(function (sols) {
-                _this.sols = sols;
-            });
-        }
+        }, 1000);
     };
     ManifestComponent.prototype.ngOndestroy = function () {
         this.solsSub.unsubscribe();
