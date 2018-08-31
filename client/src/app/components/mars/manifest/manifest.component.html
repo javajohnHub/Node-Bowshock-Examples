@@ -21,7 +21,7 @@
         <p-header>
             Manifest for {{manifest.name}}
         </p-header>
-        <ng-template let-rover pTemplate="item" let-i="index">
+        <ng-template ngIf="!photos" let-rover pTemplate="item" let-i="index">
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-3">
 
