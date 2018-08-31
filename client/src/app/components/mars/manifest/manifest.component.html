@@ -3,8 +3,6 @@
     <div class="ui-g-12">
         <div class="ui-inputgroup">
             <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
-            <p-dropdown [options]="sols" [(ngModel)]="selectedSol" (onChange)="solSelected(selectedSol)"></p-dropdown>
-            <p-dropdown [options]="cameras" [(ngModel)]="selectedCamera" (onChange)="cameraSelected(selectedCamera)"></p-dropdown>
         </div>
     </div>
     <p-dataScroller [value]="[manifest]" [rows]="1" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos">
@@ -40,7 +38,7 @@
                     <div *ngFor="let photo of rover.photos; let i=index" >
                         <div class="ui-g">
                             <div class="ui-g-2 ui-sm-6">Sol: </div>
-                            <div class="ui-g-10 ui-sm-6">{{photo.sol}}</div>
+                            <div class="ui-g-10 ui-sm-6"><a (click)="solChosen(photo.sol)">{{photo.sol}}</a></div>
 
                             <div class="ui-g-2 ui-sm-6">Earth Date: </div>
                             <div class="ui-g-10 ui-sm-6">{{photo.earth_date}}</div>
@@ -52,7 +50,7 @@
                         <div *ngFor="let camera of rover.photos[i].cameras">
                             <div class="ui-g">
                                 <div class="ui-g-2 ui-sm-6">Camera: </div>
-                                <div class="ui-g-10 ui-sm-6">{{camera}}</div>
+                                <div class="ui-g-10 ui-sm-6"><a (click)="cameraChosen(camera)">{{camera}}</a></div>
                             </div>
                     
                         </div>

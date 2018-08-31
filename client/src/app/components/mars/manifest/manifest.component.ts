@@ -83,9 +83,14 @@ export class ManifestComponent {
   ngOndestroy(){
     this.solsSub.unsubscribe();
   }
-  roverSelected(selectedRover): void {}
+  roverSelected(selectedRover): void {
+    this.selectedRover = selectedRover;
+    this.socket.emit("get manifest", {
+      rover: this.selectedRover
+    });
+  }
 
-  cameraSelected(selectedCamera): void {
+  cameraChosen(selectedCamera): void {
     this.selectedCamera = selectedCamera;
     if (this.selectedRover) {
       if (!this.selectedSol) {
@@ -104,7 +109,7 @@ export class ManifestComponent {
       console.log("must select a rover first");
     }
   }
-  solSelected(selectedSol): void {
+  solChosen(selectedSol): void {
     this.selectedSol = selectedSol;
     if (this.selectedRover) {
       if (!this.selectedCamera) {
