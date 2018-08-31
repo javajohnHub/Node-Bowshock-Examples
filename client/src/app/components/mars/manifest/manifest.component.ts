@@ -65,11 +65,12 @@ export class ManifestComponent {
     });
   }
 
-  cameraChosen(selectedCamera): void {
+  cameraChosen(selectedCamera, sol): void {
     this.selectedCamera = selectedCamera;
     this.socket.emit("get manifest", {
       rover: this.selectedRover,
-      camera: this.selectedCamera
+      camera: this.selectedCamera,
+      sol: sol
     });
   }
   solChosen(selectedSol): void {
