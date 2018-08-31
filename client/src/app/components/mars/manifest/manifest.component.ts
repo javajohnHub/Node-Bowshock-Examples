@@ -31,16 +31,12 @@ export class ManifestComponent {
       { label: "Opportunity", value: "opportunity" },
       { label: "Spirit", value: "spirit" }
     ];
-    this.cameras = [{ label: "Select Camera", value: null }];
-    this.sols = [
-      { label: "Select Sol", value: null },
-      { label: "0", value: "0" }
-    ];
+   
    
 
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
-      this.photos = [];
+      this.photos = null;
     });
     this.socket.emit("get manifest", {
       rover: 'curiosity'
@@ -48,7 +44,7 @@ export class ManifestComponent {
     this.selectedRover = 'curiosity';
     this.socket.on("send rover by param", photos => {
       console.log(photos);
-      this.manifest = [];
+      this.manifest = null;
       this.photos = photos;
     });
     
