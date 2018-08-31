@@ -38,7 +38,7 @@
                     <div *ngFor="let photo of rover.photos; let i=index" >
                         <div class="ui-g">
                             <div class="ui-g-2 ui-sm-6">Sol: </div>
-                            <div class="ui-g-10 ui-sm-6"><a (click)="solChosen(photo.sol)">{{photo.sol}}</a></div>
+                            <div class="ui-g-10 ui-sm-6" (click)="solChosen(photo.sol)"><a >{{photo.sol}}</a></div>
 
                             <div class="ui-g-2 ui-sm-6">Earth Date: </div>
                             <div class="ui-g-10 ui-sm-6">{{photo.earth_date}}</div>
@@ -50,7 +50,7 @@
                         <div *ngFor="let camera of rover.photos[i].cameras">
                             <div class="ui-g">
                                 <div class="ui-g-2 ui-sm-6">Camera: </div>
-                                <div class="ui-g-10 ui-sm-6"><a (click)="cameraChosen(camera)">{{camera}}</a></div>
+                                <div class="ui-g-10 ui-sm-6" (click)="cameraChosen(camera)"><a>{{camera}}</a></div>
                             </div>
                     
                         </div>
