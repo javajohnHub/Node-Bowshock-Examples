@@ -1,11 +1,11 @@
-<h1 class="ui-g ui-g-offset-5">Manifest</h1>
+<h1 class="ui-g ui-g-offset-4">Manifest</h1>
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="ui-inputgroup">
             <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
         </div>
     </div>
-    <div *ngIf="photos">
+    <div *ngIf="photos && !isLoading">
         <button pButton (click)="backClicked()" type="button" label="Back"></button>
         <div *ngFor="let photo of photos">
 
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <p-dataScroller *ngIf="!photos" [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
+    <p-dataScroller *ngIf="!photos && !isLoading" [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
 
         <p-header>
             Manifest for {{manifest.name}}
@@ -75,4 +75,9 @@
         </ng-template>
     </p-dataScroller>
 
+</div>
+<div class="ui-g" *ngIf="isLoading">
+    <div class="ui-g-12">
+            <p-progressSpinner></p-progressSpinner>
+    </div>
 </div>

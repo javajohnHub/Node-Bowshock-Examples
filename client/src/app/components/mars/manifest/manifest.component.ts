@@ -17,6 +17,7 @@ export class ManifestComponent {
   emptyPhotos;
   emptyManifest = [];
   rovers: SelectItem[];
+  isLoading: boolean = false;
   constructor() {
     
   }
@@ -25,6 +26,7 @@ export class ManifestComponent {
     console.log(event);
   }
   ngOnInit() {
+    this.isLoading = true
     this.socket = SocketService.getInstance();
     this.rovers = [
       { label: "Select Rover", value: null },
@@ -38,6 +40,7 @@ export class ManifestComponent {
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
       this.photos = null;
+      this.isLoading = false;
     });
     this.socket.emit("get manifest", {
       rover: 'curiosity'
@@ -46,7 +49,7 @@ export class ManifestComponent {
     this.socket.on("send rover by param", photos => {
       this.photos = photos.photos;
       this.manifest = null;
-  
+      this.isLoading = false;
     });
     
   }
@@ -55,13 +58,14 @@ export class ManifestComponent {
   ngOndestroy(){
   }
   backClicked(){
-    console.log('clicked')
+    this.isLoading = true;
     this.socket.emit("get manifest", {
       rover: this.selectedRover
     });
     this.photos = null;
   }
   roverSelected(selectedRover): void {
+    this.isLoading = true;
     this.selectedRover = selectedRover;
     this.socket.emit("get manifest", {
       rover: this.selectedRover
@@ -69,6 +73,7 @@ export class ManifestComponent {
   }
 
   cameraChosen(selectedCamera, sol): void {
+    this.isLoading
     this.selectedCamera = selectedCamera;
     this.socket.emit("get manifest", {
       rover: this.selectedRover,
@@ -77,6 +82,7 @@ export class ManifestComponent {
     });
   }
   solChosen(selectedSol): void {
+    this.isLoading
     this.selectedSol = selectedSol;
     console.log(this.selectedSol, this.selectedRover)
       this.socket.emit("get manifest", {
