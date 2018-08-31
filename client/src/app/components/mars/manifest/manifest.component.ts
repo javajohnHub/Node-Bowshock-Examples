@@ -45,7 +45,7 @@ export class ManifestComponent {
     this.socket.on("send rover by param", photos => {
       console.log(photos);
       this.manifest = null;
-      this.photos = photos;
+      this.photos = photos.photos;
     });
     
   }
