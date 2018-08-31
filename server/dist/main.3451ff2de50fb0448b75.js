@@ -73965,7 +73965,7 @@ var ManifestComponent = /** @class */ (function () {
         ];
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
-            _this.photos = [];
+            _this.photos = null;
         });
         this.socket.emit("get manifest", {
             rover: 'curiosity'
@@ -73973,7 +73973,7 @@ var ManifestComponent = /** @class */ (function () {
         this.selectedRover = 'curiosity';
         this.socket.on("send rover by param", function (photos) {
             _this.photos = photos.photos;
-            _this.manifest = [];
+            _this.manifest = null;
         });
     };
     ManifestComponent.prototype.ngOndestroy = function () {
@@ -73983,7 +73983,7 @@ var ManifestComponent = /** @class */ (function () {
         this.socket.emit("get manifest", {
             rover: this.selectedRover
         });
-        this.photos = [];
+        this.photos = null;
     };
     ManifestComponent.prototype.roverSelected = function (selectedRover) {
         this.selectedRover = selectedRover;

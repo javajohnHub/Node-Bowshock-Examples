@@ -37,7 +37,7 @@ export class ManifestComponent {
 
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
-      this.photos = [];
+      this.photos = null;
     });
     this.socket.emit("get manifest", {
       rover: 'curiosity'
@@ -45,7 +45,7 @@ export class ManifestComponent {
     this.selectedRover = 'curiosity';
     this.socket.on("send rover by param", photos => {
       this.photos = photos.photos;
-      this.manifest = [];
+      this.manifest = null;
   
     });
     
@@ -59,7 +59,7 @@ export class ManifestComponent {
     this.socket.emit("get manifest", {
       rover: this.selectedRover
     });
-    this.photos = [];
+    this.photos = null;
   }
   roverSelected(selectedRover): void {
     this.selectedRover = selectedRover;
