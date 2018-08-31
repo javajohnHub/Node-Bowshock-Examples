@@ -37,16 +37,14 @@ export class ManifestComponent {
 
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
-      this.emptyManifest = [];
     });
     this.socket.emit("get manifest", {
       rover: 'curiosity'
     });
     this.selectedRover = 'curiosity';
     this.socket.on("send rover by param", photos => {
-      console.log(photos);
       this.photos = photos.photos;
-      this.emptyPhotos = [];
+  
     });
     
   }
@@ -55,6 +53,7 @@ export class ManifestComponent {
   ngOndestroy(){
   }
   backClicked(){
+    console.log('clicked')
     this.socket.emit("get manifest", {
       rover: this.selectedRover
     });

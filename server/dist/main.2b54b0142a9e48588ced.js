@@ -73964,21 +73964,19 @@ var ManifestComponent = /** @class */ (function () {
         ];
         this.socket.on("send manifest", function (manifest) {
             _this.manifest = manifest.photo_manifest;
-            _this.emptyManifest = [];
         });
         this.socket.emit("get manifest", {
             rover: 'curiosity'
         });
         this.selectedRover = 'curiosity';
         this.socket.on("send rover by param", function (photos) {
-            console.log(photos);
             _this.photos = photos.photos;
-            _this.emptyPhotos = [];
         });
     };
     ManifestComponent.prototype.ngOndestroy = function () {
     };
     ManifestComponent.prototype.backClicked = function () {
+        console.log('clicked');
         this.socket.emit("get manifest", {
             rover: this.selectedRover
         });
