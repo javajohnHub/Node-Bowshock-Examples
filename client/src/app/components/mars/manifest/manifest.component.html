@@ -7,16 +7,16 @@
     </div>
     <div *ngIf="photos">
         <button pButton (click)="backClicked()" type="button" label="Back"></button>
-    <div *ngFor="let photo of photos">
+        <div *ngFor="let photo of photos">
 
-        <div class="ui-g">
-            <div class="ui-g-12">
-                <img src="{{photo.img_src}}">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <img src="{{photo.img_src}}">
+                </div>
+
             </div>
-
         </div>
     </div>
-</div>
     <p-dataScroller *ngIf="!photos" [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos">
 
         <p-header>
@@ -59,16 +59,16 @@
                             <div class="ui-g-2 ui-sm-6">Total Photos: </div>
                             <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
                         </div>
+                        <div *ngIf="photo.sol != 0">
+                            <div *ngFor="let camera of rover.photos[i].cameras; let first = first">
+                                <div class="ui-g">
+                                    <div class="ui-g-2 ui-sm-6" *ngIf="first">Camera: </div>
+                                    <div class="ui-g-2 ui-sm-6" *ngIf="!first"> </div>
+                                    <div class="ui-g-10 ui-sm-6" (click)="cameraChosen(camera)" style="color: blue; cursor: pointer;">{{camera}}</div>
+                                </div>
 
-                        <div *ngFor="let camera of rover.photos[i].cameras; let first = first">
-                            <div class="ui-g">
-                                <div class="ui-g-2 ui-sm-6" *ngIf="first">Camera: </div>
-                                <div class="ui-g-2 ui-sm-6" *ngIf="!first"> </div>
-                                <div class="ui-g-10 ui-sm-6" (click)="cameraChosen(camera)" style="color: blue; cursor: pointer;">{{camera}}</div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
