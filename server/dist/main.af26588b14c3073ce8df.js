@@ -73939,6 +73939,8 @@ var ManifestComponentNgFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵc
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ManifestComponent", function() { return ManifestComponent; });
 /* harmony import */ var _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../shared/socket.service */ "./src/app/shared/socket.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
 
 var ManifestComponent = /** @class */ (function () {
     function ManifestComponent() {
@@ -73973,6 +73975,7 @@ var ManifestComponent = /** @class */ (function () {
         console.log(event);
     };
     ManifestComponent.prototype.ngOnInit = function () {
+        var _this = this;
         if (this.manifest) {
             for (var i = 0; i < parseInt(this.manifest.total_photos); i++) {
                 for (var j = 0; j < parseInt(this.manifest[i].photos.length); j++) {
@@ -73988,7 +73991,13 @@ var ManifestComponent = /** @class */ (function () {
                     }
                 }
             }
+            this.solsSub = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.sols).subscribe(function (sols) {
+                _this.sols = sols;
+            });
         }
+    };
+    ManifestComponent.prototype.ngOndestroy = function () {
+        this.solsSub.unsubscribe();
     };
     ManifestComponent.prototype.roverSelected = function (selectedRover) { };
     ManifestComponent.prototype.cameraSelected = function (selectedCamera) {
