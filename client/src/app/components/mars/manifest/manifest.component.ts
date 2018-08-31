@@ -68,7 +68,7 @@ export class ManifestComponent {
   }
   solChosen(selectedSol): void {
     this.selectedSol = selectedSol;
-    
+    console.log(this.selectedSol, this.selectedRover)
       this.socket.emit("get manifest", {
         rover: this.selectedRover,
         sol: this.selectedSol

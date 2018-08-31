@@ -38,7 +38,7 @@
                     <div *ngFor="let photo of rover.photos; let i=index" >
                         <div class="ui-g">
                             <div class="ui-g-2 ui-sm-6">Sol: </div>
-                            <div class="ui-g-10 ui-sm-6" (click)="solChosen(photo.sol)"><a href="#">{{photo.sol}}</a></div>
+                            <div class="ui-g-10 ui-sm-6" (click)="solChosen(photo.sol)" style="color: blue; cursor: pointer;">{{photo.sol}}</div>
 
                             <div class="ui-g-2 ui-sm-6">Earth Date: </div>
                             <div class="ui-g-10 ui-sm-6">{{photo.earth_date}}</div>
@@ -51,7 +51,7 @@
                             <div class="ui-g">
                                 <div class="ui-g-2 ui-sm-6" *ngIf="first">Camera: </div>
                                 <div class="ui-g-2 ui-sm-6" *ngIf="!first"> </div>
-                                <div class="ui-g-10 ui-sm-6" (click)="cameraChosen(camera)"><a href="#">{{camera}}</a></div>
+                                <div class="ui-g-10 ui-sm-6" (click)="cameraChosen(camera)" style="color: blue; cursor: pointer;">{{camera}}</div>
                             </div>
                     
                         </div>
