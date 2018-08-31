@@ -7,7 +7,7 @@
             <p-dropdown [options]="cameras" [(ngModel)]="selectedCamera" (onChange)="cameraSelected(selectedCamera)"></p-dropdown>
         </div>
     </div>
-    <p-dataScroller [value]="[manifest]" [rows]="2" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos">
+    <p-dataScroller [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos">
         <p-header>
             Manifest for {{manifest.name}}
         </p-header>
@@ -37,7 +37,7 @@
                         <div class="ui-g-10 ui-sm-6">{{rover.total_photos}}</div>
                     </div>
 
-                    <ng-template let-photo pTemplate="item" let-k="index">
+                    <div *ngFor="let photo of rover.photos">
                         <div class="ui-g">
                             <div class="ui-g-2 ui-sm-6">Sol: </div>
                             <div class="ui-g-10 ui-sm-6">{{photo.sol}}</div>
@@ -49,15 +49,15 @@
                             <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
                         </div>
 
-                        <ng-template let-camera pTemplate="item" let-j="index">
+                        <div *ngFor="let camera of cameras">
                             <div class="ui-g">
                                 <div class="ui-g-2 ui-sm-6">Camera: </div>
                                 <div class="ui-g-10 ui-sm-6">{{camera.camera}}</div>
                             </div>
                     
-                        </ng-template>
+                        </div>
                 
-                    </ng-template>
+                    </div>
                 </div>
                 </div>
                 </ng-template>
