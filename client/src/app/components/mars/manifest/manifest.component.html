@@ -62,5 +62,10 @@
                 </div>
                 </ng-template>
     </p-dataScroller>
+    <div *ngIf="photos">
+        <div *ngFor="let photo of photos">
+            <img src="{{photo.hdurl}}">
+        </div>
+    </div>
     </div>
     

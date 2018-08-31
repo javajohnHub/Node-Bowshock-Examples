@@ -16,7 +16,6 @@ export class ManifestComponent {
   photos;
   rovers: SelectItem[];
   constructor() {
-    
     this.socket = SocketService.getInstance();
     this.rovers = [
       { label: "Select Rover", value: null },
@@ -25,53 +24,61 @@ export class ManifestComponent {
       { label: "Spirit", value: "spirit" }
     ];
     this.cameras = [{ label: "Select Camera", value: null }];
-    this.sols = [{ label: "Select Sol", value: null },{ label: '0', value: '0' }];
-    
+    this.sols = [
+      { label: "Select Sol", value: null },
+      { label: "0", value: "0" }
+    ];
+
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
       this.photos = [];
-      
-      
+    });
+    this.socket.emit("get manifest", {
+      rover: 'curiosity'
     });
     
     this.socket.on("send rover by param", photos => {
-      console.log(photos)
+      console.log(photos);
       this.manifest = [];
       this.photos = photos;
     });
-    
   }
 
-  loadData(event){
-    console.log(event)
+  loadData(event) {
+    console.log(event);
   }
-  ngOnInit(){
-    if(this.manifest){
-      for(let i = 0; i < this.manifest.photos.length; i++){
-        this.manifest.photos.forEach(photo => {
-          console.log(this.manifest.max_sol, photo.total_photos)
-          
-            this.sols.push({ label: photo.sol, value: photo.sol });
-            photo.cameras.forEach(camera => {
-              this.cameras.push({ label: camera, value: camera });
+  ngOnInit() {
+    if (this.manifest) {
+      for (let i = 0; i < parseInt(this.manifest.total_photos); i++) {
+        for (let j = 0; j < parseInt(this.manifest[i].photos.length); j++) {
+          this.sols.push({
+            label: this.manifest[i].photos[j].sol,
+            value: this.manifest[i].photos[j].sol
+          });
+          for (
+            let k = 0;
+            k < parseInt(this.manifest[i].photos[j].cameras.length);
+            k++
+          ) {
+            this.cameras.push({
+              label: this.manifest[i].photos[j].cameras[k].camera,
+              value: this.manifest[i].photos[j].cameras[k].camera
             });
-          
-          
-        });
+          }
+        }
       }
     }
   }
-  roverSelected(selectedRover): void {
-    
-    
-  }
+  roverSelected(selectedRover): void {}
 
   cameraSelected(selectedCamera): void {
     this.selectedCamera = selectedCamera;
     if (this.selectedRover) {
       if (!this.selectedSol) {
-        
-        this.socket.emit("get manifest", {rover: this.selectedRover, camera: this.selectedCamera});
+        this.socket.emit("get manifest", {
+          rover: this.selectedRover,
+          camera: this.selectedCamera
+        });
       } else {
         this.socket.emit("get manifest", {
           rover: this.selectedRover,
@@ -87,7 +94,10 @@ export class ManifestComponent {
     this.selectedSol = selectedSol;
     if (this.selectedRover) {
       if (!this.selectedCamera) {
-        this.socket.emit("get manifest", {rover: this.selectedRover, sol: this.selectedSol});
+        this.socket.emit("get manifest", {
+          rover: this.selectedRover,
+          sol: this.selectedSol
+        });
       } else {
         this.socket.emit("get manifest", {
           rover: this.selectedRover,
@@ -100,10 +110,10 @@ export class ManifestComponent {
     }
   }
   getColor(active: string) {
-    if (active !== 'active') {
-      return 'red';
+    if (active !== "active") {
+      return "red";
     } else {
-      return 'green';
+      return "green";
     }
   }
 }
