@@ -75,20 +75,7 @@ export class ManifestComponent {
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
       this.photos = [];
-      if(manifest){
-        for(let i = 0; i < this.manifest.photos.length; i++){
-          this.manifest.photos.forEach(photo => {
-            console.log(this.manifest.max_sol, photo.total_photos)
-            
-              this.sols.push({ label: photo.sol, value: photo.sol });
-              photo.cameras.forEach(camera => {
-                this.cameras.push({ label: camera, value: camera });
-              });
-            
-            
-          });
-        }
-      }
+      
       
     });
     
@@ -100,6 +87,22 @@ export class ManifestComponent {
     
   }
 
+  ngOnInit(){
+    if(this.manifest){
+      for(let i = 0; i < this.manifest.photos.length; i++){
+        this.manifest.photos.forEach(photo => {
+          console.log(this.manifest.max_sol, photo.total_photos)
+          
+            this.sols.push({ label: photo.sol, value: photo.sol });
+            photo.cameras.forEach(camera => {
+              this.cameras.push({ label: camera, value: camera });
+            });
+          
+          
+        });
+      }
+    }
+  }
   roverSelected(selectedRover): void {
     
     
