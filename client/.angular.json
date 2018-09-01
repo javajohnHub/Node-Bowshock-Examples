@@ -30,7 +30,7 @@
             "styles": [
               "src/app/styles/global.scss",
               "node_modules/primeicons/primeicons.css",
-  "node_modules/primeng/resources/themes/nova-dark/theme.css",
+  "node_modules/primeng/resources/themes/darkness/theme.css",
   "node_modules/primeng/resources/primeng.min.css",
   "node_modules/normalize.css/normalize.css"
             ],
