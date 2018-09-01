@@ -110,12 +110,12 @@ module.exports = function(io) {
   function format_date(date) {
     let dateStr = '';
     if(typeof date == Date){
-      dateStr = "%04d/%02d/%02d" % (date.getFullYear(), date.getMonth(), date.getDate())
+      dateStr = "%4d/%02d/%02d" % (date.getFullYear(), date.getMonth(), date.getDate())
       //dateStr = "{:4d}-{:02d}-{:02d}".format(date.getFullYear(), date.getMonth(), date.getDate() )
       return dateStr;
     }else{
       dateArr = date.split('-');
-      dateStr = "%04d/%02d/%02d" % (dateArr[0], dateArr[1], dateArr[2] )
+      dateStr = "%4d/%02d/%02d" % (dateArr[0], dateArr[1], dateArr[2] )
       //dateStr = "{:4d}-{:02d}-{:02d}".format(dateArr[0], dateArr[1], dateArr[2] )
       return dateStr;
     }
