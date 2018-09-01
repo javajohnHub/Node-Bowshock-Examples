@@ -6,9 +6,9 @@ import {SocketService} from '../../../shared/socket.service';
   template: `
   <div class="ui-g">
   
-  <div class="ui-g-12">
-  <h1 class="ui-g-4 ui-g-offset-4">Curiosity</h1>
-    <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+    <div class="ui-g-12">
+    <h1>Curiosity</h1>
+      <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
   <div *ngIf="pictures" class="ui-g-12">
       <ng-container *ngFor="let picture of pictures.photos">
       <img class="center" src="{{picture.img_src}}">
