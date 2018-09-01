@@ -70,8 +70,8 @@
                                     <div *ngIf="photo.sol != 0" class="ui-g-2 ui-sm-6">Sol: </div>
                                     <div *ngIf="photo.sol != 0" class="ui-g-10 ui-sm-6" (click)="solChosen(photo.sol)" style="color: blue; cursor: pointer;">{{photo.sol}}</div>
 
-                                    <div class="ui-g-2 ui-sm-6">Earth Date: </div>
-                                    <div class="ui-g-10 ui-sm-6">{{photo.earth_date}}</div>
+                                    <div *ngIf="photo.sol != 0" class="ui-g-2 ui-sm-6">Earth Date: </div>
+                                    <div *ngIf="photo.sol != 0" class="ui-g-10 ui-sm-6">{{photo.earth_date}}</div>
 
                                     <div class="ui-g-2 ui-sm-6">Total Photos: </div>
                                     <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
