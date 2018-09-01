@@ -11,7 +11,7 @@ import {SocketService} from '../../../shared/socket.service';
           
     <div class="ui-g-12">
     <div class="ui-g-12">
-    <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+    <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd"></p-calendar>
     </div>
     <div class="ui-g-6">
       <div class="previous"><a (click)="previous(prev)">&laquo; Previous</a></div>
@@ -66,7 +66,6 @@ import {SocketService} from '../../../shared/socket.service';
 export class FeedComponent implements OnInit {
   socket: any;
   model: Date;
-  maxDate: Date;
 
   currentPage: string;
   next: string;
@@ -87,7 +86,6 @@ export class FeedComponent implements OnInit {
     let myDate = this.model.toISOString().split('T')[0]
     let last = parseInt(myDate.split('-')[2]);
     let str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-    this.maxDate = new Date(str)
     
     this.socket.on('send feed', (data) => {
       this.neows = data;
