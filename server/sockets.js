@@ -108,10 +108,6 @@ module.exports = function(io) {
   });
 
   function format_date(date) {
-    if(typeof date == Date){
-      return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`
-    }else{
-      let d = new Date(date)
-      return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`
-  }
+    return moment(date, 'YYYY-MM-DD') 
+}
 };
