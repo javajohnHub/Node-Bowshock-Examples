@@ -1,10 +1,10 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "C:/Users/joedw/Desktop",
   "projects": {
-    "angular-example-app": {
-      "root": "",
+    "client": {
+      "root": "Desktop/Node-Bowshock-Examples/client/src",
       "projectType": "application",
       "architect": {
         "build": {
@@ -65,13 +65,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "client:build"
+            "browserTarget": "client:build",
+            "aot": false
           }
         }
         
       }
     }
   },
+  "defaultProject": "client",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "css"
