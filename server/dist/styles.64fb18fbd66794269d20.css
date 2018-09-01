@@ -269,9 +269,6 @@ template {
 [hidden] {
   display: none;
 }
-.ui-panelmenu-header-link {
-  background-color: #971212;
-  color: white; }
 #scroll {
   display: block;
   /* Hidden by default */
