@@ -9,7 +9,7 @@ import { DomSanitizer } from "@angular/platform-browser";
   
     <div class="ui-g-12">
     <h1>Apod</h1>
-      <p-calendar [inputStyle]="{'width':'100%', 'margin': auto}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+      <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
     
       </div>
     <div *ngIf="apod" class="ui-g-12">
