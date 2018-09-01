@@ -73715,10 +73715,9 @@ var ApodComponent = /** @class */ (function () {
             _this.safe_url = _this.sanitizer.bypassSecurityTrustResourceUrl(_this.apod["url"]);
         });
         var myDate = this.model.toISOString().split('T')[0];
-        var last = parseInt(myDate.split('-')[2]) - 1;
-        var today = last + 1;
+        var last = parseInt(myDate.split('-')[2]);
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-        this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today);
+        this.maxDate = new Date(str);
         this.socket.emit("get apod", str);
     };
     ApodComponent.prototype.onDateChanged = function (event) {
