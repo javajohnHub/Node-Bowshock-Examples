@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { PanelMenu, BasePanelMenuItem } from "primeng/panelmenu";
 
@@ -9,8 +9,12 @@ import { PanelMenu, BasePanelMenuItem } from "primeng/panelmenu";
 })
 export class NavbarComponent {
   items: MenuItem[];
-  @ViewChild('el') el: BasePanelMenuItem;
+  @ViewChild('el') el: PanelMenu;
   constructor() {
+    
+  }
+  ngOnInit(){
+    
     this.items = [
       {
         label: "Navigation",
@@ -19,17 +23,27 @@ export class NavbarComponent {
           {
             label: "Home",
             icon: "pi pi-fw pi-external-link",
-            routerLink: ["/"]
+            routerLink: ["/"],
+            command: (event: any) => {
+              console.log(this.el);
+              this.el.model[0].expanded = false;
+            }
           },
           {
             label: "APOD",
             icon: "pi pi-fw pi-times",
-            routerLink: ["/apod"]
+            routerLink: ["/apod"],
+            command: (event: any) => {
+              this.el.model[0].expanded = false;
+            }
           },
           {
             label: "EVA",
             icon: "pi pi-fw pi-times",
-            routerLink: ["/eva"]
+            routerLink: ["/eva"],
+            command: (event: any) => {
+              this.el.model[0].expanded = false;
+            }
           },
           {
             label: "Mars",
@@ -38,23 +52,35 @@ export class NavbarComponent {
               {
                 label: "Curiosity",
                 icon: "pi pi-fw pi-times",
-                routerLink: ["/mars/curiosity"]
+                routerLink: ["/mars/curiosity"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
               },
               {
                 label: "Opportunity",
                 icon: "pi pi-fw pi-times",
-                routerLink: ["/mars/opportunity"]
+                routerLink: ["/mars/opportunity"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
               },
               {
                 label: "Spirit",
                 icon: "pi pi-fw pi-times",
-                routerLink: ["/mars/spirit"]
+                routerLink: ["/mars/spirit"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
               },
               {
                 label: "Manifest",
                 icon: "pi pi-fw pi-times",
-                routerLink: ["/mars/manifest"]
-              }
+                routerLink: ["/mars/manifest"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
             ]
           },
           {
@@ -64,12 +90,18 @@ export class NavbarComponent {
               {
                 label: "Today",
                 icon: "pi pi-fw pi-times",
-                routerLink: ["/neows/today"]
+                routerLink: ["/neows/today"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
               },
               {
                 label: "Feed",
                 icon: "pi pi-fw pi-times",
-                routerLink: ["/neows/feed"]
+                routerLink: ["/neows/feed"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
               }
             ]
           }

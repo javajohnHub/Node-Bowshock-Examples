@@ -106,9 +106,9 @@ module.exports = function(io) {
   });
 
   function format_date(date) {
-    let datStr = '';
+    let dateStr = '';
     if(typeof date == Date){
-      datStr = ('0' + date.getDate()).slice(-2) + '/'
+      dateStr = ('0' + date.getDate()).slice(-2) + '/'
              + ('0' + (date.getMonth()+1)).slice(-2) + '/'
              + date.getFullYear();
              return dateStr;

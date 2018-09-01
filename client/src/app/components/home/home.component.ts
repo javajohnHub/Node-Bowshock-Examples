@@ -4,7 +4,7 @@ import {SocketService} from '../../shared/socket.service';
 @Component({
   selector: 'app-home',
   template: `
-    <div class="ui-xl-4 ui-lg-6 ui-md-10 ui-sm-12 ui-md-offset-3 ui-lg-offset-4 ui-xl-offset-4">
+    <div class="ui-g">
     <div class="ui-g-12">
    
       <h1>Node Bowshock Examples</h1>
@@ -12,7 +12,7 @@ import {SocketService} from '../../shared/socket.service';
       </div>
    
   
-    <div class="ui-g-12">
+    <div class="ui-g-12" style="text-align: center;">
     
    
       Near Earth Object Count: {{stats.near_earth_object_count}}<br/>
