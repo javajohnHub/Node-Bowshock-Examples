@@ -74277,7 +74277,7 @@ __webpack_require__.r(__webpack_exports__);
 var OpportunityComponent = /** @class */ (function () {
     function OpportunityComponent() {
         var _this = this;
-        this.model = new Date();
+        this.model = new Date("2018-06-11");
         this.maxDate = new Date("2018-06-11");
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on('send opportunity', function (data) {

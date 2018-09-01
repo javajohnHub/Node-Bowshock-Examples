@@ -31,7 +31,7 @@ export class OpportunityComponent {
   model: Date;
   maxDate: Date;
   constructor() {
-    this.model = new Date();
+    this.model = new Date("2018-06-11");
     this.maxDate = new Date("2018-06-11")
     this.socket = SocketService.getInstance();
     this.socket.on('send opportunity', (data) => {
