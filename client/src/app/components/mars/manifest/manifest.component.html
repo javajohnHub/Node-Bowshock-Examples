@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <p-dataScroller [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
+        <p-dataScroller *ngIf="manifest && !isLoading" [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
 
             <p-header>
                 Manifest for {{manifest.name}}
