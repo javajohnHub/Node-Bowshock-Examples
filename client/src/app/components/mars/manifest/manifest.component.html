@@ -32,35 +32,36 @@
                 </div>
             </div>
         </div>
-        <p-dataScroller *ngIf="manifest && !isLoading" [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
+        <div class="ui-g" *ngIf="manifest && !isLoading">
+        <div class="ui-g-12">
+                <div class="ui-g-2 ui-sm-6">Rover: </div>
+                <div class="ui-g-10 ui-sm-6">{{manifest.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
+
+                <div class="ui-g-2 ui-sm-6">Landing Date: </div>
+                <div class="ui-g-10 ui-sm-6">{{manifest.landing_date}}</div>
+
+                <div class="ui-g-2 ui-sm-6">Launch Date: </div>
+                <div class="ui-g-10 ui-sm-6">{{manifest.launch_date}}</div>
+
+                <div class="ui-g-2 ui-sm-6">Max Sol: </div>
+                <div class="ui-g-10 ui-sm-6">{{manifest.max_sol}}</div>
+
+                <div class="ui-g-2 ui-sm-6">Max Date: </div>
+                <div class="ui-g-10 ui-sm-6">{{manifest.max_date}}</div>
+
+                <div class="ui-g-2 ui-sm-6">Total Photos: </div>
+                <div class="ui-g-10 ui-sm-6">{{manifest.total_photos}}</div>
+            </div>
+        <p-dataScroller  [value]="manifest.photos" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
 
             <p-header>
-                Manifest for {{manifest.name}}
+                Photos
             </p-header>
-            <ng-template let-rover pTemplate="item">
+            
                 <div class="ui-g">
                     <div class="ui-g-12">
-                        <div class="ui-g">
-                            <div class="ui-g-2 ui-sm-6">Rover: </div>
-                            <div class="ui-g-10 ui-sm-6">{{rover.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
-
-                            <div class="ui-g-2 ui-sm-6">Landing Date: </div>
-                            <div class="ui-g-10 ui-sm-6">{{rover.landing_date}}</div>
-
-                            <div class="ui-g-2 ui-sm-6">Launch Date: </div>
-                            <div class="ui-g-10 ui-sm-6">{{rover.launch_date}}</div>
-
-                            <div class="ui-g-2 ui-sm-6">Max Sol: </div>
-                            <div class="ui-g-10 ui-sm-6">{{rover.max_sol}}</div>
-
-                            <div class="ui-g-2 ui-sm-6">Max Date: </div>
-                            <div class="ui-g-10 ui-sm-6">{{rover.max_date}}</div>
-
-                            <div class="ui-g-2 ui-sm-6">Total Photos: </div>
-                            <div class="ui-g-10 ui-sm-6">{{rover.total_photos}}</div>
-                        </div>
-
-                        <div *ngFor="let photo of rover.photos; let i=index">
+                        <div *ngFor="let photo of manifest.photos; let i=index">
+                                <ng-template let-photo pTemplate="item">
                             <div class="ui-g">
                                 <div *ngIf="photo.sol != 0" class="ui-g-2 ui-sm-6">Sol: </div>
                                 <div *ngIf="photo.sol != 0" class="ui-g-10 ui-sm-6" (click)="solChosen(photo.sol)" style="color: blue; cursor: pointer;">{{photo.sol}}</div>
@@ -72,7 +73,7 @@
                                 <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
                             </div>
                             <div *ngIf="photo.sol != 0">
-                                <div *ngFor="let camera of rover.photos[i].cameras; let first = first">
+                                <div *ngFor="let camera of photo.sol.cameras; let first = first">
                                     <div class="ui-g">
                                         <div class="ui-g-2 ui-sm-6" *ngIf="first">Camera: </div>
                                         <div class="ui-g-2 ui-sm-6" *ngIf="!first"> </div>
@@ -81,11 +82,11 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </ng-template>
                     </div>
                 </div>
-            </ng-template>
+            </div>
         </p-dataScroller>
-
+    </div>
     </div>
 </div>
