@@ -8,9 +8,11 @@ import { DomSanitizer } from "@angular/platform-browser";
   <div class="ui-g">
   
     <div class="ui-g-12">
-    <h1 class="ui-g-4 ui-g-offset-4 ui-helper-clearfix">Apod</h1>
+    <h1 class="ui-xl-4 ui-lg-6 ui-md-10 ui-sm-12 ui-md-offset-1 ui-lg-offset-2 ui-xl-offset-4">Apod</h1>
+    <div class="ui-xl-4 ui-lg-6 ui-md-10 ui-sm-12 ui-md-offset-1 ui-lg-offset-2 ui-xl-offset-4">
       <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
     </div>
+      </div>
     <div *ngIf="apod" class="ui-g-12">
      
     
