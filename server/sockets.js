@@ -107,12 +107,9 @@ module.exports = function(io) {
 
   function format_date(date) {
     if(typeof date == Date){
-      var year = date.getFullYear();
-      var month = date.getMonth();
-      var day = date.getDay();
-      if (month < 10) month = "0" + month;
-      if (day < 10) day = "0" + day;
-      return `${year}-${month}-${day}`;
+      date = ('0' + date.getDate()).slice(-2) + '/'
+             + ('0' + (date.getMonth()+1)).slice(-2) + '/'
+             + date.getFullYear();
     }else{
       return date;
     }
