@@ -113,7 +113,8 @@ module.exports = function(io) {
       dateStr = date.getFullYear() + '-0' + (date.getMonth()+1).slice(-2) + '-' + date.getDate().slice(-2);
       return dateStr;
     }else{
-      let len = format_date(date).length;
+      let myDate = new Date(date);
+      let len = format_date(myDate).length;
       if( len !== 10){
 console.log(date)
       }
