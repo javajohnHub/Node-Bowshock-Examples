@@ -1,5 +1,5 @@
-<h1 class="ui-g ui-g-offset-4">Manifest</h1>
-<div class="ui-g ui-fluid">
+<h1>Manifest</h1>
+<div class="ui-g">
     <div class="ui-g-12">
         <div class="ui-inputgroup">
             <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
@@ -13,7 +13,6 @@
                 <div class="ui-g-12">
                     <img src="{{photo.img_src}}">
                 </div>
-
             </div>
         </div>
     </div>
@@ -77,7 +76,7 @@
 
 </div>
 <div class="ui-g" *ngIf="isLoading">
-    <div class="ui-g-12">
+    <div class="ui-g-4 ui-g-offset-4">
             <p-progressSpinner></p-progressSpinner>
     </div>
 </div>
