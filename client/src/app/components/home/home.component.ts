@@ -5,13 +5,13 @@ import {SocketService} from '../../shared/socket.service';
   selector: 'app-home',
   template: `
     <div class="ui-g">
-    <div class="ui-g-12 ui-g-offset-4">
+    <div class="ui-g-12 ui-sm-offset-0 ui-g-offset-4">
       <h1>Node Bowshock Examples</h1>
       <h4>Angular 2, Express, node-bowshock, and socket.io </h4>
       </div>
     </div>
     <div *ngIf="stats" class="ui-g">
-    <div class="ui-g-12 ui-g-offset-4">
+    <div class="ui-g-12 ui-sm-offset-0 ui-g-offset-4">
       Near Earth Object Count: {{stats.near_earth_object_count}}<br/>
       Close Approach Count: {{stats.close_approach_count}}<br/>
       Last Updated: {{stats.last_updated}}<br/>
