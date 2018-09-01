@@ -108,21 +108,11 @@ module.exports = function(io) {
   });
 
   function format_date(date) {
-    let dateStr = '';
     if(typeof date == Date){
-      console.log(date)
-      dateStr = "%4d/%02d/%02d" % (date.getFullYear(), date.getMonth(), date.getDate())
-      console.log(dateStr)
-      //dateStr = "{:4d}-{:02d}-{:02d}".format(date.getFullYear(), date.getMonth(), date.getDate() )
-      return dateStr;
+      return "%4d/%02d/%02d" % (date.getFullYear(), date.getMonth(), date.getDate())
     }else{
       dateArr = date.split('-');
-      console.log(dateArr[0], dateArr[1], dateArr[2])
-      dateStr = "%4d/%02d/%02d" % (dateArr[0], dateArr[1], dateArr[2] )
-      console.log(dateStr)
-      //dateStr = "{:4d}-{:02d}-{:02d}".format(dateArr[0], dateArr[1], dateArr[2] )
-      return dateStr;
+      return "%4d/%02d/%02d" % (dateArr[0], dateArr[1], dateArr[2] )
     }
-
   }
 };
