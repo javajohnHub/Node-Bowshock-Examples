@@ -4,7 +4,7 @@ import {SocketService} from '../../shared/socket.service';
 @Component({
   selector: 'app-home',
   template: `
-    <div class="ui-g-4 ui-g-offset-4">
+    <div class="ui-xl-4 ui-lg-6 ui-md-10 ui-sm-12 ui-md-offset-1 ui-lg-offset-2 ui-xl-offset-4">
     <div class="ui-g-12">
    
       <h1>Node Bowshock Examples</h1>
