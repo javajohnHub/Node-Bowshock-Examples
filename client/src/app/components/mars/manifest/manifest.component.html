@@ -61,8 +61,8 @@
                 <div class="ui-g">
                     <div class="ui-g-12">
                         <div *ngFor="let photo of manifest.photos; let i=index">
-                                <ng-template let-photo pTemplate="item">
-                            <div class="ui-g" style="border-bottom: 1px solid grey;">
+                                <ng-template let-photo pTemplate="item" style="border-bottom: 1px solid grey;">
+                            <div class="ui-g" >
                                 <div *ngIf="photo.sol != 0" class="ui-g-2 ui-sm-6">Sol: </div>
                                 <div *ngIf="photo.sol != 0" class="ui-g-10 ui-sm-6" (click)="solChosen(photo.sol)" style="color: blue; cursor: pointer;">{{photo.sol}}</div>
 
