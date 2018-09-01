@@ -114,7 +114,7 @@ module.exports = function(io) {
       return dateStr;
     }else{
       let myDate = new Date(date);
-      dateStr = myDate.getFullYear() + '-0' + (myDate.getMonth()+1).slice(-2) + '-' + myDate.getDate().slice(-2);
+      dateStr = myDate.getFullYear() + '-0' + myDate.getMonth().slice(-2) + 1 + '-' + myDate.getDate().slice(-2);
       return dateStr;
     }
 
