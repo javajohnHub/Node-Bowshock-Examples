@@ -61,7 +61,7 @@ module.exports = function(io) {
 
     socket.on("get feed", date => {
       let formatted_date = format_date(date);
-      bowshock.neows.feed(formatted_date).then(feed => {
+      bowshock.neows.feed(start_date=formatted_date).then(feed => {
         socket.emit("send feed", feed);
       });
     });
