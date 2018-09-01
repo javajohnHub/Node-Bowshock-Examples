@@ -10,14 +10,11 @@ export class ManifestComponent {
   manifest: any = {};
   selectedRover;
   selectedCamera;
-  cameras;
-  sols;
   selectedSol;
   photos;
-  emptyPhotos;
-  emptyManifest = [];
   rovers: SelectItem[];
   isLoading: boolean = false;
+  maxDate: Date;
   constructor() {
     
   }
@@ -26,6 +23,7 @@ export class ManifestComponent {
     console.log(event);
   }
   ngOnInit() {
+    this.maxDate = new Date();
     this.isLoading = true
     this.socket = SocketService.getInstance();
     this.rovers = [

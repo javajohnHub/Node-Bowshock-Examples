@@ -73936,15 +73936,14 @@ var CuriosityComponent = /** @class */ (function () {
     function CuriosityComponent() {
         var _this = this;
         this.model = new Date();
+        this.maxDate = new Date();
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on('send curiosity', function (data) {
             _this.pictures = data;
         });
         var myDate = this.model.toISOString().split('T')[0];
         var last = parseInt(myDate.split('-')[2]) - 1;
-        var today = last + 1;
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-        this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today);
         this.socket.emit('get curiosity', str);
     }
     CuriosityComponent.prototype.onDateChanged = function (event) {
@@ -74026,7 +74025,7 @@ function View_ManifestComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_M
         var pd_1 = (_co.roverSelected(_co.selectedRover) !== false);
         ad = (pd_1 && ad);
     } return ad; }, _node_modules_primeng_components_dropdown_dropdown_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_Dropdown_0"], _node_modules_primeng_components_dropdown_dropdown_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_Dropdown"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](512, null, primeng_components_dom_domhandler__WEBPACK_IMPORTED_MODULE_4__["DomHandler"], primeng_components_dom_domhandler__WEBPACK_IMPORTED_MODULE_4__["DomHandler"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](512, null, primeng_components_utils_objectutils__WEBPACK_IMPORTED_MODULE_5__["ObjectUtils"], primeng_components_utils_objectutils__WEBPACK_IMPORTED_MODULE_5__["ObjectUtils"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](8, 13877248, null, 1, primeng_components_dropdown_dropdown__WEBPACK_IMPORTED_MODULE_6__["Dropdown"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], primeng_components_dom_domhandler__WEBPACK_IMPORTED_MODULE_4__["DomHandler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"], primeng_components_utils_objectutils__WEBPACK_IMPORTED_MODULE_5__["ObjectUtils"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]], { options: [0, "options"] }, { onChange: "onChange" }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 1, { templates: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](1024, null, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NG_VALUE_ACCESSOR"], function (p0_0) { return [p0_0]; }, [primeng_components_dropdown_dropdown__WEBPACK_IMPORTED_MODULE_6__["Dropdown"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](11, 671744, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgModel"], [[8, null], [8, null], [8, null], [6, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NG_VALUE_ACCESSOR"]]], { model: [0, "model"] }, { update: "ngModelChange" }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](2048, null, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControl"], null, [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgModel"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](13, 16384, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatus"], [[4, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControl"]]], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_9 = _co.rovers; _ck(_v, 8, 0, currVal_9); var currVal_10 = _co.selectedRover; _ck(_v, 11, 0, currVal_10); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).filled; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).focused; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13).ngClassUntouched; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13).ngClassTouched; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13).ngClassPristine; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13).ngClassDirty; var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13).ngClassValid; var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13).ngClassInvalid; var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13).ngClassPending; _ck(_v, 5, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8); }); }
-function View_ManifestComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 3, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 2, "div", [["class", "ui-g"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](2, 0, null, null, 1, "div", [["class", "ui-g-12"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, null, 0, "img", [], [[8, "src", 4]], null, null, null, null))], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵinlineInterpolate"](1, "", _v.context.$implicit.img_src, ""); _ck(_v, 3, 0, currVal_0); }); }
+function View_ManifestComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 3, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 2, "div", [["class", "ui-g"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](2, 0, null, null, 1, "div", [["class", "ui-g-12 ui-md-6 ui-lg-3 ui-xl-4"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, null, 0, "img", [], [[8, "src", 4]], null, null, null, null))], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵinlineInterpolate"](1, "", _v.context.$implicit.img_src, ""); _ck(_v, 3, 0, currVal_0); }); }
 function View_ManifestComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 2, "button", [["label", "Back"], ["pButton", ""], ["type", "button"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
         var pd_0 = (_co.backClicked() !== false);
         ad = (pd_0 && ad);
@@ -74072,7 +74071,6 @@ __webpack_require__.r(__webpack_exports__);
 var ManifestComponent = /** @class */ (function () {
     function ManifestComponent() {
         this.manifest = {};
-        this.emptyManifest = [];
         this.isLoading = false;
     }
     ManifestComponent.prototype.loadData = function (event) {
@@ -74080,6 +74078,7 @@ var ManifestComponent = /** @class */ (function () {
     };
     ManifestComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.maxDate = new Date();
         this.isLoading = true;
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.rovers = [
@@ -74279,15 +74278,14 @@ var OpportunityComponent = /** @class */ (function () {
     function OpportunityComponent() {
         var _this = this;
         this.model = new Date();
+        this.maxDate = new Date("2018-06-11");
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on('send opportunity', function (data) {
             _this.pictures = data;
         });
         var myDate = this.model.toISOString().split('T')[0];
         var last = parseInt(myDate.split('-')[2]) - 1;
-        var today = last + 1;
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-        this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today);
         this.socket.emit('get opportunity', str);
     }
     OpportunityComponent.prototype.onDateChanged = function (event) {
@@ -74373,15 +74371,14 @@ var SpiritComponent = /** @class */ (function () {
     function SpiritComponent() {
         var _this = this;
         this.model = new Date();
+        this.maxDate = new Date("2010-03-22");
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on('send spirit', function (data) {
             _this.pictures = data;
         });
         var myDate = this.model.toISOString().split('T')[0];
         var last = parseInt(myDate.split('-')[2]) - 1;
-        var today = last + 1;
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-        this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today);
         this.socket.emit('get spirit', str);
     }
     SpiritComponent.prototype.onDateChanged = function (event) {

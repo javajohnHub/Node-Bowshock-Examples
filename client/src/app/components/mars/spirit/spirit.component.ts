@@ -32,15 +32,15 @@ export class SpiritComponent {
   maxDate: Date;
   constructor() {
     this.model = new Date();
+    this.maxDate = new Date("2010-03-22")
     this.socket = SocketService.getInstance();
     this.socket.on('send spirit', (data) => {
       this.pictures = data;
     });
     let myDate = this.model.toISOString().split('T')[0]
     let last = parseInt(myDate.split('-')[2]) -1;
-    let today = last + 1;
     let str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-    this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today)
+    
     this.socket.emit('get spirit', str );
 
   }

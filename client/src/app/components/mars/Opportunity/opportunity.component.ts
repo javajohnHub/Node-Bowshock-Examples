@@ -32,15 +32,15 @@ export class OpportunityComponent {
   maxDate: Date;
   constructor() {
     this.model = new Date();
+    this.maxDate = new Date("2018-06-11")
     this.socket = SocketService.getInstance();
     this.socket.on('send opportunity', (data) => {
       this.pictures = data;
     });
     let myDate = this.model.toISOString().split('T')[0]
     let last = parseInt(myDate.split('-')[2]) -1;
-    let today = last + 1;
     let str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-    this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today)
+    
     this.socket.emit('get opportunity', str );
   }
   onDateChanged(event): void {
