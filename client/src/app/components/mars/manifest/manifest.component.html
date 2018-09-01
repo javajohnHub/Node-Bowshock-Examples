@@ -8,16 +8,18 @@
 
     </div>
 
-    
-    <div class="ui-g ui-fluid" *ngIf="!photos && !isLoading">
-            <h1>Manifest</h1>
-        <div class="ui-g-12">
-            <div class="ui-inputgroup">
-                <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
-            </div>
-        </div>
 
-        <button *ngIf="photos" pButton (click)="backClicked()" type="button" label="Back"></button>
+    <div class="ui-g ui-fluid">
+        <div *ngIf="!photos && !isLoading">
+            <h1>Manifest</h1>
+            <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                    <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
+                </div>
+            </div>
+
+            <button pButton (click)="backClicked()" type="button" label="Back"></button>
+        </div>
         <div *ngFor="let photo of photos">
             <div *ngIf="photos && !isLoading">
                 <div class="ui-g">
@@ -28,8 +30,7 @@
                 </div>
             </div>
         </div>
-        <p-dataScroller  [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)"
-            [totalRecords]="manifest.total_photos || 0">
+        <p-dataScroller [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
 
             <p-header>
                 Manifest for {{manifest.name}}
