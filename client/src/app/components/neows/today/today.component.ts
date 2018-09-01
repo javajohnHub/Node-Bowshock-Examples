@@ -7,13 +7,18 @@ import {SocketService} from '../../../shared/socket.service';
   template: `
   <div class="ui-g">
   
-  <div class="ui-g-12">
-  <h1 class="ui-g-4 ui-g-offset-4">Neows Today</h1>
-  <h3 *ngIf="neows" class="ui-g-4 ui-g-offset-4">Element Count: {{element_count}}</h3>
-    <div *ngIf="neows">
-      <div class="previous"><a (click)="previous(prev)">&laquo; Previous</a></div>
-      <div class="next"><a (click)="next_page(next)">Next &raquo;</a></div>
-     <ng-container *ngIf="objects">
+    <div class="ui-g-12">
+    <h1>Neows Today</h1>
+  <h3 *ngIf="neows">Element Count: {{element_count}}</h3>
+  <div class="ui-g-6">
+  <div class="previous"><a (click)="previous(prev)">&laquo; Previous</a></div>
+  </div>
+  <div class="ui-g-6" style="text-align: right;">
+  <div class="next"><a (click)="next_page(next)">Next &raquo;</a></div>
+  </div>
+    <div  *ngIf="neows">
+   
+      <div class="ui-g-12" *ngIf="objects">
 
         <ng-container *ngFor="let object of objects;let i = index">
           <div *ngFor="let key of keys(object)">
@@ -68,8 +73,8 @@ import {SocketService} from '../../../shared/socket.service';
               Equinox: {{object[key].orbital_data.equinox}}<br/>
               
             </app-zippy>
-          </div>
-        </ng-container>
+          
+        </div>
         
       </ng-container>
       

@@ -6,11 +6,20 @@ import {SocketService} from '../../../shared/socket.service';
   template: `
   <div class="ui-g">
   
-  <div class="ui-g-12">
-  <h1 class="ui-g-4 ui-g-offset-4">Feed</h1>
-          <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+    <div class="ui-g-12">
+    <h1>Feed</h1>
+          
+    <div class="ui-g-12">
+    <div class="ui-g-12">
+    <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+    </div>
+    <div class="ui-g-6">
       <div class="previous"><a (click)="previous(prev)">&laquo; Previous</a></div>
-      <div class="next"><a (click)="next_page(next)">Next &raquo;</a></div>
+      </div>
+      <div class="ui-g-6">
+      <div class="next" style="text-align: right"><a (click)="next_page(next)">Next &raquo;</a></div>
+      </div>
+      </div>
   
   
   <div *ngIf="neows" class="ui-g-12">
