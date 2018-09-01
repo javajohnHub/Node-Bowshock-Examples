@@ -109,6 +109,6 @@ module.exports = function(io) {
   });
 
   function format_date(date) {
-    return moment(date, 'YYYY-MM-DD') 
+    return moment(date).format('YYYY-MM-DD') 
 }
 };
