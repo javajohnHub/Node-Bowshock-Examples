@@ -1,6 +1,7 @@
 module.exports = function(io) {
   let bowshock = require("node-bowshock");
   let rp = require("request-promise");
+  let moment = require('moment')
   io.sockets.on("connection", function(socket) {
     console.log("connected", socket.id);
 
