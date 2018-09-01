@@ -1,89 +1,91 @@
 <div>
-        <div class="ui-g" *ngIf="isLoading">
-                <div class="ui-g-12">
-                        <div class="ui-g-4 ui-g-offset-6">
-                                <p-progressSpinner></p-progressSpinner>
-                        </div>
-                </div>
-                
+    <div class="ui-g" *ngIf="isLoading">
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-g-offset-6">
+                <p-progressSpinner></p-progressSpinner>
             </div>
-            <div *ngIf="photos && !isLoading">
-<h1>Manifest</h1>
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
-        <div class="ui-inputgroup">
-            <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
         </div>
+
     </div>
-   
+
+    
+    <div class="ui-g ui-fluid" *ngIf="!photos && !isLoading">
+            <h1>Manifest</h1>
+        <div class="ui-g-12">
+            <div class="ui-inputgroup">
+                <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
+            </div>
+        </div>
+
         <button pButton (click)="backClicked()" type="button" label="Back"></button>
         <div *ngFor="let photo of photos">
-
-            <div class="ui-g">
-                <div class="ui-g-12">
-                    <img src="{{photo.img_src}}">
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <p-dataScroller *ngIf="!photos && !isLoading" [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
-
-        <p-header>
-            Manifest for {{manifest.name}}
-        </p-header>
-        <ng-template let-rover pTemplate="item">
-            <div class="ui-g">
-                <div class="ui-g-12 ui-md-3">
-
-                </div>
-                <div class="ui-g-12 ui-md-9">
-                    <div class="ui-g">
-                        <div class="ui-g-2 ui-sm-6">Rover: </div>
-                        <div class="ui-g-10 ui-sm-6">{{rover.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
-
-                        <div class="ui-g-2 ui-sm-6">Landing Date: </div>
-                        <div class="ui-g-10 ui-sm-6">{{rover.landing_date}}</div>
-
-                        <div class="ui-g-2 ui-sm-6">Launch Date: </div>
-                        <div class="ui-g-10 ui-sm-6">{{rover.launch_date}}</div>
-
-                        <div class="ui-g-2 ui-sm-6">Max Sol: </div>
-                        <div class="ui-g-10 ui-sm-6">{{rover.max_sol}}</div>
-
-                        <div class="ui-g-2 ui-sm-6">Max Date: </div>
-                        <div class="ui-g-10 ui-sm-6">{{rover.max_date}}</div>
-
-                        <div class="ui-g-2 ui-sm-6">Total Photos: </div>
-                        <div class="ui-g-10 ui-sm-6">{{rover.total_photos}}</div>
+            <div *ngIf="photos && !isLoading">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <img src="{{photo.img_src}}">
                     </div>
 
-                    <div *ngFor="let photo of rover.photos; let i=index">
-                        <div class="ui-g">
-                            <div *ngIf="photo.sol != 0" class="ui-g-2 ui-sm-6">Sol: </div>
-                            <div *ngIf="photo.sol != 0" class="ui-g-10 ui-sm-6" (click)="solChosen(photo.sol)" style="color: blue; cursor: pointer;">{{photo.sol}}</div>
+                </div>
+            </div>
+        </div>
+        <p-dataScroller  [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)"
+            [totalRecords]="manifest.total_photos || 0">
 
-                            <div class="ui-g-2 ui-sm-6">Earth Date: </div>
-                            <div class="ui-g-10 ui-sm-6">{{photo.earth_date}}</div>
+            <p-header>
+                Manifest for {{manifest.name}}
+            </p-header>
+            <ng-template let-rover pTemplate="item">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-3">
+
+                    </div>
+                    <div class="ui-g-12 ui-md-9">
+                        <div class="ui-g">
+                            <div class="ui-g-2 ui-sm-6">Rover: </div>
+                            <div class="ui-g-10 ui-sm-6">{{rover.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
+
+                            <div class="ui-g-2 ui-sm-6">Landing Date: </div>
+                            <div class="ui-g-10 ui-sm-6">{{rover.landing_date}}</div>
+
+                            <div class="ui-g-2 ui-sm-6">Launch Date: </div>
+                            <div class="ui-g-10 ui-sm-6">{{rover.launch_date}}</div>
+
+                            <div class="ui-g-2 ui-sm-6">Max Sol: </div>
+                            <div class="ui-g-10 ui-sm-6">{{rover.max_sol}}</div>
+
+                            <div class="ui-g-2 ui-sm-6">Max Date: </div>
+                            <div class="ui-g-10 ui-sm-6">{{rover.max_date}}</div>
 
                             <div class="ui-g-2 ui-sm-6">Total Photos: </div>
-                            <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
+                            <div class="ui-g-10 ui-sm-6">{{rover.total_photos}}</div>
                         </div>
-                        <div *ngIf="photo.sol != 0">
-                            <div *ngFor="let camera of rover.photos[i].cameras; let first = first">
-                                <div class="ui-g">
-                                    <div class="ui-g-2 ui-sm-6" *ngIf="first">Camera: </div>
-                                    <div class="ui-g-2 ui-sm-6" *ngIf="!first"> </div>
-                                    <div class="ui-g-10 ui-sm-6" (click)="cameraChosen(camera, photo.sol)" style="color: blue; cursor: pointer;">{{camera}}</div>
-                                </div>
 
+                        <div *ngFor="let photo of rover.photos; let i=index">
+                            <div class="ui-g">
+                                <div *ngIf="photo.sol != 0" class="ui-g-2 ui-sm-6">Sol: </div>
+                                <div *ngIf="photo.sol != 0" class="ui-g-10 ui-sm-6" (click)="solChosen(photo.sol)" style="color: blue; cursor: pointer;">{{photo.sol}}</div>
+
+                                <div class="ui-g-2 ui-sm-6">Earth Date: </div>
+                                <div class="ui-g-10 ui-sm-6">{{photo.earth_date}}</div>
+
+                                <div class="ui-g-2 ui-sm-6">Total Photos: </div>
+                                <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
+                            </div>
+                            <div *ngIf="photo.sol != 0">
+                                <div *ngFor="let camera of rover.photos[i].cameras; let first = first">
+                                    <div class="ui-g">
+                                        <div class="ui-g-2 ui-sm-6" *ngIf="first">Camera: </div>
+                                        <div class="ui-g-2 ui-sm-6" *ngIf="!first"> </div>
+                                        <div class="ui-g-10 ui-sm-6" (click)="cameraChosen(camera, photo.sol)" style="color: blue; cursor: pointer;">{{camera}}</div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </ng-template>
-    </p-dataScroller>
-    
-</div>
+            </ng-template>
+        </p-dataScroller>
+
+    </div>
 </div>
