@@ -24,7 +24,7 @@ export class ManifestComponent {
   }
   ngOnInit() {
     this.maxDate = new Date();
-    this.isLoading = true
+    this.isLoading = true;
     this.socket = SocketService.getInstance();
     this.rovers = [
       { label: "Select Rover", value: null },
@@ -46,6 +46,7 @@ export class ManifestComponent {
     this.selectedRover = 'curiosity';
     this.socket.on("send rover by param", photos => {
       this.photos = photos.photos;
+      console.log(photos)
       this.manifest = null;
       this.isLoading = false;
     });
