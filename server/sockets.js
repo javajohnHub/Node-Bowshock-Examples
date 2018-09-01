@@ -110,11 +110,12 @@ module.exports = function(io) {
   function format_date(date) {
     let dateStr = '';
     if(typeof date == Date){
-      dateStr = ('0' + date.getDate()).slice(-2) + '/'
-             + ('0' + (date.getMonth()+1)).slice(-2) + '/'
-             + date.getFullYear();
-             return dateStr;
+      dateStr = date.getFullYear() + '-0' + (date.getMonth()+1).slice(-2) + '-' + date.getDate().slice(-2);
+      return dateStr;
     }else{
+      if(format_date(date).length !== 10){
+console.log(date)
+      }
       return date;
     }
 
