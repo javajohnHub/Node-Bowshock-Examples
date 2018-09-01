@@ -113,9 +113,8 @@ module.exports = function(io) {
       dateStr = date.getFullYear() + '-0' + date.getMonth().slice(-2) + 1 + '-' + date.getDate().slice(-2);
       return dateStr;
     }else{
-      dateStr = date;
       dateArr = date.split('-');
-      myDate = dateStr.format(dateArr[0], dateArr[1], dateArr[2] )
+      myDate = "{:04d}/{:02d}/{:02d}".format(dateArr[0], dateArr[1], dateArr[2] )
       return myDate;
     }
 
