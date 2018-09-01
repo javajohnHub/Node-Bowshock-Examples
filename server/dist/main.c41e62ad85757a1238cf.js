@@ -73717,8 +73717,7 @@ var ApodComponent = /** @class */ (function () {
         var myDate = this.model.toISOString().split('T')[0];
         var last = parseInt(myDate.split('-')[2]);
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-        this.maxDate = new Date(str);
-        this.socket.emit("get apod", str);
+        this.socket.emit('get apod', str);
     };
     ApodComponent.prototype.onDateChanged = function (event) {
         this.model = new Date(event);
