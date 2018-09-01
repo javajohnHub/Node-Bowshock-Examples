@@ -73942,7 +73942,7 @@ var CuriosityComponent = /** @class */ (function () {
             _this.pictures = data;
         });
         var myDate = this.model.toISOString().split('T')[0];
-        var last = parseInt(myDate.split('-')[2]) - 1;
+        var last = parseInt(myDate.split('-')[2]);
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
         this.socket.emit('get curiosity', str);
     }

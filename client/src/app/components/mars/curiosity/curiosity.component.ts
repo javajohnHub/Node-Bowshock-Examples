@@ -40,7 +40,7 @@ export class CuriosityComponent {
       this.pictures = data;
     });
     let myDate = this.model.toISOString().split('T')[0]
-    let last = parseInt(myDate.split('-')[2]) -1;
+    let last = parseInt(myDate.split('-')[2]);
     let str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
     
     this.socket.emit('get curiosity', str );
