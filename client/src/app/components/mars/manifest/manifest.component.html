@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <button pButton (click)="backClicked()" type="button" label="Back"></button>
+        <button *ngIf="photos" pButton (click)="backClicked()" type="button" label="Back"></button>
         <div *ngFor="let photo of photos">
             <div *ngIf="photos && !isLoading">
                 <div class="ui-g">
@@ -36,10 +36,7 @@
             </p-header>
             <ng-template let-rover pTemplate="item">
                 <div class="ui-g">
-                    <div class="ui-g-12 ui-md-3">
-
-                    </div>
-                    <div class="ui-g-12 ui-md-9">
+                    <div class="ui-g-12">
                         <div class="ui-g">
                             <div class="ui-g-2 ui-sm-6">Rover: </div>
                             <div class="ui-g-10 ui-sm-6">{{rover.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
