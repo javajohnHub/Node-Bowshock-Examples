@@ -4,14 +4,13 @@ import {SocketService} from '../../../shared/socket.service';
 @Component({
   selector: 'app-neows-feed',
   template: `
-
-  <h1 class="ui-g ui-g-offset-5">Feed</h1>
-  <div class="ui-g ui-fluid">
-      <div class="ui-g-12">
+  <div class="ui-g">
+  
+  <div class="ui-g-12">
+  <h1 class="ui-g-4 ui-g-offset-4">Feed</h1>
           <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
-      </div>
-      <li class="previous"><a (click)="previous(prev)">&laquo; Previous</a></li>
-      <li class="next"><a (click)="next_page(next)">Next &raquo;</a></li>
+      <div class="previous"><a (click)="previous(prev)">&laquo; Previous</a></div>
+      <div class="next"><a (click)="next_page(next)">Next &raquo;</a></div>
   
   
   <div *ngIf="neows" class="ui-g-12">
@@ -51,6 +50,7 @@ import {SocketService} from '../../../shared/socket.service';
   
 </ng-container>
     </div>
+  </div>
   </div>
   `
 })

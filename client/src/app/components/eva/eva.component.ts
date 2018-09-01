@@ -5,8 +5,9 @@ import {SocketService} from '../../shared/socket.service';
 @Component({
   selector: 'app-eva',
   template: `
-    <div>
-      <h1 class="text-center">EVA</h1>
+    <div class="ui-g-4 ui-g-offset-4">
+    <h1>EVA</h1>
+    <div class="ui-g-12">
       <div *ngIf="eva">
         <ng-container *ngFor="let walk of eva">
           <div>
@@ -20,6 +21,7 @@ import {SocketService} from '../../shared/socket.service';
             
           </div>
         </ng-container>
+      </div>
       </div>
     </div>
   `,

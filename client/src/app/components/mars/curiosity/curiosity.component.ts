@@ -4,14 +4,11 @@ import {SocketService} from '../../../shared/socket.service';
 @Component({
   selector: 'app-curiosity',
   template: `
-  <h1 class="ui-g ui-g-offset-5">Curiosity</h1>
-  <div class="ui-g ui-fluid">
-      <div class="ui-g-12">
-          <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
-      </div>
-    
+  <div class="ui-g">
   
-  
+  <div class="ui-g-12">
+  <h1 class="ui-g-4 ui-g-offset-4">Curiosity</h1>
+    <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
   <div *ngIf="pictures" class="ui-g-12">
       <ng-container *ngFor="let picture of pictures.photos">
       <img class="center" src="{{picture.img_src}}">
@@ -22,7 +19,7 @@ import {SocketService} from '../../../shared/socket.service';
     </div>
   
   </div>
-    
+  </div>
     
   `
 })

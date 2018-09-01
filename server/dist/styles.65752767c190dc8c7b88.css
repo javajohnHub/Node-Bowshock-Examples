@@ -3997,6 +3997,12 @@ iframe {
 .center {
   margin: auto;
   width: 100%; }
+.center-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
 
 @font-face {
     font-family: 'PrimeIcons';

@@ -1,17 +1,16 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../shared/socket.service";
 import { DomSanitizer } from "@angular/platform-browser";
-import {of} from 'rxjs';
+
 @Component({
   selector: "app-apod",
-  template: `    
-  <h1 class="ui-g ui-g-offset-5">Apod</h1>
-    <div class="ui-g ui-fluid">
-        <div class="ui-g-12">
-            <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
-        </div>
-      
-    
+  template: `  
+  <div class="ui-g">
+  
+    <div class="ui-g-12">
+    <h1 class="ui-g-4 ui-g-offset-4">Apod</h1>
+      <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+    </div>
     <div *ngIf="apod" class="ui-g-12">
      
     
@@ -32,9 +31,8 @@ import {of} from 'rxjs';
         </p-header>
         <div style="height: 100%;">{{apod.explanation}}</div>
     </p-card>
-      </div>
-      </div>
     </div>
+   
   `,
   styles: [
     `

@@ -5,16 +5,15 @@ import {SocketService} from '../../../shared/socket.service';
 @Component({
   selector: 'app-neows-today',
   template: `
-    <div>
-      <h1 class="text-center">Neows Today</h1>
-      <h3 *ngIf="neows" class="text-center">Element Count: {{element_count}}</h3>
-    </div>
+  <div class="ui-g">
+  
+  <div class="ui-g-12">
+  <h1 class="ui-g-4 ui-g-offset-4">Neows Today</h1>
+  <h3 *ngIf="neows" class="ui-g-4 ui-g-offset-4">Element Count: {{element_count}}</h3>
     <div *ngIf="neows">
-      <ul class="pager">
-        <li class="previous"><a (click)="previous(prev)">&laquo; Previous</a></li>
-        <li class="next"><a (click)="next_page(next)">Next &raquo;</a></li>
-      </ul>
-      <ng-container *ngIf="objects">
+      <div class="previous"><a (click)="previous(prev)">&laquo; Previous</a></div>
+      <div class="next"><a (click)="next_page(next)">Next &raquo;</a></div>
+     <ng-container *ngIf="objects">
 
         <ng-container *ngFor="let object of objects;let i = index">
           <div *ngFor="let key of keys(object)">
@@ -74,6 +73,8 @@ import {SocketService} from '../../../shared/socket.service';
         
       </ng-container>
       
+    </div>
+    </div>
     </div>
   `
 })
