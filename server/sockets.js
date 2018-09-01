@@ -109,10 +109,10 @@ module.exports = function(io) {
 
   function format_date(date) {
     if(typeof date == Date){
-      return "%4d-%02d-%02d" % (date.getFullYear(), date.getMonth(), date.getDate())
+      return ("%4d-%02d-%02d" % (date.getFullYear(), date.getMonth(), date.getDate()))
     }else{
       dateArr = date.split('-');
-      return "%4d-%02d-%02d" % (dateArr[0], dateArr[1], dateArr[2] )
+      return ("%4d-%02d-%02d" % (dateArr[0], dateArr[1], dateArr[2] ))
     }
   }
 };
