@@ -74796,7 +74796,9 @@ var FeedComponent = /** @class */ (function () {
     FeedComponent.prototype.next_page = function (url) {
         this.model = new Date(this.model);
         console.log(this.model);
-        this.model.setDate(this.model.getDate() + 1);
+        if (this.maxDate.toISOString().split('T')[0] !== this.model.toISOString().split('T')[0]) {
+            this.model.setDate(this.model.getDate() + 1);
+        }
         console.log(this.model);
         this.socket.emit('get next', url);
     };
