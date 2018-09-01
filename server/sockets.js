@@ -110,7 +110,7 @@ module.exports = function(io) {
   function format_date(date) {
     let dateStr = '';
     if(typeof date == Date){
-      dateStr = date.getFullYear() + '-0' + (date.getMonth()+1).slice(-2) + '-' + date.getDate().slice(-2);
+      dateStr = date.getFullYear() + '-0' + date.getMonth().slice(-2) + 1 + '-' + date.getDate().slice(-2);
       return dateStr;
     }else{
       let myDate = new Date(date);
