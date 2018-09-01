@@ -114,11 +114,8 @@ module.exports = function(io) {
       return dateStr;
     }else{
       let myDate = new Date(date);
-      let len = format_date(myDate).length;
-      if( len !== 10){
-console.log(date)
-      }
-      return date;
+      dateStr = date.getFullYear() + '-0' + (date.getMonth()+1).slice(-2) + '-' + date.getDate().slice(-2);
+      return dateStr;
     }
 
   }
