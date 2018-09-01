@@ -1,13 +1,13 @@
 <div>
         <div class="ui-g" *ngIf="isLoading">
                 <div class="ui-g-12">
-                        <div class="ui-g-4 ui-g-offset-4">
+                        <div class="ui-g-4 ui-g-offset-6">
                                 <p-progressSpinner></p-progressSpinner>
                         </div>
                 </div>
                 
             </div>
-
+            <div *ngIf="photos && !isLoading">
 <h1>Manifest</h1>
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
@@ -15,7 +15,7 @@
             <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
         </div>
     </div>
-    <div *ngIf="photos && !isLoading">
+   
         <button pButton (click)="backClicked()" type="button" label="Back"></button>
         <div *ngFor="let photo of photos">
 
