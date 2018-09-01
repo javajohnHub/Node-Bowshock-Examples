@@ -74370,7 +74370,7 @@ __webpack_require__.r(__webpack_exports__);
 var SpiritComponent = /** @class */ (function () {
     function SpiritComponent() {
         var _this = this;
-        this.model = new Date();
+        this.model = new Date("2010-03-22");
         this.maxDate = new Date("2010-03-22");
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.socket.on('send spirit', function (data) {

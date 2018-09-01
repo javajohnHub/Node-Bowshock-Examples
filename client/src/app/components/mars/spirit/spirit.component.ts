@@ -31,7 +31,7 @@ export class SpiritComponent {
   model: Date;
   maxDate: Date;
   constructor() {
-    this.model = new Date();
+    this.model = new Date("2010-03-22");
     this.maxDate = new Date("2010-03-22")
     this.socket = SocketService.getInstance();
     this.socket.on('send spirit', (data) => {
