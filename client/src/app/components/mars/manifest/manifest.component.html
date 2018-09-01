@@ -18,10 +18,12 @@
                 </div>
             </div>
 
-            <button pButton (click)="backClicked()" type="button" label="Back"></button>
+            
         </div>
+        <div *ngIf="photos && !isLoading">
+        <button pButton (click)="backClicked()" type="button" label="Back"></button>
         <div *ngFor="let photo of photos">
-            <div *ngIf="photos && !isLoading">
+            
                 <div class="ui-g">
                     <div class="ui-g-12">
                         <img src="{{photo.img_src}}">
