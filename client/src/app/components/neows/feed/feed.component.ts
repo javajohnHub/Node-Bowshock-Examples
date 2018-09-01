@@ -93,6 +93,7 @@ export class FeedComponent implements OnInit {
       this.prev = this.neows['links'].prev;
       this.element_count = this.neows['element_count'];
       this.near_earth_objects = this.neows['near_earth_objects'];
+      this.neowsObjs = [];
       Object.keys(this.near_earth_objects).forEach((date, object) => {
         if (this.near_earth_objects[date] !== undefined) {
           this.neowsObjs.push(this.near_earth_objects[date]);

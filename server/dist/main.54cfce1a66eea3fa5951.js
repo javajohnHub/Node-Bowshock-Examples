@@ -74740,6 +74740,7 @@ var FeedComponent = /** @class */ (function () {
             _this.prev = _this.neows['links'].prev;
             _this.element_count = _this.neows['element_count'];
             _this.near_earth_objects = _this.neows['near_earth_objects'];
+            _this.neowsObjs = [];
             Object.keys(_this.near_earth_objects).forEach(function (date, object) {
                 if (_this.near_earth_objects[date] !== undefined) {
                     _this.neowsObjs.push(_this.near_earth_objects[date]);
