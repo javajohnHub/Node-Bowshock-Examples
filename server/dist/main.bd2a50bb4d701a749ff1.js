@@ -74787,13 +74787,17 @@ var FeedComponent = /** @class */ (function () {
         this.date = event;
     };
     FeedComponent.prototype.previous = function (url) {
-        this.model = new Date(this.date);
+        this.model = new Date(this.model);
+        console.log(this.model);
         this.model.setDate(this.model.getDate() - 1);
+        console.log(this.model);
         this.socket.emit('get previous', url);
     };
     FeedComponent.prototype.next_page = function (url) {
-        this.model = new Date(this.date);
+        this.model = new Date(this.model);
+        console.log(this.model);
         this.model.setDate(this.model.getDate() + 1);
+        console.log(this.model);
         this.socket.emit('get next', url);
     };
     FeedComponent.prototype.keys = function (data) {
