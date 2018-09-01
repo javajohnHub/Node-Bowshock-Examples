@@ -74725,8 +74725,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var FeedComponent = /** @class */ (function () {
     function FeedComponent() {
-        var _this = this;
         this.neowsObjs = [];
+    }
+    FeedComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.model = new Date();
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_1__["SocketService"].getInstance();
         var myDate = this.model.toISOString().split('T')[0];
@@ -74776,8 +74778,6 @@ var FeedComponent = /** @class */ (function () {
             });
         });
         this.socket.emit('get feed', str);
-    }
-    FeedComponent.prototype.ngOnInit = function () {
     };
     FeedComponent.prototype.onDateChanged = function (event) {
         console.log(event);
@@ -74787,9 +74787,11 @@ var FeedComponent = /** @class */ (function () {
         this.date = event;
     };
     FeedComponent.prototype.previous = function (url) {
+        this.model.setDate(this.model.getDate() - 1);
         this.socket.emit('get previous', url);
     };
     FeedComponent.prototype.next_page = function (url) {
+        this.model.setDate(this.model.getDate() + 1);
         this.socket.emit('get next', url);
     };
     FeedComponent.prototype.keys = function (data) {

@@ -79,6 +79,9 @@ export class FeedComponent implements OnInit {
   neowsObjs: any = [];
 
   constructor() {
+  }
+
+  ngOnInit() {
     this.model = new Date();
     this.socket = SocketService.getInstance();
     let myDate = this.model.toISOString().split('T')[0]
@@ -133,12 +136,6 @@ export class FeedComponent implements OnInit {
     });
 
     this.socket.emit('get feed', str);
-
-
-  }
-
-  ngOnInit() {
-
   }
 
   onDateChanged(event): void {
@@ -150,10 +147,12 @@ export class FeedComponent implements OnInit {
   }
 
   previous(url) {
+    this.model.setDate(this.model.getDate() - 1);
     this.socket.emit('get previous', url);
   }
 
   next_page(url) {
+    this.model.setDate(this.model.getDate() + 1);
     this.socket.emit('get next', url);
   }
 
