@@ -74607,10 +74607,9 @@ var FeedComponent = /** @class */ (function () {
         this.model = new Date();
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_1__["SocketService"].getInstance();
         var myDate = this.model.toISOString().split('T')[0];
-        var last = parseInt(myDate.split('-')[2]) - 1;
-        var today = last + 1;
+        var last = parseInt(myDate.split('-')[2]);
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-        this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today + 1);
+        this.maxDate = new Date(str);
         this.socket.on('send feed', function (data) {
             _this.neows = data;
             _this.currentPage = _this.neows['links'].self;

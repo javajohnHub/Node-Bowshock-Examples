@@ -73,10 +73,9 @@ export class FeedComponent implements OnInit {
     this.model = new Date();
     this.socket = SocketService.getInstance();
     let myDate = this.model.toISOString().split('T')[0]
-    let last = parseInt(myDate.split('-')[2]) -1;
-    let today = last + 1;
+    let last = parseInt(myDate.split('-')[2]);
     let str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-    this.maxDate = new Date(myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + today + 1)
+    this.maxDate = new Date(str)
     
     this.socket.on('send feed', (data) => {
       this.neows = data;
