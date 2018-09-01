@@ -110,7 +110,9 @@ module.exports = function(io) {
   function format_date(date) {
     let dateStr = '';
     if(typeof date == Date){
+      console.log(date)
       dateStr = "%4d/%02d/%02d" % (date.getFullYear(), date.getMonth(), date.getDate())
+      console.log(dateStr)
       //dateStr = "{:4d}-{:02d}-{:02d}".format(date.getFullYear(), date.getMonth(), date.getDate() )
       return dateStr;
     }else{
