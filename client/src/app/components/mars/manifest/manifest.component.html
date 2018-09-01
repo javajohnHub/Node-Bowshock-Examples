@@ -1,3 +1,13 @@
+<div>
+        <div class="ui-g" *ngIf="isLoading">
+                <div class="ui-g-12">
+                        <div class="ui-g-4 ui-g-offset-4">
+                                <p-progressSpinner></p-progressSpinner>
+                        </div>
+                </div>
+                
+            </div>
+
 <h1>Manifest</h1>
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
@@ -74,13 +84,6 @@
             </div>
         </ng-template>
     </p-dataScroller>
-    <div class="ui-g" *ngIf="isLoading">
-            <div class="ui-g-12">
-                    <div class="ui-g-4 ui-g-offset-4">
-                            <p-progressSpinner></p-progressSpinner>
-                    </div>
-            </div>
-            
-        </div>
+    
 </div>
-
+</div>
