@@ -16,7 +16,7 @@
         <div *ngIf="neows" class="ui-g-12">
             <ng-container *ngFor="let object of neowsObjs;let i = index" >
             <ng-container *ngFor="let key of keys(object)">
-                <p-orderList [value]="object">
+                <p-orderList [value]="[object]">
                         <ng-template let-key pTemplate="item">
                             <div class="ui-helper-clearfix">
                                 <div style="font-size:14px;float:right;margin:15px 5px 0 0">
