@@ -24,9 +24,7 @@
             <div class="ui-g-12">
                 <h1>Manifest</h1>
 
-                <div class="ui-inputgroup">
-                    <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
-                </div>
+                
             </div>
 
 
@@ -38,7 +36,9 @@
                 <p-dataScroller [value]="[manifest]" [rows]="10" [totalRecords]="[manifest].length">
 
                     <p-header>
-                        {{manifest.name}} Photosets
+                            <div class="ui-inputgroup">
+                                    <span style="padding-top:6px;padding-right:25px;" >Photosets: </span> <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
+                                </div>
                     </p-header>
 
                     <div class="ui-g">
