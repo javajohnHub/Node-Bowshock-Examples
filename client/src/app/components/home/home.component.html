@@ -1,0 +1,37 @@
+<div class="ui-g">
+    <div class="ui-g-12">
+
+        <h1>Node Bowshock Examples</h1>
+        <div style="margin-bottom: 10px;">
+            <p-dataScroller [value]="[stats]" [rows]="10" [totalRecords]="[stats].length">
+
+                <p-header>
+                    Angular 6, PrimeNg, Express, node-bowshock, and socket.io
+                </p-header>
+
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <ng-template let-stat pTemplate="item">
+                            <div class="ui-g border">
+                                <div class="ui-g-5 ui-g-offset-1 ">
+                                    <div class="ui-g-12">
+                                        Near Earth Object Count: <span style="color: white">{{stat.near_earth_object_count}}</span>
+                                    </div>
+                                    <div class="ui-g-12" >
+                                        Close Approach Count: <span style="color: white">{{stat.close_approach_count}}</span>
+                                    </div>
+                                </div>
+                                <div class="ui-g-5">
+                                    <div class="ui-g-12">
+                                        Last Updated: <span style="color: white">{{stat.last_updated}}</span>
+                                    </div>
+                                    <div class="ui-g-12">
+                                        Source: <a href="{{stats.nasa_jpl_url}}"><span style="color: lightblue">{{stat.source}}</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </p-dataScroller>
+        </div>

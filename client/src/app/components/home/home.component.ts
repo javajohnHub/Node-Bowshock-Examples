@@ -3,26 +3,7 @@ import {SocketService} from '../../shared/socket.service';
 
 @Component({
   selector: 'app-home',
-  template: `
-    <div class="ui-g">
-    <div class="ui-g-12">
-   
-      <h1>Node Bowshock Examples</h1>
-      <h4>Angular 6, PrimeNg, Express, node-bowshock, and socket.io </h4>
-      </div>
-   
-  
-    <div class="ui-g-12" style="text-align: center;">
-    
-   
-      Near Earth Object Count: {{stats.near_earth_object_count}}<br/>
-      Close Approach Count: {{stats.close_approach_count}}<br/>
-      Last Updated: {{stats.last_updated}}<br/>
-      Source: <a href="{{stats.nasa_jpl_url}}">{{stats.source}}</a><br/>
-
-    </div>
-    </div>
-  `
+  templateUrl: 'home.component.html'
 })
 export class HomeComponent {
   socket: any;
