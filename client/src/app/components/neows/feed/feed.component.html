@@ -1,0 +1,49 @@
+<div class="ui-g">
+    <div class="ui-g-12">
+        <h1>Feed</h1>
+        <div class="ui-g-12">
+            <div class="ui-g-12">
+                <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model"
+                    dateFormat="yy-mm-dd"></p-calendar>
+            </div>
+            <div class="ui-g-6">
+                <div class="previous"><a (click)="previous(prev)">&laquo; Previous</a></div>
+            </div>
+            <div class="ui-g-6">
+                <div class="next" style="text-align: right"><a (click)="next_page(next)">Next &raquo;</a></div>
+            </div>
+        </div>
+        <div *ngIf="neows" class="ui-g-12">
+                <p-orderList [value]="keys(object)" *ngFor="let object of neowsObjs;let i = index">
+                        <ng-template let-key pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="display:inline-block;margin:2px 0 2px 2px" width="48">
+                                <div style="font-size:14px;float:right;margin:15px 5px 0 0">
+                                        Reference ID: {{object[key].neo_reference_id}}<br/> Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>                        
+                                        Potentially Hazardous: 
+                                        <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
+                                            {{object[key].is_potentially_hazardous_asteroid}}</span><br/> Absolute Magnitude: {{object[key].absolute_magnitude_h}}<br/>                        
+                                            Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/> Estimated
+                                        diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/> Estimated
+                                        diameter max km: {{object[key].estimated_diameter.kilometers.estimated_diameter_max}}<br/> Estimated
+                                        diameter min meters: {{object[key].estimated_diameter.meters.estimated_diameter_min}}<br/> Estimated
+                                        diameter max meters: {{object[key].estimated_diameter.meters.estimated_diameter_max}}<br/> Estimated
+                                        diameter min miles: {{object[key].estimated_diameter.miles.estimated_diameter_min}}<br/> Estimated
+                                        diameter max miles: {{object[key].estimated_diameter.miles.estimated_diameter_max}}<br/> Estimated
+                                        diameter min feet: {{object[key].estimated_diameter.feet.estimated_diameter_min}}<br/> Estimated
+                                        diameter max feet: {{object[key].estimated_diameter.feet.estimated_diameter_max}}<br/>
+                                        <ng-container *ngFor="let approach_data of object[key].close_approach_data">
+                                            Close Approach Date: {{approach_data.close_approach_date}}<br/> Epoch Date Close Approach: {{approach_data.epoch_date_close_approach}}<br/><br/>                            
+                                            Relative Velocity: <br/> kps: {{approach_data.relative_velocity.kilometers_per_second}}<br/> kph: {{approach_data.relative_velocity.kilometers_per_hour}}<br/>                            mph:
+                                            {{approach_data.relative_velocity.miles_per_hour}}
+                                            <br/><br/> Miss Distance: <br/> Astronomical: {{approach_data.miss_distance.astronomical}}
+                                            <br/> Lunar: {{approach_data.miss_distance.lunar}}<br/> Kilometers: {{approach_data.miss_distance.kilometers}}
+                                            <br/> Miles: {{approach_data.miss_distance.miles}}<br/> Orbiting body: {{approach_data.orbiting_body}}<br/>
+                                        </ng-container>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-orderList>
+        </div>
+    </div>
+</div>

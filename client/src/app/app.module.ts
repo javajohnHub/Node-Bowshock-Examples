@@ -35,6 +35,8 @@ import {ButtonModule} from 'primeng/button';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {AccordionModule} from 'primeng/accordion';
 import {DataViewModule} from 'primeng/dataview';
+
+import {OrderListModule} from 'primeng/orderlist';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +71,8 @@ import {DataViewModule} from 'primeng/dataview';
     ButtonModule,
     ProgressSpinnerModule,
     AccordionModule,
-    DataViewModule
+    DataViewModule,
+    OrderListModule
     
 
 
