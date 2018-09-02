@@ -34,37 +34,53 @@
 
         <div class="ui-g" *ngIf="manifest && !isLoading">
             <div class="ui-g-12">
-                <div class="ui-g-4" style="border-right: 1px solid black;">
+                    <p-dataScroller  [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="[manifest].length">
 
-                    <div class="ui-g-6 ui-sm-12">Rover: </div>
-                    <div class="ui-g-6 ui-sm-12">{{manifest.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
+                            <p-header>
+                                    {{manifest.name}} Photosets
+                            </p-header>
+                            
+                                <div class="ui-g">
+                                    <div class="ui-g-12">
+                                                <ng-template let-walk pTemplate="item">
+                                            <div class="ui-g">
+                                                    <div class="ui-g-4">
 
-
-                    <div class="ui-g-6 ui-sm-12">Landing Date: </div>
-                    <div class="ui-g-6 ui-sm-12">{{manifest.landing_date}}</div>
-
-                </div>
-
-
-                <div class="ui-g-4" style="border-right: 1px solid black;">
-
-
-                    <div class="ui-g-6 ui-sm-12">Launch Date: </div>
-                    <div class="ui-g-6 ui-sm-12">{{manifest.launch_date}}</div>
-
-                    <div class="ui-g-6 ui-sm-12">Max Sol: </div>
-                    <div class="ui-g-6 ui-sm-12">{{manifest.max_sol}}</div>
-
-                </div>
-                <div class="ui-g-4">
-
-                    <div class="ui-g-6 ui-sm-12">Max Date: </div>
-                    <div class="ui-g-6 ui-sm-12">{{manifest.max_date}}</div>
-
-                    <div class="ui-g-6 ui-sm-12">Total Photos: </div>
-                    <div class="ui-g-6 ui-sm-12">{{manifest.total_photos}}</div>
-
-                </div>
+                                                            <div class="ui-g-6 ui-sm-12">Rover: </div>
+                                                            <div class="ui-g-6 ui-sm-12">{{manifest.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
+                                        
+                                        
+                                                            <div class="ui-g-6 ui-sm-12">Landing Date: </div>
+                                                            <div class="ui-g-6 ui-sm-12">{{manifest.landing_date}}</div>
+                                        
+                                                        </div>
+                                        
+                                        
+                                                        <div class="ui-g-4">
+                                        
+                                        
+                                                            <div class="ui-g-6 ui-sm-12">Launch Date: </div>
+                                                            <div class="ui-g-6 ui-sm-12">{{manifest.launch_date}}</div>
+                                        
+                                                            <div class="ui-g-6 ui-sm-12">Max Sol: </div>
+                                                            <div class="ui-g-6 ui-sm-12">{{manifest.max_sol}}</div>
+                                        
+                                                        </div>
+                                                        <div class="ui-g-4">
+                                        
+                                                            <div class="ui-g-6 ui-sm-12">Max Date: </div>
+                                                            <div class="ui-g-6 ui-sm-12">{{manifest.max_date}}</div>
+                                        
+                                                            <div class="ui-g-6 ui-sm-12">Total Photos: </div>
+                                                            <div class="ui-g-6 ui-sm-12">{{manifest.total_photos}}</div>
+                                        
+                                                        </div>
+                                            </div>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                        </p-dataScroller>
+                
             </div>
 
 

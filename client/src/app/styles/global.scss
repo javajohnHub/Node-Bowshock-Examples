@@ -4,6 +4,12 @@
 @import '~primeng/resources/themes/home/theme.css';
 @import '~primeicons/primeicons.css';
 
+.ui-datascroller.ui-widget li div div{
+  color: #6580A1;
+}
+$border-color: #68727B;
+$bg_color: #6580A1;
+
 p-card .ui-card.ui-widget{
   margin-top: 6px !important;
   margin-bottom: 6px !important;

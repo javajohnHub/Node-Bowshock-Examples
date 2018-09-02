@@ -22,16 +22,12 @@ export class ManifestComponent {
 
   getSol() {
     this.manifest = JSON.parse(JSON.stringify(this.copy));
-    console.log('start', this.manifest, this.copy)
     let found = this.manifest.photos.find(photo => {
       return parseInt(photo.sol, 10) === parseInt(this.sol, 10)
     })
-
     if(found){
       this.manifest.photos = [found];
-      console.log('found', this.manifest, this.copy)
     }
-    console.log(this.manifest)
   }
   
   loadData(event) {
