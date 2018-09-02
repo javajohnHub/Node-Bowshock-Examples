@@ -25,7 +25,8 @@ import {SocketService} from '../../../shared/socket.service';
   <div *ngIf="neows" class="ui-g-12">
   <ng-container *ngFor="let object of neowsObjs;let i = index">
   <div *ngFor="let key of keys(object)">
-    <app-zippy title="{{object[key].name}}">
+    <p-accordion>
+    <p-accordionTab header="{{object[key].name}}" [selected]="true">
     Reference ID: {{object[key].neo_reference_id}}<br/>
     Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
     Potentially Hazardous: <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
@@ -54,7 +55,10 @@ import {SocketService} from '../../../shared/socket.service';
       Miles: {{approach_data.miss_distance.miles}}<br/>
       Orbiting body: {{approach_data.orbiting_body}}<br/>
     </ng-container>
-    </app-zippy>
+    </p-accordionTab>
+    
+</p-accordion>
+    
   </div>
   
 </ng-container>
