@@ -2221,7 +2221,7 @@ iframe {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
 .ui-state-default {
-  background-color: "teal" !important; }
+  background-color: teal !important; }
 .ui-state-active {
   background-color: black !important; }
 
