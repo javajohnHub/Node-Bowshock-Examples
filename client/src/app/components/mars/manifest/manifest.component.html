@@ -100,10 +100,9 @@
                         <div *ngFor="let photo of manifest.photos; let i=index">
 
                             <ng-template let-photo pTemplate="item">
-                                <p-card *ngIf="photo.sol != 0" title="Sol {{photo.sol}}" subtitle="{{photo.earth_date}}" styleClass="center">
+                                <p-card *ngIf="photo.sol != 0" title="Sol {{photo.sol}} ({{photo.earth_date}})" subtitle="Total Photos: {{photo.total_photos}}" styleClass="center">
                                     <div class="ui-g">
-                                        <div class="ui-g-6 ">Total Photos: </div>
-                                        <div class="ui-g-6">{{photo.total_photos}}</div>
+                    
                                         <button pButton class="ui-g-12" (click)="solChosen(photo.sol)" label="Sol {{photo.sol}}"></button>
 
 
