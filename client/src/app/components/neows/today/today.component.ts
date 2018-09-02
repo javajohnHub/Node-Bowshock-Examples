@@ -21,8 +21,10 @@ import {SocketService} from '../../../shared/socket.service';
       <div class="ui-g-12" *ngIf="objects">
 
         <ng-container *ngFor="let object of objects;let i = index">
+        
           <div *ngFor="let key of keys(object)">
-            <app-zippy title="{{object[key].name}}">
+          <p-accordion>
+          <p-accordionTab header="{{object[key].name}}">
               Reference ID: {{object[key].neo_reference_id}}<br/>
               Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
               Potentially Hazardous: <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
@@ -72,14 +74,14 @@ import {SocketService} from '../../../shared/socket.service';
               Mean motion: {{object[key].orbital_data.mean_motion}}<br/>
               Equinox: {{object[key].orbital_data.equinox}}<br/>
               
-            </app-zippy>
-          
+              </p-accordionTab>
+    
+              </p-accordion>
         </div>
         
       </ng-container>
+      </div>
       
-    </div>
-    </div>
     </div>
   `
 })

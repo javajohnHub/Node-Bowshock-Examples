@@ -26,7 +26,7 @@ import {SocketService} from '../../../shared/socket.service';
   <ng-container *ngFor="let object of neowsObjs;let i = index">
   <div *ngFor="let key of keys(object)">
     <p-accordion>
-    <p-accordionTab header="{{object[key].name}}" [selected]="true">
+    <p-accordionTab header="{{object[key].name}}">
     Reference ID: {{object[key].neo_reference_id}}<br/>
     Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
     Potentially Hazardous: <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
