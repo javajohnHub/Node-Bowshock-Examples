@@ -26,7 +26,8 @@ import {SocketService} from '../../../shared/socket.service';
   <ng-container *ngFor="let object of neowsObjs;let i = index">
   <div>
    
-    <p-dataView [value]="keys(object)">
+    <p-dataView [value]="keys(object)" [paginator="true" [rows]="10"
+    [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="keys(object).length">
     <ng-template let-key pTemplate="listItem">
         Reference ID: {{object[key].neo_reference_id}}<br/>
         Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
@@ -155,7 +156,9 @@ export class FeedComponent implements OnInit {
     this.socket.emit('get feed', myDate);
     this.date = event;
   }
-
+loadData(event: any){
+  console.log(event)
+}
   previous(url) {
     this.model = new Date(this.model);
     this.model.setDate(this.model.getDate() - 1);
