@@ -36,12 +36,12 @@
             <div class="ui-g-12">
                 <div class="ui-g-4" style="border-right: 1px solid black;">
 
-                    <div class="ui-g-6">Rover: </div>
-                    <div class="ui-g-6">{{manifest.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
+                    <div class="ui-g-6 ui-sm-12">Rover: </div>
+                    <div class="ui-g-6 ui-sm-12">{{manifest.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
 
 
-                    <div class="ui-g-6">Landing Date: </div>
-                    <div class="ui-g-6">{{manifest.landing_date}}</div>
+                    <div class="ui-g-6 ui-sm-12">Landing Date: </div>
+                    <div class="ui-g-6 ui-sm-12">{{manifest.landing_date}}</div>
 
                 </div>
 
@@ -49,20 +49,20 @@
                 <div class="ui-g-4" style="border-right: 1px solid black;">
 
 
-                    <div class="ui-g-6">Launch Date: </div>
-                    <div class="ui-g-6">{{manifest.launch_date}}</div>
+                    <div class="ui-g-6 ui-sm-12">Launch Date: </div>
+                    <div class="ui-g-6 ui-sm-12">{{manifest.launch_date}}</div>
 
-                    <div class="ui-g-6">Max Sol: </div>
-                    <div class="ui-g-6">{{manifest.max_sol}}</div>
+                    <div class="ui-g-6 ui-sm-12">Max Sol: </div>
+                    <div class="ui-g-6 ui-sm-12">{{manifest.max_sol}}</div>
 
                 </div>
                 <div class="ui-g-4">
 
-                    <div class="ui-g-6">Max Date: </div>
-                    <div class="ui-g-6">{{manifest.max_date}}</div>
+                    <div class="ui-g-6 ui-sm-12">Max Date: </div>
+                    <div class="ui-g-6 ui-sm-12">{{manifest.max_date}}</div>
 
-                    <div class="ui-g-6">Total Photos: </div>
-                    <div class="ui-g-6">{{manifest.total_photos}}</div>
+                    <div class="ui-g-6 ui-sm-12">Total Photos: </div>
+                    <div class="ui-g-6 ui-sm-12">{{manifest.total_photos}}</div>
 
                 </div>
             </div>
@@ -86,7 +86,7 @@
                         <ng-template let-photo pTemplate="item">
                             <p-card title="Sol {{photo.sol}}" subtitle="{{photo.earth_date}}" styleClass="center">
                                 <div class="ui-g">
-                                    <div class="ui-g-6">Total Photos: </div>
+                                    <div class="ui-g-6 ">Total Photos: </div>
                                     <div class="ui-g-6">{{photo.total_photos}}</div>
                                     <button pButton *ngIf="photo.sol != 0" class="ui-g-12" (click)="solChosen(photo.sol)" label="Sol {{photo.sol}}"></button>
 
