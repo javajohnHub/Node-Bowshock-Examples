@@ -2221,9 +2221,9 @@ iframe {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
 .ui-state-default {
-  background-color: teal !important; }
-.ui-state-active {
-  background-color: #4dffff !important; }
+  background-color: "teal" !important; }
+.ui-state-active:not(.ui-state-default) {
+  background-color: black !important; }
 
 @font-face {
     font-family: 'PrimeIcons';
