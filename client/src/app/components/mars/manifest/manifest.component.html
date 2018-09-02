@@ -7,17 +7,17 @@
     </div>
 
     <div *ngIf="photos">
-            <button class="ui-g-12" pButton (click)="backClicked()" type="button" label="Back"></button>
-            <div *ngFor="let photo of photos">
+        <button class="ui-g-12" pButton (click)="backClicked()" type="button" label="Back"></button>
+        <div *ngFor="let photo of photos">
 
-                <div class="ui-g">
-                    <div class="ui-g-12">
+            <div class="ui-g">
+                <div class="ui-g-12">
                     <img src="{{photo.img_src}}">
                 </div>
-                </div>
             </div>
-            <button class="ui-g-12" pButton (click)="backClicked()" type="button" label="Back"></button>
         </div>
+        <button class="ui-g-12" pButton (click)="backClicked()" type="button" label="Back"></button>
+    </div>
     <div *ngIf="!photos && !isLoading">
         <div class="ui-g">
 
@@ -31,75 +31,71 @@
 
 
         </div>
-        
+
         <div class="ui-g" *ngIf="manifest && !isLoading">
-                <div class="ui-g-12">
-                    <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Rover: </div>
-                    <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
-                </div>
-                <div class="ui-g-12 ">
-                    <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Landing Date: </div>
-                    <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.landing_date}}</div>
-                </div>
-                <div class="ui-g-12">
-                    <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Launch Date: </div>
-                    <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.launch_date}}</div>
+            <div class="ui-g-12">
+                <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Rover: </div>
+                <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
+            </div>
+            <div class="ui-g-12 ">
+                <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Landing Date: </div>
+                <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.landing_date}}</div>
+            </div>
+            <div class="ui-g-12">
+                <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Launch Date: </div>
+                <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.launch_date}}</div>
 
-                    <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Max Sol: </div>
-                    <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.max_sol}}</div>
-                </div>
-                <div class="ui-g-12">
-                    <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Max Date: </div>
-                    <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.max_date}}</div>
+                <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Max Sol: </div>
+                <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.max_sol}}</div>
+            </div>
+            <div class="ui-g-12">
+                <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Max Date: </div>
+                <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.max_date}}</div>
 
-                    <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Total Photos: </div>
-                    <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.total_photos}}</div>
-                </div>
-                
-            
-            
+                <div class=" ui-sm-6 ui-md-3 ui-lg-2 ui-xl-1 ui-g-3">Total Photos: </div>
+                <div class="ui-sm-6 ui-md-9 ui-xl-11 ui-g-9">{{manifest.total_photos}}</div>
+            </div>
+
+
+
             <p-dataScroller [value]="manifest.photos" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
 
                 <p-header>
-                    Photos
+
+                    <div class="ui-inputgroup">
+                        <button pButton type="button" label="Get Sol" (click)="getSol()"></button>
+                        <input type="text" pInputText placeholder="Sol" [(ngModel)]="sol">
+                    </div>
+
                 </p-header>
 
-                    <div >
-                        <div *ngFor="let photo of manifest.photos; let i=index">
-                                
-                            <ng-template let-photo pTemplate="item" >
-                                    <p-card title="Sol {{photo.sol}}" subtitle="{{photo.earth_date}}" styleClass="center">
-                                <div class="ui-g" >
-                                    <div *ngIf="photo.sol != 0" class="ui-g-2 ui-sm-6">Sol: </div>
-                                    <button pButton *ngIf="photo.sol != 0" class="ui-g-10 ui-sm-6" (click)="solChosen(photo.sol)" label="Sol {{photo.sol}} Photoset"></button>
+                <div>
+                    <div *ngFor="let photo of manifest.photos; let i=index">
 
-                                    <div *ngIf="photo.sol != 0" class="ui-g-2 ui-sm-6">Earth Date: </div>
-                                    <div *ngIf="photo.sol != 0" class="ui-g-10 ui-sm-6">{{photo.earth_date}}</div>
+                        <ng-template let-photo pTemplate="item">
+                            <p-card title="Sol {{photo.sol}}" subtitle="{{photo.earth_date}}" styleClass="center">
+                                <div class="ui-g">
+                                    <div class="ui-g-6">Total Photos: </div>
+                                    <div class="ui-g-6">{{photo.total_photos}}</div>
+                                    <button pButton *ngIf="photo.sol != 0" class="ui-g-12" (click)="solChosen(photo.sol)" label="Sol {{photo.sol}}"></button>
 
-                                    <div class="ui-g-2 ui-sm-6">Total Photos: </div>
-                                    <div class="ui-g-10 ui-sm-6">{{photo.total_photos}}</div>
+
+
                                 </div>
                                 <div *ngIf="photo.sol != 0">
-                                    
+
                                     <div *ngFor="let camera of photo.cameras; let first = first">
                                         <div class="ui-g">
-                                            <div class="ui-g-2 ui-sm-6" *ngIf="first">Camera: </div>
-                                            <div class="ui-g-2 ui-sm-6" *ngIf="!first"> </div>
-                                            <div class="ui-g-10 ui-sm-6">
-                                                    <button pButton class="ui-g-12" (click)="cameraChosen(camera, photo.sol)" label="{{camera}} Photoset"></button>
-                                            </div>
-                                            
+                                            <button pButton class="ui-g-12" (click)="cameraChosen(camera, photo.sol)" label="{{camera}}"></button>
                                         </div>
-                                    
                                     </div>
-                                
                                 </div>
                             </p-card>
-                            </ng-template>
-                       
-                        </div>
+                        </ng-template>
+
                     </div>
-                
+                </div>
+
             </p-dataScroller>
         </div>
     </div>

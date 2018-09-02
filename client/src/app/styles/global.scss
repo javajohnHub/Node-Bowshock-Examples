@@ -4,6 +4,10 @@
 @import '~primeng/resources/themes/home/theme.css';
 @import '~primeicons/primeicons.css';
 
+p-card .ui-button.ui-widget{
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+}
 h1,h2,h3,h4,h5{
   width:100%;
   text-align: center;

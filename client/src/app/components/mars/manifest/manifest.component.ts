@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../../shared/socket.service";
 import { SelectItem } from "primeng/api";
+import { deepCopy } from "../../../shared/deepCopy";
 @Component({
   selector: "app-manifest",
   templateUrl: "manifest.component.html"
@@ -12,13 +13,27 @@ export class ManifestComponent {
   selectedCamera;
   selectedSol;
   photos;
+  sol: string;
   rovers: SelectItem[];
   isLoading: boolean = false;
   maxDate: Date;
-  constructor() {
-    
-  }
+  copy;
+  constructor() {}
 
+  getSol() {
+    this.manifest = JSON.parse(JSON.stringify(this.copy));
+    console.log('start', this.manifest, this.copy)
+    let found = this.manifest.photos.find(photo => {
+      return parseInt(photo.sol, 10) === parseInt(this.sol, 10)
+    })
+
+    if(found){
+      this.manifest.photos = [found];
+      console.log('found', this.manifest, this.copy)
+    }
+    console.log(this.manifest)
+  }
+  
   loadData(event) {
     console.log(event);
   }
@@ -32,31 +47,27 @@ export class ManifestComponent {
       { label: "Opportunity", value: "opportunity" },
       { label: "Spirit", value: "spirit" }
     ];
-   
-   
 
     this.socket.on("send manifest", manifest => {
       this.manifest = manifest.photo_manifest;
+      this.copy = JSON.parse(JSON.stringify(manifest.photo_manifest));
       this.photos = null;
       this.isLoading = false;
     });
     this.socket.emit("get manifest", {
-      rover: 'curiosity'
+      rover: "curiosity"
     });
-    this.selectedRover = 'curiosity';
+    this.selectedRover = "curiosity";
     this.socket.on("send rover by param", photos => {
       this.photos = photos.photos;
-      console.log(photos)
-      this.manifest = null;
+      console.log(photos);
+      this.manifest = JSON.parse(JSON.stringify(this.copy));
       this.isLoading = false;
     });
-    
   }
 
-  
-  ngOndestroy(){
-  }
-  backClicked(){
+  ngOndestroy() {}
+  backClicked() {
     this.isLoading = true;
     this.socket.emit("get manifest", {
       rover: this.selectedRover
@@ -72,7 +83,7 @@ export class ManifestComponent {
   }
 
   cameraChosen(selectedCamera, sol): void {
-    this.isLoading
+    this.isLoading;
     this.selectedCamera = selectedCamera;
     this.socket.emit("get manifest", {
       rover: this.selectedRover,
@@ -81,13 +92,13 @@ export class ManifestComponent {
     });
   }
   solChosen(selectedSol): void {
-    this.isLoading
+    this.isLoading;
     this.selectedSol = selectedSol;
-    console.log(this.selectedSol, this.selectedRover)
-      this.socket.emit("get manifest", {
-        rover: this.selectedRover,
-        sol: this.selectedSol
-      });
+    console.log(this.selectedSol, this.selectedRover);
+    this.socket.emit("get manifest", {
+      rover: this.selectedRover,
+      sol: this.selectedSol
+    });
   }
   getColor(active: string) {
     if (active !== "active") {
