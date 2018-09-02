@@ -2223,7 +2223,7 @@ iframe {
 .ui-state-default {
   background-color: teal !important; }
 .ui-state-active {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: inherit;
   border-color: inherit; }
 
 @font-face {
