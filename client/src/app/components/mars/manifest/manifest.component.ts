@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../../shared/socket.service";
 import { SelectItem } from "primeng/api";
-import { deepCopy } from "../../../shared/deepCopy";
+
 @Component({
   selector: "app-manifest",
   templateUrl: "manifest.component.html"
@@ -20,19 +20,6 @@ export class ManifestComponent {
   copy;
   constructor() {}
 
-  getSol() {
-    this.manifest = JSON.parse(JSON.stringify(this.copy));
-    let found = this.manifest.photos.find(photo => {
-      return parseInt(photo.sol, 10) === parseInt(this.sol, 10)
-    })
-    if(found){
-      this.manifest.photos = [found];
-    }
-  }
-  
-  loadData(event) {
-    console.log(event);
-  }
   ngOnInit() {
     this.maxDate = new Date();
     this.isLoading = true;
@@ -56,13 +43,26 @@ export class ManifestComponent {
     this.selectedRover = "curiosity";
     this.socket.on("send rover by param", photos => {
       this.photos = photos.photos;
-      console.log(photos);
       this.manifest = JSON.parse(JSON.stringify(this.copy));
       this.isLoading = false;
     });
   }
 
   ngOndestroy() {}
+
+  getSol() {
+    this.manifest = JSON.parse(JSON.stringify(this.copy));
+    let found = this.manifest.photos.find(photo => {
+      return parseInt(photo.sol, 10) === parseInt(this.sol, 10);
+    });
+    if (found) {
+      this.manifest.photos = [found];
+    }
+  }
+
+  loadData(event) {
+    console.log(event);
+  }
   backClicked() {
     this.isLoading = true;
     this.socket.emit("get manifest", {
