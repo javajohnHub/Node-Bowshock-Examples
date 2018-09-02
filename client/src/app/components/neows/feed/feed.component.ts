@@ -24,26 +24,25 @@ import {SocketService} from '../../../shared/socket.service';
   
   <div *ngIf="neows" class="ui-g-12">
   <ng-container *ngFor="let object of neowsObjs;let i = index">
-  <div *ngFor="let key of keys(object)">
-    
-    <p-dataView [value]="object[key]">
-    <ng-template let-neow pTemplate="listItem">
-        <div>
-        Reference ID: {{neow.neo_reference_id}}<br/>
-        Name: <a href="{{neow.nasa_jpl_url}}">{{neow.name}}</a><br/>
-        Potentially Hazardous: <span [style.color]="getColor(neow.is_potentially_hazardous_asteroid)">
-          {{neow.is_potentially_hazardous_asteroid}}</span><br/>
-        Absolute Magnitude: {{neow.absolute_magnitude_h}}<br/>
-        Estimated diameter min km: {{neow.estimated_diameter.kilometers.estimated_diameter_min}}<br/>
-        Estimated diameter min km: {{neow.estimated_diameter.kilometers.estimated_diameter_min}}<br/>
-        Estimated diameter max km: {{neow.estimated_diameter.kilometers.estimated_diameter_max}}<br/>
-        Estimated diameter min meters: {{neow.estimated_diameter.meters.estimated_diameter_min}}<br/>
-        Estimated diameter max meters: {{neow.estimated_diameter.meters.estimated_diameter_max}}<br/>
-        Estimated diameter min miles: {{neow.estimated_diameter.miles.estimated_diameter_min}}<br/>
-        Estimated diameter max miles: {{neow.estimated_diameter.miles.estimated_diameter_max}}<br/>
-        Estimated diameter min feet: {{neow.estimated_diameter.feet.estimated_diameter_min}}<br/>
-        Estimated diameter max feet: {{neow.estimated_diameter.feet.estimated_diameter_max}}<br/>
-        <ng-container *ngFor="let approach_data of neow.close_approach_data">
+  <div>
+   
+    <p-dataView [value]="keys(object)">
+    <ng-template let-key pTemplate="listItem">
+        Reference ID: {{object[key].neo_reference_id}}<br/>
+        Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
+        Potentially Hazardous: <span [style.color]="getColor(object[key].is_potentially_hazardous_asteroid)">
+          {{object[key].is_potentially_hazardous_asteroid}}</span><br/>
+        Absolute Magnitude: {{object[key].absolute_magnitude_h}}<br/>
+        Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
+        Estimated diameter min km: {{object[key].estimated_diameter.kilometers.estimated_diameter_min}}<br/>
+        Estimated diameter max km: {{object[key].estimated_diameter.kilometers.estimated_diameter_max}}<br/>
+        Estimated diameter min meters: {{object[key].estimated_diameter.meters.estimated_diameter_min}}<br/>
+        Estimated diameter max meters: {{object[key].estimated_diameter.meters.estimated_diameter_max}}<br/>
+        Estimated diameter min miles: {{object[key].estimated_diameter.miles.estimated_diameter_min}}<br/>
+        Estimated diameter max miles: {{object[key].estimated_diameter.miles.estimated_diameter_max}}<br/>
+        Estimated diameter min feet: {{object[key].estimated_diameter.feet.estimated_diameter_min}}<br/>
+        Estimated diameter max feet: {{object[key].estimated_diameter.feet.estimated_diameter_max}}<br/>
+        <ng-container *ngFor="let approach_data of object[key].close_approach_data">
           Close Approach Date: {{approach_data.close_approach_date}}<br/>
           Epoch Date Close Approach: {{approach_data.epoch_date_close_approach}}<br/><br/>
           Relative Velocity: <br/>
@@ -57,11 +56,11 @@ import {SocketService} from '../../../shared/socket.service';
           Miles: {{approach_data.miss_distance.miles}}<br/>
           Orbiting body: {{approach_data.orbiting_body}}<br/>
         </ng-container>
-        </div>
+        
     </ng-template>
     <ng-template let-neow pTemplate="gridItem">
         <div class="ui-g-12 ui-md-3">
-            {{neow.name}}
+            {{object[key].name}}
         </div>
     </ng-template>
 </p-dataView>
