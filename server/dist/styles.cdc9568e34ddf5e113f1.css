@@ -2167,6 +2167,9 @@ p-togglebutton.ng-dirty.ng-invalid .ui-button {
 .pi-spinner:before {
     content: "\e926";
 }
+p-card .ui-card.ui-widget {
+  margin-top: 6px !important;
+  margin-bottom: 6px !important; }
 p-card .ui-button.ui-widget {
   margin-top: 6px !important;
   margin-bottom: 6px !important; }
