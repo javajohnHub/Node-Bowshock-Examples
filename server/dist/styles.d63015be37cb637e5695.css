@@ -2167,8 +2167,12 @@ p-togglebutton.ng-dirty.ng-invalid .ui-button {
 .pi-spinner:before {
     content: "\e926";
 }
-.ui-datascroller.ui-widget li div div {
-  color: #6580A1; }
+.border {
+  border: 1px solid #424548;
+  border-radius: 5px;
+  height: 50%;
+  margin: 2px;
+  background-color: #68727B; }
 p-card .ui-card.ui-widget {
   margin-top: 6px !important;
   margin-bottom: 6px !important; }

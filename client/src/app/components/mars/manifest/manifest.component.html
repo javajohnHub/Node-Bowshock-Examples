@@ -34,96 +34,95 @@
 
         <div class="ui-g" *ngIf="manifest && !isLoading">
             <div class="ui-g-12">
-                    <p-dataScroller  [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="[manifest].length">
+                <p-dataScroller [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="[manifest].length">
 
-                            <p-header>
-                                    {{manifest.name}} Photosets
-                            </p-header>
-                            
+                    <p-header>
+                        {{manifest.name}} Photosets
+                    </p-header>
+
+                    <div class="ui-g">
+                        <div class="ui-g-12">
+                            <ng-template let-walk pTemplate="item">
                                 <div class="ui-g">
-                                    <div class="ui-g-12">
-                                                <ng-template let-walk pTemplate="item">
-                                            <div class="ui-g">
-                                                    <div class="ui-g-4">
-
-                                                            <div class="ui-g-6 ui-sm-12">Rover: </div>
-                                                            <div class="ui-g-6 ui-sm-12">{{manifest.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
-                                        
-                                        
-                                                            <div class="ui-g-6 ui-sm-12">Landing Date: </div>
-                                                            <div class="ui-g-6 ui-sm-12">{{manifest.landing_date}}</div>
-                                        
-                                                        </div>
-                                        
-                                        
-                                                        <div class="ui-g-4">
-                                        
-                                        
-                                                            <div class="ui-g-6 ui-sm-12">Launch Date: </div>
-                                                            <div class="ui-g-6 ui-sm-12">{{manifest.launch_date}}</div>
-                                        
-                                                            <div class="ui-g-6 ui-sm-12">Max Sol: </div>
-                                                            <div class="ui-g-6 ui-sm-12">{{manifest.max_sol}}</div>
-                                        
-                                                        </div>
-                                                        <div class="ui-g-4">
-                                        
-                                                            <div class="ui-g-6 ui-sm-12">Max Date: </div>
-                                                            <div class="ui-g-6 ui-sm-12">{{manifest.max_date}}</div>
-                                        
-                                                            <div class="ui-g-6 ui-sm-12">Total Photos: </div>
-                                                            <div class="ui-g-6 ui-sm-12">{{manifest.total_photos}}</div>
-                                        
-                                                        </div>
-                                            </div>
-                                        </ng-template>
+                                    <div class="ui-g-4">
+                                        <div class="border">
+                                            <div class="ui-g-6 ui-sm-12">Rover: </div>
+                                            <div class="ui-g-6 ui-sm-12" style="color: white">{{manifest.name}} <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
+                                        </div>
+                                        <div class="border">
+                                            <div class="ui-g-6 ui-sm-12">Landing Date: </div>
+                                            <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.landing_date}}</div>
+                                        </div>
                                     </div>
-                                </div>
-                        </p-dataScroller>
-                
-            </div>
 
 
-            <p-dataScroller [style.width.%]="100" [value]="manifest.photos" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)"
-                [totalRecords]="manifest.total_photos || 0">
+                                    <div class="ui-g-4">
 
-                <p-header>
-
-                    <div class="ui-inputgroup">
-                        <button pButton type="button" label="Get Sol" (click)="getSol()"></button>
-                        <input type="text" pInputText placeholder="Sol" [(ngModel)]="sol">
-                    </div>
-
-                </p-header>
-
-                <div>
-                    <div *ngFor="let photo of manifest.photos; let i=index">
-
-                        <ng-template let-photo pTemplate="item">
-                            <p-card title="Sol {{photo.sol}}" subtitle="{{photo.earth_date}}" styleClass="center">
-                                <div class="ui-g">
-                                    <div class="ui-g-6 ">Total Photos: </div>
-                                    <div class="ui-g-6">{{photo.total_photos}}</div>
-                                    <button pButton class="ui-g-12" (click)="solChosen(photo.sol)" label="Sol {{photo.sol}}"></button>
-
-
-
-                                </div>
-                                <div>
-
-                                    <div *ngFor="let camera of photo.cameras; let first = first">
-                                        <div class="ui-g">
-                                            <button pButton class="ui-g-12" (click)="cameraChosen(camera, photo.sol)" label="{{camera}}"></button>
+                                        <div class="border">
+                                            <div class="ui-g-6 ui-sm-12">Launch Date: </div>
+                                            <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.launch_date}}</div>
+                                        </div>
+                                        <div class="border">
+                                            <div class="ui-g-6 ui-sm-12">Max Sol: </div>
+                                            <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.max_sol}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="ui-g-4">
+                                        <div class="border">
+                                            <div class="ui-g-6 ui-sm-12">Max Date: </div>
+                                            <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.max_date}}</div>
+                                        </div>
+                                        <div class="border">
+                                            <div class="ui-g-6 ui-sm-12">Total Photos: </div>
+                                            <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.total_photos}}</div>
                                         </div>
                                     </div>
                                 </div>
-                            </p-card>
-                        </ng-template>
-
+                            </ng-template>
+                        </div>
                     </div>
-                </div>
+                </p-dataScroller>
 
-            </p-dataScroller>
+                <p-dataScroller [style.width.%]="100" [value]="manifest.photos" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)"
+                    [totalRecords]="manifest.total_photos || 0">
+
+                    <p-header>
+
+                        <div class="ui-inputgroup">
+                            <button pButton type="button" label="Get Sol" (click)="getSol()"></button>
+                            <input type="text" pInputText placeholder="Sol" [(ngModel)]="sol">
+                        </div>
+
+                    </p-header>
+
+                    <div>
+                        <div *ngFor="let photo of manifest.photos; let i=index">
+
+                            <ng-template let-photo pTemplate="item">
+                                <p-card title="Sol {{photo.sol}}" subtitle="{{photo.earth_date}}" styleClass="center">
+                                    <div class="ui-g">
+                                        <div class="ui-g-6 ">Total Photos: </div>
+                                        <div class="ui-g-6">{{photo.total_photos}}</div>
+                                        <button pButton class="ui-g-12" (click)="solChosen(photo.sol)" label="Sol {{photo.sol}}"></button>
+
+
+
+                                    </div>
+                                    <div>
+
+                                        <div *ngFor="let camera of photo.cameras; let first = first">
+                                            <div class="ui-g">
+                                                <button pButton class="ui-g-12" (click)="cameraChosen(camera, photo.sol)" label="{{camera}}"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </p-card>
+                            </ng-template>
+
+                        </div>
+                    </div>
+
+                </p-dataScroller>
+            </div>
         </div>
     </div>
-</div>

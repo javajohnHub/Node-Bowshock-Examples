@@ -100,7 +100,7 @@ export class ManifestComponent {
     if (active !== "active") {
       return "red";
     } else {
-      return "green";
+      return "lightgreen";
     }
   }
 }
