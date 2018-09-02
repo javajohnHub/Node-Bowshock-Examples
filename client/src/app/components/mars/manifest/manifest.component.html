@@ -58,7 +58,7 @@
 
 
 
-            <p-dataScroller [value]="manifest.photos" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0">
+            <p-dataScroller [style.width.%]="100" [value]="manifest.photos" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="manifest.total_photos || 0" >
 
                 <p-header>
 
