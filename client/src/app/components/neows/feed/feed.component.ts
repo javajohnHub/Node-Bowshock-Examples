@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SocketService} from '../../../shared/socket.service';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-neows-feed',
@@ -26,8 +27,12 @@ import {SocketService} from '../../../shared/socket.service';
   <ng-container *ngFor="let object of neowsObjs;let i = index">
   <div>
    
-    <p-dataView [value]="keys(object)" [paginator="true" [rows]="10"
-    [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="keys(object).length">
+    <p-dataView #dv [value]="keys(object)" [totalRecords]="keys(object).length">
+    <p-header>
+    <input type="search" pInputText placeholder="Search" (keyup)="dv.filter($event.target.value)">
+        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
+            (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}" ></p-dropdown>
+    </p-header>
     <ng-template let-key pTemplate="listItem">
         Reference ID: {{object[key].neo_reference_id}}<br/>
         Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>
@@ -90,6 +95,13 @@ export class FeedComponent implements OnInit {
   neows: {};
   neowsObjs: any = [];
 
+  sortOptions: SelectItem[];
+
+    sortKey: string;
+
+    sortField: string;
+
+    sortOrder: number;
   constructor() {
   }
 
@@ -111,6 +123,12 @@ export class FeedComponent implements OnInit {
       Object.keys(this.near_earth_objects).forEach((date, object) => {
         if (this.near_earth_objects[date] !== undefined) {
           this.neowsObjs.push(this.near_earth_objects[date]);
+          console.log(this.neowsObjs)
+        //   this.sortOptions = [
+        //     {label: 'Name', value: '!year'},
+        //     {label: 'Oldest First', value: 'year'},
+        //     {label: 'Brand', value: 'brand'}
+        // ];
         }
       });
     });
@@ -146,6 +164,7 @@ export class FeedComponent implements OnInit {
       });
     });
 
+    
     this.socket.emit('get feed', str);
   }
 
@@ -158,6 +177,17 @@ export class FeedComponent implements OnInit {
   }
 loadData(event: any){
   console.log(event)
+}
+onSortChange(event) {
+  let value = event.value;
+
+  if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+  }else {
+      this.sortOrder = 1;
+      this.sortField = value;
+  }
 }
   previous(url) {
     this.model = new Date(this.model);
