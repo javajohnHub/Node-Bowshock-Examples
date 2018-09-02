@@ -2222,7 +2222,7 @@ iframe {
           transform: translate(-50%, -50%); }
 .ui-state-default {
   background-color: "teal" !important; }
-.ui-state-active:not(.ui-state-default) {
+.ui-state-active {
   background-color: black !important; }
 
 @font-face {
