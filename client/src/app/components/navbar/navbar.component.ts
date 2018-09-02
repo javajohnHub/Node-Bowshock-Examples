@@ -24,6 +24,7 @@ export class NavbarComponent {
             label: "Home",
             icon: "pi pi-fw pi-external-link",
             routerLink: ["/"],
+            routerLinkActiveOptions: {exact: true},
             command: (event: any) => {
               console.log(this.el);
               this.el.model[0].expanded = false;

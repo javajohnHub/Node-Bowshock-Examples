@@ -76094,6 +76094,7 @@ var NavbarComponent = /** @class */ (function () {
                         label: "Home",
                         icon: "pi pi-fw pi-external-link",
                         routerLink: ["/"],
+                        routerLinkActiveOptions: { exact: true },
                         command: function (event) {
                             console.log(_this.el);
                             _this.el.model[0].expanded = false;
