@@ -14,7 +14,9 @@
             </div>
         </div>
         <div *ngIf="neows" class="ui-g-12">
-                <p-orderList [value]="keys(object)" *ngFor="let object of neowsObjs;let i = index">
+            <ng-container *ngFor="let object of neowsObjs;let i = index" >
+            <ng-container *ngFor="let key of keys(object)">
+                <p-orderList [value]="object">
                         <ng-template let-key pTemplate="item">
                             <div class="ui-helper-clearfix">
                                 <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="display:inline-block;margin:2px 0 2px 2px" width="48">
@@ -44,6 +46,8 @@
                             </div>
                         </ng-template>
                     </p-orderList>
+                    </ng-container>
+                    </ng-container>
         </div>
     </div>
 </div>
