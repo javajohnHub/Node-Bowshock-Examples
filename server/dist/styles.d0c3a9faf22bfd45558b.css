@@ -2221,12 +2221,16 @@ iframe {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
 .ui-state-default {
-  background-color: teal !important; }
+  background-color: teal !important;
+  border: 1px solid white; }
 .ui-state-active {
   background-color: lightblue;
   border: 1px solid white; }
-.ui-panelmenu .ui-panelmenu-content .ui-menuitem-link {
-  background-color: darkblue;
+.ui-panelmenu .ui-panelmenu-content .ui-menuitem-link:active {
+  background-color: seagreen;
+  border: 1px solid white; }
+li.ui-menuitem {
+  background-color: seagreen;
   border: 1px solid white; }
 
 @font-face {

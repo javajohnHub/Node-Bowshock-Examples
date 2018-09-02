@@ -60,6 +60,7 @@ iframe{
 $color: teal;
 .ui-state-default{
   background-color: $color !important;
+  border: 1px solid white;
 }
 
 .ui-state-active{
@@ -67,7 +68,11 @@ $color: teal;
   border: 1px solid white;
 }
 
-.ui-panelmenu .ui-panelmenu-content .ui-menuitem-link{
-  background-color: darkblue;
+.ui-panelmenu .ui-panelmenu-content .ui-menuitem-link:active{
+  background-color: seagreen;
+  border: 1px solid white;
+}
+li.ui-menuitem{
+  background-color: seagreen;
   border: 1px solid white;
 }
