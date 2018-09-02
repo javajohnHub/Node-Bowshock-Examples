@@ -63,6 +63,11 @@ $color: teal;
 }
 
 .ui-state-active{
-  background-color: inherit;
-  border-color: inherit;
+  background-color: lightblue;
+  border:0 ;
+}
+
+.ui-menu-item{
+  background-color: lightblue;
+  border: 1px solid white;
 }

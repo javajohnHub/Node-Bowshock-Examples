@@ -2223,8 +2223,11 @@ iframe {
 .ui-state-default {
   background-color: teal !important; }
 .ui-state-active {
-  background-color: inherit;
-  border-color: inherit; }
+  background-color: lightblue;
+  border: 0; }
+.ui-menu-item {
+  background-color: lightblue;
+  border: 1px solid white; }
 
 @font-face {
     font-family: 'PrimeIcons';
