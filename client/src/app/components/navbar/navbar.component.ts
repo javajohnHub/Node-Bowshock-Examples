@@ -17,12 +17,10 @@ export class NavbarComponent {
     
     this.items = [
       {
-        label: "Navigation",
-        icon: "pi pi-pw pi-file",
+        label: "Node-Bowshock",
         items: [
           {
             label: "Home",
-            icon: "pi pi-fw pi-external-link",
             routerLink: ["/"],
             routerLinkActiveOptions: {exact: true},
             command: (event: any) => {
@@ -32,7 +30,6 @@ export class NavbarComponent {
           },
           {
             label: "APOD",
-            icon: "pi pi-fw pi-times",
             routerLink: ["/apod"],
             command: (event: any) => {
               this.el.model[0].expanded = false;
@@ -40,7 +37,6 @@ export class NavbarComponent {
           },
           {
             label: "EVA",
-            icon: "pi pi-fw pi-times",
             routerLink: ["/eva"],
             command: (event: any) => {
               this.el.model[0].expanded = false;
@@ -48,11 +44,9 @@ export class NavbarComponent {
           },
           {
             label: "Mars",
-            icon: "pi pi-fw pi-times",
             items: [
               {
                 label: "Curiosity",
-                icon: "pi pi-fw pi-times",
                 routerLink: ["/mars/curiosity"],
                 command: (event: any) => {
                   this.el.model[0].expanded = false;
@@ -60,7 +54,6 @@ export class NavbarComponent {
               },
               {
                 label: "Opportunity",
-                icon: "pi pi-fw pi-times",
                 routerLink: ["/mars/opportunity"],
                 command: (event: any) => {
                   this.el.model[0].expanded = false;
@@ -68,7 +61,6 @@ export class NavbarComponent {
               },
               {
                 label: "Spirit",
-                icon: "pi pi-fw pi-times",
                 routerLink: ["/mars/spirit"],
                 command: (event: any) => {
                   this.el.model[0].expanded = false;
@@ -76,7 +68,6 @@ export class NavbarComponent {
               },
               {
                 label: "Manifest",
-                icon: "pi pi-fw pi-times",
                 routerLink: ["/mars/manifest"],
                 command: (event: any) => {
                   this.el.model[0].expanded = false;
@@ -86,11 +77,9 @@ export class NavbarComponent {
           },
           {
             label: "Neows",
-            icon: "pi pi-fw pi-times",
             items: [
               {
                 label: "Today",
-                icon: "pi pi-fw pi-times",
                 routerLink: ["/neows/today"],
                 command: (event: any) => {
                   this.el.model[0].expanded = false;
@@ -98,7 +87,6 @@ export class NavbarComponent {
               },
               {
                 label: "Feed",
-                icon: "pi pi-fw pi-times",
                 routerLink: ["/neows/feed"],
                 command: (event: any) => {
                   this.el.model[0].expanded = false;
