@@ -37,6 +37,7 @@ import {AccordionModule} from 'primeng/accordion';
 import {DataViewModule} from 'primeng/dataview';
 
 import {OrderListModule} from 'primeng/orderlist';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import {OrderListModule} from 'primeng/orderlist';
     ProgressSpinnerModule,
     AccordionModule,
     DataViewModule,
-    OrderListModule
+    OrderListModule,
+    OverlayPanelModule
     
 
 
