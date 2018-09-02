@@ -14,7 +14,7 @@
             <div class="ui-g-12" *ngIf="objects">
                 <ng-container *ngFor="let object of objects;let i = index">
 
-                    <div *ngFor="let key of keys(object)">
+                    <div *ngFor="let key of keys(object); let j = index">
                         <p-accordion>
                             <p-accordionTab header="{{object[key].name}}">
                                 Reference ID: {{object[key].neo_reference_id}}<br/> Name: <a href="{{object[key].nasa_jpl_url}}">{{object[key].name}}</a><br/>                                Potentially

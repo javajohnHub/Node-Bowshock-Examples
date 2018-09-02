@@ -17,7 +17,7 @@ export class TodayComponent implements OnInit {
   near_earth_objects: {};
   date;
   objects: any = [];
-
+i: number = 0;
   constructor() {
     this.socket = SocketService.getInstance();
     this.socket.on('send today', (data) => {
