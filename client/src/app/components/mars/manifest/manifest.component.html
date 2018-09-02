@@ -34,7 +34,8 @@
 
         <div class="ui-g" *ngIf="manifest && !isLoading">
             <div class="ui-g-12">
-                <p-dataScroller [value]="[manifest]" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="[manifest].length">
+                <div style="margin-bottom: 10px;">
+                <p-dataScroller [value]="[manifest]" [rows]="10" [totalRecords]="[manifest].length">
 
                     <p-header>
                         {{manifest.name}} Photosets
@@ -82,7 +83,7 @@
                         </div>
                     </div>
                 </p-dataScroller>
-
+            </div>
                 <p-dataScroller [style.width.%]="100" [value]="manifest.photos" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)"
                     [totalRecords]="manifest.total_photos || 0">
 
