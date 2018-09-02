@@ -88,12 +88,12 @@
                                 <div class="ui-g">
                                     <div class="ui-g-6 ">Total Photos: </div>
                                     <div class="ui-g-6">{{photo.total_photos}}</div>
-                                    <button pButton *ngIf="photo.sol != 0" class="ui-g-12" (click)="solChosen(photo.sol)" label="Sol {{photo.sol}}"></button>
+                                    <button pButton class="ui-g-12" (click)="solChosen(photo.sol)" label="Sol {{photo.sol}}"></button>
 
 
 
                                 </div>
-                                <div *ngIf="photo.sol != 0">
+                                <div>
 
                                     <div *ngFor="let camera of photo.cameras; let first = first">
                                         <div class="ui-g">
