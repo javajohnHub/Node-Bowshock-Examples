@@ -12,7 +12,6 @@
         <div *ngIf="neows">
 
             <div class="ui-g-12" *ngIf="objects">
-
                 <ng-container *ngFor="let object of objects;let i = index">
 
                     <div *ngFor="let key of keys(object)">
@@ -39,18 +38,17 @@
                                     Miles: {{approach_data.miss_distance.miles}}<br/> Orbiting body: {{approach_data.orbiting_body}}<br/><br/>
 
                                 </ng-container>
-                                <ng-container *ngIf="object[key].orbital_data">
-                                    Orbital Data: <br/> Orbit ID: {{object[key].orbital_data.orbit_id}}<br/> Orbit determination
-                                    date: {{object[key].orbital_data.orbit_determination_date}}<br/> Orbit uncertainty: {{object[key].orbital_data.orbit_uncertainty}}<br/>                                    Min
-                                    orbit itersection: {{object[key].orbital_data.orbit_uncertainty}}<br/> Jupitor tisserand
-                                    invariant: {{object[key].orbital_data.orbit_uncertainty}}<br/> Epoch osculation: {{object[key].orbital_data.epoch_osculation}}<br/>                                    Eccentricity:
-                                    {{object[key].orbital_data.eccentricity}}<br/> Semi major axis: {{object[key].orbital_data.semi_major_axis}}<br/>                                    Inclination:
-                                    {{object[key].orbital_data.inclination}}<br/> Ascending node longitude: {{object[key].orbital_data.ascending_node_longitude}}<br/>                                    Orbital
-                                    period: {{object[key].orbital_data.orbital_period}}<br/> Perihelion distance: {{object[key].orbital_data.perihelion_distance}}<br/>                                    Perihelion
-                                    argument: {{object[key].orbital_data.perihelion_argument}}<br/> Perihelion time: {{object[key].orbital_data.perihelion_time}}<br/>                                    Aphelion
-                                    distance: {{object[key].orbital_data.aphelion_distance}}<br/> Mean anomaly: {{object[key].orbital_data.mean_anomaly}}<br/>                                    Mean
-                                    motion: {{object[key].orbital_data.mean_motion}}<br/> Equinox: {{object[key].orbital_data.equinox}}<br/>
-                                </ng-container>
+                                Orbital Data: <br/> Orbit ID: {{object[key].orbital_data.orbit_id}}<br/> Orbit determination
+                                date: {{object[key].orbital_data.orbit_determination_date}}<br/> Orbit uncertainty: {{object[key].orbital_data.orbit_uncertainty}}<br/>                                Min
+                                orbit itersection: {{object[key].orbital_data.orbit_uncertainty}}<br/> Jupitor tisserand
+                                invariant: {{object[key].orbital_data.orbit_uncertainty}}<br/> Epoch osculation: {{object[key].orbital_data.epoch_osculation}}<br/>                                Eccentricity:
+                                {{object[key].orbital_data.eccentricity}}<br/> Semi major axis: {{object[key].orbital_data.semi_major_axis}}<br/>                                Inclination:
+                                {{object[key].orbital_data.inclination}}<br/> Ascending node longitude: {{object[key].orbital_data.ascending_node_longitude}}<br/>                                Orbital
+                                period: {{object[key].orbital_data.orbital_period}}<br/> Perihelion distance: {{object[key].orbital_data.perihelion_distance}}<br/>                                Perihelion
+                                argument: {{object[key].orbital_data.perihelion_argument}}<br/> Perihelion time: {{object[key].orbital_data.perihelion_time}}<br/>                                Aphelion
+                                distance: {{object[key].orbital_data.aphelion_distance}}<br/> Mean anomaly: {{object[key].orbital_data.mean_anomaly}}<br/>                                Mean
+                                motion: {{object[key].orbital_data.mean_motion}}<br/> Equinox: {{object[key].orbital_data.equinox}}<br/>
+
                             </p-accordionTab>
 
                         </p-accordion>
