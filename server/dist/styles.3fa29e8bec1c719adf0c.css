@@ -2225,8 +2225,8 @@ iframe {
 .ui-state-active {
   background-color: lightblue;
   border: 0; }
-.ui-menu-item {
-  background-color: lightblue;
+.ui-panelmenu .ui-panelmenu-content .ui-menuitem-link {
+  background-color: darkblue;
   border: 1px solid white; }
 
 @font-face {
