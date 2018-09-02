@@ -1,0 +1,49 @@
+<div class="ui-g center-item" *ngIf="isLoading">
+    <div class="ui-g-12">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+
+<div class="ui-g" *ngIf="eva && !isLoading">
+    <div class="ui-g-12">
+        <h1>EVA</h1>
+        <p-dataScroller [value]="eva" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="eva.length">
+
+            <p-header>
+                Extra Vehicular Activity
+            </p-header>
+
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <ng-template let-walk pTemplate="item">
+                        <div class="ui-g border">
+                            <div class="ui-g-12">
+                                <div class="ui-g-6 ui-sm-12">EVA number: </div>
+                                <div class="ui-g-6 ui-sm-12" style="color: white">{{walk.eva}}</div>
+
+                                <div class="ui-g-6 ui-sm-12">Country: </div>
+                                <div class="ui-g-6 ui-sm-12" style="color: white">{{walk.country}}</div>
+
+                                <div class="ui-g-6 ui-sm-12">Crew: </div>
+                                <div class="ui-g-6 ui-sm-12" style="color: white">{{walk.crew}}</div>
+
+                                <div class="ui-g-6 ui-sm-12">Date: </div>
+                                <div class="ui-g-6 ui-sm-12" style="color: white">{{walk.date}}</div>
+
+                                <div class="ui-g-6 ui-sm-12">Duration: </div>
+                                <div class="ui-g-6 ui-sm-12" style="color: white">{{walk.duration}}</div>
+
+                                <div class="ui-g-6 ui-sm-12">Vehicle: </div>
+                                <div class="ui-g-6 ui-sm-12" style="color: white">{{walk.vehicle}}</div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-6 ui-sm-12">Purpose: </div>
+                                <div class="ui-g-6 ui-sm-12" style="color: white">{{walk.purpose}}</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </p-dataScroller>
+    </div>
+</div>
