@@ -2222,6 +2222,8 @@ iframe {
           transform: translate(-50%, -50%); }
 .ui-state-default {
   background-color: teal !important; }
+.ui-state-active {
+  background-color: #4dffff !important; }
 
 @font-face {
     font-family: 'PrimeIcons';

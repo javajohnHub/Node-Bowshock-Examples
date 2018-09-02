@@ -61,3 +61,7 @@ iframe{
 .ui-state-default{
   background-color: teal !important;
 }
+
+.ui-state-active{
+  background-color: lighten(teal, 40%)  !important;
+}
