@@ -33,6 +33,7 @@
                                         diameter max miles: {{object[key].estimated_diameter.miles.estimated_diameter_max}}<br/> Estimated
                                         diameter min feet: {{object[key].estimated_diameter.feet.estimated_diameter_min}}<br/> Estimated
                                         diameter max feet: {{object[key].estimated_diameter.feet.estimated_diameter_max}}<br/>
+                                        <ng-container *ngIf="object[key].close_approach_date">
                                         <ng-container *ngFor="let approach_data of object[key].close_approach_data">
                                             Close Approach Date: {{approach_data.close_approach_date}}<br/> Epoch Date Close Approach: {{approach_data.epoch_date_close_approach}}<br/><br/>                            
                                             Relative Velocity: <br/> kps: {{approach_data.relative_velocity.kilometers_per_second}}<br/> kph: {{approach_data.relative_velocity.kilometers_per_hour}}<br/>                            mph:
@@ -41,6 +42,7 @@
                                             <br/> Lunar: {{approach_data.miss_distance.lunar}}<br/> Kilometers: {{approach_data.miss_distance.kilometers}}
                                             <br/> Miles: {{approach_data.miss_distance.miles}}<br/> Orbiting body: {{approach_data.orbiting_body}}<br/>
                                         </ng-container>
+                                    </ng-container>
                                 </div>
                             </div>
                         </ng-template>
