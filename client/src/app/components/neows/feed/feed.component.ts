@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SocketService} from '../../../shared/socket.service';
 import { SelectItem } from 'primeng/api';
+import { SharedService } from '../../../shared/shared.service';
 
 @Component({
   selector: 'app-neows-feed',
@@ -27,10 +28,11 @@ export class FeedComponent implements OnInit {
     sortField: string;
 
     sortOrder: number;
-  constructor() {
+  constructor(private _sharedService: SharedService) {
   }
 
   ngOnInit() {
+    this._sharedService.subTitleSubject$.next('NeoWs/Feed')
     this.model = new Date();
     this.socket = SocketService.getInstance();
     let myDate = this.model.toISOString().split('T')[0]

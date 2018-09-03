@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SocketService} from '../../../shared/socket.service';
+import { SharedService } from '../../../shared/shared.service';
 
 
 @Component({
@@ -18,7 +19,11 @@ export class TodayComponent implements OnInit {
   date;
   objects: any = [];
 i: number = 0;
-  constructor() {
+  constructor(private _sharedService: SharedService) {
+  }
+
+  ngOnInit() {
+    this._sharedService.subTitleSubject$.next('NeoWs/Today')
     this.socket = SocketService.getInstance();
     this.socket.on('send today', (data) => {
       this.neows = data;
@@ -73,12 +78,6 @@ i: number = 0;
     });
 
     this.socket.emit('get today');
-
-
-  }
-
-  ngOnInit() {
-
   }
 
   previous(url) {

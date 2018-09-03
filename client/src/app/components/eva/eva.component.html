@@ -5,7 +5,6 @@
 </div>
 <div class="ui-g" *ngIf="eva && !isLoading">
     <div class="ui-g-12">
-        <h1>EVA</h1>
         <p-dataScroller [value]="eva" [rows]="10" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="eva.length">
                 <p-header>
                         <div class="ui-inputgroup">

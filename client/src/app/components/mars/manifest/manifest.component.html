@@ -19,17 +19,6 @@
         <button class="ui-g-12" pButton (click)="backClicked()" type="button" label="Back"></button>
     </div>
     <div *ngIf="!photos && !isLoading">
-        <div class="ui-g">
-
-            <div class="ui-g-12">
-                <h1>Manifest</h1>
-
-
-            </div>
-
-
-        </div>
-
         <div class="ui-g" *ngIf="manifest && !isLoading">
             <div class="ui-g-12">
                 <div style="margin-bottom: 10px;">

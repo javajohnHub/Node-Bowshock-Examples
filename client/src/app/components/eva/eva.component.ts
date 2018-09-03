@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../shared/socket.service";
+import { SharedService } from "../../shared/shared.service";
 
 @Component({
   selector: "app-eva",
@@ -11,7 +12,11 @@ export class EvaComponent {
   isLoading: boolean = false;
   copy;
   model;
-  constructor() {
+  constructor(private _sharedService: SharedService) {
+  }
+
+  ngOnInit(){
+    this._sharedService.subTitleSubject$.next('Extra Vehicular Activity')
     this.isLoading = true;
     this.socket = SocketService.getInstance();
     this.socket.on("recieve eva", data => {
@@ -21,9 +26,8 @@ export class EvaComponent {
       
       this.isLoading = false;
     });
-    this.socket.emit("get eva");
+    this.socket.emit("get eva")
   }
-
   getEVA() {
     this.eva = JSON.parse(JSON.stringify(this.copy));
     console.log(this.eva, this.model)

@@ -1,14 +1,19 @@
 <div class="ui-g">
 
     <div class="ui-g-12">
-        <h1>Coronal Mass Ejection</h1>
-        Start Date:
+        <div class="ui-g-6">
+        Start:
         <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
             (onSelect)="getCME($event, null)" [(ngModel)]="startModel" dateFormat="yy-mm-dd"></p-calendar>
-End Date:
+        </div>
+        <div class="ui-g-6">
+            End:
 <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
             (onSelect)="getCME(startModel, $event)" [(ngModel)]="endModel" dateFormat="yy-mm-dd"></p-calendar>
-
+        </div>
+    </div>
+    <div class="ui-g-12">
+        
     </div>
     <ng-container *ngIf="!cme">
             <h1>No CME Found!</h1>

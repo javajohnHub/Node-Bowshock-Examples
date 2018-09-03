@@ -50,6 +50,7 @@ import { RBEComponent } from './components/donki/rbe/rbe.component';
 import { SEPComponent } from './components/donki/sep/sep.component';
 import { WSASimComponent } from './components/donki/wsasim/wsasim.component';
 import { NotificationsComponent } from './components/donki/notifications/notifications.component';
+import { MyPanelMenuModule } from './shared/my-panel-menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,12 +99,8 @@ import { NotificationsComponent } from './components/donki/notifications/notific
     AccordionModule,
     DataViewModule,
     OrderListModule,
-    OverlayPanelModule
-    
-
-    
-
-
+    OverlayPanelModule,
+    MyPanelMenuModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

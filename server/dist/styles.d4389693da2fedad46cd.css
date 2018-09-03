@@ -2182,6 +2182,8 @@ p-card .ui-button.ui-widget {
 h1, h2, h3, h4, h5 {
   width: 100%;
   text-align: center; }
+.sub {
+  padding-left: 20px !important; }
 #scroll {
   display: block;
   /* Hidden by default */

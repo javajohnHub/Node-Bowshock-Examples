@@ -1,6 +1,8 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { PanelMenu, BasePanelMenuItem } from "primeng/panelmenu";
+import { SharedService } from "../../shared/shared.service";
+import { Subscription } from "rxjs";
 
 @Component({
   moduleId: module.id,
@@ -9,15 +11,24 @@ import { PanelMenu, BasePanelMenuItem } from "primeng/panelmenu";
 })
 export class NavbarComponent {
   items: MenuItem[];
+  private _subTitle: string;
+  private _subscription: Subscription;
   @ViewChild('el') el: PanelMenu;
-  constructor() {
+  constructor(private _sharedService: SharedService) {
     
   }
   ngOnInit(){
-    
+    this._subscription = this._sharedService.subTitleObservable$
+    .subscribe((sub) => {
+      this._subTitle = sub;
+      this.items[0].title = this._subTitle;
+      console.log(this.items)
+    })
+
     this.items = [
       {
         label: "Node-Bowshock",
+        title: '',
         items: [
           {
             label: "Home",
@@ -176,8 +187,11 @@ export class NavbarComponent {
               }
             ]
           }
-        ]
+        ],
       }
     ];
+  }
+  ngOnDestroy(){
+    this._subscription.unsubscribe();
   }
 }

@@ -1,4 +1,5 @@
-import { Component} from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
+import { SharedService } from '../../shared/shared.service';
 
 
 @Component({
@@ -13,7 +14,11 @@ import { Component} from '@angular/core';
 })
 
 export class DonkiComponent {
-  constructor () {}
+  constructor (private _sharedService: SharedService) {}
+
+  ngOnInit(){
+    this._sharedService.subTitle = 'Space Weather Database Of Notifications, Knowledge, Information'
+  }
 
 
 }

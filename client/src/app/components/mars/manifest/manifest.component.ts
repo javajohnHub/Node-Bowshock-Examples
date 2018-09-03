@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../../shared/socket.service";
 import { SelectItem } from "primeng/api";
+import { SharedService } from "../../../shared/shared.service";
 
 @Component({
   selector: "app-manifest",
@@ -18,9 +19,10 @@ export class ManifestComponent {
   isLoading: boolean = false;
   maxDate: Date;
   copy;
-  constructor() {}
+  constructor(private _sharedService: SharedService) {}
 
   ngOnInit() {
+    this._sharedService.subTitleSubject$.next('Mars/Manifest')
     this.maxDate = new Date();
     this.isLoading = true;
     this.socket = SocketService.getInstance();

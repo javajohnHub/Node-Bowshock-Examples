@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../shared/socket.service";
 import { DomSanitizer } from "@angular/platform-browser";
+import { SharedService } from "../../shared/shared.service";
 
 @Component({
   selector: "app-apod",
@@ -21,10 +22,11 @@ export class ApodComponent {
   safe_url: any;
   model: Date;
   maxDate: Date;
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private _sharedService: SharedService) {
   }
 
   ngOnInit(){
+    this._sharedService.subTitleSubject$.next('Astronomy Picture of the Day')
     this.model = new Date();
     this.socket = SocketService.getInstance();
     this.socket.on("send apod", data => {

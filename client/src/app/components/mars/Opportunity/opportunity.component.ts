@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {SocketService} from '../../../shared/socket.service';
+import { SharedService } from '../../../shared/shared.service';
 
 
 @Component({
@@ -8,7 +9,6 @@ import {SocketService} from '../../../shared/socket.service';
   <div class="ui-g">
   
     <div class="ui-g-12">
-    <h1>Opportunity</h1>
     <p-calendar [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
   <div *ngIf="pictures" class="ui-g-12">
       <ng-container *ngFor="let picture of pictures.photos">
@@ -28,7 +28,11 @@ export class OpportunityComponent {
   pictures: {};
   model: Date;
   maxDate: Date;
-  constructor() {
+  constructor(private _sharedService: SharedService) {
+    
+  }
+  ngOnInit(){
+    this._sharedService.subTitleSubject$.next('Mars/Opportunity')
     this.model = new Date("2018-06-11");
     this.maxDate = new Date("2018-06-11")
     this.socket = SocketService.getInstance();

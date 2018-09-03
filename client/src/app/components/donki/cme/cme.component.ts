@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { SocketService } from "../../../shared/socket.service";
+import { SharedService } from "../../../shared/shared.service";
 
 export interface Instruments {
   id: number;
@@ -38,14 +39,14 @@ export class CMEComponent {
   cme: CME;
   startModel: Date;
   endModel: Date;
-  constructor() {}
+  constructor(private _sharedService: SharedService) {}
 
   ngOnInit() {
+    this._sharedService.subTitleSubject$.next('Space Weather Database Of Notifications, Knowledge, Information/Coronal Mass Ejection')
     this.socket = SocketService.getInstance();
     this.startModel = new Date();
     this.endModel = new Date(this.startModel);
     this.socket.on("send cme", cme => {
-      console.log(cme)
       this.cme = cme;
     });
     let myDate = this.startModel.toISOString().split("T")[0];
