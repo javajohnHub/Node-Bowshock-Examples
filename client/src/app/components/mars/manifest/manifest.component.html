@@ -106,7 +106,7 @@
                                     styleClass="center">
                                     <div class="ui-g">
 
-                                        <button pButton class="ui-g-12" (click)="solChosen(photo.sol)" label="Sol {{photo.sol}}"></button>
+                                        <button pButton class="ui-g-12" (click)="solChosen(photo.sol)" label="All Photos"></button>
 
 
 
@@ -115,7 +115,7 @@
                                     <h5>Cameras:</h5>
                                         <div *ngFor="let camera of photo.cameras; let first = first" >
                                             <div class="ui-g">
-                                                <button pButton class="ui-g-12" (click)="cameraChosen(camera, photo.sol)" label="{{camera}}"></button>
+                                                <button pButton class="ui-g-12" (click)="cameraChosen(camera, photo.sol)" label="{{camera}} Photos"></button>
                                             </div>
                                         </div>
                                     </div>
