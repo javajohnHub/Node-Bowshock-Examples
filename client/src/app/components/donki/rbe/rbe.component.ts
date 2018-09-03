@@ -7,10 +7,17 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class RBEComponent {
   socket: any;
+  rbe;
   constructor() {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.socket = SocketService.getInstance();
+
+    this.socket.on("send rbe", rbe => {
+      this.rbe = rbe;
+    });
+
+    this.socket.emit('get rbe');
   }
 }

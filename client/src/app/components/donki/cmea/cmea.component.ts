@@ -7,10 +7,17 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class CMEAComponent {
   socket: any;
+  cmea;
   constructor() {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.socket = SocketService.getInstance();
+
+    this.socket.on("send cmea", cmea => {
+      this.cmea = cmea;
+    });
+
+    this.socket.emit('get cmea');
   }
 }

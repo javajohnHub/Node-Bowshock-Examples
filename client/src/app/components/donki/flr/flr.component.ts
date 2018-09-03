@@ -7,10 +7,17 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class FLRComponent {
   socket: any;
+  flr;
   constructor() {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.socket = SocketService.getInstance();
+
+    this.socket.on("send flr", flr => {
+      this.flr = flr;
+    });
+
+    this.socket.emit('get flr');
   }
 }

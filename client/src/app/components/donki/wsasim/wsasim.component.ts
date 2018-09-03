@@ -7,10 +7,17 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class WSASimComponent {
   socket: any;
+  wsasim;
   constructor() {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.socket = SocketService.getInstance();
+
+    this.socket.on("send wsasim", wsasim => {
+      this.wsasim = wsasim;
+    });
+
+    this.socket.emit('get wsasim');
   }
 }

@@ -7,10 +7,17 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class IPSComponent {
   socket: any;
+  ips;
   constructor() {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.socket = SocketService.getInstance();
+
+    this.socket.on("send ips", ips => {
+      this.ips = ips;
+    });
+
+    this.socket.emit('get ips');
   }
 }

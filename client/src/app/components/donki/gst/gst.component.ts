@@ -7,10 +7,17 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class GSTComponent {
   socket: any;
+  gst;
   constructor() {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.socket = SocketService.getInstance();
+
+    this.socket.on("send gst", gst => {
+      this.gst = gst;
+    });
+
+    this.socket.emit('get gst');
   }
 }

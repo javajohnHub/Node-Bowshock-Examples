@@ -7,10 +7,17 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class HSSComponent {
   socket: any;
+  hss;
   constructor() {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.socket = SocketService.getInstance();
+
+    this.socket.on("send hss", hss => {
+      this.hss = hss;
+    });
+
+    this.socket.emit('get hss');
   }
 }

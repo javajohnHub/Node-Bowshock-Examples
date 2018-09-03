@@ -7,10 +7,17 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class NotificationsComponent {
   socket: any;
+  notifications;
   constructor() {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.socket = SocketService.getInstance();
+
+    this.socket.on("send notifications", notifications => {
+      this.notifications = notifications;
+    });
+
+    this.socket.emit('get notifications');
   }
 }
