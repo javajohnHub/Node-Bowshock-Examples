@@ -10,5 +10,7 @@ End Date:
             (onSelect)="getCME(startModel, $event)" [(ngModel)]="endModel" dateFormat="yy-mm-dd"></p-calendar>
 
     </div>
-    {{cme | json}}
+    <ng-container *ngIf="!cme">
+            <h1>No CME Found!</h1>
+    </ng-container>
 </div>
