@@ -16,5 +16,7 @@ export class CMEComponent {
     this.socket.on("send cme", cme => {
       this.cme = cme;
     });
+
+    this.socket.emit('get cme');
   }
 }

@@ -75404,6 +75404,7 @@ var CMEComponent = /** @class */ (function () {
         this.socket.on("send cme", function (cme) {
             _this.cme = cme;
         });
+        this.socket.emit('get cme');
     };
     return CMEComponent;
 }());
