@@ -75424,6 +75424,7 @@ var CMEComponent = /** @class */ (function () {
         var _this = this;
         this.socket = _shared_socket_service__WEBPACK_IMPORTED_MODULE_0__["SocketService"].getInstance();
         this.startModel = new Date();
+        this.endModel = new Date(this.startModel);
         this.socket.on("send cme", function (cme) {
             _this.cme = cme;
         });

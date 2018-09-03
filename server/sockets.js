@@ -110,8 +110,8 @@ module.exports = function(io) {
 
     //donki
     socket.on("get cme", () => {
-      console.log('get cme')
-      bowshock.donki.CME().then(cme => {
+      console.log('get cme', object)
+      bowshock.donki.CME(object).then(cme => {
         console.log('cme', cme)
         socket.emit("send cme", cme);
       });

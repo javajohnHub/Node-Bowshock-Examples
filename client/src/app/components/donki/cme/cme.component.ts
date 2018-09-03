@@ -15,6 +15,7 @@ export class CMEComponent {
   ngOnInit() {
     this.socket = SocketService.getInstance();
     this.startModel = new Date();
+    this.endModel = new Date(this.startModel);
     this.socket.on("send cme", cme => {
       this.cme = cme;
     });
