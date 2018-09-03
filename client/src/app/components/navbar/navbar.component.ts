@@ -43,6 +43,88 @@ export class NavbarComponent {
             }
           },
           {
+            label: "DONKI",
+            items: [
+              {
+                label: "CME",
+                routerLink: ["/donki/cme"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "CMEA",
+                routerLink: ["/donki/cmea"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "FLR",
+                routerLink: ["/donki/flr"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "GST",
+                routerLink: ["/donki/gst"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "HSS",
+                routerLink: ["/donki/hss"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "IPS",
+                routerLink: ["/donki/ips"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "MPC",
+                routerLink: ["/donki/mpc"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "RBE",
+                routerLink: ["/donki/rbe"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "SEP",
+                routerLink: ["/donki/sep"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "WSASim",
+                routerLink: ["/donki/wsasim"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+              {
+                label: "Notifications",
+                routerLink: ["/donki/notifications"],
+                command: (event: any) => {
+                  this.el.model[0].expanded = false;
+                }
+              },
+            ]
+          },
+          {
             label: "Mars",
             items: [
               {
@@ -76,7 +158,7 @@ export class NavbarComponent {
             ]
           },
           {
-            label: "Neows",
+            label: "NEOWS",
             items: [
               {
                 label: "Today",

@@ -4,44 +4,9 @@ import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-apod",
-  template: `  
-  <div class="ui-g">
-  
-    <div class="ui-g-12">
-    <h1>Apod</h1>
-      <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
-    
-      </div>
-    <div *ngIf="apod" class="ui-g-12">
-     
-    
-      <div *ngIf="apod.media_type == 'image'" style="position: relative" >
-      <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
-      <p-header class="square">
-          <img class="center" src="{{apod.hdurl}}">
-      </p-header>
-      <div>{{apod.explanation}}</div>
-  </p-card>
-      </div>
-      <div *ngIf="apod.media_type == 'video'" class="video-container">
-        <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
-        <p-header class="square">
-        <iframe class="center"
-        [src]='safe_url'>
-</iframe>
-        </p-header>
-        <div style="height: 100%;">{{apod.explanation}}</div>
-    </p-card>
-    </div>
-   
-  `,
+  templateUrl: 'apod.component.html',
   styles: [
-    `
-      .video-container {
-        
-        
-    
-      }
+`
       .video-container iframe {
         
         width: 100%;

@@ -38,6 +38,18 @@ import {DataViewModule} from 'primeng/dataview';
 
 import {OrderListModule} from 'primeng/orderlist';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import { DonkiComponent } from './components/donki/donki.component';
+import { CMEComponent } from './components/donki/cme/cme.component';
+import { CMEAComponent } from './components/donki/cmea/cmea.component';
+import { FLRComponent } from './components/donki/flr/flr.component';
+import { GSTComponent } from './components/donki/gst/gst.component';
+import { HSSComponent } from './components/donki/hss/hss.component';
+import { IPSComponent } from './components/donki/ips/ips.component';
+import { MPCComponent } from './components/donki/mpc/mpc.component';
+import { RBEComponent } from './components/donki/rbe/rbe.component';
+import { SEPComponent } from './components/donki/sep/sep.component';
+import { WSASimComponent } from './components/donki/wsasim/wsasim.component';
+import { NotificationsComponent } from './components/donki/notifications/notifications.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +66,19 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
     EvaComponent,
     TodayComponent,
     ZippyComponent,
-    ManifestComponent
+    ManifestComponent,
+    DonkiComponent,
+    CMEComponent,
+    CMEAComponent,
+    FLRComponent,
+    GSTComponent,
+    HSSComponent,
+    IPSComponent,
+    MPCComponent,
+    RBEComponent,
+    SEPComponent,
+    WSASimComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +99,8 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
     DataViewModule,
     OrderListModule,
     OverlayPanelModule
+    
+
     
 
 

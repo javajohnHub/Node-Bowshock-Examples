@@ -1,0 +1,16 @@
+import { Component } from '@angular/core';
+import { SocketService } from '../../../shared/socket.service';
+
+@Component({
+  selector: 'app-mpc',
+  templateUrl: 'mpc.component.html'
+})
+export class MPCComponent {
+  socket: any;
+  constructor() {
+  }
+
+  ngOnInit(){
+    this.socket = SocketService.getInstance();
+  }
+}
