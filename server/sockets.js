@@ -1,43 +1,43 @@
 module.exports = function(io) {
   let bowshock = require("node-bowshock");
   let rp = require("request-promise");
-  let moment = require('moment')
+  let moment = require("moment");
   io.sockets.on("connection", function(socket) {
     console.log("connected", socket.id);
 
+    //apod
     socket.on("get apod", date => {
       let formatted_date = format_date(date);
       bowshock.apod(formatted_date).then(apod => {
         socket.emit("send apod", apod);
       });
     });
+    //end of apod
+    
+    //mars
     socket.on("get curiosity", date => {
-      
       let formatted_date = format_date(date);
-      
+
       bowshock.mars.curiosity(formatted_date).then(rover => {
         socket.emit("send curiosity", rover);
       });
     });
 
     socket.on("get manifest", rover => {
-      console.log(rover)
-      if(!rover.sol && !rover.camera){
+      console.log(rover);
+      if (!rover.sol && !rover.camera) {
         bowshock.mars.manifest(rover).then(manifest => {
-          console.log(manifest)
+          console.log(manifest);
           socket.emit("send manifest", manifest);
         });
       }
-      if(rover.sol || rover.camera){
+      if (rover.sol || rover.camera) {
         bowshock.mars.manifest(rover).then(photos => {
-          console.log(photos)
+          console.log(photos);
           socket.emit("send rover by param", photos);
         });
       }
-
-      
     });
-
 
     socket.on("get opportunity", date => {
       let formatted_date = format_date(date);
@@ -52,16 +52,18 @@ module.exports = function(io) {
         socket.emit("send spirit", rover);
       });
     });
+    //end of mars
+
+    //neows
     socket.on("get stats", () => {
       bowshock.neows.stats().then(stats => {
         socket.emit("send stats", stats);
-      });;
-      
+      });
     });
 
     socket.on("get feed", date => {
       let formatted_date = format_date(date);
-      bowshock.neows.feed(start_date=formatted_date).then(feed => {
+      bowshock.neows.feed((start_date = formatted_date)).then(feed => {
         socket.emit("send feed", feed);
       });
     });
@@ -104,9 +106,18 @@ module.exports = function(io) {
         socket.emit("send today", today);
       });
     });
-  });
+    //end neows
 
+    //donki
+    socket.on("get cme", () => {
+      bowshock.donki.CME().then(cme => {
+        socket.emit("send cme", cme);
+      });
+    });
+    //end of donki
+  });
+  
   function format_date(date) {
-    return moment(new Date(date)).format('YYYY-MM-DD') 
-}
+    return moment(new Date(date)).format("YYYY-MM-DD");
+  }
 };
