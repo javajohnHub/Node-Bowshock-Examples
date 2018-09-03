@@ -21,7 +21,7 @@ export class CMEComponent {
     let myDate = this.startModel.toISOString().split('T')[0]
     let last = parseInt(myDate.split('-')[2]);
     let str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-    this.socket.emit('get cme', str);
+    this.socket.emit('get cme', {startDate: str});
   }
 
   getCME(start, end){

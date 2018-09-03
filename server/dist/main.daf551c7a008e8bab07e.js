@@ -75430,7 +75430,7 @@ var CMEComponent = /** @class */ (function () {
         var myDate = this.startModel.toISOString().split('T')[0];
         var last = parseInt(myDate.split('-')[2]);
         var str = myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
-        this.socket.emit('get cme', str);
+        this.socket.emit('get cme', { startDate: str });
     };
     CMEComponent.prototype.getCME = function (start, end) {
         if (end == null) {
