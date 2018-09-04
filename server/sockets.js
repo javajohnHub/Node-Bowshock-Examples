@@ -110,13 +110,101 @@ module.exports = function(io) {
 
     //donki
     socket.on("get cme", (object) => {
-      console.log('get cme', object)
       bowshock.donki.CME(object).then(cme => {
-        console.log('cme', cme)
         if(cme.length == 0){
           cme = []
         }
         socket.emit("send cme", cme);
+      });
+    });
+
+    socket.on("get cmea", (object) => {
+      bowshock.donki.CMEA(object).then(cmea => {
+        if(cmea.length == 0){
+          cmea = []
+        }
+        socket.emit("send cmea", cmea);
+      });
+    });
+
+    socket.on("get flr", (object) => {
+      bowshock.donki.FLR(object).then(flr => {
+        if(flr.length == 0){
+          flr = []
+        }
+        socket.emit("send flr", flr);
+      });
+    });
+
+    socket.on("get gst", (object) => {
+      bowshock.donki.GST(object).then(gst => {
+        if(gst.length == 0){
+          gst = []
+        }
+        socket.emit("send gst", gst);
+      });
+    });
+
+    socket.on("get hss", (object) => {
+      bowshock.donki.HSS(object).then(hss => {
+        if(hss.length == 0){
+          hss = []
+        }
+        socket.emit("send hss", hss);
+      });
+    });
+
+    socket.on("get ips", (object) => {
+      bowshock.donki.IPS(object).then(ips => {
+        if(ips.length == 0){
+          ips = []
+        }
+        socket.emit("send ips", ips);
+      });
+    });
+
+    socket.on("get mpc", (object) => {
+      bowshock.donki.MPC(object).then(mpc => {
+        if(mpc.length == 0){
+          mpc = []
+        }
+        socket.emit("send mpc", mpc);
+      });
+    });
+
+    socket.on("get notifications", (object) => {
+      bowshock.donki.notifications(object).then(notifications => {
+        if(notifications.length == 0){
+          notifications = []
+        }
+        socket.emit("send notifications", notifications);
+      });
+    });
+
+    socket.on("get rbe", (object) => {
+      bowshock.donki.RBE(object).then(rbe => {
+        if(rbe.length == 0){
+          rbe = []
+        }
+        socket.emit("send rbe", rbe);
+      });
+    });
+
+    socket.on("get sep", (object) => {
+      bowshock.donki.SEP(object).then(sep => {
+        if(sep.length == 0){
+          sep = []
+        }
+        socket.emit("send sep", sep);
+      });
+    });
+
+    socket.on("get wsasim", (object) => {
+      bowshock.donki.WSASim(object).then(wsasim => {
+        if(wsasim.length == 0){
+          wsasim = []
+        }
+        socket.emit("send wsasim", wsasim);
       });
     });
     //end of donki
