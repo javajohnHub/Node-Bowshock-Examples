@@ -4,9 +4,6 @@
 @import '~primeng/resources/themes/home/theme.css';
 @import '~primeicons/primeicons.css';
 
-.ui-datascroller.ui-widget li div div {
-	//color: #6580A1;
-}
 $border-color: #68727b;
 $bg_color: #6580a1;
 
@@ -46,7 +43,11 @@ input.ui-state-default {
 	color: #000 !important;
 }
 .ui-state-default a {
-	color: #ffffff;
+	color: #ffffff !important;
+}
+
+div.ui-datascroller-content.ui-widget-content {
+	height: 100% !important;
 }
 #scroll {
 	display: block; /* Hidden by default */
@@ -54,10 +55,10 @@ input.ui-state-default {
 	bottom: 20px; /* Place the button at the bottom of the page */
 	right: 30px; /* Place the button 30px from the right */
 	z-index: 99; /* Make sure it does not overlap */
-	border: none; /* Remove borders */
+	border: 1px solid black; /* Remove borders */
 	outline: none; /* Remove outline */
 	background-color: rgba(0, 0, 0, 0.3); /* Set a background color */
-	color: white; /* Text color */
+	color: black; /* Text color */
 	cursor: pointer; /* Add a mouse pointer on hover */
 	padding: 15px; /* Some padding */
 	border-radius: 10px; /* Rounded corners */
