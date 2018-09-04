@@ -113,7 +113,7 @@ module.exports = function(io) {
       console.log('get cme', object)
       bowshock.donki.CME(object).then(cme => {
         console.log('cme', cme)
-        if(cme = ''){
+        if(cme.length == 0){
           cme = []
         }
         socket.emit("send cme", cme);
