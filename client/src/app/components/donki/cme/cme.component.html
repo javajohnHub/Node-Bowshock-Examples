@@ -1,5 +1,10 @@
 <div class="ui-g">
-
+        <div class="ui-g center-item" *ngIf="isLoading">
+                <div class="ui-g-12">
+                    <p-progressSpinner></p-progressSpinner>
+                </div>
+        
+            </div>
     <div class="ui-g-12">
         <div class="ui-g-6">
             Start:
@@ -49,7 +54,7 @@
             </p-accordionTab>
         </p-accordion>
     </div>
-    <ng-container *ngIf="!cme || cme.length == 0">
+    <ng-container *ngIf="!cme && !isLoading || cme && cme.length == 0 && !isLoading">
         <h1>No CME Found!</h1>
     </ng-container>
 </div>

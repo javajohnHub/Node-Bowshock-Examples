@@ -1,1 +1,39 @@
-{{cmea | json}}
+<div class="ui-g">
+    <div class="ui-g center-item" *ngIf="isLoading">
+        <div class="ui-g-12">
+            <p-progressSpinner></p-progressSpinner>
+        </div>
+
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-6">
+            Start:
+            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
+                (onSelect)="setCMEADate()" [(ngModel)]="startModel" dateFormat="yy-mm-dd" [maxDate]="maxStartDate"></p-calendar>
+        </div>
+        <div class="ui-g-6">
+            End:
+            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
+                (onSelect)="setCMEADate()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
+        </div>
+    </div>
+    <div class="ui-g-12" *ngFor="let item of cmea">
+        <p-accordion>
+            <p-accordionTab header="{{item.time21_5}}">
+                <div class="ui-g">
+                    <div class="ui-g-12 border">
+                        latitude: {{item.latitude}}<br/> longitude: {{item.longitude}}<br/> halfAngle: {{item.halfAngle}}<br/>                        speed:
+                        {{item.speed}}
+                        <br/> type: {{item.type}}<br/> isMostAccurate: {{item.isMostAccurate}}<br/> associatedCMEID:
+                        <button pButton type="button" label="{{item.associatedCMEID}}" (click)="goToAssoc(item.associatedCMEID)"></button><br/>                        note:
+                        {{item.note}}
+                        <br/> catalog: {{item.catalog}}<br/>
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+    <ng-container *ngIf="!cmea && !isLoading || cmea && cmea.length == 0 && !isLoading">
+        <h1>No CMEA Found!</h1>
+    </ng-container>
+</div>
