@@ -17,6 +17,38 @@
                 (onSelect)="setCMEADate()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
+    <p-panel header="Search Options" [toggleable]="true" [collapsed]="true">
+        <div class="ui-g">
+            <form [formGroup]="cmeaForm" class="border">
+                <div class="ui-g-12">
+                    <label for="compl" class="ui-g-6"><strong>Complete Entry Only</strong></label>
+                    <p-inputSwitch id="compl" class="ui-g-6" formControlName="complete"></p-inputSwitch>
+                </div>
+                <div class="ui-g-12">
+                    <label for="accu" class="ui-g-6"><strong>Most Accurate Only</strong></label>
+                    <p-inputSwitch id="accu" class="ui-g-6" formControlName="accurate"></p-inputSwitch>
+                </div>
+                <div class="ui-g-12">
+                    <label for="keyw" class="ui-g-6"><strong>Keyword</strong></label>
+                    <input pInput type="text" id="keyw" class="ui-g-6" formControlName="keyword">
+                </div>
+                <div class="ui-g-12">
+                    <label for="spd" class="ui-g-6"><strong>Speed</strong></label>
+                    <input pInput type="number" id="spd" class="ui-g-6" formControlName="speed">
+                </div>
+                <div class="ui-g-12">
+                    <label for="half" class="ui-g-6"><strong>Half Angles</strong></label>
+                    <input pInput type="number" id="half" class="ui-g-6" formControlName="halfAngle">
+                </div>
+                <div class="ui-g-12">
+                    <label for="cats" class="ui-g-6"><strong>Catalogs</strong></label>
+                    <p-dropdown id="cats" [options]="catalogs" formControlName="catalogs"></p-dropdown>
+                </div>
+
+            </form>
+        </div>
+
+    </p-panel>
     <div class="ui-g-12" *ngFor="let item of cmea">
         <p-accordion>
             <p-accordionTab header="{{item.time21_5}}">
