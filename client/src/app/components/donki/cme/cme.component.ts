@@ -118,22 +118,31 @@ export class CMEComponent {
   ngOnInit() {
     this._sharedService.subTitleSubject$.next('DONKI/Coronal Mass Ejection')
     this.socket = SocketService.getInstance();
-    this.startModel = new Date(moment().subtract(1, 'months').format());
-    this.endModel = new Date(moment(this.startModel).format());
-    this.maxDate = new Date(moment(this.endModel).format());
+    this.startModel = new Date(moment().subtract(30, 'days').format());
+    this.endModel = new Date(moment().subtract(30, 'days').format());
+    this.maxDate =  new Date(moment().subtract(30, 'days').format());
     this.socket.on("send cme", cme => {
       this.cme = cme;
     });
     this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD') });
   }
 
-  getCME(end: Date) {
-    if(this.startModel > end){
-      this.endModel = new Date(moment().subtract(1, 'months').format());
+  getCME(type) {
+   if(type="start"){
+    console.log('1start', this.startModel);
+    console.log('1end', this.endModel);
+    if(this.startModel > this.endModel){
+      console.log('2start', this.startModel);
+    console.log('2end', this.endModel);
+    this.startModel = new Date(moment().subtract(30, 'days').format('YYYY-MM-DD'))
+      this.endModel = new Date(moment().subtract(30, 'days').format('YYYY-MM-DD'))
+      this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD')});
     }
-      this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD'),
-     endDate: moment(this.endModel).format('YYYY-MM-DD') });
     
-    this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD')});
+   }else{
+    this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD'),
+    endDate: moment(this.endModel).format('YYYY-MM-DD') });
+   }
   }
 }
+
