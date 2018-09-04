@@ -1,10 +1,10 @@
 <div class="ui-g">
-        <div class="ui-g center-item" *ngIf="isLoading">
-                <div class="ui-g-12">
-                    <p-progressSpinner></p-progressSpinner>
-                </div>
-        
-            </div>
+    <div class="ui-g center-item" *ngIf="isLoading">
+        <div class="ui-g-12">
+            <p-progressSpinner></p-progressSpinner>
+        </div>
+
+    </div>
     <div class="ui-g-12">
         <div class="ui-g-6">
             Start:
@@ -17,7 +17,8 @@
                 (onSelect)="setCMEDate()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
-    <div class="ui-g-12" *ngFor="let item of cme">
+
+    <div class="ui-g-12 " *ngFor="let item of cme">
 
         <p-accordion>
             <p-accordionTab header="{{item.activityID}}">
@@ -30,8 +31,8 @@
                             ID: {{instrument.id}}<br/> Name: {{instrument.displayName}}<br/>
                         </ng-container>
                         <ng-container *ngFor="let cmeAnalysis of item.cmeAnalyses">
-                            time21_5 : {{cmeAnalysis.time21_5}}<br/> latitude: {{cmeAnalysis.latitude}}<br/> longitude: {{cmeAnalysis.longitude}}<br/>                            halfAngle:
-                            {{cmeAnalysis.halfAngle}}
+                            time21_5 : {{cmeAnalysis.time21_5}}<br/> latitude: {{cmeAnalysis.latitude}}<br/> longitude: {{cmeAnalysis.longitude}}
+                            <br/> halfAngle: {{cmeAnalysis.halfAngle}}
                             <br/> speed: {{cmeAnalysis.speed}}<br/> type: {{cmeAnalysis.type}}<br/> isMostAccurate: {{cmeAnalysis.isMostAccurate}}
                             <br/> note: {{cmeAnalysis.note}}<br/> levelOfData: {{cmeAnalysis.levelOfData}}<br/> enlilList:
 
@@ -54,6 +55,7 @@
             </p-accordionTab>
         </p-accordion>
     </div>
+
     <ng-container *ngIf="!cme && !isLoading || cme && cme.length == 0 && !isLoading">
         <h1>No CME Found!</h1>
     </ng-container>
