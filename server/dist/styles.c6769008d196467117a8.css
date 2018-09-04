@@ -2172,18 +2172,28 @@ p-togglebutton.ng-dirty.ng-invalid .ui-button {
   border-radius: 5px;
   height: 50%;
   margin: 2px;
-  background-color: #68727B; }
+  background-color: #68727b; }
 p-card .ui-card.ui-widget {
   margin-top: 6px !important;
   margin-bottom: 6px !important; }
 p-card .ui-button.ui-widget {
   margin-top: 6px !important;
   margin-bottom: 6px !important; }
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   width: 100%;
   text-align: center; }
 .sub {
   padding-left: 20px !important; }
+.ui-state-default {
+  border: 1px solid #68727b !important;
+  background-color: #6580a1 !important;
+  color: #ffffff !important; }
+.ui-state-default a {
+  color: #ffffff; }
 #scroll {
   display: block;
   /* Hidden by default */

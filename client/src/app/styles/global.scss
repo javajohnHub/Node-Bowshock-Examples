@@ -4,83 +4,94 @@
 @import '~primeng/resources/themes/home/theme.css';
 @import '~primeicons/primeicons.css';
 
-.ui-datascroller.ui-widget li div div{
-  //color: #6580A1;
+.ui-datascroller.ui-widget li div div {
+	//color: #6580A1;
 }
-$border-color: #68727B;
-$bg_color: #6580A1;
+$border-color: #68727b;
+$bg_color: #6580a1;
 
-.border{
-  border: 1px solid #424548;
-  border-radius: 5px;
-  height:50%;
-  margin: 2px;
-  background-color: #68727B;
+.border {
+	border: 1px solid #424548;
+	border-radius: 5px;
+	height: 50%;
+	margin: 2px;
+	background-color: #68727b;
 }
-p-card .ui-card.ui-widget{
-  margin-top: 6px !important;
-  margin-bottom: 6px !important;
+p-card .ui-card.ui-widget {
+	margin-top: 6px !important;
+	margin-bottom: 6px !important;
 }
-p-card .ui-button.ui-widget{
-  margin-top: 6px !important;
-  margin-bottom: 6px !important;
+p-card .ui-button.ui-widget {
+	margin-top: 6px !important;
+	margin-bottom: 6px !important;
 }
-h1,h2,h3,h4,h5{
-  width:100%;
-  text-align: center;
+h1,
+h2,
+h3,
+h4,
+h5 {
+	width: 100%;
+	text-align: center;
 }
-.sub{
-  padding-left: 20px!important;
-
+.sub {
+	padding-left: 20px !important;
 }
-#scroll{
-  display: block; /* Hidden by default */
-  position: fixed; /* Fixed/sticky position */
-  bottom: 20px; /* Place the button at the bottom of the page */
-  right: 30px; /* Place the button 30px from the right */
-  z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: rgba(0,0,0,0.3); /* Set a background color */
-  color: white; /* Text color */
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
+.ui-state-default {
+	border: 1px solid #68727b !important;
+	background-color: #6580a1 !important;
+	color: #ffffff !important;
+}
+.ui-state-default a {
+	color: #ffffff;
+}
+#scroll {
+	display: block; /* Hidden by default */
+	position: fixed; /* Fixed/sticky position */
+	bottom: 20px; /* Place the button at the bottom of the page */
+	right: 30px; /* Place the button 30px from the right */
+	z-index: 99; /* Make sure it does not overlap */
+	border: none; /* Remove borders */
+	outline: none; /* Remove outline */
+	background-color: rgba(0, 0, 0, 0.3); /* Set a background color */
+	color: white; /* Text color */
+	cursor: pointer; /* Add a mouse pointer on hover */
+	padding: 15px; /* Some padding */
+	border-radius: 10px; /* Rounded corners */
 }
 #scroll:hover {
-  background-color: #555; /* Add a dark-grey background on hover */
+	background-color: #555; /* Add a dark-grey background on hover */
 }
 
-.next{
-  cursor: pointer !important;
+.next {
+	cursor: pointer !important;
 }
 
-.previous{
-  cursor: pointer !important;
+.previous {
+	cursor: pointer !important;
 }
-img{
-  max-width: 100%;
-  max-height: 100%;
+img {
+	max-width: 100%;
+	max-height: 100%;
 }
-iframe{
-  max-height: 650px;
-  height:100%;
+iframe {
+	max-height: 650px;
+	height: 100%;
 }
 
 .square {
-  height: 100%;
-  width: 100%;
+	height: 100%;
+	width: 100%;
 }
-.center{
-  margin: auto;
-  width: 100%;
+.center {
+	margin: auto;
+	width: 100%;
 }
 
-.center-item{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.center-item {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 // $color: teal;
 // .ui-state-default{
