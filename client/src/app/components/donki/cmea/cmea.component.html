@@ -9,12 +9,12 @@
         <div class="ui-g-6">
             Start:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
-                (onSelect)="setCMEADate()" [(ngModel)]="startModel" dateFormat="yy-mm-dd" [maxDate]="maxStartDate"></p-calendar>
+                (onSelect)="setOptions()" [(ngModel)]="startModel" dateFormat="yy-mm-dd" [maxDate]="maxStartDate"></p-calendar>
         </div>
         <div class="ui-g-6">
             End:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
-                (onSelect)="setCMEADate()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
+                (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
     <p-panel header="Search Options" [toggleable]="true" [collapsed]="true">

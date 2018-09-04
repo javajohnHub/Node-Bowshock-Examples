@@ -116,81 +116,100 @@ export class CMEAComponent {
 				completeEntryOnly: this.complete,
 				catalog: this.selectedCatalog
 			});
-		}
-
-		if (
-			moment(this.startModel).format('YYYY-MM-DD') >
-			moment(this.endModel).format('YYYY-MM-DD')
-		) {
-			this.endModel = new Date(
-				moment()
-					.subtract(30, 'days')
-					.format()
-			);
-			console.log('2');
-			this.socket.emit('get cmea', {
+			console.log({
 				startDate: moment(this.startModel).format('YYYY-MM-DD'),
-				keyword: this.myKeyword,
-				halfAngle: this.myHalfAngle,
-				speed: this.mySpeed,
+				keyword: this.keyword.value,
+				halfAngle: this.halfAngle.value,
+				speed: this.speed.value,
 				mostAccurateOnly: this.accurate,
 				completeEntryOnly: this.complete,
-				catalog: this.selectedCatalog
+				catalog: this.catalogsControl.value
 			});
 		} else {
-			console.log('else');
-			this.socket.emit('get cmea', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD'),
-				endDate: moment(this.endModel).format('YYYY-MM-DD'),
-				keyword: this.myKeyword,
-				halfAngle: this.myHalfAngle,
-				speed: this.mySpeed,
-				mostAccurateOnly: this.accurate,
-				completeEntryOnly: this.complete,
-				catalog: this.selectedCatalog
-			});
+			if (
+				moment(this.startModel).format('YYYY-MM-DD') >
+				moment(this.endModel).format('YYYY-MM-DD')
+			) {
+				this.endModel = new Date(
+					moment()
+						.subtract(30, 'days')
+						.format()
+				);
+				console.log('2');
+				this.socket.emit('get cmea', {
+					startDate: moment(this.startModel).format('YYYY-MM-DD'),
+					keyword: this.myKeyword,
+					halfAngle: this.myHalfAngle,
+					speed: this.mySpeed,
+					mostAccurateOnly: this.accurate,
+					completeEntryOnly: this.complete,
+					catalog: this.selectedCatalog
+				});
+				console.log({
+					startDate: moment(this.startModel).format('YYYY-MM-DD'),
+					endDate: moment(this.endModel).format('YYYY-MM-DD'),
+					keyword: this.keyword.value,
+					halfAngle: this.halfAngle.value,
+					speed: this.speed.value,
+					mostAccurateOnly: this.accurate,
+					completeEntryOnly: this.complete,
+					catalog: this.catalogsControl.value
+				});
+			} else {
+				console.log('else');
+				this.socket.emit('get cmea', {
+					startDate: moment(this.startModel).format('YYYY-MM-DD'),
+					endDate: moment(this.endModel).format('YYYY-MM-DD'),
+					keyword: this.myKeyword,
+					halfAngle: this.myHalfAngle,
+					speed: this.mySpeed,
+					mostAccurateOnly: this.accurate,
+					completeEntryOnly: this.complete,
+					catalog: this.selectedCatalog
+				});
+				console.log({
+					startDate: moment(this.startModel).format('YYYY-MM-DD'),
+					endDate: moment(this.endModel).format('YYYY-MM-DD'),
+					keyword: this.keyword.value,
+					halfAngle: this.halfAngle.value,
+					speed: this.speed.value,
+					mostAccurateOnly: this.accurate,
+					completeEntryOnly: this.complete,
+					catalog: this.catalogsControl.value
+				});
+			}
 		}
-		console.log({
-			startDate: moment(this.startModel).format('YYYY-MM-DD'),
-			endDate: moment(this.endModel).format('YYYY-MM-DD'),
-			keyword: this.keyword.value,
-			halfAngle: this.halfAngle.value,
-			speed: this.speed.value,
-			mostAccurateOnly: this.accurate,
-			completeEntryOnly: this.complete,
-			catalog: this.catalogsControl.value
-		});
 	}
 
-	setCMEADate() {
-		this.isLoading = true;
-		if (
-			moment(this.startModel).format('YYYY-MM-DD') ==
-			moment(this.endModel).format('YYYY-MM-DD')
-		) {
-			this.socket.emit('get cmea', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
-		}
-		if (
-			moment(this.startModel).format('YYYY-MM-DD') >
-			moment(this.endModel).format('YYYY-MM-DD')
-		) {
-			this.endModel = new Date(
-				moment()
-					.subtract(30, 'days')
-					.format()
-			);
-			this.socket.emit('get cmea', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
-		} else {
-			this.socket.emit('get cmea', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD'),
-				endDate: moment(this.endModel).format('YYYY-MM-DD')
-			});
-		}
-	}
+	// setCMEADate() {
+	// 	this.isLoading = true;
+	// 	if (
+	// 		moment(this.startModel).format('YYYY-MM-DD') ==
+	// 		moment(this.endModel).format('YYYY-MM-DD')
+	// 	) {
+	// 		this.socket.emit('get cmea', {
+	// 			startDate: moment(this.startModel).format('YYYY-MM-DD')
+	// 		});
+	// 	}
+	// 	if (
+	// 		moment(this.startModel).format('YYYY-MM-DD') >
+	// 		moment(this.endModel).format('YYYY-MM-DD')
+	// 	) {
+	// 		this.endModel = new Date(
+	// 			moment()
+	// 				.subtract(30, 'days')
+	// 				.format()
+	// 		);
+	// 		this.socket.emit('get cmea', {
+	// 			startDate: moment(this.startModel).format('YYYY-MM-DD')
+	// 		});
+	// 	} else {
+	// 		this.socket.emit('get cmea', {
+	// 			startDate: moment(this.startModel).format('YYYY-MM-DD'),
+	// 			endDate: moment(this.endModel).format('YYYY-MM-DD')
+	// 		});
+	// 	}
+	// }
 
 	get keyword() {
 		return this.cmeaForm.get('keyword');
