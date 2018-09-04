@@ -110,39 +110,29 @@ export interface CME {
 export class CMEComponent {
   socket: any;
   cme: CME;
-  startModel: Date;
-  endModel: Date;
-  maxDate: Date;
+  startModel: Date = new Date(moment().subtract(30, 'days').format());
+  endModel: Date = new Date(moment().subtract(30, 'days').format());
+  maxStartDate: Date = new Date(moment().subtract(30, 'days').format());
+  maxEndDate: Date = new Date(moment().subtract(30, 'days').format());
   constructor(private _sharedService: SharedService) {}
 
   ngOnInit() {
     this._sharedService.subTitleSubject$.next('DONKI/Coronal Mass Ejection')
     this.socket = SocketService.getInstance();
-    this.startModel = new Date(moment().subtract(30, 'days').format());
-    this.endModel = new Date(moment().subtract(30, 'days').format());
-    this.maxDate =  new Date(moment().subtract(30, 'days').format());
     this.socket.on("send cme", cme => {
       this.cme = cme;
     });
     this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD') });
   }
 
-  getCME(type) {
-   if(type="start"){
-    console.log('1start', this.startModel);
-    console.log('1end', this.endModel);
+  setCMEDate() {
     if(this.startModel > this.endModel){
-      console.log('2start', this.startModel);
-    console.log('2end', this.endModel);
-    this.startModel = new Date(moment().subtract(30, 'days').format('YYYY-MM-DD'))
-      this.endModel = new Date(moment().subtract(30, 'days').format('YYYY-MM-DD'))
-      this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD')});
+      this.endModel = new Date(this.startModel);
+      this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD'), endDate: moment(this.endModel).format('YYYY-MM-DD')});
+    }else{
+      this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD'), endDate: moment(this.endModel).format('YYYY-MM-DD')});
     }
     
-   }else{
-    this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD'),
-    endDate: moment(this.endModel).format('YYYY-MM-DD') });
-   }
   }
 }
 
