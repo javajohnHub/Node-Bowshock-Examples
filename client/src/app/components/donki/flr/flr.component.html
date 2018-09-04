@@ -28,7 +28,7 @@
                             <ng-container *ngFor="let instrument of item.instruments">
                                 ID: {{instrument.id}}<br/> Name: {{instrument.displayName}}<br/>
                             </ng-container>
-                            {{item.beginTime}} {{item.peakTime}} {{item.endTime}} {{item.classType}} {{item.sourceLocation}} {{activeRegionNum}}
+                            {{item.beginTime}} {{item.peakTime}} {{item.endTime}} {{item.classType}} {{item.sourceLocation}} {{item.activeRegionNum}}
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
                                     <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br/>
@@ -79,7 +79,7 @@
             </p-accordion>
         </div>
     </div>
-    <ng-container *ngIf="!flr && !isLoading || flr && flr.length == 0 && !isLoading">
+    <ng-container *ngIf="!flr && !isLoading && !cme || flr && flr.length == 0 && !isLoading && !cme">
         <h1>No FLR Found!</h1>
     </ng-container>
 </div>
