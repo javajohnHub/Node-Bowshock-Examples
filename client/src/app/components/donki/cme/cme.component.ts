@@ -109,7 +109,7 @@ export interface CME {
 })
 export class CMEComponent {
   socket: any;
-  cme: CME;
+  cme: CME[];
   startModel: Date = new Date(moment().subtract(30, 'days').format());
   endModel: Date = new Date(moment().subtract(30, 'days').format());
   maxStartDate: Date = new Date(moment().subtract(30, 'days').format());
@@ -126,9 +126,12 @@ export class CMEComponent {
   }
 
   setCMEDate() {
-    if(this.startModel > this.endModel){
-      this.endModel = new Date(this.startModel);
-      this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD'), endDate: moment(this.endModel).format('YYYY-MM-DD')});
+    if(moment(this.startModel).format('YYYY-MM-DD') ==  moment(this.endModel).format('YYYY-MM-DD')){
+      this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD')});
+    }
+    if(moment(this.startModel).format('YYYY-MM-DD') >  moment(this.endModel).format('YYYY-MM-DD')){
+      this.endModel = new Date(moment().subtract(30, 'days').format());
+      this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD')});
     }else{
       this.socket.emit("get cme", { startDate: moment(this.startModel).format('YYYY-MM-DD'), endDate: moment(this.endModel).format('YYYY-MM-DD')});
     }

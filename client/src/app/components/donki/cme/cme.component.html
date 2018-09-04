@@ -49,7 +49,7 @@
             </p-accordionTab>
         </p-accordion>
     </div>
-    <ng-container *ngIf="!cme">
+    <ng-container *ngIf="!cme || cme.length == 0">
         <h1>No CME Found!</h1>
     </ng-container>
 </div>
