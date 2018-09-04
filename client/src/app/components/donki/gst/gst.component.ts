@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SocketService } from '../../../shared/socket.service';
 import { SharedService } from '../../../shared/shared.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-gst',
   templateUrl: 'gst.component.html'
@@ -13,7 +13,7 @@ export class GSTComponent {
   }
 
   ngOnInit() {
-    this._sharedService.subTitleSubject$.next('Space Weather Database Of Notifications, Knowledge, Information/Geo Magnetic Storm')
+    this._sharedService.subTitleSubject$.next('DONKI/Geo Magnetic Storm')
     this.socket = SocketService.getInstance();
 
     this.socket.on("send gst", gst => {

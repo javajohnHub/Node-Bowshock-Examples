@@ -2,20 +2,50 @@
 
     <div class="ui-g-12">
         <div class="ui-g-6">
-        Start:
-        <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
-            (onSelect)="getCME($event, null)" [(ngModel)]="startModel" dateFormat="yy-mm-dd"></p-calendar>
+            Start:
+            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
+                (onSelect)="getCME($event)" [(ngModel)]="startModel" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
         </div>
         <div class="ui-g-6">
             End:
-<p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
-            (onSelect)="getCME(startModel, $event)" [(ngModel)]="endModel" dateFormat="yy-mm-dd"></p-calendar>
+            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
+                (onSelect)="getCME($event)" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
         </div>
     </div>
-    <div class="ui-g-12">
-        
+    <div class="ui-g-12" *ngFor="let item of cme">
+
+        <p-accordion>
+            <p-accordionTab header="{{item.activityID}}">
+                <div class="ui-g">
+                    <div class="ui-g-12 border">
+                        ActivityID: {{item.activityID}}<br/> Start: {{item.startTime}}<br/> Source Location: {{item.sourceLocation}}<br/>                        Active
+                        Region Number: {{item.activeRegionNum}}<br/> Instruments:
+                        <br/>
+                        <ng-container *ngFor="let instrument of item.instruments">
+                            ID: {{instrument.id}}<br/> Name: {{instrument.displayName}}<br/>
+                        </ng-container>
+                        <ng-container *ngFor="let cmeAnalysis of item.cmeAnalyses">
+                            time21_5 : {{cmeAnalysis.time21_5}}<br/> latitude: {{cmeAnalysis.latitude}}<br/> longitude: {{cmeAnalysis.longitude}}<br/>                            halfAngle:
+                            {{cmeAnalysis.halfAngle}}<br/> speed: {{cmeAnalysis.speed}}<br/> type: {{cmeAnalysis.type}}<br/>                            isMostAccurate:
+                            {{cmeAnalysis.isMostAccurate}}<br/> note: {{cmeAnalysis.note}}<br/> levelOfData: {{cmeAnalysis.levelOfData}}<br/>                            enlilList:
+
+                            <br/>
+                            <ng-container *ngFor="let enlil of cmeAnalysis.enlilList">
+                                {{enlil | json}}<br/>
+                            </ng-container>
+                        </ng-container>
+                        Linked Events:<br/>
+                        <ng-container *ngFor="let event of item.linkedEvents">
+                            {{event | json}}<br/>
+                        </ng-container>
+                        Note: {{item.note}}<br/>
+                         Catalog: {{item.catalog}}<br/>
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
     </div>
     <ng-container *ngIf="!cme">
-            <h1>No CME Found!</h1>
+        <h1>No CME Found!</h1>
     </ng-container>
 </div>

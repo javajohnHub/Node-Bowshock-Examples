@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SocketService } from '../../../shared/socket.service';
 import { SharedService } from '../../../shared/shared.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-cmea',
   templateUrl: 'cmea.component.html'

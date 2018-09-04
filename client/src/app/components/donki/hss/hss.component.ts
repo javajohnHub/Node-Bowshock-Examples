@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SocketService } from '../../../shared/socket.service';
 import { SharedService } from '../../../shared/shared.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-hss',
   templateUrl: 'hss.component.html'
@@ -13,7 +13,7 @@ export class HSSComponent {
   }
 
   ngOnInit() {
-    this._sharedService.subTitleSubject$.next('Space Weather Database Of Notifications, Knowledge, Information/High Speed Stream')
+    this._sharedService.subTitleSubject$.next('DONKI/High Speed Stream')
     
     this.socket = SocketService.getInstance();
 

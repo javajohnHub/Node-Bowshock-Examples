@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SocketService } from '../../../shared/socket.service';
 import { SharedService } from '../../../shared/shared.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-ips',
   templateUrl: 'ips.component.html'
@@ -13,7 +13,7 @@ export class IPSComponent {
   }
 
   ngOnInit() {
-    this._sharedService.subTitleSubject$.next('Space Weather Database Of Notifications, Knowledge, Information/Interplanetary Shock')
+    this._sharedService.subTitleSubject$.next('DONKI/Interplanetary Shock')
     this.socket = SocketService.getInstance();
 
     this.socket.on("send ips", ips => {
