@@ -35,7 +35,7 @@ export class GSTComponent {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this._sharedService.subTitleSubject$.next('DONKI/Solar Flare');
+		this._sharedService.subTitleSubject$.next('Geomagnetic Storm');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send gst', gst => {
 			this.gst = gst;
