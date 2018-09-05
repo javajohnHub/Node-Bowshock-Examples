@@ -56,9 +56,10 @@ export class GSTComponent {
 		this.isLoading = true;
 
 		let newDate = date.split('T');
+		let type = date.split('-');
 		this.startModel = new Date(moment(newDate[0]).format('YYYY-MM-DD'));
-		this.socket.emit('get cme', {
-			startDate: moment(newDate[0]).format('YYYY-MM-DD')
+		this.socket.emit('get ' + type[3].toLowerCase(), {
+			startDate: moment(this.startModel).format('YYYY-MM-DD')
 		});
 	}
 

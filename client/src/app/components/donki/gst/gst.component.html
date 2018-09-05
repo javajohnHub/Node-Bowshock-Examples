@@ -26,7 +26,7 @@
                         <div class="ui-g-12 border">
                             {{item.startTime}}
                             <ng-container *ngFor="let idx of item.allKpIndex">
-                                ID: {{idx.observedTime}<br/> Name: {{idx.kpIndex}}<br/>{{idx.source}}
+                                ID: {{idx.observedTime}}<br/> Name: {{idx.kpIndex}}<br/>{{idx.source}}
                             </ng-container>
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">

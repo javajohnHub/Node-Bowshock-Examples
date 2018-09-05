@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { SelectItem } from 'primeng/api';
 import { Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { CME } from '../cme/cme.component';
 
 export interface CMEA {
 	time21_5: string;
@@ -27,6 +28,7 @@ export interface CMEA {
 export class CMEAComponent {
 	socket: any;
 	cmea: CMEA[];
+	cme: CME[];
 	cmeaForm: FormGroup;
 
 	startModel: Date = new Date(
@@ -69,15 +71,22 @@ export class CMEAComponent {
 		];
 		this._createForm();
 		this._sharedService.subTitleSubject$.next(
-			'DONKI/Coronal Mass Ejection Analysis'
+			'Coronal Mass Ejection Analysis'
 		);
 		this.socket = SocketService.getInstance();
 		this.socket.on('send cmea', cmea => {
 			this.cmea = cmea;
+			this.cme = null;
 			this.isLoading = false;
 		});
 
-		this.socket.emit('get cmea', {
+		this.socket.on('send cme', cme => {
+			console.log(cme);
+			this.cme = cme;
+			this.cmea = null;
+			this.isLoading = false;
+		});
+		this.socket.emit('get cme', {
 			startDate: moment(this.startModel).format('YYYY-MM-DD')
 		});
 	}
@@ -95,9 +104,10 @@ export class CMEAComponent {
 		this.isLoading = true;
 
 		let newDate = date.split('T');
+		let type = date.split('-');
 		this.startModel = new Date(moment(newDate[0]).format('YYYY-MM-DD'));
-		this.socket.emit('get cmea', {
-			startDate: moment(newDate[0]).format('YYYY-MM-DD')
+		this.socket.emit('get ' + type[3].toLowerCase(), {
+			startDate: moment(this.startModel).format('YYYY-MM-DD')
 		});
 	}
 
@@ -180,36 +190,6 @@ export class CMEAComponent {
 			}
 		}
 	}
-
-	// setCMEADate() {
-	// 	this.isLoading = true;
-	// 	if (
-	// 		moment(this.startModel).format('YYYY-MM-DD') ==
-	// 		moment(this.endModel).format('YYYY-MM-DD')
-	// 	) {
-	// 		this.socket.emit('get cmea', {
-	// 			startDate: moment(this.startModel).format('YYYY-MM-DD')
-	// 		});
-	// 	}
-	// 	if (
-	// 		moment(this.startModel).format('YYYY-MM-DD') >
-	// 		moment(this.endModel).format('YYYY-MM-DD')
-	// 	) {
-	// 		this.endModel = new Date(
-	// 			moment()
-	// 				.subtract(30, 'days')
-	// 				.format()
-	// 		);
-	// 		this.socket.emit('get cmea', {
-	// 			startDate: moment(this.startModel).format('YYYY-MM-DD')
-	// 		});
-	// 	} else {
-	// 		this.socket.emit('get cmea', {
-	// 			startDate: moment(this.startModel).format('YYYY-MM-DD'),
-	// 			endDate: moment(this.endModel).format('YYYY-MM-DD')
-	// 		});
-	// 	}
-	// }
 
 	get keyword() {
 		return this.cmeaForm.get('keyword');
