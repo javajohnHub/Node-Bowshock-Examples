@@ -13,6 +13,7 @@ export class HSSComponent {
 	socket: any;
 	hss: any; //HSS[];
 	gst: any; //GST[];
+	cme: any;
 	hssForm: FormGroup;
 
 	startModel: Date = new Date(
