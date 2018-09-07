@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { SocketService } from '../../../shared/socket.service';
 import { SharedService } from '../../../shared/shared.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-ips',
@@ -19,11 +20,7 @@ export class IPSComponent {
 	catalogs: SelectItem[];
 	location: String;
 	selectedCatalog: string;
-	startModel: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	startModel: Date;
 	endModel: Date = new Date();
 	maxStartDate: Date = new Date(
 		moment()
@@ -32,7 +29,12 @@ export class IPSComponent {
 	);
 	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
-	constructor(private _sharedService: SharedService) {}
+	sub: any;
+	constructor(
+		private _sharedService: SharedService,
+		private _fb: FormBuilder,
+		private route: ActivatedRoute
+	) {}
 
 	ngOnInit() {
 		this.isLoading = true;
@@ -64,11 +66,33 @@ export class IPSComponent {
 			this.ips = null;
 			this.isLoading = false;
 		});
-		this.socket.emit('get ips', {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
+		this.startModel = new Date(
+			moment()
+				.subtract(30, 'days')
+				.format()
+		);
+		this.sub = this.route.params.subscribe(params => {
+			console.log(params['startDate']);
+			this.startModel = new Date(
+				moment(params['startDate']).format('YYYY-MM-DD')
+			);
+			this.socket.emit('get ips', {
+				startDate: moment(params['startDate']).format('YYYY-MM-DD')
+			});
 		});
+
+		// this.socket.emit('get ips', {
+		// 	startDate: moment(this.startModel).format('YYYY-MM-DD')
+		// });
+		this._createForm();
 	}
 
+	private _createForm() {
+		this.ipsForm = this._fb.group({
+			location: ['Earth'],
+			catalogs: ['ALL']
+		});
+	}
 	goToAssoc(date) {
 		this.isLoading = true;
 

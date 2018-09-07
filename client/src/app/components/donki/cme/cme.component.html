@@ -18,92 +18,6 @@
                 [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
-    <div class="ui-g-12" *ngFor="let item of rbe">
-        <p-accordion>
-            <p-accordionTab header="{{item.rbeID}}">
-                <div class="ui-g">
-                    <div class="ui-g-12 border">
-                        {{item | json}}
-                        <ng-container *ngIf="item.linkedEvents">
-                            <ng-container *ngFor="let event of item.linkedEvents">
-                                <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
-                            </ng-container>
-                        </ng-container>
-                    </div>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
-    </div>
-    <div class="ui-g-12" *ngFor="let item of mpc">
-        <p-accordion>
-            <p-accordionTab header="{{item.mpcID}}">
-                <div class="ui-g">
-                    <div class="ui-g-12 border">
-                        {{item | json}}
-                        <ng-container *ngIf="item.linkedEvents">
-                            <ng-container *ngFor="let event of item.linkedEvents">
-                                <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
-                            </ng-container>
-                        </ng-container>
-                    </div>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
-    </div>
-    <div class="ui-g-12" *ngFor="let item of ips">
-        <p-accordion>
-            <p-accordionTab header="{{item.activityID}}">
-                <div class="ui-g">
-                    <div class="ui-g-12 border">
-                        {{item | json}}
-                    </div>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
-    </div>
-    <div *ngIf="hss">
-        <div class="ui-g-12" *ngFor="let item of hss">
-            <p-accordion>
-                <p-accordionTab header="{{item.hssID}}">
-                    <div class="ui-g">
-                        <div class="ui-g-12 border">
-                            {{item.eventTime}}
-                            <ng-container *ngFor="let inst of item.instruments">
-                                {{inst.id}} {{inst.displayName}}
-                            </ng-container>
-                            <ng-container *ngIf="item.linkedEvents">
-                                <ng-container *ngFor="let event of item.linkedEvents">
-                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
-                                </ng-container>
-                            </ng-container>
-                        </div>
-                    </div>
-                </p-accordionTab>
-            </p-accordion>
-        </div>
-    </div>
-    <div *ngIf="gst">
-        <div class="ui-g-12 " *ngFor="let item of gst">
-
-            <p-accordion>
-                <p-accordionTab header="{{item.gstID}}">
-                    <div class="ui-g">
-                        <div class="ui-g-12 border">
-                            {{item.startTime}}
-                            <ng-container *ngFor="let idx of item.allKpIndex">
-                                ID: {{idx.observedTime}}<br /> Name: {{idx.kpIndex}}<br />{{idx.source}}
-                            </ng-container>
-                            <ng-container *ngIf="item.linkedEvents">
-                                <ng-container *ngFor="let event of item.linkedEvents">
-                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
-                                </ng-container>
-                            </ng-container>
-                        </div>
-                    </div>
-                </p-accordionTab>
-            </p-accordion>
-        </div>
-    </div>
     <div *ngIf="cme">
         <div class="ui-g-12 " *ngFor="let item of cme">
 
@@ -148,7 +62,7 @@
             </p-accordion>
         </div>
     </div>
-    <ng-container *ngIf="!isLoading && !gst && !cme && !hss && !ips && !mpc && !rbe|| cme && cme.length == 0 && !isLoading && !gst && !mpc && !hss && !ips && !rbe">
+    <ng-container *ngIf="!isLoading && !cme">
         <h1>No mpc Found!</h1>
     </ng-container>
 </div>

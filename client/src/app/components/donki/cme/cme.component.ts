@@ -4,6 +4,7 @@ import { SharedService } from '../../../shared/shared.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-cme',
@@ -34,7 +35,10 @@ export class CMEComponent {
 	);
 	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
-	constructor(private _sharedService: SharedService) {}
+	constructor(
+		private _sharedService: SharedService,
+		private _router: Router
+	) {}
 
 	ngOnInit() {
 		this.isLoading = true;
@@ -102,9 +106,13 @@ export class CMEComponent {
 		let newDate = date.split('T');
 		let type = date.split('-');
 		this.startModel = new Date(moment(newDate[0]).format('YYYY-MM-DD'));
-		this.socket.emit('get ' + type[3].toLowerCase(), {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
+		this._router.navigate([
+			'donki/' + type[3].toLowerCase() + '/',
+			moment(this.startModel).format('YYYY-MM-DD')
+		]);
+		// this.socket.emit('get ' + type[3].toLowerCase(), {
+		// 	startDate: moment(this.startModel).format('YYYY-MM-DD')
+		// });
 	}
 
 	setOptions() {

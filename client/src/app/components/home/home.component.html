@@ -1,6 +1,6 @@
 <p-panel header="Angular 6, PrimeNg, Express, node-bowshock, and socket.io" [toggleable]="true" [collapsed]="false">
     <div class="ui-g">
-        <div class="ui-g-12 border">
+        <div class="ui-g-12 border" *ngIf="stats">
             <div class="ui-g">
                 <div class="ui-sm-12 ui-g-6">
                     Near Earth Object Count: <span style="color: white">{{stats.near_earth_object_count}}</span>
