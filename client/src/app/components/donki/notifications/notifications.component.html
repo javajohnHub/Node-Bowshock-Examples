@@ -20,6 +20,23 @@
     </div>
     <div class="ui-g">
         <div class="ui-g-12">
-            {{notifications | json}}
+            <div *ngFor="let item of notifications">
+                <p-accordion>
+                    <p-accordionTab header="{{item.messageID}}">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                Type: {{item.messageType}}<br />
+                                MessageID: {{item.messageID}}<br />
+                                <a href="{{item.messageURL}}" target="_blank">message</a>
+                            </div>
+                            <div class="border">
+                                {{item.messageBody}}
+                            </div>
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+
+            </div>
+
         </div>
     </div>
