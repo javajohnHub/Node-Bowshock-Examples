@@ -1,1 +1,25 @@
-{{notifications | json}}
+<div class="ui-g">
+    <div class="ui-g center-item" *ngIf="isLoading">
+        <div class="ui-g-12">
+            <p-progressSpinner></p-progressSpinner>
+        </div>
+
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-6">
+            Start:
+            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
+                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="startModel" dateFormat="yy-mm-dd"
+                [maxDate]="maxStartDate"></p-calendar>
+        </div>
+        <div class="ui-g-6">
+            End:
+            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
+                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
+        </div>
+    </div>
+    <div class="ui-g">
+        <div class="ui-g-12">
+            {{notifications | json}}
+        </div>
+    </div>
