@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SocketService } from '../../../shared/socket.service';
 import { SharedService } from '../../../shared/shared.service';
 import * as moment from 'moment';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
 	selector: 'app-gst',
 	templateUrl: 'gst.component.html'
@@ -9,11 +10,7 @@ import * as moment from 'moment';
 export class GSTComponent {
 	socket: any;
 	gst: any; //GST[];
-	startModel: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	startModel: Date;
 	endModel: Date = new Date(
 		moment()
 			.subtract(30, 'days')
@@ -30,8 +27,12 @@ export class GSTComponent {
 			.format()
 	);
 	isLoading: boolean = false;
-	cme;
-	constructor(private _sharedService: SharedService) {}
+	sub: any;
+	constructor(
+		private _sharedService: SharedService,
+		private _router: Router,
+		private route: ActivatedRoute
+	) {}
 
 	ngOnInit() {
 		this.isLoading = true;
@@ -39,16 +40,25 @@ export class GSTComponent {
 		this.socket = SocketService.getInstance();
 		this.socket.on('send gst', gst => {
 			this.gst = gst;
-			this.cme = null;
 			this.isLoading = false;
 		});
-		this.socket.on('send cme', cme => {
-			this.cme = cme;
-			this.gst = null;
-			this.isLoading = false;
-		});
+		this.startModel = new Date(
+			moment()
+				.subtract(30, 'days')
+				.format()
+		);
 		this.socket.emit('get gst', {
 			startDate: moment(this.startModel).format('YYYY-MM-DD')
+		});
+
+		this.sub = this.route.params.subscribe(params => {
+			console.log(params);
+			this.startModel = new Date(
+				moment(params['startDate']).format('YYYY-MM-DD')
+			);
+			this.socket.emit('get gst', {
+				startDate: moment(params['startDate']).format('YYYY-MM-DD')
+			});
 		});
 	}
 
@@ -58,9 +68,10 @@ export class GSTComponent {
 		let newDate = date.split('T');
 		let type = date.split('-');
 		this.startModel = new Date(moment(newDate[0]).format('YYYY-MM-DD'));
-		this.socket.emit('get ' + type[3].toLowerCase(), {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
+		this._router.navigate([
+			'donki/' + type[3].toLowerCase() + '/',
+			moment(this.startModel).format('YYYY-MM-DD')
+		]);
 	}
 
 	setGSTDate() {

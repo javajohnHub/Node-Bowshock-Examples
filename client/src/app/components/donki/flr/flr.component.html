@@ -18,30 +18,30 @@
                 [readonlyInput]="true" (onSelect)="setFLRDate()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
-    <div *ngIf="!cme">
-        <div class="ui-g-12 " *ngFor="let item of flr">
 
-            <p-accordion>
-                <p-accordionTab header="{{item.flrID}}">
-                    <div class="ui-g">
-                        <div class="ui-g-12 border">
+    <div class="ui-g-12 " *ngFor="let item of flr">
 
-                            <ng-container *ngFor="let instrument of item.instruments">
-                                ID: {{instrument.id}}<br /> Name: {{instrument.displayName}}<br />
+        <p-accordion>
+            <p-accordionTab header="{{item.flrID}}">
+                <div class="ui-g">
+                    <div class="ui-g-12 border">
+
+                        <ng-container *ngFor="let instrument of item.instruments">
+                            ID: {{instrument.id}}<br /> Name: {{instrument.displayName}}<br />
+                        </ng-container>
+                        {{item.beginTime}} {{item.peakTime}} {{item.endTime}} {{item.classType}}
+                        {{item.sourceLocation}} {{item.activeRegionNum}}
+                        <ng-container *ngIf="item.linkedEvents">
+                            <ng-container *ngFor="let event of item.linkedEvents">
+                                <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
                             </ng-container>
-                            {{item.beginTime}} {{item.peakTime}} {{item.endTime}} {{item.classType}}
-                            {{item.sourceLocation}} {{item.activeRegionNum}}
-                            <ng-container *ngIf="item.linkedEvents">
-                                <ng-container *ngFor="let event of item.linkedEvents">
-                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
-                                </ng-container>
-                            </ng-container>
-                        </div>
+                        </ng-container>
                     </div>
-                </p-accordionTab>
-            </p-accordion>
-        </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
     </div>
+
     <ng-container *ngIf="!flr && !isLoading">
         <h1>No FLR Found!</h1>
     </ng-container>

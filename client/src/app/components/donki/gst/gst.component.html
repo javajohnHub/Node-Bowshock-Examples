@@ -18,28 +18,28 @@
                 [readonlyInput]="true" (onSelect)="setGSTDate()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
-    <div *ngIf="!cme">
-        <div class="ui-g-12 " *ngFor="let item of gst">
 
-            <p-accordion>
-                <p-accordionTab header="{{item.gstID}}">
-                    <div class="ui-g">
-                        <div class="ui-g-12 border">
-                            {{item.startTime}}
-                            <ng-container *ngFor="let idx of item.allKpIndex">
-                                ID: {{idx.observedTime}}<br /> Name: {{idx.kpIndex}}<br />{{idx.source}}
+    <div class="ui-g-12 " *ngFor="let item of gst">
+
+        <p-accordion>
+            <p-accordionTab header="{{item.gstID}}">
+                <div class="ui-g">
+                    <div class="ui-g-12 border">
+                        {{item.startTime}}
+                        <ng-container *ngFor="let idx of item.allKpIndex">
+                            ID: {{idx.observedTime}}<br /> Name: {{idx.kpIndex}}<br />{{idx.source}}
+                        </ng-container>
+                        <ng-container *ngIf="item.linkedEvents">
+                            <ng-container *ngFor="let event of item.linkedEvents">
+                                <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
                             </ng-container>
-                            <ng-container *ngIf="item.linkedEvents">
-                                <ng-container *ngFor="let event of item.linkedEvents">
-                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
-                                </ng-container>
-                            </ng-container>
-                        </div>
+                        </ng-container>
                     </div>
-                </p-accordionTab>
-            </p-accordion>
-        </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
     </div>
+
 
     <ng-container *ngIf="!gst && !isLoading">
         <h1>No GST Found!</h1>

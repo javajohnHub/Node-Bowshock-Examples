@@ -4,6 +4,7 @@ import { SharedService } from '../../../shared/shared.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/api';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-wsasim',
@@ -11,19 +12,7 @@ import { SelectItem } from 'primeng/api';
 })
 export class WSASimComponent {
 	socket: any;
-	hss: any; //HSS[];
-	gst: any; //GST[];
-	cme: any;
-	ips: any;
-	rbe: any;
-	mpc: any;
-	sep: any;
-	flr: any;
 	wsasim: any;
-	ipsForm: FormGroup;
-	catalogs: SelectItem[];
-	location: String;
-	selectedCatalog: string;
 	startModel: Date = new Date(
 		moment()
 			.subtract(7, 'days')
@@ -37,132 +26,25 @@ export class WSASimComponent {
 	);
 	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
-	constructor(private _sharedService: SharedService) {}
+	sub: any;
+	constructor(
+		private _sharedService: SharedService,
+		private _router: Router
+	) {}
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.catalogs = [
-			{ label: 'Select Catalog', value: 'ALL' },
-			{ label: 'ALL', value: 'ALL' },
-			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
-			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
-		];
-		this._sharedService.subTitleSubject$.next('WSA + EnlilSimulation');
+		this._sharedService.subTitleSubject$.next('WSA + Enlil Simulation');
 		this.socket = SocketService.getInstance();
-		this.socket.on('send ips', ips => {
-			this.ips = ips;
-			this.gst = null;
-			this.hss = null;
-			this.rbe = null;
-			this.cme = null;
-			this.sep = null;
-			this.flr = null;
-			this.mpc = null;
-			this.wsasim = null;
-			this.isLoading = false;
-		});
-
-		this.socket.on('send gst', gst => {
-			this.gst = gst;
-			this.hss = null;
-			this.ips = null;
-			this.rbe = null;
-			this.cme = null;
-			this.sep = null;
-			this.flr = null;
-			this.mpc = null;
-			this.wsasim = null;
-			this.isLoading = false;
-		});
-
-		this.socket.on('send hss', hss => {
-			this.hss = hss;
-			this.gst = null;
-			this.ips = null;
-			this.rbe = null;
-			this.cme = null;
-			this.sep = null;
-			this.flr = null;
-			this.mpc = null;
-			this.wsasim = null;
-			this.isLoading = false;
-		});
-
-		this.socket.on('send rbe', rbe => {
-			this.hss = null;
-			this.gst = null;
-			this.ips = null;
-			this.rbe = rbe;
-			this.cme = null;
-			this.sep = null;
-			this.flr = null;
-			this.mpc = null;
-			this.wsasim = null;
-			this.isLoading = false;
-		});
-
-		this.socket.on('send cme', cme => {
-			this.hss = null;
-			this.gst = null;
-			this.ips = null;
-			this.cme = cme;
-			this.rbe = null;
-			this.sep = null;
-			this.flr = null;
-			this.mpc = null;
-			this.wsasim = null;
-			this.isLoading = false;
-		});
-
-		this.socket.on('send flr', flr => {
-			this.hss = null;
-			this.gst = null;
-			this.ips = null;
-			this.flr = flr;
-			this.rbe = null;
-			this.cme = null;
-			this.sep = null;
-			this.mpc = null;
-			this.wsasim = null;
-			this.isLoading = false;
-		});
-
-		this.socket.on('send sep', sep => {
-			this.hss = null;
-			this.gst = null;
-			this.ips = null;
-			this.sep = sep;
-			this.rbe = null;
-			this.cme = null;
-			this.flr = null;
-			this.mpc = null;
-			this.wsasim = null;
-			this.isLoading = false;
-		});
-		this.socket.on('send mpc', mpc => {
-			this.hss = null;
-			this.gst = null;
-			this.ips = null;
-			this.mpc = mpc;
-			this.rbe = null;
-			this.cme = null;
-			this.flr = null;
-			this.sep = null;
-			this.wsasim = null;
-			this.isLoading = false;
-		});
 		this.socket.on('send wsasim', wsasim => {
-			this.hss = null;
-			this.gst = null;
-			this.ips = null;
 			this.wsasim = wsasim;
-			this.rbe = null;
-			this.cme = null;
-			this.flr = null;
-			this.sep = null;
-			this.mpc = null;
 			this.isLoading = false;
 		});
+		this.startModel = new Date(
+			moment()
+				.subtract(30, 'days')
+				.format()
+		);
 		this.socket.emit('get wsasim', {
 			startDate: moment(this.startModel).format('YYYY-MM-DD')
 		});
@@ -174,9 +56,10 @@ export class WSASimComponent {
 		let newDate = date.split('T');
 		let type = date.split('-');
 		this.startModel = new Date(moment(newDate[0]).format('YYYY-MM-DD'));
-		this.socket.emit('get ' + type[3].toLowerCase(), {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
+		this._router.navigate([
+			'donki/' + type[3].toLowerCase() + '/',
+			moment(this.startModel).format('YYYY-MM-DD')
+		]);
 	}
 
 	setOptions() {

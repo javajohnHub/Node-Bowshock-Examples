@@ -4,7 +4,7 @@ import { SharedService } from '../../../shared/shared.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/api';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-cme',
@@ -12,21 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CMEComponent {
 	socket: any;
-	hss: any; //HSS[];
-	gst: any; //GST[];
 	cme: any;
-	ips: any;
-	rbe: any;
-	mpc: any;
-	ipsForm: FormGroup;
-	catalogs: SelectItem[];
-	location: String;
-	selectedCatalog: string;
-	startModel: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
 	endModel: Date = new Date();
 	maxStartDate: Date = new Date(
 		moment()
@@ -35,68 +21,39 @@ export class CMEComponent {
 	);
 	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
+	sub: any;
+	startModel: Date;
 	constructor(
 		private _sharedService: SharedService,
-		private _router: Router
+		private _router: Router,
+		private route: ActivatedRoute
 	) {}
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.catalogs = [
-			{ label: 'Select Catalog', value: 'ALL' },
-			{ label: 'ALL', value: 'ALL' },
-			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
-			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
-		];
 		this._sharedService.subTitleSubject$.next('Coronal Mass Ejection');
 		this.socket = SocketService.getInstance();
-		this.socket.on('send ips', ips => {
-			this.ips = ips;
-			this.gst = null;
-			this.hss = null;
-			this.rbe = null;
-			this.cme = null;
-			this.isLoading = false;
-		});
-
-		this.socket.on('send gst', gst => {
-			this.gst = gst;
-			this.hss = null;
-			this.ips = null;
-			this.rbe = null;
-			this.cme = null;
-			this.isLoading = false;
-		});
-
-		this.socket.on('send hss', hss => {
-			this.hss = hss;
-			this.gst = null;
-			this.ips = null;
-			this.rbe = null;
-			this.cme = null;
-			this.isLoading = false;
-		});
-
-		this.socket.on('send rbe', rbe => {
-			this.hss = null;
-			this.gst = null;
-			this.ips = null;
-			this.rbe = rbe;
-			this.cme = null;
-			this.isLoading = false;
-		});
-
 		this.socket.on('send cme', cme => {
-			this.hss = null;
-			this.gst = null;
-			this.ips = null;
 			this.cme = cme;
-			this.rbe = null;
 			this.isLoading = false;
 		});
-
+		this.startModel = new Date(
+			moment()
+				.subtract(30, 'days')
+				.format()
+		);
 		this.socket.emit('get cme', {
 			startDate: moment(this.startModel).format('YYYY-MM-DD')
+		});
+
+		this.sub = this.route.params.subscribe(params => {
+			console.log(params);
+			this.startModel = new Date(
+				moment(params['startDate']).format('YYYY-MM-DD')
+			);
+			this.socket.emit('get cme', {
+				startDate: moment(params['startDate']).format('YYYY-MM-DD')
+			});
 		});
 	}
 
@@ -110,9 +67,6 @@ export class CMEComponent {
 			'donki/' + type[3].toLowerCase() + '/',
 			moment(this.startModel).format('YYYY-MM-DD')
 		]);
-		// this.socket.emit('get ' + type[3].toLowerCase(), {
-		// 	startDate: moment(this.startModel).format('YYYY-MM-DD')
-		// });
 	}
 
 	setOptions() {
