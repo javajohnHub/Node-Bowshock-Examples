@@ -46,7 +46,9 @@ export class CMEAComponent {
 			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
 			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
 		];
-		this._sharedService.subTitleSubject$.next('Radiation Belt Enhancement');
+		this._sharedService.subTitleSubject$.next(
+			'Coronal Mass Ejection Analysis'
+		);
 		this.socket = SocketService.getInstance();
 		this.socket.on('send ips', ips => {
 			this.ips = ips;

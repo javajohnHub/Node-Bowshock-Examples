@@ -26,13 +26,13 @@ export class WSASimComponent {
 	selectedCatalog: string;
 	startModel: Date = new Date(
 		moment()
-			.subtract(30, 'days')
+			.subtract(7, 'days')
 			.format()
 	);
 	endModel: Date = new Date();
 	maxStartDate: Date = new Date(
 		moment()
-			.subtract(30, 'days')
+			.subtract(7, 'days')
 			.format()
 	);
 	maxEndDate: Date = new Date();
@@ -47,7 +47,7 @@ export class WSASimComponent {
 			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
 			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
 		];
-		this._sharedService.subTitleSubject$.next('Solar Energetic Particle');
+		this._sharedService.subTitleSubject$.next('WSA + EnlilSimulation');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send ips', ips => {
 			this.ips = ips;
@@ -57,6 +57,7 @@ export class WSASimComponent {
 			this.cme = null;
 			this.sep = null;
 			this.flr = null;
+			this.mpc = null;
 			this.wsasim = null;
 			this.isLoading = false;
 		});
@@ -69,6 +70,7 @@ export class WSASimComponent {
 			this.cme = null;
 			this.sep = null;
 			this.flr = null;
+			this.mpc = null;
 			this.wsasim = null;
 			this.isLoading = false;
 		});
@@ -81,6 +83,7 @@ export class WSASimComponent {
 			this.cme = null;
 			this.sep = null;
 			this.flr = null;
+			this.mpc = null;
 			this.wsasim = null;
 			this.isLoading = false;
 		});
@@ -93,6 +96,7 @@ export class WSASimComponent {
 			this.cme = null;
 			this.sep = null;
 			this.flr = null;
+			this.mpc = null;
 			this.wsasim = null;
 			this.isLoading = false;
 		});
@@ -105,6 +109,7 @@ export class WSASimComponent {
 			this.rbe = null;
 			this.sep = null;
 			this.flr = null;
+			this.mpc = null;
 			this.wsasim = null;
 			this.isLoading = false;
 		});
@@ -117,6 +122,7 @@ export class WSASimComponent {
 			this.rbe = null;
 			this.cme = null;
 			this.sep = null;
+			this.mpc = null;
 			this.wsasim = null;
 			this.isLoading = false;
 		});
@@ -129,10 +135,22 @@ export class WSASimComponent {
 			this.rbe = null;
 			this.cme = null;
 			this.flr = null;
+			this.mpc = null;
 			this.wsasim = null;
 			this.isLoading = false;
 		});
-
+		this.socket.on('send mpc', mpc => {
+			this.hss = null;
+			this.gst = null;
+			this.ips = null;
+			this.mpc = mpc;
+			this.rbe = null;
+			this.cme = null;
+			this.flr = null;
+			this.sep = null;
+			this.wsasim = null;
+			this.isLoading = false;
+		});
 		this.socket.on('send wsasim', wsasim => {
 			this.hss = null;
 			this.gst = null;
@@ -142,6 +160,7 @@ export class WSASimComponent {
 			this.cme = null;
 			this.flr = null;
 			this.sep = null;
+			this.mpc = null;
 			this.isLoading = false;
 		});
 		this.socket.emit('get wsasim', {

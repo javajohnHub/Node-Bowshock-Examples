@@ -35,7 +35,7 @@ export class FLRComponent {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this._sharedService.subTitleSubject$.next('DONKI/Solar Flare');
+		this._sharedService.subTitleSubject$.next('Solar Flare');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send flr', flr => {
 			this.flr = flr;
