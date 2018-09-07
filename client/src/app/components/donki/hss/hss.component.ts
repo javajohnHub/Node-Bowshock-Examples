@@ -14,6 +14,7 @@ export class HSSComponent {
 	hss: any; //HSS[];
 	gst: any; //GST[];
 	cme: any;
+	ips: any;
 	hssForm: FormGroup;
 
 	startModel: Date = new Date(
@@ -21,21 +22,13 @@ export class HSSComponent {
 			.subtract(30, 'days')
 			.format()
 	);
-	endModel: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	endModel: Date = new Date();
 	maxStartDate: Date = new Date(
 		moment()
 			.subtract(30, 'days')
 			.format()
 	);
-	maxEndDate: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
 	catalogs: SelectItem[];
 	myKeyword: string;
@@ -54,15 +47,22 @@ export class HSSComponent {
 		this.socket.on('send hss', hss => {
 			this.hss = hss;
 			this.gst = null;
+			this.ips = null;
 			this.isLoading = false;
 		});
 
 		this.socket.on('send gst', gst => {
 			this.gst = gst;
 			this.hss = null;
+			this.ips = null;
 			this.isLoading = false;
 		});
-
+		this.socket.on('send ips', ips => {
+			this.gst = null;
+			this.hss = null;
+			this.ips = ips;
+			this.isLoading = false;
+		});
 		this.socket.emit('get hss', {
 			startDate: moment(this.startModel).format('YYYY-MM-DD')
 		});

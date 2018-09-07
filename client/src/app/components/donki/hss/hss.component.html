@@ -8,14 +8,26 @@
     <div class="ui-g-12">
         <div class="ui-g-6">
             Start:
-            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
-                (onSelect)="setOptions()" [(ngModel)]="startModel" dateFormat="yy-mm-dd" [maxDate]="maxStartDate"></p-calendar>
+            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
+                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="startModel" dateFormat="yy-mm-dd"
+                [maxDate]="maxStartDate"></p-calendar>
         </div>
         <div class="ui-g-6">
             End:
-            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
-                (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
+            <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
+                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
+    </div>
+    <div class="ui-g-12" *ngFor="let item of ips">
+        <p-accordion>
+            <p-accordionTab header="{{item.activityID}}">
+                <div class="ui-g">
+                    <div class="ui-g-12 border">
+                        {{item | json}}
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
     </div>
     <div class="ui-g-12" *ngFor="let item of hss">
         <p-accordion>
@@ -45,11 +57,11 @@
                         <div class="ui-g-12 border">
                             {{item.startTime}}
                             <ng-container *ngFor="let idx of item.allKpIndex">
-                                ID: {{idx.observedTime}}<br/> Name: {{idx.kpIndex}}<br/>{{idx.source}}
+                                ID: {{idx.observedTime}}<br /> Name: {{idx.kpIndex}}<br />{{idx.source}}
                             </ng-container>
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
-                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br/>
+                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
                                 </ng-container>
                             </ng-container>
                         </div>
@@ -65,40 +77,44 @@
                 <p-accordionTab header="{{item.activityID}}">
                     <div class="ui-g">
                         <div class="ui-g-12 border">
-                            ActivityID: {{item.activityID}}<br/> Start: {{item.startTime}}<br/> Source Location: {{item.sourceLocation}}<br/>                            Active
-                            Region Number: {{item.activeRegionNum}}<br/> Instruments:
-                            <br/>
+                            ActivityID: {{item.activityID}}<br /> Start: {{item.startTime}}<br /> Source Location:
+                            {{item.sourceLocation}}<br /> Active
+                            Region Number: {{item.activeRegionNum}}<br /> Instruments:
+                            <br />
                             <ng-container *ngFor="let instrument of item.instruments">
-                                ID: {{instrument.id}}<br/> Name: {{instrument.displayName}}<br/>
+                                ID: {{instrument.id}}<br /> Name: {{instrument.displayName}}<br />
                             </ng-container>
                             <ng-container *ngFor="let cmeAnalysis of item.cmeAnalyses">
-                                time21_5 : {{cmeAnalysis.time21_5}}<br/> latitude: {{cmeAnalysis.latitude}}<br/> longitude:
+                                time21_5 : {{cmeAnalysis.time21_5}}<br /> latitude: {{cmeAnalysis.latitude}}<br />
+                                longitude:
                                 {{cmeAnalysis.longitude}}
-                                <br/> halfAngle: {{cmeAnalysis.halfAngle}}
-                                <br/> speed: {{cmeAnalysis.speed}}<br/> type: {{cmeAnalysis.type}}<br/> isMostAccurate: {{cmeAnalysis.isMostAccurate}}
-                                <br/> note: {{cmeAnalysis.note}}<br/> levelOfData: {{cmeAnalysis.levelOfData}}<br/> enlilList:
+                                <br /> halfAngle: {{cmeAnalysis.halfAngle}}
+                                <br /> speed: {{cmeAnalysis.speed}}<br /> type: {{cmeAnalysis.type}}<br />
+                                isMostAccurate: {{cmeAnalysis.isMostAccurate}}
+                                <br /> note: {{cmeAnalysis.note}}<br /> levelOfData: {{cmeAnalysis.levelOfData}}<br />
+                                enlilList:
 
-                                <br/>
+                                <br />
                                 <ng-container *ngIf="cmeAnalysis.enlilList">
                                     <ng-container *ngFor="let enlil of cmeAnalysis.enlilList">
-                                        {{enlil | json}}<br/>
+                                        {{enlil | json}}<br />
                                     </ng-container>
                                 </ng-container>
                             </ng-container>
-                            Linked Events:<br/>
+                            Linked Events:<br />
                             <ng-container *ngIf="linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
-                                    {{event | json}}<br/>
+                                    {{event | json}}<br />
                                 </ng-container>
                             </ng-container>
-                            Note: {{item.note}}<br/> Catalog: {{item.catalog}}<br/>
+                            Note: {{item.note}}<br /> Catalog: {{item.catalog}}<br />
                         </div>
                     </div>
                 </p-accordionTab>
             </p-accordion>
         </div>
     </div>
-    <ng-container *ngIf="!hss && !isLoading && !gst && !cme|| hss && hss.length == 0 && !isLoading && !gst && !cme">
+    <ng-container *ngIf="!hss && !isLoading && !gst && !cme && !ips|| hss && hss.length == 0 && !isLoading && !gst && !cme && !ips">
         <h1>No hss Found!</h1>
     </ng-container>
 </div>
