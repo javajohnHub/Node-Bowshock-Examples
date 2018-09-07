@@ -45,7 +45,7 @@
             </p-accordionTab>
         </p-accordion>
     </div>
-    <!-- <div *ngIf="hss">
+    <div *ngIf="hss">
         <div class="ui-g-12" *ngFor="let item of hss">
             <p-accordion>
                 <p-accordionTab header="{{item.hssID}}">
@@ -122,7 +122,7 @@
                             Linked Events:<br />
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
-                                    {{event | json}}<br />
+                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
                                 </ng-container>
                             </ng-container>
                             Note: {{item.note}}<br /> Catalog: {{item.catalog}}<br />
@@ -131,7 +131,7 @@
                 </p-accordionTab>
             </p-accordion>
         </div>
-    </div> -->
+    </div>
     <ng-container *ngIf="!ips && !isLoading && !gst && !cme && !hss|| ips && ips.length == 0 && !isLoading && !gst && !cme && !hss">
         <h1>No ips Found!</h1>
     </ng-container>

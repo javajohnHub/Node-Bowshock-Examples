@@ -4,22 +4,6 @@ import { SharedService } from '../../../shared/shared.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/api';
-import { Subject, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { CME } from '../cme/cme.component';
-
-export interface CMEA {
-	time21_5: string;
-	latitude: number;
-	longitude: number;
-	halfAngle: number;
-	speed: number;
-	type: string;
-	isMostAccurate: boolean;
-	associatedCMEID: string;
-	note: string;
-	catalog: string;
-}
 
 @Component({
 	selector: 'app-cmea',
@@ -27,38 +11,31 @@ export interface CMEA {
 })
 export class CMEAComponent {
 	socket: any;
-	cmea: CMEA[];
-	cme: CME[];
+	hss: any; //HSS[];
+	gst: any; //GST[];
+	cme: any;
+	ips: any;
+	rbe: any;
+	cmea: any;
+	complete;
+	accurate;
 	cmeaForm: FormGroup;
-
+	catalogs: SelectItem[];
+	location: String;
+	selectedCatalog: string;
 	startModel: Date = new Date(
 		moment()
 			.subtract(30, 'days')
 			.format()
 	);
-	endModel: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	endModel: Date = new Date();
 	maxStartDate: Date = new Date(
 		moment()
 			.subtract(30, 'days')
 			.format()
 	);
-	maxEndDate: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
-	catalogs: SelectItem[];
-	myKeyword: string;
-	mySpeed: number;
-	myHalfAngle: number;
-	accurate: boolean = true;
-	complete: boolean = true;
-	selectedCatalog: string;
 	constructor(private _sharedService: SharedService) {}
 
 	ngOnInit() {
@@ -69,34 +46,64 @@ export class CMEAComponent {
 			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
 			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
 		];
-		this._createForm();
-		this._sharedService.subTitleSubject$.next(
-			'Coronal Mass Ejection Analysis'
-		);
+		this._sharedService.subTitleSubject$.next('Radiation Belt Enhancement');
 		this.socket = SocketService.getInstance();
-		this.socket.on('send cmea', cmea => {
-			this.cmea = cmea;
+		this.socket.on('send ips', ips => {
+			this.ips = ips;
+			this.gst = null;
+			this.hss = null;
+			this.rbe = null;
+			this.cme = null;
+			this.isLoading = false;
+		});
+
+		this.socket.on('send gst', gst => {
+			this.gst = gst;
+			this.hss = null;
+			this.ips = null;
+			this.rbe = null;
+			this.cme = null;
+			this.isLoading = false;
+		});
+
+		this.socket.on('send hss', hss => {
+			this.hss = hss;
+			this.gst = null;
+			this.ips = null;
+			this.rbe = null;
+			this.cme = null;
+			this.isLoading = false;
+		});
+
+		this.socket.on('send rbe', rbe => {
+			this.hss = null;
+			this.gst = null;
+			this.ips = null;
+			this.rbe = rbe;
 			this.cme = null;
 			this.isLoading = false;
 		});
 
 		this.socket.on('send cme', cme => {
-			console.log(cme);
+			this.hss = null;
+			this.gst = null;
+			this.ips = null;
 			this.cme = cme;
-			this.cmea = null;
+			this.rbe = null;
 			this.isLoading = false;
 		});
-		this.socket.emit('get cme', {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
-	}
 
-	private _createForm() {
-		this.cmeaForm = new FormGroup({
-			keyword: new FormControl(''),
-			speed: new FormControl(0),
-			halfAngle: new FormControl(0),
-			catalogs: new FormControl('')
+		this.socket.on('send cmea', cmea => {
+			this.hss = null;
+			this.gst = null;
+			this.ips = null;
+			this.cme = null;
+			this.cmea = cmea;
+			this.rbe = null;
+			this.isLoading = false;
+		});
+		this.socket.emit('get cmea', {
+			startDate: moment(this.startModel).format('YYYY-MM-DD')
 		});
 	}
 
@@ -118,92 +125,36 @@ export class CMEAComponent {
 		) {
 			console.log('1');
 			this.socket.emit('get cmea', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD'),
-				keyword: this.myKeyword,
-				halfAngle: this.myHalfAngle,
-				speed: this.mySpeed,
-				mostAccurateOnly: this.accurate,
-				completeEntryOnly: this.complete,
-				catalog: this.selectedCatalog
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 			console.log({
-				startDate: moment(this.startModel).format('YYYY-MM-DD'),
-				keyword: this.keyword.value,
-				halfAngle: this.halfAngle.value,
-				speed: this.speed.value,
-				mostAccurateOnly: this.accurate,
-				completeEntryOnly: this.complete,
-				catalog: this.catalogsControl.value
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		} else {
 			if (
 				moment(this.startModel).format('YYYY-MM-DD') >
 				moment(this.endModel).format('YYYY-MM-DD')
 			) {
-				this.endModel = new Date(
-					moment()
-						.subtract(30, 'days')
-						.format()
-				);
+				this.endModel = new Date();
 				console.log('2');
 				this.socket.emit('get cmea', {
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					keyword: this.myKeyword,
-					halfAngle: this.myHalfAngle,
-					speed: this.mySpeed,
-					mostAccurateOnly: this.accurate,
-					completeEntryOnly: this.complete,
-					catalog: this.selectedCatalog
+					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 				console.log({
 					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD'),
-					keyword: this.keyword.value,
-					halfAngle: this.halfAngle.value,
-					speed: this.speed.value,
-					mostAccurateOnly: this.accurate,
-					completeEntryOnly: this.complete,
-					catalog: this.catalogsControl.value
+					endDate: moment(this.endModel).format('YYYY-MM-DD')
 				});
 			} else {
 				console.log('else');
 				this.socket.emit('get cmea', {
 					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD'),
-					keyword: this.myKeyword,
-					halfAngle: this.myHalfAngle,
-					speed: this.mySpeed,
-					mostAccurateOnly: this.accurate,
-					completeEntryOnly: this.complete,
-					catalog: this.selectedCatalog
+					endDate: moment(this.endModel).format('YYYY-MM-DD')
 				});
 				console.log({
 					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD'),
-					keyword: this.keyword.value,
-					halfAngle: this.halfAngle.value,
-					speed: this.speed.value,
-					mostAccurateOnly: this.accurate,
-					completeEntryOnly: this.complete,
-					catalog: this.catalogsControl.value
+					endDate: moment(this.endModel).format('YYYY-MM-DD')
 				});
 			}
 		}
-	}
-
-	get keyword() {
-		return this.cmeaForm.get('keyword');
-	}
-
-	get speed() {
-		return this.cmeaForm.get('speed');
-	}
-
-	get halfAngle() {
-		return this.cmeaForm.get('halfAngle');
-	}
-
-	get catalogsControl() {
-		return this.cmeaForm.get('catalogs');
 	}
 }
