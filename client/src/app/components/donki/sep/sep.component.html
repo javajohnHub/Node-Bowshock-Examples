@@ -93,7 +93,15 @@
             <p-accordionTab header="{{item.activityID}}">
                 <div class="ui-g">
                     <div class="ui-g-12 border">
-                        {{item | json}}
+                        Catalog: {{item.catalog}}<br />
+                        <button pButton type="button" label="{{item.activityID}}" (click)="goToAssoc(item.activityID)"></button><br />
+                        Location: {{item.location}}<br />
+                        EventTime: {{item.eventTime}}<br />
+                        <ng-container *ngFor="let inst of item.instruments">
+                            {{inst.id}} {{inst.displayName}}
+                        </ng-container>
+                        {{item | json}}<br />
+
                     </div>
                 </div>
             </p-accordionTab>

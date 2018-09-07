@@ -102,7 +102,7 @@
                                 </ng-container>
                             </ng-container>
                             Linked Events:<br />
-                            <ng-container *ngIf="linkedEvents">
+                            <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
                                     {{event | json}}<br />
                                 </ng-container>
