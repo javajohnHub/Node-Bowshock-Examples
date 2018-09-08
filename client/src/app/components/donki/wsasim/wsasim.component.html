@@ -18,11 +18,6 @@
                 [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
-
-
-
-
-
     <div class="ui-g-12 " *ngFor="let item of wsasim">
         <ng-container>
             <p-accordion>
@@ -41,13 +36,14 @@
                                     Speed: {{input.speed}}<br />
                                     HalfAngle: {{input.halfAngle}}<br />
                                     time21_5: {{input.time21_5}}<br />
-                                    isMostAccurate: {{input.isMostAccurate}}
-                                    levelOfData: {{input.levelOfData}}
+                                    isMostAccurate: {{input.isMostAccurate}}<br />
+                                    levelOfData: {{input.levelOfData}}<br />
                                     <ng-container *ngFor="let list of input.ipsList">
-                                        Catalog: {{list.catalog}}
-                                        <button pButton type="button" label="{{list.activityID}}" (click)="goToAssoc(list.activityID)"></button><br />
+                                        Catalog: {{list.catalog}}<br />
+                                        Linked Events: <button pButton type="button" label="{{list.activityID}}"
+                                            (click)="goToAssoc(list.activityID)"></button><br />
                                         Location: {{list.location}}<br />
-                                        Eventtime: {{list.eventTime}}
+                                        Eventtime: {{list.eventTime}}<br />
                                         <ng-container *ngFor="let instrument of list.instruments">
                                             ID: {{instrument.id}}<br /> Name: {{instrument.displayName}}<br />
                                         </ng-container>
