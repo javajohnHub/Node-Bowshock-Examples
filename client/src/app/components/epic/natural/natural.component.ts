@@ -10,8 +10,10 @@ export class NaturalComponent {
 	socket: any;
 	model: Date;
 	maxDate: Date;
+	natural;
 	naturalAll;
-	naturalSingle;
+	naturalByDate;
+	naturalAvailable;
 	constructor(private _sharedService: SharedService) {}
 	ngOnInit() {
 		this._sharedService.subTitleSubject$.next('Natural');
@@ -20,11 +22,29 @@ export class NaturalComponent {
 		this.socket = SocketService.getInstance();
 		this.socket.on('send natural all', data => {
 			this.naturalAll = data;
-			this.naturalSingle = null;
+			this.natural = null;
+			this.naturalByDate = null;
+			this.naturalAvailable = null;
 		});
 		this.socket.on('send natural by date', data => {
-			this.naturalSingle = data;
+			this.naturalByDate = data;
 			this.naturalAll = null;
+			this.natural = null;
+			this.naturalAvailable = null;
+		});
+
+		this.socket.on('send natural', data => {
+			this.natural = data;
+			this.naturalAll = null;
+			this.naturalByDate = null;
+			this.naturalAvailable = null;
+		});
+
+		this.socket.on('send natural available', data => {
+			this.naturalAvailable = data;
+			this.natural = null;
+			this.naturalAll = null;
+			this.naturalByDate = null;
 		});
 		let myDate = this.model.toISOString().split('T')[0];
 		let last = parseInt(myDate.split('-')[2]) - 1;

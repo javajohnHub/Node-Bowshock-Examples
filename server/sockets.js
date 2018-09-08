@@ -220,13 +220,32 @@ module.exports = function(io) {
     });
 
     socket.on("get natural by date", date => {
-      bowshock.epic.naturalDate(date).then(naturalSingle => {
-        if (naturalSingle.length == 0) {
-          naturalSingle = [];
+      bowshock.epic.naturalDate(date).then(naturalByDate => {
+        if (naturalByDate.length == 0) {
+          naturalByDate = [];
         }
-        socket.emit("send natural by date", naturalSingle);
+        socket.emit("send natural by date", naturalByDate);
       });
     });
+
+    socket.on("get natural", () => {
+      bowshock.epic.natural().then(natural => {
+        if (natural.length == 0) {
+          natural = [];
+        }
+        socket.emit("send natural", natural);
+      });
+    });
+
+    socket.on("get natural Available", () => {
+      bowshock.epic.naturalAvailable().then(naturalAvailable => {
+        if (naturalAvailable.length == 0) {
+          naturalAvailable = [];
+        }
+        socket.emit("send natural", naturalAvailable);
+      });
+    });
+
     //end of epic
   });
 

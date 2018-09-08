@@ -1,6 +1,12 @@
-<ng-container *ngIf="naturalAll && !naturalSingle">
-    {{naturalAll | json}}
+<ng-container *ngIf="naturalAll">
+    <span color="blue">{{naturalAll | json}}</span>
 </ng-container>
-<ng-container *ngIf="naturalSingle && !naturalAll">
-    {{naturalSingle | json}}
+<ng-container *ngIf="naturalByDate">
+    <span color="red">{{naturalByDate | json}}</span>
+</ng-container>
+<ng-container *ngIf="naturalAvailable">
+    <span color="green">{{naturalAvailable | json}}</span>
+</ng-container>
+<ng-container *ngIf="natural">
+    <span color="grey">{{natural | json}}</span>
 </ng-container>
