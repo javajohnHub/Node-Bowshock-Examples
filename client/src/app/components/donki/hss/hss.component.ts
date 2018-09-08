@@ -39,6 +39,7 @@ export class HSSComponent {
 	complete: boolean = true;
 	selectedCatalog: string;
 	sub: any;
+	longDate;
 	constructor(
 		private _sharedService: SharedService,
 		private _router: Router,
@@ -57,6 +58,7 @@ export class HSSComponent {
 		if (this.route.params['startDate']) {
 			this.sub = this.route.params.subscribe(params => {
 				console.log(params);
+				this.longDate = params['id'];
 				this.startModel = new Date(
 					moment(params['startDate']).format('YYYY-MM-DD')
 				);
@@ -82,6 +84,15 @@ export class HSSComponent {
 		}
 	}
 
+	change(event) {
+		console.log('change', event);
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
+			this._router.navigate(['donki/hss']);
+		}
+	}
 	goToAssoc(date) {
 		this.isLoading = true;
 

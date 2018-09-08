@@ -24,6 +24,7 @@ export class GSTComponent {
 	);
 	isLoading: boolean = false;
 	sub: any;
+	longDate;
 	constructor(
 		private _sharedService: SharedService,
 		private _router: Router,
@@ -42,6 +43,7 @@ export class GSTComponent {
 		if (this.route.params['startDate']) {
 			this.sub = this.route.params.subscribe(params => {
 				console.log(params);
+				this.longDate = params['id'];
 				this.startModel = new Date(
 					moment(params['startDate']).format('YYYY-MM-DD')
 				);
@@ -67,6 +69,15 @@ export class GSTComponent {
 		}
 	}
 
+	change(event) {
+		console.log('change', event);
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
+			this._router.navigate(['donki/gst']);
+		}
+	}
 	goToAssoc(date) {
 		this.isLoading = true;
 

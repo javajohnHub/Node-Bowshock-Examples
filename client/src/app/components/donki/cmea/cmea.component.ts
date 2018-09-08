@@ -26,6 +26,7 @@ export class CMEAComponent {
 	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
 	sub: any;
+	longDate;
 	constructor(
 		private _sharedService: SharedService,
 		private _router: Router,
@@ -35,37 +36,36 @@ export class CMEAComponent {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.catalogs = [
-			{ label: 'Select Catalog', value: 'ALL' },
-			{ label: 'ALL', value: 'ALL' },
-			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
-			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
-		];
-		this.maxStartDate = new Date(
-			moment()
-				.subtract(30, 'days')
-				.format()
-		);
 		this._sharedService.subTitleSubject$.next(
 			'Coronal Mass Ejection Analysis'
 		);
 		this.socket = SocketService.getInstance();
 		this.socket.on('send cmea', cmea => {
+			console.log('cmea', cmea);
 			this.cmea = cmea;
 			this.isLoading = false;
 		});
 
-		if (this.route.params['startDate']) {
-			this.sub = this.route.params.subscribe(params => {
-				console.log(params);
-				this.startModel = new Date(
-					moment(params['startDate']).format('YYYY-MM-DD')
-				);
-				this.socket.emit('get cmea', {
-					startDate: moment(params['startDate']).format('YYYY-MM-DD')
-				});
+		console.log(this.route);
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
+			this.longDate = this.route.snapshot.params['id'];
+			console.log('params', this.longDate);
+			this.startModel = new Date(
+				moment(this.route.snapshot.params['startDate']).format(
+					'YYYY-MM-DD'
+				)
+			);
+			this.socket.emit('get cmea', {
+				startDate: moment(
+					this.route.snapshot.params['startDate']
+				).format('YYYY-MM-DD')
 			});
+			this.sub = this.route.params.subscribe(params => {});
 		} else {
+			console.log('else no params');
 			this.startModel = new Date(
 				moment()
 					.subtract(30, 'days')
@@ -93,6 +93,15 @@ export class CMEAComponent {
 	ngOnDestroy() {
 		if (this.sub) {
 			this.sub.unsubscribe();
+		}
+	}
+	change(event) {
+		console.log('change', event);
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
+			this._router.navigate(['donki/cmea']);
 		}
 	}
 	goToAssoc(date) {

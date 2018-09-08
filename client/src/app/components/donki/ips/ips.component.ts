@@ -27,6 +27,7 @@ export class IPSComponent {
 	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
 	sub: any;
+	longDate;
 	constructor(
 		private _sharedService: SharedService,
 		private _fb: FormBuilder,
@@ -52,6 +53,7 @@ export class IPSComponent {
 		if (this.route.params['startDate']) {
 			this.sub = this.route.params.subscribe(params => {
 				console.log(params);
+				this.longDate = params['id'];
 				this.startModel = new Date(
 					moment(params['startDate']).format('YYYY-MM-DD')
 				);
@@ -75,6 +77,15 @@ export class IPSComponent {
 	ngOnDestroy() {
 		if (this.sub) {
 			this.sub.unsubscribe();
+		}
+	}
+	change(event) {
+		console.log('change', event);
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
+			this._router.navigate(['donki/ips']);
 		}
 	}
 	private _createForm() {

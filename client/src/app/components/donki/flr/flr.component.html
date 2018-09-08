@@ -10,38 +10,61 @@
             Start:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
                 [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="startModel" dateFormat="yy-mm-dd"
-                [maxDate]="maxStartDate"></p-calendar>
+                [maxDate]="maxStartDate" (ngModelChange)="change($event)"></p-calendar>
         </div>
         <div class="ui-g-6">
             End:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
-                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
+                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"
+                (ngModelChange)="change($event)"></p-calendar>
         </div>
     </div>
-
     <div class="ui-g-12 " *ngFor="let item of flr">
-
-        <p-accordion>
-            <p-accordionTab header="{{item.flrID}}">
-                <div class="ui-g">
-                    <div class="ui-g-12 border">
-
-                        <ng-container *ngFor="let instrument of item.instruments">
-                            ID: {{instrument.id}}<br /> Name: {{instrument.displayName}}<br />
-                        </ng-container>
-                        {{item.beginTime}} {{item.peakTime}} {{item.endTime}} {{item.classType}}
-                        {{item.sourceLocation}} {{item.activeRegionNum}}
-                        <ng-container *ngIf="item.linkedEvents">
-                            <ng-container *ngFor="let event of item.linkedEvents">
-                                <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
+        <ng-container *ngIf="longDate && longDate == item.activityID">
+            <p-accordion>
+                <p-accordionTab header="{{item.flrID}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            <ng-container *ngFor="let instrument of item.instruments">
+                                ID: {{instrument.id}}<br /> Name: {{instrument.displayName}}<br />
                             </ng-container>
-                        </ng-container>
+                            {{item.beginTime}} {{item.peakTime}} {{item.endTime}} {{item.classType}}
+                            {{item.sourceLocation}} {{item.activeRegionNum}}
+                            <ng-container *ngIf="item.linkedEvents">
+                                <ng-container *ngFor="let event of item.linkedEvents">
+                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
+                                </ng-container>
+                            </ng-container>
+                        </div>
                     </div>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
+                </p-accordionTab>
+            </p-accordion>
+        </ng-container>
+        <ng-container *ngIf="!longDate">
+            <p-accordion>
+                <p-accordionTab header="{{item.activityID}}">
+                    <p-accordion>
+                        <p-accordionTab header="{{item.flrID}}">
+                            <div class="ui-g">
+                                <div class="ui-g-12 border">
+                                    <ng-container *ngFor="let instrument of item.instruments">
+                                        ID: {{instrument.id}}<br /> Name: {{instrument.displayName}}<br />
+                                    </ng-container>
+                                    {{item.beginTime}} {{item.peakTime}} {{item.endTime}} {{item.classType}}
+                                    {{item.sourceLocation}} {{item.activeRegionNum}}
+                                    <ng-container *ngIf="item.linkedEvents">
+                                        <ng-container *ngFor="let event of item.linkedEvents">
+                                            <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </p-accordionTab>
+                    </p-accordion>
+                </p-accordionTab>
+            </p-accordion>
+        </ng-container>
     </div>
-
     <ng-container *ngIf="!flr && !isLoading || flr && flr.length == 0">
         <h1>No FLR Found!</h1>
     </ng-container>

@@ -10,12 +10,13 @@
             Start:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
                 [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="startModel" dateFormat="yy-mm-dd"
-                [maxDate]="maxStartDate"></p-calendar>
+                [maxDate]="maxStartDate" (ngModelChange)="change($event)"></p-calendar>
         </div>
         <div class="ui-g-6">
             End:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
-                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
+                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"
+                (ngModelChange)="change($event)"></p-calendar>
         </div>
     </div>
     <p-panel header="Search Options" [toggleable]="true" [collapsed]="true">
@@ -52,26 +53,46 @@
         </div>
 
     </p-panel>
-    <div class="ui-g-12" *ngFor="let item of cmea">
-        <p-accordion>
-            <p-accordionTab header="{{item.time21_5}}">
-                <div class="ui-g">
-                    <div class="ui-g-12 border">
-                        latitude: {{item.latitude}}<br /> longitude: {{item.longitude}}<br /> halfAngle:
-                        {{item.halfAngle}}<br /> speed:
-                        {{item.speed}}
-                        <br /> type: {{item.type}}<br /> isMostAccurate: {{item.isMostAccurate}}<br /> associatedCMEID:
-                        <button pButton type="button" label="{{item.associatedCMEID}}" (click)="goToAssoc(item.associatedCMEID)"></button><br />
-                        note:
-                        {{item.note}}
-                        <br /> catalog: {{item.catalog}}<br />
+    <div class="ui-g-12 " *ngFor="let item of cmea">
+        <ng-container *ngIf="longDate && longDate == item.activityID">
+            <p-accordion>
+                <p-accordionTab header="{{item.time21_5}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            latitude: {{item.latitude}}<br /> longitude: {{item.longitude}}<br /> halfAngle:
+                            {{item.halfAngle}}<br /> speed:
+                            {{item.speed}}
+                            <br /> type: {{item.type}}<br /> isMostAccurate: {{item.isMostAccurate}}<br />
+                            associatedCMEID:
+                            <button pButton type="button" label="{{item.associatedCMEID}}" (click)="goToAssoc(item.associatedCMEID)"></button><br />
+                            note:
+                            {{item.note}}
+                            <br /> catalog: {{item.catalog}}<br />
+                        </div>
                     </div>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
+                </p-accordionTab>
+            </p-accordion>
+        </ng-container>
+        <ng-container *ngIf="!longDate">
+            <p-accordion>
+                <p-accordionTab header="{{item.time21_5}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            latitude: {{item.latitude}}<br /> longitude: {{item.longitude}}<br /> halfAngle:
+                            {{item.halfAngle}}<br /> speed:
+                            {{item.speed}}
+                            <br /> type: {{item.type}}<br /> isMostAccurate: {{item.isMostAccurate}}<br />
+                            associatedCMEID:
+                            <button pButton type="button" label="{{item.associatedCMEID}}" (click)="goToAssoc(item.associatedCMEID)"></button><br />
+                            note:
+                            {{item.note}}
+                            <br /> catalog: {{item.catalog}}<br />
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </ng-container>
+        <ng-container *ngIf="!cmea && !isLoading || cmea && cmea.length == 0">
+            <h1>No CMEA Found!</h1>
+        </ng-container>
     </div>
-
-    <ng-container *ngIf="!cmea && !isLoading || cmea && cmea.length == 0">
-        <h1>No CMEA Found!</h1>
-    </ng-container>
-</div>

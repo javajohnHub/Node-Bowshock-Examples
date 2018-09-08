@@ -13,11 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class WSASimComponent {
 	socket: any;
 	wsasim: any;
-	startModel: Date = new Date(
-		moment()
-			.subtract(7, 'days')
-			.format()
-	);
+	startModel: Date;
 	endModel: Date = new Date();
 	maxStartDate: Date = new Date(
 		moment()
@@ -27,9 +23,11 @@ export class WSASimComponent {
 	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
 	sub: any;
+	longDate;
 	constructor(
 		private _sharedService: SharedService,
-		private _router: Router
+		private _router: Router,
+		private route: ActivatedRoute
 	) {}
 
 	ngOnInit() {
@@ -40,9 +38,28 @@ export class WSASimComponent {
 			this.wsasim = wsasim;
 			this.isLoading = false;
 		});
-		this.socket.emit('get wsasim', {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
+
+		if (this.route.params['startDate']) {
+			this.sub = this.route.params.subscribe(params => {
+				console.log(params);
+				this.longDate = params['id'];
+				this.startModel = new Date(
+					moment(params['startDate']).format('YYYY-MM-DD')
+				);
+				this.socket.emit('get wsasim', {
+					startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				});
+			});
+		} else {
+			this.startModel = new Date(
+				moment()
+					.subtract(7, 'days')
+					.format()
+			);
+			this.socket.emit('get rbe', {
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
+			});
+		}
 	}
 
 	goToAssoc(date) {
@@ -56,7 +73,15 @@ export class WSASimComponent {
 			moment(this.startModel).format('YYYY-MM-DD')
 		]);
 	}
-
+	change(event) {
+		console.log('change', event);
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
+			this._router.navigate(['donki/wsasim']);
+		}
+	}
 	setOptions() {
 		if (
 			moment(this.startModel).format('YYYY-MM-DD') ==

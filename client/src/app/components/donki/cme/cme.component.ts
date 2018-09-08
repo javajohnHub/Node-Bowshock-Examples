@@ -23,7 +23,7 @@ export class CMEComponent {
 	isLoading: boolean = false;
 	sub: any;
 	startModel: Date;
-	longDate;
+	longDate: string = '';
 	constructor(
 		private _sharedService: SharedService,
 		private _router: Router,
@@ -35,22 +35,27 @@ export class CMEComponent {
 		this._sharedService.subTitleSubject$.next('Coronal Mass Ejection');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send cme', cme => {
-			console.log(cme);
+			console.log('cme', cme);
 			this.cme = cme;
 			this.isLoading = false;
 		});
 
-		if (this.route.params['startDate']) {
-			this.sub = this.route.params.subscribe(params => {
-				console.log(params);
-				this.startModel = new Date(
-					moment(params['startDate']).format('YYYY-MM-DD')
-				);
-				this.socket.emit('get cme', {
-					startDate: moment(params['startDate']).format('YYYY-MM-DD')
-				});
+		console.log(this.route);
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
+			this.longDate = this.route.snapshot.params['id'];
+			console.log('params', this.longDate);
+			this.startModel = new Date();
+			this.socket.emit('get cme', {
+				startDate: moment(
+					this.route.snapshot.params['startDate']
+				).format('YYYY-MM-DD')
 			});
+			this.sub = this.route.params.subscribe(params => {});
 		} else {
+			console.log('else no params');
 			this.startModel = new Date(
 				moment()
 					.subtract(30, 'days')
@@ -65,6 +70,16 @@ export class CMEComponent {
 	ngOnDestroy() {
 		if (this.sub) {
 			this.sub.unsubscribe();
+		}
+	}
+
+	change(event) {
+		console.log('change', event);
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
+			this._router.navigate(['donki/cme']);
 		}
 	}
 	goToAssoc(date) {
