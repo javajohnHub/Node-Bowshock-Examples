@@ -54,7 +54,7 @@
             </p-accordionTab>
         </p-accordion>
     </div>
-    <ng-container *ngIf="!isLoading && !wsasim">
-        <h1>No sep Found!</h1>
+    <ng-container *ngIf="!isLoading && !wsasim || wsasim && wsasim.length == 0">
+        <h1>No wsasim Found!</h1>
     </ng-container>
 </div>

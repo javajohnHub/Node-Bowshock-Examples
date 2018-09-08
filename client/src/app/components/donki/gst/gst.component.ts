@@ -11,11 +11,7 @@ export class GSTComponent {
 	socket: any;
 	gst: any; //GST[];
 	startModel: Date;
-	endModel: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	endModel: Date = new Date();
 	maxStartDate: Date = new Date(
 		moment()
 			.subtract(30, 'days')
@@ -42,24 +38,27 @@ export class GSTComponent {
 			this.gst = gst;
 			this.isLoading = false;
 		});
-		this.startModel = new Date(
-			moment()
-				.subtract(30, 'days')
-				.format()
-		);
-		this.socket.emit('get gst', {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
 
-		this.sub = this.route.params.subscribe(params => {
-			console.log(params);
+		if (this.route.params['startDate']) {
+			this.sub = this.route.params.subscribe(params => {
+				console.log(params);
+				this.startModel = new Date(
+					moment(params['startDate']).format('YYYY-MM-DD')
+				);
+				this.socket.emit('get gst', {
+					startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				});
+			});
+		} else {
 			this.startModel = new Date(
-				moment(params['startDate']).format('YYYY-MM-DD')
+				moment()
+					.subtract(30, 'days')
+					.format()
 			);
 			this.socket.emit('get gst', {
-				startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
-		});
+		}
 	}
 
 	ngOnDestroy() {
@@ -107,9 +106,12 @@ export class GSTComponent {
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		} else {
+			console.log('else');
 			this.socket.emit('get gst', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD'),
-				endDate: moment(this.endModel).format('YYYY-MM-DD')
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
+			});
+			console.log({
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		}
 	}

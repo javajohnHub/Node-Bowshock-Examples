@@ -36,30 +36,39 @@ export class IPSComponent {
 
 	ngOnInit() {
 		this.isLoading = true;
+		this.catalogs = [
+			{ label: 'Select Catalog', value: 'ALL' },
+			{ label: 'ALL', value: 'ALL' },
+			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
+			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
+		];
 		this._sharedService.subTitleSubject$.next('Interplanetary Shock');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send ips', ips => {
 			this.ips = ips;
 			this.isLoading = false;
 		});
-		this.startModel = new Date(
-			moment()
-				.subtract(30, 'days')
-				.format()
-		);
-		this.socket.emit('get ips', {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
 
-		this.sub = this.route.params.subscribe(params => {
-			console.log(params);
+		if (this.route.params['startDate']) {
+			this.sub = this.route.params.subscribe(params => {
+				console.log(params);
+				this.startModel = new Date(
+					moment(params['startDate']).format('YYYY-MM-DD')
+				);
+				this.socket.emit('get ips', {
+					startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				});
+			});
+		} else {
 			this.startModel = new Date(
-				moment(params['startDate']).format('YYYY-MM-DD')
+				moment()
+					.subtract(30, 'days')
+					.format()
 			);
 			this.socket.emit('get ips', {
-				startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
-		});
+		}
 		this._createForm();
 	}
 
@@ -119,12 +128,10 @@ export class IPSComponent {
 			} else {
 				console.log('else');
 				this.socket.emit('get ips', {
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
+					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
+					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 			}
 		}

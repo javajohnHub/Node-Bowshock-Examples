@@ -34,7 +34,7 @@
             </p-accordionTab>
         </p-accordion>
     </div>
-    <ng-container *ngIf="!isLoading && !mpc">
+    <ng-container *ngIf="!isLoading && !mpc || mpc && mpc.length == 0">
         <h1>No mpc Found!</h1>
     </ng-container>
 </div>

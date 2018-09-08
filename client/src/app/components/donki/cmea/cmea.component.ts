@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SocketService } from '../../../shared/socket.service';
 import { SharedService } from '../../../shared/shared.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,28 +15,37 @@ export class CMEAComponent {
 	cmea: any;
 	complete;
 	accurate;
+	speed;
+	halfAngle;
 	cmeaForm: FormGroup;
-	catalogs: SelectItem[];
-	location: String;
+	catalogs;
 	selectedCatalog: string;
 	startModel: Date;
 	endModel: Date = new Date();
-	maxStartDate: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	maxStartDate: Date;
 	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
 	sub: any;
 	constructor(
 		private _sharedService: SharedService,
 		private _router: Router,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private _fb: FormBuilder
 	) {}
 
 	ngOnInit() {
 		this.isLoading = true;
+		this.catalogs = [
+			{ label: 'Select Catalog', value: 'ALL' },
+			{ label: 'ALL', value: 'ALL' },
+			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
+			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
+		];
+		this.maxStartDate = new Date(
+			moment()
+				.subtract(30, 'days')
+				.format()
+		);
 		this._sharedService.subTitleSubject$.next(
 			'Coronal Mass Ejection Analysis'
 		);
@@ -45,26 +54,42 @@ export class CMEAComponent {
 			this.cmea = cmea;
 			this.isLoading = false;
 		});
-		this.startModel = new Date(
-			moment()
-				.subtract(30, 'days')
-				.format()
-		);
-		this.socket.emit('get cmea', {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
 
-		this.sub = this.route.params.subscribe(params => {
-			console.log(params);
+		if (this.route.params['startDate']) {
+			this.sub = this.route.params.subscribe(params => {
+				console.log(params);
+				this.startModel = new Date(
+					moment(params['startDate']).format('YYYY-MM-DD')
+				);
+				this.socket.emit('get cmea', {
+					startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				});
+			});
+		} else {
 			this.startModel = new Date(
-				moment(params['startDate']).format('YYYY-MM-DD')
+				moment()
+					.subtract(30, 'days')
+					.format()
 			);
 			this.socket.emit('get cmea', {
-				startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
-		});
+		}
+		this._createForm();
 	}
 
+	private _createForm() {
+		this.cmeaForm = this._fb.group({
+			startDate: [this.maxStartDate],
+			endDate: [this.endModel],
+			mostAccurateOnly: [this.accurate],
+			completeEntryOnly: [this.complete],
+			speed: [this.speed],
+			halfAngle: [this.halfAngle],
+			catalogs: ['ALL'],
+			keyword: ['NONE']
+		});
+	}
 	ngOnDestroy() {
 		if (this.sub) {
 			this.sub.unsubscribe();
@@ -118,12 +143,10 @@ export class CMEAComponent {
 			} else {
 				console.log('else');
 				this.socket.emit('get cmea', {
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
+					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
+					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 			}
 		}

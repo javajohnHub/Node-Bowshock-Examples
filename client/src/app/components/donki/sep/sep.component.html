@@ -34,7 +34,7 @@
             </p-accordionTab>
         </p-accordion>
     </div>
-    <ng-container *ngIf="!isLoading && !sep">
+    <ng-container *ngIf="!isLoading && !sep || sep && sep.length == 0">
         <h1>No sep Found!</h1>
     </ng-container>
 </div>

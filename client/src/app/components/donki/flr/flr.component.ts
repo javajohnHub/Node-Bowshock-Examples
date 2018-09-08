@@ -11,21 +11,13 @@ export class FLRComponent {
 	socket: any;
 	flr: any; //FLR[];
 	startModel: Date;
-	endModel: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	endModel: Date = new Date();
 	maxStartDate: Date = new Date(
 		moment()
 			.subtract(30, 'days')
 			.format()
 	);
-	maxEndDate: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	maxEndDate: Date = new Date();
 	isLoading: boolean = false;
 	sub: any;
 	constructor(
@@ -39,27 +31,31 @@ export class FLRComponent {
 		this._sharedService.subTitleSubject$.next('Solar Flare');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send flr', flr => {
+			console.log(flr);
 			this.flr = flr;
 			this.isLoading = false;
 		});
-		this.startModel = new Date(
-			moment()
-				.subtract(30, 'days')
-				.format()
-		);
-		this.socket.emit('get flr', {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
 
-		this.sub = this.route.params.subscribe(params => {
-			console.log(params);
+		if (this.route.params['startDate']) {
+			this.sub = this.route.params.subscribe(params => {
+				console.log(params);
+				this.startModel = new Date(
+					moment(params['startDate']).format('YYYY-MM-DD')
+				);
+				this.socket.emit('get flr', {
+					startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				});
+			});
+		} else {
 			this.startModel = new Date(
-				moment(params['startDate']).format('YYYY-MM-DD')
+				moment()
+					.subtract(30, 'days')
+					.format()
 			);
 			this.socket.emit('get flr', {
-				startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
-		});
+		}
 	}
 
 	ngOnDestroy() {
@@ -84,7 +80,7 @@ export class FLRComponent {
 		]);
 	}
 
-	setFLRDate() {
+	setOptions() {
 		this.isLoading = true;
 		if (
 			moment(this.startModel).format('YYYY-MM-DD') ==
@@ -107,9 +103,12 @@ export class FLRComponent {
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		} else {
+			console.log('else');
 			this.socket.emit('get flr', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD'),
-				endDate: moment(this.endModel).format('YYYY-MM-DD')
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
+			});
+			console.log({
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		}
 	}

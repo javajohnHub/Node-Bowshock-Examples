@@ -53,24 +53,27 @@ export class HSSComponent {
 			this.hss = hss;
 			this.isLoading = false;
 		});
-		this.startModel = new Date(
-			moment()
-				.subtract(30, 'days')
-				.format()
-		);
-		this.socket.emit('get hss', {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
 
-		this.sub = this.route.params.subscribe(params => {
-			console.log(params);
+		if (this.route.params['startDate']) {
+			this.sub = this.route.params.subscribe(params => {
+				console.log(params);
+				this.startModel = new Date(
+					moment(params['startDate']).format('YYYY-MM-DD')
+				);
+				this.socket.emit('get hss', {
+					startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				});
+			});
+		} else {
 			this.startModel = new Date(
-				moment(params['startDate']).format('YYYY-MM-DD')
+				moment()
+					.subtract(30, 'days')
+					.format()
 			);
 			this.socket.emit('get hss', {
-				startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
-		});
+		}
 	}
 
 	ngOnDestroy() {
@@ -128,12 +131,10 @@ export class HSSComponent {
 			} else {
 				console.log('else');
 				this.socket.emit('get hss', {
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
+					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
+					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 			}
 		}

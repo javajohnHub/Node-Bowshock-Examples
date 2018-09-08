@@ -9,13 +9,13 @@
         <div class="ui-g-6">
             Start:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
-                [readonlyInput]="true" (onSelect)="setFLRDate()" [(ngModel)]="startModel" dateFormat="yy-mm-dd"
+                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="startModel" dateFormat="yy-mm-dd"
                 [maxDate]="maxStartDate"></p-calendar>
         </div>
         <div class="ui-g-6">
             End:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
-                [readonlyInput]="true" (onSelect)="setFLRDate()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
+                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
 
@@ -42,7 +42,7 @@
         </p-accordion>
     </div>
 
-    <ng-container *ngIf="!flr && !isLoading">
+    <ng-container *ngIf="!flr && !isLoading || flr && flr.length == 0">
         <h1>No FLR Found!</h1>
     </ng-container>
 </div>

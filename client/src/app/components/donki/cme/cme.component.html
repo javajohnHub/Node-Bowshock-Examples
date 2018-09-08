@@ -18,13 +18,15 @@
                 [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
-    <div *ngIf="cme">
-        <div class="ui-g-12 " *ngFor="let item of cme">
 
-            <p-accordion>
-                <p-accordionTab header="{{item.activityID}}">
-                    <div class="ui-g">
-                        <div class="ui-g-12 border">
+    <div class="ui-g-12 " *ngFor="let item of cme">
+
+        <p-accordion>
+            <p-accordionTab header="{{item.activityID}}">
+                <div class="ui-g">
+                    <div class="ui-g-12 border">
+                        {{item.activityID}} - {{longDate}}
+                        <ng-container *ngIf="true">
                             ActivityID: {{item.activityID}}<br /> Start: {{item.startTime}}<br /> Source Location:
                             {{item.sourceLocation}}<br /> Active
                             Region Number: {{item.activeRegionNum}}<br /> Instruments:
@@ -56,13 +58,16 @@
                                 </ng-container>
                             </ng-container>
                             Note: {{item.note}}<br /> Catalog: {{item.catalog}}<br />
-                        </div>
+                        </ng-container>
                     </div>
-                </p-accordionTab>
-            </p-accordion>
-        </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+
+
     </div>
-    <ng-container *ngIf="!isLoading && !cme">
+
+    <ng-container *ngIf="!isLoading && !cme || cme && cme.length == 0">
         <h1>No mpc Found!</h1>
     </ng-container>
 </div>

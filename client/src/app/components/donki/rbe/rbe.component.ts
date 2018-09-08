@@ -12,20 +12,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class RBEComponent {
 	socket: any;
-	hss: any; //HSS[];
-	gst: any; //GST[];
-	cme: any;
-	ips: any;
 	rbe: any;
-	ipsForm: FormGroup;
-	catalogs: SelectItem[];
-	location: String;
-	selectedCatalog: string;
-	startModel: Date = new Date(
-		moment()
-			.subtract(30, 'days')
-			.format()
-	);
+	startModel: Date;
 	endModel: Date = new Date();
 	maxStartDate: Date = new Date(
 		moment()
@@ -43,37 +31,29 @@ export class RBEComponent {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.catalogs = [
-			{ label: 'Select Catalog', value: 'ALL' },
-			{ label: 'ALL', value: 'ALL' },
-			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
-			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
-		];
 
 		this._sharedService.subTitleSubject$.next('Radiation Belt Enhancement');
 		this.socket = SocketService.getInstance();
-		this.socket.on('send mpc', rbe => {
+		this.socket.on('send rbe', rbe => {
 			this.rbe = rbe;
 			this.isLoading = false;
 		});
-		this.startModel = new Date(
-			moment()
-				.subtract(30, 'days')
-				.format()
-		);
-		this.socket.emit('get rbe', {
-			startDate: moment(this.startModel).format('YYYY-MM-DD')
-		});
 
-		this.sub = this.route.params.subscribe(params => {
-			console.log(params);
-			this.startModel = new Date(
-				moment(params['startDate']).format('YYYY-MM-DD')
-			);
-			this.socket.emit('get rbe', {
-				startDate: moment(params['startDate']).format('YYYY-MM-DD')
+		if (this.route.params['startDate']) {
+			this.sub = this.route.params.subscribe(params => {
+				console.log(params);
+				this.startModel = new Date(
+					moment(params['startDate']).format('YYYY-MM-DD')
+				);
+				this.socket.emit('get rbe', {
+					startDate: moment(params['startDate']).format('YYYY-MM-DD')
+				});
 			});
-		});
+		} else {
+			this.socket.emit('get rbe', {
+				startDate: moment(this.startModel).format('YYYY-MM-DD')
+			});
+		}
 	}
 
 	ngOnDestroy() {
@@ -127,12 +107,10 @@ export class RBEComponent {
 			} else {
 				console.log('else');
 				this.socket.emit('get rbe', {
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
+					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
+					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 			}
 		}

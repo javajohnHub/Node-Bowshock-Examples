@@ -41,7 +41,7 @@
     </div>
 
 
-    <ng-container *ngIf="!gst && !isLoading">
+    <ng-container *ngIf="!gst && !isLoading || gst && gst.length == 0">
         <h1>No GST Found!</h1>
     </ng-container>
 </div>

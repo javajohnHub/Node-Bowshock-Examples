@@ -41,7 +41,7 @@
 
 
 
-    <ng-container *ngIf="!hss && !isLoading">
+    <ng-container *ngIf="!hss && !isLoading || hss && hss.length == 0">
         <h1>No hss Found!</h1>
     </ng-container>
 </div>
