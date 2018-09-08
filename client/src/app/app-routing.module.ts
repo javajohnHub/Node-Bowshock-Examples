@@ -25,6 +25,9 @@ import { RBEComponent } from './components/donki/rbe/rbe.component';
 import { SEPComponent } from './components/donki/sep/sep.component';
 import { WSASimComponent } from './components/donki/wsasim/wsasim.component';
 import { NotificationsComponent } from './components/donki/notifications/notifications.component';
+import { NaturalComponent } from './components/epic/natural/natural.component';
+import { EnhancedComponent } from './components/epic/enhanced/enhanced.component';
+import { EPICComponent } from './components/epic/epic.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -54,6 +57,14 @@ const routes: Routes = [
 		children: [
 			{ path: 'feed', component: FeedComponent },
 			{ path: 'today', component: TodayComponent }
+		]
+	},
+	{
+		path: 'epic',
+		component: EPICComponent,
+		children: [
+			{ path: 'natural', component: NaturalComponent },
+			{ path: 'enhanced', component: EnhancedComponent }
 		]
 	},
 	{

@@ -51,6 +51,9 @@ import { MyPanelMenuModule } from './shared/my-panel-menu';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { PanelModule } from 'primeng/panel';
+import { EPICComponent } from './components/epic/epic.component';
+import { NaturalComponent } from './components/epic/natural/natural.component';
+import { EnhancedComponent } from './components/epic/enhanced/enhanced.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -79,7 +82,10 @@ import { PanelModule } from 'primeng/panel';
 		RBEComponent,
 		SEPComponent,
 		WSASimComponent,
-		NotificationsComponent
+		NotificationsComponent,
+		EPICComponent,
+		NaturalComponent,
+		EnhancedComponent
 	],
 	imports: [
 		BrowserModule,
