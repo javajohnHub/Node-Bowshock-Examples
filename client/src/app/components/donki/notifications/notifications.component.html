@@ -29,8 +29,7 @@
                                 MessageID: {{item.messageID}}<br />
                                 <a href="{{item.messageURL}}" target="_blank">message</a>
                             </div>
-                            <div class="border">
-                                {{item.messageBody}}
+                            <div class="border" [innerHTML]="item.messageBody">
                             </div>
                         </div>
                     </p-accordionTab>

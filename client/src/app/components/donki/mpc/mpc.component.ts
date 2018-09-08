@@ -35,7 +35,7 @@ export class MPCComponent {
 		this._sharedService.subTitleSubject$.next('Magnetopause Crossing');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send mpc', mpc => {
-			console.log(mpc);
+			console.log('mpc', mpc);
 			this.mpc = mpc;
 			this.isLoading = false;
 		});
@@ -80,7 +80,12 @@ export class MPCComponent {
 			this.route.snapshot.params['startDate'] ||
 			this.route.snapshot.params['id']
 		) {
-			this._router.navigate(['donki/mpc']);
+			this._router.navigate([
+				'donki/mpc/' +
+					moment(this.route.snapshot.params['startDate']).format(
+						'YYYY-MM-DD'
+					)
+			]);
 		}
 	}
 	goToAssoc(date) {

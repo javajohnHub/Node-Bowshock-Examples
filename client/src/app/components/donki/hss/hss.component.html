@@ -26,9 +26,9 @@
                 <p-accordionTab header="{{item.hssID}}">
                     <div class="ui-g">
                         <div class="ui-g-12 border">
-                            {{item.eventTime}}
+                            Event Time: {{item.eventTime}}<br />
                             <ng-container *ngFor="let inst of item.instruments">
-                                {{inst.id}} {{inst.displayName}}
+                                ID: {{inst.id}} <br /> Name: {{inst.displayName}}<br />
                             </ng-container>
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
@@ -45,9 +45,9 @@
                 <p-accordionTab header="{{item.hssID}}">
                     <div class="ui-g">
                         <div class="ui-g-12 border">
-                            {{item.eventTime}}
+                            Event Time: {{item.eventTime}}<br />
                             <ng-container *ngFor="let inst of item.instruments">
-                                {{inst.id}} {{inst.displayName}}
+                                ID: {{inst.id}} <br /> Name: {{inst.displayName}}<br />
                             </ng-container>
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
@@ -61,6 +61,6 @@
         </ng-container>
 
         <ng-container *ngIf="!hss && !isLoading || hss && hss.length == 0">
-            <h1>No hss Found!</h1>
+            <h1>No HSS Found!</h1>
         </ng-container>
     </div>

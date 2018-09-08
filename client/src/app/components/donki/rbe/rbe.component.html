@@ -26,7 +26,11 @@
                 <p-accordionTab header="{{item.rbeID}}">
                     <div class="ui-g">
                         <div class="ui-g-12 border">
-                            {{item | json}}
+                            MPC ID: {{item.rbeID}}<br />
+                            Event Time: {{item.eventTime}}<br />
+                            <ng-container *ngFor="let inst of item.instruments">
+                                ID: {{inst.id}} <br /> Name: {{inst.displayName}}<br />
+                            </ng-container>
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
                                     <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
@@ -43,7 +47,11 @@
                 <p-accordionTab header="{{item.rbeID}}">
                     <div class="ui-g">
                         <div class="ui-g-12 border">
-                            {{item | json}}
+                            MPC ID: {{item.rbeID}}<br />
+                            Event Time: {{item.eventTime}}<br />
+                            <ng-container *ngFor="let inst of item.instruments">
+                                ID: {{inst.id}} <br /> Name: {{inst.displayName}}<br />
+                            </ng-container>
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
                                     <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>

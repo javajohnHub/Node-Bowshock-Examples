@@ -4,13 +4,14 @@ import { SharedService } from '../../../shared/shared.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/api';
-
+import { markdown } from 'markdown';
 @Component({
 	selector: 'app-notifications',
 	templateUrl: 'notifications.component.html'
 })
 export class NotificationsComponent {
 	socket: any;
+	mdToHtml;
 	notifications: any;
 	startModel: Date = new Date(
 		moment()
@@ -33,6 +34,12 @@ export class NotificationsComponent {
 		this.socket = SocketService.getInstance();
 		this.socket.on('send notifications', notifications => {
 			this.notifications = notifications;
+
+			this.notifications.forEach(notification => {
+				notification.messageBody = markdown.toHTML(
+					notification.messageBody
+				);
+			});
 			this.isLoading = false;
 		});
 
