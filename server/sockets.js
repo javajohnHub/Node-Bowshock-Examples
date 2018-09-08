@@ -246,6 +246,41 @@ module.exports = function(io) {
       });
     });
 
+    socket.on("get enhanced all", () => {
+      bowshock.epic.enhancedAll().then(enhancedAll => {
+        if (enhancedAll.length == 0) {
+          enhancedAll = [];
+        }
+        socket.emit("send enhanced all", enhancedAll);
+      });
+    });
+
+    socket.on("get enhanced by date", date => {
+      bowshock.epic.enhancedDate(date).then(enhancedByDate => {
+        if (enhancedByDate.length == 0) {
+          enhancedByDate = [];
+        }
+        socket.emit("send enhanced by date", enhancedByDate);
+      });
+    });
+
+    socket.on("get enhanced", () => {
+      bowshock.epic.enhanced().then(enhanced => {
+        if (enhanced.length == 0) {
+          enhanced = [];
+        }
+        socket.emit("send enhanced", enhanced);
+      });
+    });
+
+    socket.on("get enhanced available", () => {
+      bowshock.epic.enhancedAvailable().then(enhancedAvailable => {
+        if (enhancedAvailable.length == 0) {
+          enhancedAvailable = [];
+        }
+        socket.emit("send enhanced available", enhancedAvailable);
+      });
+    });
     //end of epic
   });
 

@@ -1,6 +1,12 @@
-<ng-container *ngIf="enhancedAll && !enhancedSingle">
-    {{enhancedAll | json}}
+<ng-container *ngIf="enhancedAll">
+    <span style="color: blue">{{enhancedAll | json}}</span>
 </ng-container>
-<ng-container *ngIf="enhancedSingle && !enhancedAll">
-    {{enhancedSingle | json}}
+<ng-container *ngIf="enhancedByDate">
+    <span style="color: red">{{enhancedByDate | json}}</span>
+</ng-container>
+<ng-container *ngIf="enhancedAvailable">
+    <span style="color: green">{{enhancedAvailable | json}}</span>
+</ng-container>
+<ng-container *ngIf="enhanced">
+    <span style="color: grey">{{enhanced | json}}</span>
 </ng-container>
