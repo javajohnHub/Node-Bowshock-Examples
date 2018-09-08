@@ -237,12 +237,12 @@ module.exports = function(io) {
       });
     });
 
-    socket.on("get natural Available", () => {
+    socket.on("get natural available", () => {
       bowshock.epic.naturalAvailable().then(naturalAvailable => {
         if (naturalAvailable.length == 0) {
           naturalAvailable = [];
         }
-        socket.emit("send natural", naturalAvailable);
+        socket.emit("send natural available", naturalAvailable);
       });
     });
 

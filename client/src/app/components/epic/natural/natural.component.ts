@@ -51,7 +51,7 @@ export class NaturalComponent {
 		let str =
 			myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
 
-		this.socket.emit('get natural all', str);
+		this.socket.emit('get natural available', str);
 	}
 	onDateChanged(event): void {
 		this.model = new Date(event);
