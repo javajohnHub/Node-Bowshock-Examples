@@ -35,18 +35,30 @@
         </div>
 
     </p-panel>
-    <div class="ui-g-12" *ngFor="let item of ips">
-        <p-accordion>
-            <p-accordionTab header="{{item.activityID}}">
-                <div class="ui-g">
-                    <div class="ui-g-12 border">
-                        {{item | json}}
+    <div class="ui-g-12 " *ngFor="let item of ips">
+        <ng-container *ngIf="longDate && longDate == item.activityID">
+            <p-accordion>
+                <p-accordionTab header="{{item.activityID}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            {{item | json}}
+                        </div>
                     </div>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
+                </p-accordionTab>
+            </p-accordion>
+        </ng-container>
+        <ng-container *ngIf="!longDate">
+            <p-accordion>
+                <p-accordionTab header="{{item.activityID}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            {{item | json}}
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </ng-container>
+        <ng-container *ngIf="!ips && !isLoading || ips && ips.length == 0">
+            <h1>No ips Found!</h1>
+        </ng-container>
     </div>
-    <ng-container *ngIf="!ips && !isLoading || ips && ips.length == 0">
-        <h1>No ips Found!</h1>
-    </ng-container>
-</div>

@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="ui-g-12 " *ngFor="let item of flr">
-        <ng-container *ngIf="longDate && longDate == item.activityID">
+        <ng-container *ngIf="longDate && longDate == item.flrID">
             <p-accordion>
                 <p-accordionTab header="{{item.flrID}}">
                     <div class="ui-g">

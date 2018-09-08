@@ -19,23 +19,41 @@
                 (ngModelChange)="change($event)"></p-calendar>
         </div>
     </div>
-    <div class="ui-g-12" *ngFor="let item of mpc">
-        <p-accordion>
-            <p-accordionTab header="{{item.mpcID}}">
-                <div class="ui-g">
-                    <div class="ui-g-12 border">
-                        {{item | json}}
-                        <ng-container *ngIf="item.linkedEvents">
-                            <ng-container *ngFor="let event of item.linkedEvents">
-                                <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
+
+    <div class="ui-g-12 " *ngFor="let item of mpc">
+        <ng-container *ngIf="longDate && longDate == item.mpcID">
+            <p-accordion>
+                <p-accordionTab header="{{item.mpcID}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            {{item | json}}
+                            <ng-container *ngIf="item.linkedEvents">
+                                <ng-container *ngFor="let event of item.linkedEvents">
+                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
+                                </ng-container>
                             </ng-container>
-                        </ng-container>
+                        </div>
                     </div>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
+                </p-accordionTab>
+            </p-accordion>
+        </ng-container>
+        <ng-container *ngIf="!longDate">
+            <p-accordion>
+                <p-accordionTab header="{{item.mpcID}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            {{item | json}}
+                            <ng-container *ngIf="item.linkedEvents">
+                                <ng-container *ngFor="let event of item.linkedEvents">
+                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </ng-container>
+        <ng-container *ngIf="!isLoading && !mpc || mpc && mpc.length == 0">
+            <h1>No mpc Found!</h1>
+        </ng-container>
     </div>
-    <ng-container *ngIf="!isLoading && !mpc || mpc && mpc.length == 0">
-        <h1>No mpc Found!</h1>
-    </ng-container>
-</div>

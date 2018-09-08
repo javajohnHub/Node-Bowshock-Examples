@@ -54,7 +54,7 @@
 
     </p-panel>
     <div class="ui-g-12 " *ngFor="let item of cmea">
-        <ng-container *ngIf="longDate && longDate == item.activityID">
+        <ng-container *ngIf="longDate && longDate == item.associatedCMEID">
             <p-accordion>
                 <p-accordionTab header="{{item.time21_5}}">
                     <div class="ui-g">
