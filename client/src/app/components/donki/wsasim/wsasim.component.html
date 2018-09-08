@@ -10,13 +10,12 @@
             Start:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
                 [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="startModel" dateFormat="yy-mm-dd"
-                [maxDate]="maxStartDate" (ngModelChange)="change($event)"></p-calendar>
+                [maxDate]="maxStartDate"></p-calendar>
         </div>
         <div class="ui-g-6">
             End:
             <p-calendar [inputStyle]="{'width':'90%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
-                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"
-                (ngModelChange)="change($event)"></p-calendar>
+                [readonlyInput]="true" (onSelect)="setOptions()" [(ngModel)]="endModel" dateFormat="yy-mm-dd" [maxDate]="maxEndDate"></p-calendar>
         </div>
     </div>
 
@@ -60,6 +59,8 @@
                 </p-accordionTab>
             </p-accordion>
         </ng-container>
+    </div>
+    <div class="ui-g-12 " *ngFor="let item of wsasim">
         <ng-container *ngIf="!longDate">
 
             <p-accordion>
@@ -96,6 +97,10 @@
                 </p-accordionTab>
             </p-accordion>
         </ng-container>
+
+    </div>
+
+    <div class="ui-g-12">
         <ng-container *ngIf="!isLoading && !wsasim || wsasim && wsasim.length == 0">
             <h1>No WSASim Found!</h1>
         </ng-container>

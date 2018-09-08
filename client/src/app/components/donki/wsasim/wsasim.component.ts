@@ -35,6 +35,7 @@ export class WSASimComponent {
 		this._sharedService.subTitleSubject$.next('WSA + Enlil Simulation');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send wsasim', wsasim => {
+			console.log(wsasim);
 			this.wsasim = wsasim;
 			this.isLoading = false;
 		});
@@ -60,15 +61,7 @@ export class WSASimComponent {
 			moment(this.startModel).format('YYYY-MM-DD')
 		]);
 	}
-	change(event) {
-		console.log('change', event);
-		if (
-			this.route.snapshot.params['startDate'] ||
-			this.route.snapshot.params['id']
-		) {
-			this._router.navigate(['donki/wsasim']);
-		}
-	}
+
 	setOptions() {
 		if (
 			moment(this.startModel).format('YYYY-MM-DD') ==
