@@ -32,7 +32,7 @@
                             </ng-container>
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
-                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
+                                    Linkede Events: <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
                                 </ng-container>
                             </ng-container>
                         </div>
