@@ -37,6 +37,8 @@
                 </p-accordionTab>
             </p-accordion>
         </ng-container>
+    </div>
+    <div class="ui-g-12 " *ngFor="let item of mpc">
         <ng-container *ngIf="!longDate">
             <p-accordion>
                 <p-accordionTab header="{{item.mpcID}}">

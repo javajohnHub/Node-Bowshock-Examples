@@ -40,7 +40,6 @@ export class CMEComponent {
 			this.isLoading = false;
 		});
 
-		console.log(this.route);
 		if (
 			this.route.snapshot.params['startDate'] ||
 			this.route.snapshot.params['id']

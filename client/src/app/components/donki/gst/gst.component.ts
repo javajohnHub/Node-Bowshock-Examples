@@ -39,11 +39,14 @@ export class GSTComponent {
 			this.gst = gst;
 			this.isLoading = false;
 		});
-
-		if (this.route.params['startDate']) {
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
 			this.sub = this.route.params.subscribe(params => {
 				console.log(params);
 				this.longDate = this.route.snapshot.params['id'];
+				console.log('ld', this.longDate);
 				this.startModel = new Date(
 					moment(params['startDate']).format('YYYY-MM-DD')
 				);

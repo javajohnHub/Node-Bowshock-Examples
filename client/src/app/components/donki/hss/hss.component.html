@@ -20,26 +20,6 @@
         </div>
     </div>
 
-    <div class="ui-g-12" *ngFor="let item of hss">
-        <p-accordion>
-            <p-accordionTab header="{{item.hssID}}">
-                <div class="ui-g">
-                    <div class="ui-g-12 border">
-                        {{item.eventTime}}
-                        <ng-container *ngFor="let inst of item.instruments">
-                            {{inst.id}} {{inst.displayName}}
-                        </ng-container>
-                        <ng-container *ngIf="item.linkedEvents">
-                            <ng-container *ngFor="let event of item.linkedEvents">
-                                <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button>
-                            </ng-container>
-                        </ng-container>
-                    </div>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
-    </div>
-
     <div class="ui-g-12 " *ngFor="let item of hss">
         <ng-container *ngIf="longDate && longDate == item.hssID">
             <p-accordion>

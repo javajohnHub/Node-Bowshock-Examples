@@ -35,11 +35,15 @@ export class MPCComponent {
 		this._sharedService.subTitleSubject$.next('Magnetopause Crossing');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send mpc', mpc => {
+			console.log(mpc);
 			this.mpc = mpc;
 			this.isLoading = false;
 		});
 
-		if (this.route.params['startDate']) {
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
 			this.sub = this.route.params.subscribe(params => {
 				console.log(params);
 				this.longDate = this.route.snapshot.params['id'];

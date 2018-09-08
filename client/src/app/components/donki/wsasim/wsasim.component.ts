@@ -39,7 +39,10 @@ export class WSASimComponent {
 			this.isLoading = false;
 		});
 
-		if (this.route.params['startDate']) {
+		if (
+			this.route.snapshot.params['startDate'] ||
+			this.route.snapshot.params['id']
+		) {
 			this.sub = this.route.params.subscribe(params => {
 				console.log(params);
 				this.longDate = this.route.snapshot.params['id'];
