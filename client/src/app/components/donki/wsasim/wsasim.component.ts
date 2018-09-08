@@ -39,32 +39,14 @@ export class WSASimComponent {
 			this.isLoading = false;
 		});
 
-		if (
-			this.route.snapshot.params['startDate'] ||
-			this.route.snapshot.params['id']
-		) {
-			this.sub = this.route.params.subscribe(params => {
-				console.log(params);
-				this.longDate = this.route.snapshot.params['id'];
-				this.startModel = new Date(
-					moment(params['startDate']).format('YYYY-MM-DD')
-				);
-				this.socket.emit('get wsasim', {
-					startDate: moment(
-						this.route.snapshot.params['startDate']
-					).format('YYYY-MM-DD')
-				});
-			});
-		} else {
-			this.startModel = new Date(
-				moment()
-					.subtract(7, 'days')
-					.format()
-			);
-			this.socket.emit('get wsasim', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
-		}
+		this.startModel = new Date(
+			moment()
+				.subtract(7, 'days')
+				.format()
+		);
+		this.socket.emit('get wsasim', {
+			startDate: moment(this.startModel).format('YYYY-MM-DD')
+		});
 	}
 
 	goToAssoc(date) {
