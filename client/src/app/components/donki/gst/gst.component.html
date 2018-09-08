@@ -26,9 +26,9 @@
             <p-accordionTab header="{{item.gstID}}">
                 <div class="ui-g">
                     <div class="ui-g-12 border">
-                        {{item.startTime}}
+                        Start time: {{item.startTime}}<br />
                         <ng-container *ngFor="let idx of item.allKpIndex">
-                            ID: {{idx.observedTime}}<br /> Name: {{idx.kpIndex}}<br />{{idx.source}}
+                            ID: {{idx.observedTime}}<br /> Name: {{idx.kpIndex}}<br />Source: {{idx.source}}<br />
                         </ng-container>
                         <ng-container *ngIf="item.linkedEvents">
                             <ng-container *ngFor="let event of item.linkedEvents">
@@ -39,17 +39,15 @@
                 </div>
             </p-accordionTab>
         </p-accordion>
-    </div>
-
-    <div class="ui-g-12 " *ngFor="let item of gst">
         <ng-container *ngIf="longDate && longDate == item.gstID">
             <p-accordion>
                 <p-accordionTab header="{{item.gstID}}">
                     <div class="ui-g">
                         <div class="ui-g-12 border">
-                            {{item.startTime}}
+                            Start time: {{item.startTime}}<br /> ----
                             <ng-container *ngFor="let idx of item.allKpIndex">
-                                ID: {{idx.observedTime}}<br /> Name: {{idx.kpIndex}}<br />{{idx.source}}
+                                Observed Time: {{idx.observedTime}}<br /> Index: {{idx.kpIndex}}<br />Source:
+                                {{idx.source}}
                             </ng-container>
                             <ng-container *ngIf="item.linkedEvents">
                                 <ng-container *ngFor="let event of item.linkedEvents">
@@ -62,23 +60,6 @@
             </p-accordion>
         </ng-container>
         <ng-container *ngIf="!longDate">
-            <p-accordion>
-                <p-accordionTab header="{{item.gstID}}">
-                    <div class="ui-g">
-                        <div class="ui-g-12 border">
-                            {{item.startTime}}
-                            <ng-container *ngFor="let idx of item.allKpIndex">
-                                ID: {{idx.observedTime}}<br /> Name: {{idx.kpIndex}}<br />{{idx.source}}
-                            </ng-container>
-                            <ng-container *ngIf="item.linkedEvents">
-                                <ng-container *ngFor="let event of item.linkedEvents">
-                                    <button pButton type="button" label="{{event.activityID}}" (click)="goToAssoc(event.activityID)"></button><br />
-                                </ng-container>
-                            </ng-container>
-                        </div>
-                    </div>
-                </p-accordionTab>
-            </p-accordion>
         </ng-container>
         <ng-container *ngIf="!gst && !isLoading || gst && gst.length == 0">
             <h1>No GST Found!</h1>

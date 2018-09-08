@@ -58,12 +58,14 @@ export class HSSComponent {
 		if (this.route.params['startDate']) {
 			this.sub = this.route.params.subscribe(params => {
 				console.log(params);
-				this.longDate = params['id'];
+				this.longDate = this.route.snapshot.params['id'];
 				this.startModel = new Date(
 					moment(params['startDate']).format('YYYY-MM-DD')
 				);
 				this.socket.emit('get hss', {
-					startDate: moment(params['startDate']).format('YYYY-MM-DD')
+					startDate: moment(
+						this.route.snapshot.params['startDate']
+					).format('YYYY-MM-DD')
 				});
 			});
 		} else {
