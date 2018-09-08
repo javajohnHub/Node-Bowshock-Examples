@@ -65,47 +65,56 @@ const routes: Routes = [
 				component: CMEComponent
 			},
 			{ path: 'cme/:startDate', component: CMEComponent },
+			{ path: 'cme/:startDate/:id', component: CMEComponent },
 			{
 				path: 'cmea',
 				component: CMEAComponent
 			},
 			{ path: 'cmea/:startDate', component: CMEAComponent },
+			{ path: 'cmea/:startDate/:id', component: CMEAComponent },
 
 			{
 				path: 'flr',
 				component: FLRComponent
 			},
 			{ path: 'flr/:startDate', component: FLRComponent },
+			{ path: 'flr/:startDate/:id', component: FLRComponent },
 			{
 				path: 'gst',
 				component: GSTComponent
 			},
 			{ path: 'gst/:startDate', component: GSTComponent },
+			{ path: 'gst/:startDate/:id', component: GSTComponent },
 			{
 				path: 'hss',
 				component: HSSComponent
 			},
 			{ path: 'hss/:startDate', component: HSSComponent },
+			{ path: 'hss/:startDate/:id', component: HSSComponent },
 			{
 				path: 'ips',
 				component: IPSComponent
 			},
 			{ path: 'ips/:startDate', component: IPSComponent },
+			{ path: 'ips/:startDate/:id', component: IPSComponent },
 			{
 				path: 'mpc',
 				component: MPCComponent
 			},
 			{ path: 'mpc/:startDate', component: MPCComponent },
+			{ path: 'mpc/:startDate/:id', component: MPCComponent },
 			{
 				path: 'rbe',
 				component: RBEComponent
 			},
 			{ path: 'rbe/:startDate', component: RBEComponent },
+			{ path: 'rbe/:startDate/:id', component: RBEComponent },
 			{
 				path: 'sep',
 				component: SEPComponent
 			},
-			{ path: 'sep:startDate', component: SEPComponent },
+			{ path: 'sep/:startDate', component: SEPComponent },
+			{ path: 'sep/:startDate/:id', component: SEPComponent },
 
 			{ path: 'wsasim', component: WSASimComponent },
 			{ path: 'notifications', component: NotificationsComponent }

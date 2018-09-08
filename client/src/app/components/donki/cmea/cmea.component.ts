@@ -65,6 +65,11 @@ export class CMEAComponent {
 		});
 	}
 
+	ngOnDestroy() {
+		if (this.sub) {
+			this.sub.unsubscribe();
+		}
+	}
 	goToAssoc(date) {
 		this.isLoading = true;
 
@@ -75,8 +80,12 @@ export class CMEAComponent {
 			startDate: moment(this.startModel).format('YYYY-MM-DD')
 		});
 		this._router.navigate([
-			'donki/' + type[3].toLowerCase() + '/',
-			moment(this.startModel).format('YYYY-MM-DD')
+			'donki/' +
+				type[3].toLowerCase() +
+				'/' +
+				moment(this.startModel).format('YYYY-MM-DD') +
+				'/' +
+				date
 		]);
 	}
 

@@ -64,7 +64,9 @@ export class IPSComponent {
 	}
 
 	ngOnDestroy() {
-		this.sub.unsubscribe();
+		if (this.sub) {
+			this.sub.unsubscribe();
+		}
 	}
 	private _createForm() {
 		this.ipsForm = this._fb.group({
@@ -79,8 +81,12 @@ export class IPSComponent {
 		let type = date.split('-');
 		this.startModel = new Date(moment(newDate[0]).format('YYYY-MM-DD'));
 		this._router.navigate([
-			'donki/' + type[3].toLowerCase() + '/',
-			moment(this.startModel).format('YYYY-MM-DD')
+			'donki/' +
+				type[3].toLowerCase() +
+				'/' +
+				moment(this.startModel).format('YYYY-MM-DD') +
+				'/' +
+				date
 		]);
 	}
 

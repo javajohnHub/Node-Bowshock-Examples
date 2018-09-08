@@ -75,6 +75,13 @@ export class RBEComponent {
 			});
 		});
 	}
+
+	ngOnDestroy() {
+		if (this.sub) {
+			this.sub.unsubscribe();
+		}
+	}
+
 	goToAssoc(date) {
 		this.isLoading = true;
 
@@ -82,8 +89,12 @@ export class RBEComponent {
 		let type = date.split('-');
 		this.startModel = new Date(moment(newDate[0]).format('YYYY-MM-DD'));
 		this._router.navigate([
-			'donki/' + type[3].toLowerCase() + '/',
-			moment(this.startModel).format('YYYY-MM-DD')
+			'donki/' +
+				type[3].toLowerCase() +
+				'/' +
+				moment(this.startModel).format('YYYY-MM-DD') +
+				'/' +
+				date
 		]);
 	}
 
