@@ -61,7 +61,7 @@ export class WSASimComponent {
 					.subtract(7, 'days')
 					.format()
 			);
-			this.socket.emit('get rbe', {
+			this.socket.emit('get wsasim', {
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		}
