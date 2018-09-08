@@ -24,7 +24,7 @@
 
 
     <div class="ui-g-12 " *ngFor="let item of wsasim">
-        <ng-container *ngIf="longDate && longDate == item.simulationID">
+        <ng-container>
             <p-accordion>
                 <p-accordionTab header="{{item.simulationID}}">
                     <div class="ui-g">
@@ -59,45 +59,6 @@
                 </p-accordionTab>
             </p-accordion>
         </ng-container>
-    </div>
-    <div class="ui-g-12 " *ngFor="let item of wsasim">
-        <ng-container *ngIf="!longDate">
-
-            <p-accordion>
-                <p-accordionTab header="{{item.simulationID}}">
-                    <div class="ui-g">
-                        <div class="ui-g-12 border">
-                            SimulationID{{item.simulationID}}<br />
-                            Model Completion Time: {{item.modelCompletionTime}}<br />
-                            au: {{item.au}}
-                            cmeid: {{item.cmeid}}
-                            <ng-container *ngIf="item.cmeInputs">
-                                <ng-container *ngFor="let input of item.cmeInputs">
-                                    CMEStartTime: {{input.cmeStartTime}}<br />
-                                    Latitude: {{input.latitude}}<br />
-                                    Longitude: {{input.longitude}}<br />
-                                    Speed: {{input.speed}}<br />
-                                    HalfAngle: {{input.halfAngle}}<br />
-                                    time21_5: {{input.time21_5}}<br />
-                                    isMostAccurate: {{input.isMostAccurate}}
-                                    levelOfData: {{input.levelOfData}}
-                                    <ng-container *ngFor="let list of input.ipsList">
-                                        Catalog: {{list.catalog}}
-                                        <button pButton type="button" label="{{list.activityID}}" (click)="goToAssoc(list.activityID)"></button><br />
-                                        Location: {{list.location}}<br />
-                                        Eventtime: {{list.eventTime}}
-                                        <ng-container *ngFor="let instrument of list.instruments">
-                                            ID: {{instrument.id}}<br /> Name: {{instrument.displayName}}<br />
-                                        </ng-container>
-                                    </ng-container>
-                                </ng-container>
-                            </ng-container>
-                        </div>
-                    </div>
-                </p-accordionTab>
-            </p-accordion>
-        </ng-container>
-
     </div>
 
     <div class="ui-g-12">
