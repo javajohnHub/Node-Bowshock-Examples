@@ -69,7 +69,7 @@ export class EnhancedComponent {
 	open(image, date) {
 		let available;
 		let myDate = new Date(date).toISOString().split('T')[0];
-
+		console.log(myDate, this.enhancedAvailable);
 		available = this.enhancedAvailable.find(el => {
 			return el == myDate;
 		});
