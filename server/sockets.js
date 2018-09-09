@@ -220,8 +220,8 @@ module.exports = function(io) {
       });
     });
 
-    socket.on("get natural available", date => {
-      bowshock.epic.naturalAvailable().then(naturalByDate => {
+    socket.on("get natural available", () => {
+      bowshock.epic.naturalAvailable().then(naturalAvailable => {
         if (naturalAvailable.length == 0) {
           naturalAvailable = [];
         }
@@ -246,7 +246,7 @@ module.exports = function(io) {
         });
     });
 
-    socket.on("get enhanced available", date => {
+    socket.on("get enhanced available", () => {
       bowshock.epic.enhancedAvailable().then(enhancedAvailable => {
         if (enhancedAvailable.length == 0) {
           enhancedAvailable = [];
