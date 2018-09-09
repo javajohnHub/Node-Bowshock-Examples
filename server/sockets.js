@@ -210,14 +210,6 @@ module.exports = function(io) {
     //end of donki
 
     //start of epic
-    socket.on("get natural all", () => {
-      bowshock.epic.naturalAll().then(naturalAll => {
-        if (naturalAll.length == 0) {
-          naturalAll = [];
-        }
-        socket.emit("send natural all", naturalAll);
-      });
-    });
 
     socket.on("get natural by date", date => {
       bowshock.epic.naturalDate(date).then(naturalByDate => {
@@ -225,33 +217,6 @@ module.exports = function(io) {
           naturalByDate = [];
         }
         socket.emit("send natural by date", naturalByDate);
-      });
-    });
-
-    socket.on("get natural", () => {
-      bowshock.epic.natural().then(natural => {
-        if (natural.length == 0) {
-          natural = [];
-        }
-        socket.emit("send natural", natural);
-      });
-    });
-
-    socket.on("get natural available", () => {
-      bowshock.epic.naturalAvailable().then(naturalAvailable => {
-        if (naturalAvailable.length == 0) {
-          naturalAvailable = [];
-        }
-        socket.emit("send natural available", naturalAvailable);
-      });
-    });
-
-    socket.on("get enhanced all", () => {
-      bowshock.epic.enhancedAll().then(enhancedAll => {
-        if (enhancedAll.length == 0) {
-          enhancedAll = [];
-        }
-        socket.emit("send enhanced all", enhancedAll);
       });
     });
 
@@ -264,25 +229,8 @@ module.exports = function(io) {
       });
     });
 
-    socket.on("get enhanced", () => {
-      bowshock.epic.enhanced().then(enhanced => {
-        if (enhanced.length == 0) {
-          enhanced = [];
-        }
-        socket.emit("send enhanced", enhanced);
-      });
-    });
-
-    socket.on("get enhanced available", () => {
-      bowshock.epic.enhancedAvailable().then(enhancedAvailable => {
-        if (enhancedAvailable.length == 0) {
-          enhancedAvailable = [];
-        }
-        socket.emit("send enhanced available", enhancedAvailable);
-      });
-    });
-
     socket.on("get natural image", object => {
+      console.log(object);
       bowshock.epic
         .createNaturalImageLink(object.image, object.date)
         .then(naturalImage => {
@@ -291,6 +239,7 @@ module.exports = function(io) {
     });
 
     socket.on("get enhanced image", object => {
+      console.log(object);
       bowshock.epic
         .createEnhancedImageLink(object.image, object.date)
         .then(enhancedImage => {
