@@ -15,11 +15,13 @@ export class NaturalComponent {
 	naturalAvailable;
 	isLoading: boolean = false;
 	imageMsg: string;
+	myDate;
 	constructor(private _sharedService: SharedService) {}
 	ngOnInit() {
 		this.isLoading = true;
 		this._sharedService.subTitleSubject$.next('Natural');
 		this.model = new Date();
+		this.myDate = this.model.toISOString().split('T')[0];
 		this.maxDate = new Date();
 		this.socket = SocketService.getInstance();
 
@@ -50,8 +52,8 @@ export class NaturalComponent {
 	onDateChanged(event): void {
 		this.isLoading = true;
 		this.model = new Date(event);
-		let myDate = this.model.toISOString().split('T')[0];
-		this.socket.emit('get natural by date', myDate);
+		this.myDate = this.model.toISOString().split('T')[0];
+		this.socket.emit('get natural by date', this.myDate);
 	}
 
 	getImage(image) {
@@ -67,12 +69,12 @@ export class NaturalComponent {
 		this.naturalImageLink = null;
 	}
 	open(image, date) {
-		let myDate = new Date(date).toISOString().split('T')[0];
+		this.myDate = new Date(date).toISOString().split('T')[0];
 
 		let available = this.naturalAvailable.find(el => {
-			return el == myDate;
+			return el == this.myDate;
 		});
-		console.log(myDate, available);
+		console.log(this.myDate, available);
 		if (available) {
 			this.getImage(image);
 		} else {

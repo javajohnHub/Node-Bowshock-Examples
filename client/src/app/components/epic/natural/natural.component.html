@@ -1,6 +1,14 @@
 <div class="ui-g-12">
     <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
         (onSelect)="onDateChanged($event)" (yearNavigator)="true" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+
+    <ng-container *ngFor="let nat of naturalAvailable">
+        <ng-container *ngIf="nat == myDate">
+            <span style="color: green;padding-left:100px;">Images Available</span>
+        </ng-container>
+
+
+    </ng-container>
 </div>
 <div class="ui-g-12" *ngFor="let item of naturalByDate">
     <p-accordion (onOpen)="open(item.image, item.date)" (onClose)="close()">
