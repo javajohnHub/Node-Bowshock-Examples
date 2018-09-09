@@ -237,9 +237,9 @@ module.exports = function(io) {
       });
     });
 
-    socket.on("get natural image", arr => {
-      console.log(arr);
-      bowshock.epic.createNaturalImageLink(arr).then(naturalImage => {
+    socket.on("get natural image", obj => {
+      console.log(obj);
+      bowshock.epic.createNaturalImageLink(obj).then(naturalImage => {
         socket.emit("send natural image", naturalImage);
       });
     });
@@ -252,9 +252,9 @@ module.exports = function(io) {
         socket.emit("send enhanced available", enhancedAvailable);
       });
     });
-    socket.on("get enhanced image", arr => {
-      console.log(arr);
-      bowshock.epic.createEnhancedImageLink(arr).then(enhancedImage => {
+    socket.on("get enhanced image", obj => {
+      console.log(obj);
+      bowshock.epic.createEnhancedImageLink(obj).then(enhancedImage => {
         socket.emit("send enhanced image", enhancedImage);
       });
     });
