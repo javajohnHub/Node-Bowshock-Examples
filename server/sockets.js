@@ -286,7 +286,6 @@ module.exports = function(io) {
       bowshock.epic
         .createNaturalImageLink(object.image, object.date)
         .then(naturalImage => {
-          console.log(naturalImage);
           socket.emit("send natural image", naturalImage);
         });
     });
