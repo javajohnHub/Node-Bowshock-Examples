@@ -12,6 +12,7 @@ export class NaturalComponent {
 	maxDate: Date;
 	naturalImageLink;
 	naturalByDate;
+	naturalAvailable;
 	isLoading: boolean = false;
 	constructor(private _sharedService: SharedService) {}
 	ngOnInit() {
@@ -26,8 +27,15 @@ export class NaturalComponent {
 			this.isLoading = false;
 		});
 
-		this.socket.on('send natural image', data => {
+		this.socket.on('send natural all', data => {
+			this.naturalAvailable = data;
+			console.log(this.naturalAvailable);
+			this.isLoading = false;
+		});
+
+		this.socket.on('send natural available', data => {
 			this.naturalImageLink = data;
+
 			this.isLoading = false;
 		});
 
@@ -37,6 +45,7 @@ export class NaturalComponent {
 			myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
 
 		this.socket.emit('get natural by date', str);
+		this.socket.emit('get natural available');
 	}
 	onDateChanged(event): void {
 		this.isLoading = true;
@@ -51,5 +60,17 @@ export class NaturalComponent {
 			image: image,
 			date: this.model
 		});
+	}
+
+	open(image) {
+		this.getImage(image);
+	}
+
+	close() {
+		this.naturalImageLink = null;
+	}
+
+	imgLoaded() {
+		console.log('loaded');
 	}
 }

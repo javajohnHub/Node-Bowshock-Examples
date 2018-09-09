@@ -225,7 +225,7 @@ module.exports = function(io) {
         if (naturalAvailable.length == 0) {
           naturalAvailable = [];
         }
-        socket.emit("send natural by date", naturalAvailable);
+        socket.emit("send natural available", naturalAvailable);
       });
     });
     socket.on("get enhanced by date", date => {
