@@ -17,7 +17,6 @@
         </p-accordionTab>
     </p-accordion>
 </div>
-
 {{naturalByDate | json}}
 <ng-container *ngIf="!isLoading && !naturalByDate || naturalByDate && naturalByDate.length == 0">
     <h1>No Images Found!</h1>
