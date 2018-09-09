@@ -237,13 +237,11 @@ module.exports = function(io) {
       });
     });
 
-    socket.on("get natural image", object => {
-      console.log(object);
-      bowshock.epic
-        .createNaturalImageLink(object.image, new Date(object.date))
-        .then(naturalImage => {
-          socket.emit("send natural image", naturalImage);
-        });
+    socket.on("get natural image", arr => {
+      console.log(arr);
+      bowshock.epic.createNaturalImageLink(arr).then(naturalImage => {
+        socket.emit("send natural image", naturalImage);
+      });
     });
 
     socket.on("get enhanced available", () => {
@@ -254,13 +252,11 @@ module.exports = function(io) {
         socket.emit("send enhanced available", enhancedAvailable);
       });
     });
-    socket.on("get enhanced image", object => {
-      console.log(object);
-      bowshock.epic
-        .createEnhancedImageLink(object.image, new Date(object.date))
-        .then(enhancedImage => {
-          socket.emit("send enhanced image", enhancedImage);
-        });
+    socket.on("get enhanced image", arr => {
+      console.log(arr);
+      bowshock.epic.createEnhancedImageLink(arr).then(enhancedImage => {
+        socket.emit("send enhanced image", enhancedImage);
+      });
     });
     //end of epic
   });
