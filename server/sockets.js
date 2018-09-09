@@ -246,8 +246,8 @@ module.exports = function(io) {
         });
     });
 
-    socket.on("get enhanced available", () => {
-      bowshock.epic.enhancedAvailable().then(enhancedAvailable => {
+    socket.on("get enhanced", () => {
+      bowshock.epic.enhanced().then(enhancedAvailable => {
         console.log(enhancedAvailable);
         if (enhancedAvailable.length == 0) {
           enhancedAvailable = [];
