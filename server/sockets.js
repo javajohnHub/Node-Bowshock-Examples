@@ -251,7 +251,7 @@ module.exports = function(io) {
         if (enhancedAvailable.length == 0) {
           enhancedAvailable = [];
         }
-        socket.emit("send natural by date", enhancedAvailable);
+        socket.emit("send enhanced available", enhancedAvailable);
       });
     });
     socket.on("get enhanced image", object => {

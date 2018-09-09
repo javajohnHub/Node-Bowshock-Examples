@@ -29,6 +29,7 @@ export class EnhancedComponent {
 		});
 
 		this.socket.on('send enhanced available', data => {
+			console.log(data);
 			this.enhancedAvailable = data;
 			this.isLoading = false;
 		});
