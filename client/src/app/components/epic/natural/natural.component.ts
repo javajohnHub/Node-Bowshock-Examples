@@ -58,9 +58,10 @@ export class NaturalComponent {
 
 	getImage(image) {
 		this.isLoading = true;
+		let arr = this.myDate.split('-');
 		this.socket.emit('get natural image', {
 			image: image,
-			date: this.model
+			arr: arr
 		});
 	}
 

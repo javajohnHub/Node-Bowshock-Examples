@@ -15,11 +15,13 @@ export class EnhancedComponent {
 	enhancedAvailable;
 	isLoading: boolean = false;
 	imageMsg: string;
+	myDate;
 	constructor(private _sharedService: SharedService) {}
 	ngOnInit() {
 		this.isLoading = true;
 		this._sharedService.subTitleSubject$.next('Enhanced');
 		this.model = new Date();
+		this.myDate = this.model.toISOString().split('T')[0];
 		this.maxDate = new Date();
 		this.socket = SocketService.getInstance();
 
@@ -29,13 +31,13 @@ export class EnhancedComponent {
 		});
 
 		this.socket.on('send enhanced available', data => {
-			console.log('available', data);
 			this.enhancedAvailable = data;
 			this.isLoading = false;
 		});
 
 		this.socket.on('send enhanced image', data => {
 			this.enhancedImageLink = data;
+
 			this.isLoading = false;
 		});
 
@@ -50,15 +52,16 @@ export class EnhancedComponent {
 	onDateChanged(event): void {
 		this.isLoading = true;
 		this.model = new Date(event);
-		let myDate = this.model.toISOString().split('T')[0];
-		this.socket.emit('get enhanced by date', myDate);
+		this.myDate = this.model.toISOString().split('T')[0];
+		this.socket.emit('get enhanced by date', this.myDate);
 	}
 
 	getImage(image) {
 		this.isLoading = true;
+		let arr = this.myDate.split('-');
 		this.socket.emit('get enhanced image', {
 			image: image,
-			date: this.model
+			arr: arr
 		});
 	}
 
@@ -67,14 +70,12 @@ export class EnhancedComponent {
 		this.enhancedImageLink = null;
 	}
 	open(image, date) {
-		let available;
-		let myDate = new Date(date).toISOString().split('T')[0];
-		console.log(myDate, this.enhancedAvailable);
-		available = this.enhancedAvailable.find(el => {
-			return el == myDate;
-		});
+		this.myDate = new Date(date).toISOString().split('T')[0];
 
-		console.log(myDate, available, this.enhancedAvailable);
+		let available = this.enhancedAvailable.find(el => {
+			return el == this.myDate;
+		});
+		console.log(this.myDate, available);
 		if (available) {
 			this.getImage(image);
 		} else {
