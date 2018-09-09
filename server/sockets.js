@@ -281,6 +281,23 @@ module.exports = function(io) {
         socket.emit("send enhanced available", enhancedAvailable);
       });
     });
+
+    socket.on("get natural image", object => {
+      bowshock.epic
+        .createNaturalImageLink(object.image, object.date)
+        .then(naturalImage => {
+          console.log(naturalImage);
+          socket.emit("send natural image", naturalImage);
+        });
+    });
+
+    socket.on("get enhanced image", object => {
+      bowshock.epic
+        .createEnhancedImageLink(object.image, object.date)
+        .then(enhancedImage => {
+          socket.emit("send enhanced image", enhancedImage);
+        });
+    });
     //end of epic
   });
 

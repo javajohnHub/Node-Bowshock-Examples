@@ -1,12 +1,31 @@
-<ng-container *ngIf="naturalAll">
-    <span style="color: blue">{{naturalAll | json}}</span>
+<div class="ui-g-12">
+    <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
+        [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+</div>
+<div class="ui-g-12" *ngFor="let item of naturalByDate">
+    <p-accordion>
+        <p-accordionTab header="{{item.identifier}}">
+            <div class="border">
+                Identifier: {{item.identifier}}<br />
+                Caption: {{item.caption}}<br />
+                Image: <button (click)="getImage(item.image)" type="button" pButton label="{{item.image}}"></button>
+            </div>
+            <ng-container *ngIf="naturalImageLink">
+                <img src="{{naturalImageLink}}">
+            </ng-container>
+            {{item | json}}
+        </p-accordionTab>
+    </p-accordion>
+</div>
+
+{{naturalByDate | json}}
+<ng-container *ngIf="!isLoading && !naturalByDate || naturalByDate && naturalByDate.length == 0">
+    <h1>No Images Found!</h1>
 </ng-container>
-<ng-container *ngIf="naturalByDate">
-    <span style="color: red">{{naturalByDate | json}}</span>
-</ng-container>
-<ng-container *ngIf="naturalAvailable">
-    <span style="color: green">{{naturalAvailable | json}}</span>
-</ng-container>
-<ng-container *ngIf="natural">
-    <span style="color: grey">{{natural | json}}</span>
-</ng-container>
+
+<div class="ui-g center-item" *ngIf="isLoading">
+    <div class="ui-g-12">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+
+</div>
