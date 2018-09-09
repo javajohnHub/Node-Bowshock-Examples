@@ -246,6 +246,14 @@ module.exports = function(io) {
         });
     });
 
+    socket.on("get enhanced available", date => {
+      bowshock.epic.enhancedAvailable().then(enhancedAvailable => {
+        if (enhancedAvailable.length == 0) {
+          enhancedAvailable = [];
+        }
+        socket.emit("send natural by date", enhancedAvailable);
+      });
+    });
     socket.on("get enhanced image", object => {
       console.log(object);
       bowshock.epic
