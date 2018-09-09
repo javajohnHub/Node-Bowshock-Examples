@@ -232,7 +232,7 @@ module.exports = function(io) {
     socket.on("get natural image", object => {
       console.log(object);
       bowshock.epic
-        .createNaturalImageLink(object.image, object.date)
+        .createNaturalImageLink(object.image, new Date(object.date))
         .then(naturalImage => {
           socket.emit("send natural image", naturalImage);
         });
@@ -241,7 +241,7 @@ module.exports = function(io) {
     socket.on("get enhanced image", object => {
       console.log(object);
       bowshock.epic
-        .createEnhancedImageLink(object.image, object.date)
+        .createEnhancedImageLink(object.image, new Date(object.date))
         .then(enhancedImage => {
           socket.emit("send enhanced image", enhancedImage);
         });
