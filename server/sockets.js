@@ -246,13 +246,13 @@ module.exports = function(io) {
         });
     });
 
-    socket.on("get enhanced", () => {
-      bowshock.epic.enhanced().then(enhancedAvailable => {
+    socket.on("get enhanced all", () => {
+      bowshock.epic.enhancedAll().then(enhancedAvailable => {
         console.log(enhancedAvailable);
         if (enhancedAvailable.length == 0) {
           enhancedAvailable = [];
         }
-        socket.emit("send enhanced available", enhancedAvailable);
+        socket.emit("send enhanced all", enhancedAvailable);
       });
     });
     socket.on("get enhanced image", object => {
