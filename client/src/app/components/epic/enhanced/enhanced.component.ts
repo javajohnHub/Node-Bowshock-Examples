@@ -28,8 +28,8 @@ export class EnhancedComponent {
 			this.isLoading = false;
 		});
 
-		this.socket.on('send enhanced', data => {
-			console.log(data);
+		this.socket.on('send enhanced available', data => {
+			console.log('available', data);
 			this.enhancedAvailable = data;
 			this.isLoading = false;
 		});
@@ -45,7 +45,7 @@ export class EnhancedComponent {
 			myDate.split('-')[0] + '-' + myDate.split('-')[1] + '-' + last;
 
 		this.socket.emit('get enhanced by date', str);
-		this.socket.emit('get enhanced');
+		this.socket.emit('get enhanced available');
 	}
 	onDateChanged(event): void {
 		this.isLoading = true;
@@ -67,12 +67,14 @@ export class EnhancedComponent {
 		this.enhancedImageLink = null;
 	}
 	open(image, date) {
+		let available;
 		let myDate = new Date(date).toISOString().split('T')[0];
-		console.log(this.enhancedAvailable);
-		let available = this.enhancedAvailable.find(el => {
+
+		available = this.enhancedAvailable.find(el => {
 			return el == myDate;
 		});
-		console.log(myDate, available);
+
+		console.log(myDate, available, this.enhancedAvailable);
 		if (available) {
 			this.getImage(image);
 		} else {
