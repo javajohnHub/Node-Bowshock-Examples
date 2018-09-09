@@ -1,21 +1,66 @@
 <div class="ui-g-12">
     <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
-        [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+        (onSelect)="onDateChanged($event)" (yearNavigator)="true" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
 </div>
-<span style="color: blue;">{{naturalByDate | json}}</span>
-{{naturalAvailable | json}}
 <div class="ui-g-12" *ngFor="let item of naturalByDate">
-    <p-accordion (onOpen)="open(item.image)" (onClose)="close()">
+    <p-accordion (onOpen)="open(item.image, item.date)" (onClose)="close()">
         <p-accordionTab header="{{item.identifier}}">
+            <ng-container *ngIf="naturalImageLink; else none;">
+                <img src="{{naturalImageLink}}" (error)="updateUrl($event)">
+            </ng-container>
+            <ng-template #none>
+                {{imageMsg}}
+            </ng-template>
             <div class="border">
+                Date: {{item.date}}<br />
                 Identifier: {{item.identifier}}<br />
                 Caption: {{item.caption}}<br />
-                Image: {{item.image}}
+                Image: {{item.image}}<br />
+                Version: {{item.version}}<br />
+                centroid_coordinates: <br />
+                <span style="padding-left: 20px;">Lat: {{item.centroid_coordinates.lat}}</span><br />
+                <span style="padding-left: 20px;"> Lon: {{item.centroid_coordinates.lon}}</span><br />
+                dscovr_j2000_position<br />
+                <span style="padding-left: 20px;">X: {{item.dscovr_j2000_position.x}}</span><br />
+                <span style="padding-left: 20px;"> Y: {{item.dscovr_j2000_position.y}}</span><br />
+                <span style="padding-left: 20px;">Z: {{item.dscovr_j2000_position.z}}</span><br />
+                lunar_j2000_position<br />
+                <span style="padding-left: 20px;">X: {{item.lunar_j2000_position.x}}</span><br />
+                <span style="padding-left: 20px;">Y: {{item.lunar_j2000_position.y}}</span><br />
+                <span style="padding-left: 20px;">Z: {{item.lunar_j2000_position.z}}</span><br />
+                sun_j2000_position<br />
+                <span style="padding-left: 20px;"> X: {{item.sun_j2000_position.x}}</span><br />
+                <span style="padding-left: 20px;">Y: {{item.sun_j2000_position.y}}</span><br />
+                <span style="padding-left: 20px;">Z: {{item.sun_j2000_position.z}}</span><br />
+                attitude_quaternions<br />
+                <span style="padding-left: 20px;">q0: {{item.attitude_quaternions.q0}}</span><br />
+                <span style="padding-left: 20px;">q1: {{item.attitude_quaternions.q1}}</span><br />
+                <span style="padding-left: 20px;"> q2: {{item.attitude_quaternions.q2}}</span><br />
+                <span style="padding-left: 20px;">q3: {{item.attitude_quaternions.q3}}</span><br />
+                coords:<br />
+                <span style="padding-left: 20px;">centroid_coordinates: </span><br />
+                <span style="padding-left: 40px;">Lat: {{item.coords.centroid_coordinates.lat}}</span><br />
+                <span style="padding-left: 40px;">Lon: {{item.coords.centroid_coordinates.lon}}</span><br />
+                <span style="padding-left: 20px;">dscovr_j2000_position</span><br />
+                <span style="padding-left: 40px;">X: {{item.coords.dscovr_j2000_position.x}}</span><br />
+                <span style="padding-left: 40px;">Y: {{item.coords.dscovr_j2000_position.y}}</span><br />
+                <span style="padding-left: 40px;">Z: {{item.coords.dscovr_j2000_position.z}}</span><br />
+                <span style="padding-left: 20px;">lunar_j2000_position</span><br />
+                <span style="padding-left: 40px;">X: {{item.coords.lunar_j2000_position.x}}</span><br />
+                <span style="padding-left: 40px;">Y: {{item.coords.lunar_j2000_position.y}}</span><br />
+                <span style="padding-left: 40px;"> Z: {{item.coords.lunar_j2000_position.z}}</span><br />
+                <span style="padding-left: 20px;">sun_j2000_position</span><br />
+                <span style="padding-left: 40px;">X: {{item.coords.sun_j2000_position.x}}</span><br />
+                <span style="padding-left: 40px;"> Y: {{item.coords.sun_j2000_position.y}}</span><br />
+                <span style="padding-left: 40px;">Z: {{item.coords.sun_j2000_position.z}}</span><br />
+                <span style="padding-left: 20px;">attitude_quaternions</span><br />
+                <span style="padding-left: 40px;">q0: {{item.coords.attitude_quaternions.q0}}</span><br />
+                <span style="padding-left: 40px;"> q1: {{item.coords.attitude_quaternions.q1}}</span><br />
+                <span style="padding-left: 40px;">q2: {{item.coords.attitude_quaternions.q2}}</span><br />
+                <span style="padding-left: 40px;">q3: {{item.coords.attitude_quaternions.q3}}</span><br />
             </div>
-            <ng-container *ngIf="naturalImageLink">
-                <img src="{{naturalImageLink}}" (load)="imgLoaded()">
-            </ng-container>
-            {{item | json}}
+
+
         </p-accordionTab>
     </p-accordion>
 </div>

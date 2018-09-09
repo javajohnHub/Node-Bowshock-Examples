@@ -14,6 +14,7 @@ export class NaturalComponent {
 	naturalByDate;
 	naturalAvailable;
 	isLoading: boolean = false;
+	imageMsg: string;
 	constructor(private _sharedService: SharedService) {}
 	ngOnInit() {
 		this.isLoading = true;
@@ -27,13 +28,12 @@ export class NaturalComponent {
 			this.isLoading = false;
 		});
 
-		this.socket.on('send natural all', data => {
+		this.socket.on('send natural available', data => {
 			this.naturalAvailable = data;
-			console.log(this.naturalAvailable);
 			this.isLoading = false;
 		});
 
-		this.socket.on('send natural available', data => {
+		this.socket.on('send natural image', data => {
 			this.naturalImageLink = data;
 
 			this.isLoading = false;
@@ -62,8 +62,22 @@ export class NaturalComponent {
 		});
 	}
 
-	open(image) {
-		this.getImage(image);
+	updateUrl(event) {
+		this.imageMsg = 'No Image Available';
+		this.naturalImageLink = null;
+	}
+	open(image, date) {
+		let myDate = new Date(date).toISOString().split('T')[0];
+
+		let available = this.naturalAvailable.find(el => {
+			return el == myDate;
+		});
+		console.log(myDate, available);
+		if (available) {
+			this.getImage(image);
+		} else {
+			this.imageMsg = 'No Image Available';
+		}
 	}
 
 	close() {
