@@ -220,6 +220,14 @@ module.exports = function(io) {
       });
     });
 
+    socket.on("get natural available", date => {
+      bowshock.epic.naturalAvailable().then(naturalByDate => {
+        if (naturalAvailable.length == 0) {
+          naturalAvailable = [];
+        }
+        socket.emit("send natural by date", naturalAvailable);
+      });
+    });
     socket.on("get enhanced by date", date => {
       bowshock.epic.enhancedDate(date).then(enhancedByDate => {
         if (enhancedByDate.length == 0) {
