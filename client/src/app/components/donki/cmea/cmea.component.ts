@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { debounceTime } from 'rxjs/operators';
 @Component({
 	selector: 'app-cmea',
 	templateUrl: 'cmea.component.html'
@@ -19,7 +19,7 @@ export class CMEAComponent {
 	halfAngle;
 	cmeaForm: FormGroup;
 	catalogs;
-	selectedCatalog: string;
+	selectedCatalog: string = 'ALL';
 	startModel: Date;
 	endModel: Date = new Date();
 	maxStartDate: Date;
@@ -91,18 +91,81 @@ export class CMEAComponent {
 				startDate: moment(this.startModel).format('YYYY-MM-DD'),
 				endDate: moment(this.endModel).format('YYYY-MM-DD'),
 				catalog: this.selectedCatalog,
-				mostAccurateOnly: this.accurateBool
+				mostAccurateOnly: this.accurateBool,
+				completeEntryOnly: this.completeBool,
+				keyword: this.cmeaForm.get('keyword').value,
+				speed: this.cmeaForm.get('speed').value,
+				halfAngle: this.cmeaForm.get('halfAngle').value
 			});
 		});
 
-		this.cmeaForm.get('accurate').valueChanges.subscribe(value => {
-			this.accurateBool = value;
-			console.log(this.accurateBool);
+		this.cmeaForm
+			.get('accurate')
+			.valueChanges.pipe(debounceTime(500))
+			.subscribe(value => {
+				this.accurateBool = value;
+				this.socket.emit('get cmea', {
+					startDate: moment(this.startModel).format('YYYY-MM-DD'),
+					endDate: moment(this.endModel).format('YYYY-MM-DD'),
+					catalog: this.selectedCatalog,
+					mostAccurateOnly: this.accurateBool,
+					completeEntryOnly: this.completeBool,
+					keyword: this.cmeaForm.get('keyword').value,
+					speed: this.cmeaForm.get('speed').value,
+					halfAngle: this.cmeaForm.get('halfAngle').value
+				});
+			});
+
+		this.cmeaForm.get('complete').valueChanges.subscribe(value => {
+			this.completeBool = value;
 			this.socket.emit('get cmea', {
 				startDate: moment(this.startModel).format('YYYY-MM-DD'),
 				endDate: moment(this.endModel).format('YYYY-MM-DD'),
 				catalog: this.selectedCatalog,
-				mostAccurateOnly: this.accurateBool
+				mostAccurateOnly: this.accurateBool,
+				completeEntryOnly: this.completeBool,
+				keyword: this.cmeaForm.get('keyword').value,
+				speed: this.cmeaForm.get('speed').value,
+				halfAngle: this.cmeaForm.get('halfAngle').value
+			});
+		});
+
+		this.cmeaForm.get('keyword').valueChanges.subscribe(value => {
+			this.socket.emit('get cmea', {
+				startDate: moment(this.startModel).format('YYYY-MM-DD'),
+				endDate: moment(this.endModel).format('YYYY-MM-DD'),
+				catalog: this.selectedCatalog,
+				mostAccurateOnly: this.accurateBool,
+				completeEntryOnly: this.completeBool,
+				keyword: value,
+				speed: this.cmeaForm.get('speed').value,
+				halfAngle: this.cmeaForm.get('halfAngle').value
+			});
+		});
+
+		this.cmeaForm.get('speed').valueChanges.subscribe(value => {
+			this.socket.emit('get cmea', {
+				startDate: moment(this.startModel).format('YYYY-MM-DD'),
+				endDate: moment(this.endModel).format('YYYY-MM-DD'),
+				catalog: this.selectedCatalog,
+				mostAccurateOnly: this.accurateBool,
+				completeEntryOnly: this.completeBool,
+				keyword: this.cmeaForm.get('keyword').value,
+				speed: value,
+				halfAngle: this.cmeaForm.get('halfAngle').value
+			});
+		});
+
+		this.cmeaForm.get('halfAngle').valueChanges.subscribe(value => {
+			this.socket.emit('get cmea', {
+				startDate: moment(this.startModel).format('YYYY-MM-DD'),
+				endDate: moment(this.endModel).format('YYYY-MM-DD'),
+				catalog: this.selectedCatalog,
+				mostAccurateOnly: this.accurateBool,
+				completeEntryOnly: this.completeBool,
+				keyword: this.cmeaForm.get('keyword').value,
+				speed: this.cmeaForm.get('speed').value,
+				halfAngle: value
 			});
 		});
 	}
