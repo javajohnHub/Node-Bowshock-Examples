@@ -12,7 +12,7 @@
 
             <div class="ui-g">
                 <div class="ui-g-12">
-                    <img src="{{photo.img_src}}">
+                    <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{photo.img_src}}">
                 </div>
             </div>
         </div>
@@ -26,8 +26,8 @@
 
                         <p-header>
                             <div class="ui-inputgroup">
-                                <span style="padding-top:6px;padding-right:25px;">Photosets: </span> <p-dropdown [options]="rovers"
-                                    [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
+                                <span style="padding-top:6px;padding-right:25px;">Photosets: </span>
+                                <p-dropdown [options]="rovers" [(ngModel)]="selectedRover" (onChange)="roverSelected(selectedRover)"></p-dropdown>
                             </div>
                         </p-header>
 
@@ -38,8 +38,8 @@
                                         <div class="ui-g-4">
                                             <div class="border">
                                                 <div class="ui-g-6 ui-sm-12">Rover: </div>
-                                                <div class="ui-g-6 ui-sm-12" style="color: white">{{manifest.name}} <span
-                                                        [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
+                                                <div class="ui-g-6 ui-sm-12" style="color: white">{{manifest.name}}
+                                                    <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
                                             </div>
                                             <div class="border">
                                                 <div class="ui-g-6 ui-sm-12">Landing Date: </div>
@@ -91,8 +91,8 @@
                         <div *ngFor="let photo of manifest.photos; let i=index">
 
                             <ng-template let-photo pTemplate="item">
-                                <p-card *ngIf="photo.sol != 0" title="Sol {{photo.sol}} ({{photo.earth_date}})" subtitle="Total Photos: {{photo.total_photos}}"
-                                    styleClass="center">
+                                <p-card *ngIf="photo.sol != 0" title="Sol {{photo.sol}} ({{photo.earth_date}})"
+                                    subtitle="Total Photos: {{photo.total_photos}}" styleClass="center">
                                     <div class="ui-g">
 
                                         <button pButton class="ui-g-12" (click)="solChosen(photo.sol)" label="All Photos"></button>
@@ -101,10 +101,11 @@
 
                                     </div>
                                     <div>
-                                    <h5>Cameras:</h5>
-                                        <div *ngFor="let camera of photo.cameras; let first = first" >
+                                        <h5>Cameras:</h5>
+                                        <div *ngFor="let camera of photo.cameras; let first = first">
                                             <div class="ui-g">
-                                                <button pButton class="ui-g-12" (click)="cameraChosen(camera, photo.sol)" label="{{camera}} Photos"></button>
+                                                <button pButton class="ui-g-12" (click)="cameraChosen(camera, photo.sol)"
+                                                    label="{{camera}} Photos"></button>
                                             </div>
                                         </div>
                                     </div>

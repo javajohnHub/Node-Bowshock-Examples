@@ -34,9 +34,9 @@ export class EnhancedComponent {
 			this.enhancedAvailable = data;
 			this.isLoading = false;
 		});
-
+		this.enhancedImageLink = [];
 		this.socket.on('send enhanced image', data => {
-			this.enhancedImageLink = data;
+			this.enhancedImageLink.push(data);
 
 			this.isLoading = false;
 		});
@@ -67,7 +67,6 @@ export class EnhancedComponent {
 
 	updateUrl(event) {
 		this.imageMsg = 'No Image Available';
-		this.enhancedImageLink = null;
 	}
 	open(image, date) {
 		this.myDate = new Date(date).toISOString().split('T')[0];
@@ -83,9 +82,7 @@ export class EnhancedComponent {
 		}
 	}
 
-	close() {
-		this.enhancedImageLink = null;
-	}
+	close() {}
 
 	imgLoaded() {
 		console.log('loaded');

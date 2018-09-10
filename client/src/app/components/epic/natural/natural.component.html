@@ -10,11 +10,12 @@
 
     </ng-container>
 </div>
-<div class="ui-g-12" *ngFor="let item of naturalByDate">
+<div class="ui-g-12" *ngFor="let item of naturalByDate; let i=index">
     <p-accordion (onOpen)="open(item.image, item.date)" (onClose)="close()">
         <p-accordionTab header="{{item.identifier}}">
             <ng-container *ngIf="naturalImageLink; else none;">
-                <img src="{{naturalImageLink}}" (error)="updateUrl($event)">
+                <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{naturalImageLink[i]}}"
+                    (error)="updateUrl($event)">
             </ng-container>
             <ng-template #none>
                 {{imageMsg}}

@@ -2,11 +2,12 @@
     <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
         (onSelect)="onDateChanged($event)" (yearNavigator)="true" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
 </div>
-<div class="ui-g-12" *ngFor="let item of enhancedByDate">
+<div class="ui-g-12" *ngFor="let item of enhancedByDate; let i=index;">
     <p-accordion (onOpen)="open(item.image, item.date)" (onClose)="close()">
         <p-accordionTab header="{{item.identifier}}">
             <ng-container *ngIf="enhancedImageLink; else none;">
-                <img src="{{enhancedImageLink}}" (error)="updateUrl($event)">
+                <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{enhancedImageLink[i]}}"
+                    (error)="updateUrl($event)">
             </ng-container>
             <ng-template #none>
                 {{imageMsg}}

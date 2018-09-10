@@ -51,6 +51,9 @@ input.ui-state-default {
 div.ui-datascroller-content.ui-widget-content {
 	height: 100% !important;
 }
+img {
+	//max-height: 80vh !important;
+}
 #scroll {
 	display: block; /* Hidden by default */
 	position: fixed; /* Fixed/sticky position */

@@ -34,9 +34,9 @@ export class NaturalComponent {
 			this.naturalAvailable = data;
 			this.isLoading = false;
 		});
-
+		this.naturalImageLink = [];
 		this.socket.on('send natural image', data => {
-			this.naturalImageLink = data;
+			this.naturalImageLink.push(data);
 
 			this.isLoading = false;
 		});
@@ -67,7 +67,6 @@ export class NaturalComponent {
 
 	updateUrl(event) {
 		this.imageMsg = 'No Image Available';
-		this.naturalImageLink = null;
 	}
 	open(image, date) {
 		this.myDate = new Date(date).toISOString().split('T')[0];
@@ -83,9 +82,7 @@ export class NaturalComponent {
 		}
 	}
 
-	close() {
-		this.naturalImageLink = null;
-	}
+	close() {}
 
 	imgLoaded() {
 		console.log('loaded');

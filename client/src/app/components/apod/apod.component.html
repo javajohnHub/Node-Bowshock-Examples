@@ -1,9 +1,10 @@
 <div class="ui-g">
     <div class="ui-g-12">
-        <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true"
-            (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+        <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
+            [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd"
+            [maxDate]="maxDate"></p-calendar>
     </div>
-    <div *ngIf="apod" class="ui-g-12">
+    <div *ngIf="apod" class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2">
         <div *ngIf="apod.media_type == 'image'" style="position: relative">
             <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}">
                 <p-header class="square">
