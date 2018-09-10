@@ -7,7 +7,6 @@
                 Id: {{event.id}}<br />
                 Title: {{event.title}}<br />
                 Description: {{event.description}}<br />
-                <a href="{{event.link}}" target="_blank">{{event.link}}</a><br /><br />
                 Categories:<br />
                 <ng-container *ngFor="let cat of event.categories">
                     Id: {{cat.id}}<br />
@@ -16,7 +15,7 @@
                 Sources:<br />
                 <ng-container *ngFor="let source of event.sources">
                     Id: {{source.id}}<br />
-                    <a href="{{source.url}}" target="_blank">{{source.url}}</a><br />
+                    <a href="{{source.url}}" target="_blank">source</a><br />
                 </ng-container><br />
                 Geometries:<br />
                 <ng-container *ngFor="let geo of event.geometries">

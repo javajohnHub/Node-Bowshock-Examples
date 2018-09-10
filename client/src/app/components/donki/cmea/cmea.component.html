@@ -21,17 +21,21 @@
     </div>
     <p-panel header="Search Options" [toggleable]="true" [collapsed]="true">
         <div class="ui-g">
-            <div class="ui-g-12">
-                <div class="ui-g-6">
-                    <label for="compl" class="ui-g-3"><strong>Complete Entry Only</strong></label>
-                    <p-inputSwitch id="compl" class="ui-g-3" [(ngModel)]="complete"></p-inputSwitch>
-                </div>
-                <div class="ui-g-6">
-                    <label for="accu" class="ui-g-3"><strong>Most Accurate Only</strong></label>
-                    <p-inputSwitch id="accu" class="ui-g-3" [(ngModel)]="accurate"></p-inputSwitch>
-                </div>
-            </div>
+
             <form [formGroup]="cmeaForm" class="border">
+
+                <div class="ui-g-12">
+                    <div class="ui-g-6">
+                        <label for="compl" class="ui-g-3"><strong>Complete Entry Only</strong></label>
+                        <p-inputSwitch id="compl" class="ui-g-3" formControlName="complete"></p-inputSwitch>
+                    </div>
+                    <div class="ui-g-6">
+                        <label for="accu" class="ui-g-3"><strong>Most Accurate Only</strong></label>
+                        <p-inputSwitch id="accu" class="ui-g-3" formControlName="accurate"></p-inputSwitch>
+                    </div>
+                </div>
+
+
                 <div class="ui-g-12">
                     <label for="keyw" class="ui-g-6"><strong>Keyword</strong></label>
                     <input pInput type="text" id="keyw" class="ui-g-6" formControlName="keyword">
@@ -46,7 +50,7 @@
                 </div>
                 <div class="ui-g-12">
                     <label for="cats" class="ui-g-6"><strong>Catalogs</strong></label>
-                    <p-dropdown id="cats" [options]="catalogs" formControlName="catalogs"></p-dropdown>
+                    <p-dropdown id="cats" [options]="catalogs" formControlName="catalogsControl"></p-dropdown>
                 </div>
                 <button class="ui-g-12" pButton label="Apply" (click)="setOptions()"></button>
             </form>

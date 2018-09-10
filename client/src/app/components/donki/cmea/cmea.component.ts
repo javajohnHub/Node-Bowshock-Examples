@@ -13,8 +13,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CMEAComponent {
 	socket: any;
 	cmea: any;
-	complete;
-	accurate;
+	completeBool: boolean = true;
+	accurateBool: boolean = true;
 	speed;
 	halfAngle;
 	cmeaForm: FormGroup;
@@ -36,9 +36,17 @@ export class CMEAComponent {
 
 	ngOnInit() {
 		this.isLoading = true;
+
 		this._sharedService.subTitleSubject$.next(
 			'Coronal Mass Ejection Analysis'
 		);
+		this.catalogs = [
+			{ label: 'Select Catalog', value: 'ALL' },
+			{ label: 'ALL', value: 'ALL' },
+			{ label: 'SWRC_CATALOG', value: 'SWRC_CATALOG' },
+			{ label: 'JANG_ET_AL_CATALOG', value: 'JANG_ET_AL_CATALOG' }
+		];
+
 		this.socket = SocketService.getInstance();
 		this.socket.on('send cmea', cmea => {
 			console.log('cmea', cmea);
@@ -52,12 +60,12 @@ export class CMEAComponent {
 			this.route.snapshot.params['id']
 		) {
 			this.longDate = this.route.snapshot.params['id'];
-			console.log('params', this.longDate);
 			this.startModel = new Date(
 				moment(this.route.snapshot.params['startDate']).format(
 					'YYYY-MM-DD'
 				)
 			);
+
 			this.socket.emit('get cmea', {
 				startDate: moment(
 					this.route.snapshot.params['startDate']
@@ -76,17 +84,38 @@ export class CMEAComponent {
 			});
 		}
 		this._createForm();
+
+		this.cmeaForm.get('catalogsControl').valueChanges.subscribe(value => {
+			this.selectedCatalog = value;
+			this.socket.emit('get cmea', {
+				startDate: moment(this.startModel).format('YYYY-MM-DD'),
+				endDate: moment(this.endModel).format('YYYY-MM-DD'),
+				catalog: this.selectedCatalog,
+				mostAccurateOnly: this.accurateBool
+			});
+		});
+
+		this.cmeaForm.get('accurate').valueChanges.subscribe(value => {
+			this.accurateBool = value;
+			console.log(this.accurateBool);
+			this.socket.emit('get cmea', {
+				startDate: moment(this.startModel).format('YYYY-MM-DD'),
+				endDate: moment(this.endModel).format('YYYY-MM-DD'),
+				catalog: this.selectedCatalog,
+				mostAccurateOnly: this.accurateBool
+			});
+		});
 	}
 
 	private _createForm() {
 		this.cmeaForm = this._fb.group({
 			startDate: [this.maxStartDate],
 			endDate: [this.endModel],
-			mostAccurateOnly: [this.accurate],
-			completeEntryOnly: [this.complete],
-			speed: [this.speed],
-			halfAngle: [this.halfAngle],
-			catalogs: ['ALL'],
+			accurate: [true],
+			complete: [true],
+			speed: [0],
+			halfAngle: [0],
+			catalogsControl: ['ALL'],
 			keyword: ['NONE']
 		});
 	}
@@ -104,6 +133,7 @@ export class CMEAComponent {
 			this._router.navigate(['donki/cmea']);
 		}
 	}
+
 	goToAssoc(date) {
 		this.isLoading = true;
 
