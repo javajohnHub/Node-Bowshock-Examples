@@ -1,16 +1,15 @@
 <div class="ui-g" *ngIf="!isLoading">
-    <div class="ui-g-12">
-        <label for="cats" class="ui-g-6"><strong>Catalogs</strong></label>
-        <p-dropdown id="cats" [options]="catalogs" formControlName="catalogs"></p-dropdown>
-    </div>
+
     <div class="ui-g-12">
         <h1>{{layers.title}}</h1>
         <h3>{{layers.description}}</h3>
-        <ng-container *ngFor="let cat of layers.categories">
 
-            Id: {{cat.id}}<br />
-            Title: {{cat.title}}<br /><br />
-            Layers: <br />
+        <ng-container *ngFor="let cat of layers.categories">
+            <div class="ui-g-12">
+                <p-dropdown id="cats" [options]="catagories" (onChange)="getCategory()" [(ngModel)]="selectedCatagory"></p-dropdown>
+            </div>
+            <h3>{{cat.title}}</h3>
+
             <ng-container *ngFor="let layer of cat.layers">
                 <div class="border">
                     Name: {{layer.name}}<br />

@@ -10,6 +10,8 @@ export class LayersComponent {
 	socket: any;
 	layers: any = {};
 	isLoading: boolean = false;
+	catagories;
+	selectedCatagory;
 	constructor(private _sharedService: SharedService) {}
 
 	ngOnInit() {
@@ -17,19 +19,35 @@ export class LayersComponent {
 			'The Earth Observatory Natural Event Tracker/layers'
 		);
 		this.isLoading = true;
+
+		this.catagories = [
+			{ label: 'Select Catalog', value: null },
+			{ label: 'Drought', value: 6 },
+			{ label: 'Dust and Haze', value: 7 },
+			{ label: 'Earthquakes', value: 16 },
+			{ label: 'Floods', value: 9 },
+			{ label: 'Landslides', value: 14 },
+			{ label: 'Manmade', value: 19 },
+			{ label: 'Sea and Lake Ice', value: 15 },
+			{ label: 'Severe Storms', value: 10 },
+			{ label: 'Snow', value: 17 },
+			{ label: 'Temperature Extremes', value: 18 },
+			{ label: 'Volcanoes', value: 12 },
+			{ label: 'Water Color', value: 13 },
+			{ label: 'Wildfires', value: 8 }
+		];
+
 		this.socket = SocketService.getInstance();
 		this.socket.on('send layers', layers => {
 			this.layers = layers;
 			this.isLoading = false;
 		});
 
-		this.socket.emit('get layers', 8);
+		this.socket.emit('get layers', 6);
 	}
 
-	getUrl(base_url, name, matrixSet) {
-		let url = `${base_url}?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=${name}&TILEMATRIXSET=${
-			matrixSet.split('_')[0]
-		}&TILEMATRIX=${matrixSet}&TILEROW=13&TILECOL=36&FORMAT=image/png`;
-		console.log(encodeURI(url));
+	getCategory() {
+		this.socket.emit('get layers', this.selectedCatagory);
 	}
+	getUrl(base_url, name, matrixSet) {}
 }
