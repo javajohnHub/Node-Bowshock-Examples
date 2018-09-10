@@ -269,6 +269,15 @@ module.exports = function(io) {
 
     socket.on("get categories", obj => {
       console.log(obj);
+      if (obj) {
+        bowshock.eonet.categories(obj).then(categories => {
+          socket.emit("send categories", categories);
+        });
+      } else {
+        bowshock.eonet.categories().then(() => {
+          socket.emit("send categories");
+        });
+      }
       bowshock.eonet.categories(obj).then(categories => {
         socket.emit("send categories", categories);
       });
@@ -276,9 +285,15 @@ module.exports = function(io) {
 
     socket.on("get events", obj => {
       console.log(obj);
-      bowshock.eonet.events(obj).then(events => {
-        socket.emit("send events", events);
-      });
+      if (obj) {
+        bowshock.eonet.events(obj).then(events => {
+          socket.emit("send events", events);
+        });
+      } else {
+        bowshock.eonet.events().then(() => {
+          socket.emit("send events");
+        });
+      }
     });
     //end of eonet
   });
