@@ -269,7 +269,7 @@ module.exports = function(io) {
 
     socket.on("get categories", obj => {
       console.log(obj);
-      if (obj) {
+      if (obj != null) {
         bowshock.eonet.categories(obj).then(categories => {
           socket.emit("send categories", categories);
         });
@@ -282,7 +282,7 @@ module.exports = function(io) {
 
     socket.on("get events", obj => {
       console.log(obj);
-      if (obj) {
+      if (obj != null) {
         bowshock.eonet.events(obj).then(events => {
           socket.emit("send events", events);
         });
