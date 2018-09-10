@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedService } from '../../../shared/shared.service';
 import { SocketService } from '../../../shared/socket.service';
+import ol from 'ol';
 
 @Component({
 	selector: 'app-layers',
@@ -8,9 +9,8 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class LayersComponent {
 	socket: any;
-	layers = [];
+	layers: any = {};
 	isLoading: boolean = false;
-
 	constructor(private _sharedService: SharedService) {}
 
 	ngOnInit() {

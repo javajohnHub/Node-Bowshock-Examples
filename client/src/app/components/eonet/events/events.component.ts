@@ -8,7 +8,7 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class EventsComponent {
 	socket: any;
-	events = [];
+	events: any = {};
 	isLoading: boolean = false;
 
 	constructor(private _sharedService: SharedService) {}

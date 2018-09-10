@@ -1,1 +1,27 @@
-{{events | json}}
+Title: {{events.title}}<br />
+Description: {{events.description}}<br />
+<a href="{{events.link}}">{{events.link}}</a><br /><br />
+Events:<br />
+<ng-container *ngFor="let event of events.events">
+    Id: {{event.id}}<br />
+    Title: {{event.title}}<br />
+    Description: {{event.description}}<br />
+    <a href="{{event.link}}">{{event.link}}</a><br /><br />
+    Categories:<br />
+    <ng-container *ngFor="let cat of event.categories">
+        Id: {{cat.id}}<br />
+        Title: {{cat.title}}<br />
+    </ng-container><br /><br />
+    Sources:<br />
+    <ng-container *ngFor="let source of event.sources">
+        Id: {{source.id}}<br />
+        <a href="{{source.url}}">{{source.url}}</a><br />
+    </ng-container><br />
+    Geometries:<br />
+    <ng-container *ngFor="let geo of event.geometries">
+        Date: {{geo.date}}<br />
+        Type: {{geo.type}}<br />
+        Lat: {{geo.coordinates[0]}}<br />
+        Lon: {{geo.coordinates[1]}}<br />
+    </ng-container>
+</ng-container>

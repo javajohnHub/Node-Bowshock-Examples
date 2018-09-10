@@ -8,7 +8,7 @@ import { SocketService } from '../../../shared/socket.service';
 })
 export class CategoriesComponent {
 	socket: any;
-	categories = [];
+	categories: any = {};
 	isLoading: boolean = false;
 
 	constructor(private _sharedService: SharedService) {}

@@ -1,1 +1,21 @@
-{{layers | json}}
+Title: {{layers.title}}<br />
+Description: {{layers.description}}<br />
+<a href="{{layers.link}}">{{layers.link}}</a><br /><br />
+Categories: <br />
+<ng-container *ngFor="let cat of layers.categories">
+    Id: {{cat.id}}<br />
+    Title: {{cat.title}}<br /><br />
+    Layers: <br />
+    <ng-container *ngFor="let layer of cat.layers">
+        Name: {{layer.name}}<br />
+        <a href="{{layer.serviceUrl}}">{{layer.serviceUrl}}</a><br />
+        Service Type Id: {{layer.serviceTypeId}}<br /><br />
+        Parameters: <br />
+        <ng-container *ngFor="let param of layer.parameters">
+            TILEMATRIXSET: {{param.TILEMATRIXSET}}<br />
+            FORMAT: {{param.FORMAT}}<br />
+        </ng-container>
+    </ng-container>
+</ng-container>
+
+<div id="map" class="map"></div>
