@@ -1,13 +1,22 @@
-Title: {{categories.title}}<br />
-Description: {{categories.description}}<br />
-<a href="{{categories.link}}" target="_blank">{{categories.link}}</a>
-<hr /><br />
-Categories: <br />
-<ng-container *ngFor="let cat of categories.categories">
-    Id: {{cat.id}}<br />
-    Title: {{cat.title}}<br />
-    <a href="{{cat.link}}" target="_blank">{{cat.link}}</a><br />
-    Description: {{cat.description}}<br />
-    Layers: <a href="{{cat.layers}}">{{cat.layers}}</a><br /><br />
-    <hr />
-</ng-container>
+<div class="ui-g" *ngIf="!isLoading">
+    <div class="ui-g-12">
+        <h1>{{categories.title}}</h1>
+        <h3>{{categories.description}}</h3>
+        <ng-container *ngFor="let cat of categories.categories">
+            <div class="border">
+                Id: {{cat.id}}<br />
+                Title: {{cat.title}}<br />
+                <a href="{{cat.link}}" target="_blank">{{cat.link}}</a><br />
+                Description: {{cat.description}}<br />
+                Layers: <a href="{{cat.layers}}">{{cat.layers}}</a><br /><br />
+            </div>
+
+        </ng-container>
+
+    </div>
+</div>
+<div class="ui-g center-item" *ngIf="isLoading">
+    <div class="ui-g-12">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>

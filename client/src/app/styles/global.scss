@@ -10,7 +10,7 @@ $bg_color: #6580a1;
 .border {
 	border: 1px solid #424548;
 	border-radius: 5px;
-	height: 50%;
+	//height: 50%;
 	margin: 2px;
 	background-color: #68727b;
 	padding: 10px;
@@ -107,22 +107,3 @@ iframe {
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
-// $color: teal;
-// .ui-state-default{
-//   background-color: $color !important;
-//   border: 1px solid white;
-// }
-
-// .ui-state-active{
-//   background-color: lightblue;
-//   border: 1px solid white;
-// }
-
-// .ui-panelmenu .ui-panelmenu-content .ui-menuitem-link:active{
-//   background-color: seagreen;
-//   border: 1px solid white;
-// }
-// li.ui-menuitem{
-//   background-color: seagreen;
-//   border: 1px solid white;
-// }

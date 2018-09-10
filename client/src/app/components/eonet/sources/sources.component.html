@@ -1,11 +1,19 @@
-Title: {{sources.title}}<br />
-Description: {{sources.description}}<br />
-<a href="{{sources.link}}" target="_blank">{{sources.link}}</a>
-<hr /><br />
-Sources: <br />
-<ng-container *ngFor="let source of sources.sources">
-    Id: {{source.id}}<br />
-    Title: {{source.title}}<br />
-    <a href="{{source.link}}" target="_blank">{{source.link}}</a><br />
-    <hr />
-</ng-container>
+<div class="ui-g" *ngIf="!isLoading">
+    <div class="ui-g-12">
+        <h1>{{sources.title}}</h1>
+        <h3>{{sources.description}}</h3>
+        <ng-container *ngFor="let source of sources.sources">
+            <div class="border">
+                Id: {{source.id}}<br />
+                Title: {{source.title}}<br />
+                <a href="{{source.link}}" target="_blank">{{source.link}}</a><br />
+            </div>
+            <hr />
+        </ng-container>
+    </div>
+</div>
+<div class="ui-g center-item" *ngIf="isLoading">
+    <div class="ui-g-12">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>

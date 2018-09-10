@@ -1,29 +1,37 @@
-Title: {{events.title}}<br />
-Description: {{events.description}}<br />
-<a href="{{events.link}}" target="_blank">{{events.link}}</a>
-<hr /><br />
-Events:<br />
-<ng-container *ngFor="let event of events.events">
-    Id: {{event.id}}<br />
-    Title: {{event.title}}<br />
-    Description: {{event.description}}<br />
-    <a href="{{event.link}}" target="_blank">{{event.link}}</a><br /><br />
-    Categories:<br />
-    <ng-container *ngFor="let cat of event.categories">
-        Id: {{cat.id}}<br />
-        Title: {{cat.title}}<br />
-    </ng-container><br /><br />
-    Sources:<br />
-    <ng-container *ngFor="let source of event.sources">
-        Id: {{source.id}}<br />
-        <a href="{{source.url}}" target="_blank">{{source.url}}</a><br />
-    </ng-container><br />
-    Geometries:<br />
-    <ng-container *ngFor="let geo of event.geometries">
-        Date: {{geo.date}}<br />
-        Type: {{geo.type}}<br />
-        Lat: {{geo.coordinates[0]}}<br />
-        Lon: {{geo.coordinates[1]}}<br />
-    </ng-container>
-    <hr>
-</ng-container>
+<div class="ui-g" *ngIf="!isLoading">
+    <div class="ui-g-12">
+        <h1>{{events.title}}</h1>
+        <h3>{{events.description}}</h3>
+        <ng-container *ngFor="let event of events.events">
+            <div class="border">
+                Id: {{event.id}}<br />
+                Title: {{event.title}}<br />
+                Description: {{event.description}}<br />
+                <a href="{{event.link}}" target="_blank">{{event.link}}</a><br /><br />
+                Categories:<br />
+                <ng-container *ngFor="let cat of event.categories">
+                    Id: {{cat.id}}<br />
+                    Title: {{cat.title}}<br />
+                </ng-container><br /><br />
+                Sources:<br />
+                <ng-container *ngFor="let source of event.sources">
+                    Id: {{source.id}}<br />
+                    <a href="{{source.url}}" target="_blank">{{source.url}}</a><br />
+                </ng-container><br />
+                Geometries:<br />
+                <ng-container *ngFor="let geo of event.geometries">
+                    Date: {{geo.date}}<br />
+                    Type: {{geo.type}}<br />
+                    Lat: {{geo.coordinates[0]}}<br />
+                    Lon: {{geo.coordinates[1]}}<br /><br />
+                </ng-container>
+            </div>
+        </ng-container>
+
+    </div>
+</div>
+<div class="ui-g center-item" *ngIf="isLoading">
+    <div class="ui-g-12">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
