@@ -261,7 +261,6 @@ module.exports = function(io) {
     //end of epic
     //start of eonet
     socket.on("get layers", id => {
-      console.log(id);
       bowshock.eonet.layers(id).then(layers => {
         socket.emit("send layers", layers);
       });
@@ -283,7 +282,7 @@ module.exports = function(io) {
     socket.on("get events", obj => {
       console.log(obj);
       if (obj != null) {
-        bowshock.eonet.events().then(events => {
+        bowshock.eonet.events(obj).then(events => {
           socket.emit("send events", events);
         });
       } else {
@@ -291,6 +290,12 @@ module.exports = function(io) {
           socket.emit("send events", events);
         });
       }
+    });
+
+    socket.on("get sources", () => {
+      bowshock.eonet.sources().then(sources => {
+        socket.emit("send sources", sources);
+      });
     });
     //end of eonet
   });

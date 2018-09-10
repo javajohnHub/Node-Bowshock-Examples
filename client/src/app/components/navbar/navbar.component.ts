@@ -210,6 +210,13 @@ export class NavbarComponent {
 								command: (event: any) => {
 									this.el.model[0].expanded = false;
 								}
+							},
+							{
+								label: 'sources',
+								routerLink: ['/eonet/sources'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
 							}
 						]
 					},

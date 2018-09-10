@@ -54,7 +54,10 @@ div.ui-datascroller-content.ui-widget-content {
 img {
 	//max-height: 80vh !important;
 }
-
+.map {
+	width: 100%;
+	height: 100vh;
+}
 #scroll {
 	display: block; /* Hidden by default */
 	position: fixed; /* Fixed/sticky position */

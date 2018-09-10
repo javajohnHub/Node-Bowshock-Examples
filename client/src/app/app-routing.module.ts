@@ -32,6 +32,7 @@ import { EONETComponent } from './components/eonet/eonet.component';
 import { EventsComponent } from './components/eonet/events/events.component';
 import { LayersComponent } from './components/eonet/layers/layers.component';
 import { CategoriesComponent } from './components/eonet/categories/categories.component';
+import { SourcesComponent } from './components/eonet/sources/sources.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -68,6 +69,7 @@ const routes: Routes = [
 		component: EONETComponent,
 		children: [
 			{ path: 'layers', component: LayersComponent },
+			{ path: 'sources', component: SourcesComponent },
 			{ path: 'events', component: EventsComponent },
 			{ path: 'categories', component: CategoriesComponent }
 		]

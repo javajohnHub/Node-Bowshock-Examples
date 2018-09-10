@@ -58,6 +58,7 @@ import { EONETComponent } from './components/eonet/eonet.component';
 import { CategoriesComponent } from './components/eonet/categories/categories.component';
 import { LayersComponent } from './components/eonet/layers/layers.component';
 import { EventsComponent } from './components/eonet/events/events.component';
+import { SourcesComponent } from './components/eonet/sources/sources.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -93,7 +94,8 @@ import { EventsComponent } from './components/eonet/events/events.component';
 		EONETComponent,
 		CategoriesComponent,
 		LayersComponent,
-		EventsComponent
+		EventsComponent,
+		SourcesComponent
 	],
 	imports: [
 		BrowserModule,

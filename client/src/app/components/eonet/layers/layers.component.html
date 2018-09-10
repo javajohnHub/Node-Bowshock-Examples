@@ -8,14 +8,13 @@ Categories: <br />
     Layers: <br />
     <ng-container *ngFor="let layer of cat.layers">
         Name: {{layer.name}}<br />
-        <a href="{{layer.serviceUrl}}">{{layer.serviceUrl}}</a><br />
+
         Service Type Id: {{layer.serviceTypeId}}<br /><br />
         Parameters: <br />
         <ng-container *ngFor="let param of layer.parameters">
             TILEMATRIXSET: {{param.TILEMATRIXSET}}<br />
-            FORMAT: {{param.FORMAT}}<br />
+            FORMAT: {{param.FORMAT}}<br /><br />
+            <!-- <button pButton type="button" (click)="getUrl(layer.serviceUrl,layer.name,param.TILEMATRIXSET)">{{layer.serviceUrl}}</button><br /> -->
         </ng-container>
     </ng-container>
 </ng-container>
-
-<div id="map" class="map"></div>
