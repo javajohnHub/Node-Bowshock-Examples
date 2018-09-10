@@ -278,9 +278,6 @@ module.exports = function(io) {
           socket.emit("send categories");
         });
       }
-      bowshock.eonet.categories(obj).then(categories => {
-        socket.emit("send categories", categories);
-      });
     });
 
     socket.on("get events", obj => {
