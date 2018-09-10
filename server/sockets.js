@@ -259,6 +259,28 @@ module.exports = function(io) {
       });
     });
     //end of epic
+    //start of eonet
+    socket.on("get layers", id => {
+      console.log(id);
+      bowshock.eonet.layers(id).then(layers => {
+        socket.emit("send layers", layers);
+      });
+    });
+
+    socket.on("get categories", obj => {
+      console.log(obj);
+      bowshock.eonet.categories(obj).then(categories => {
+        socket.emit("send categories", categories);
+      });
+    });
+
+    socket.on("get events", obj => {
+      console.log(obj);
+      bowshock.eonet.events(id).then(events => {
+        socket.emit("send events", events);
+      });
+    });
+    //end of eonet
   });
 
   function format_date(date) {
