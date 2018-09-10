@@ -1,12 +1,11 @@
-<!-- Title: {{categories.title}}<br />
-Description: {{categories.description}}<br />
-<a href="{{categories.link}}">{{categories.link}}</a><br /><br />
-Categories: <br />
-<ng-container *ngFor="let cat of categories.categories">
-    Id: {{cat.id}}<br />
-    Title: {{cat.title}}<br />
-    <a href="{{cat.link}}">{{cat.link}}</a><br />
-    Description: {{cat.description}}<br />
-    Layers: <a href="{{cat.layers}}">{{cat.layers}}</a><br /><br />
-</ng-container> -->
-{{sources | json}}
+Title: {{sources.title}}<br />
+Description: {{sources.description}}<br />
+<a href="{{sources.link}}" target="_blank">{{sources.link}}</a>
+<hr /><br />
+Sources: <br />
+<ng-container *ngFor="let source of sources.sources">
+    Id: {{source.id}}<br />
+    Title: {{source.title}}<br />
+    <a href="{{source.link}}" target="_blank">{{source.link}}</a><br />
+    <hr />
+</ng-container>

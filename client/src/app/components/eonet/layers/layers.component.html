@@ -1,6 +1,7 @@
 Title: {{layers.title}}<br />
 Description: {{layers.description}}<br />
-<a href="{{layers.link}}">{{layers.link}}</a><br /><br />
+<a href="{{layers.link}}" target="_blank">{{layers.link}}</a>
+<hr /><br />
 Categories: <br />
 <ng-container *ngFor="let cat of layers.categories">
     Id: {{cat.id}}<br />
@@ -16,5 +17,7 @@ Categories: <br />
             FORMAT: {{param.FORMAT}}<br /><br />
             <!-- <button pButton type="button" (click)="getUrl(layer.serviceUrl,layer.name,param.TILEMATRIXSET)">{{layer.serviceUrl}}</button><br /> -->
         </ng-container>
+        <hr />
     </ng-container>
+
 </ng-container>

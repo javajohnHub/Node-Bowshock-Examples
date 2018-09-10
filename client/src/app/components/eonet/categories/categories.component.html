@@ -1,11 +1,13 @@
 Title: {{categories.title}}<br />
 Description: {{categories.description}}<br />
-<a href="{{categories.link}}">{{categories.link}}</a><br /><br />
+<a href="{{categories.link}}" target="_blank">{{categories.link}}</a>
+<hr /><br />
 Categories: <br />
 <ng-container *ngFor="let cat of categories.categories">
     Id: {{cat.id}}<br />
     Title: {{cat.title}}<br />
-    <a href="{{cat.link}}">{{cat.link}}</a><br />
+    <a href="{{cat.link}}" target="_blank">{{cat.link}}</a><br />
     Description: {{cat.description}}<br />
     Layers: <a href="{{cat.layers}}">{{cat.layers}}</a><br /><br />
+    <hr />
 </ng-container>
