@@ -274,8 +274,8 @@ module.exports = function(io) {
           socket.emit("send categories", categories);
         });
       } else {
-        bowshock.eonet.categories().then(() => {
-          socket.emit("send categories");
+        bowshock.eonet.categories().then(categories => {
+          socket.emit("send categories", categories);
         });
       }
     });
@@ -287,8 +287,8 @@ module.exports = function(io) {
           socket.emit("send events", events);
         });
       } else {
-        bowshock.eonet.events().then(() => {
-          socket.emit("send events");
+        bowshock.eonet.events().then(events => {
+          socket.emit("send events", events);
         });
       }
     });
