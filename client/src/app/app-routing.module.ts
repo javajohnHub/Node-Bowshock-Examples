@@ -28,6 +28,10 @@ import { NotificationsComponent } from './components/donki/notifications/notific
 import { NaturalComponent } from './components/epic/natural/natural.component';
 import { EnhancedComponent } from './components/epic/enhanced/enhanced.component';
 import { EPICComponent } from './components/epic/epic.component';
+import { EONETComponent } from './components/eonet/eonet.component';
+import { EventsComponent } from './components/eonet/events/events.component';
+import { LayersComponent } from './components/eonet/layers/layers.component';
+import { CategoriesComponent } from './components/eonet/categories/categories.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -57,6 +61,15 @@ const routes: Routes = [
 		children: [
 			{ path: 'feed', component: FeedComponent },
 			{ path: 'today', component: TodayComponent }
+		]
+	},
+	{
+		path: 'eonet',
+		component: EONETComponent,
+		children: [
+			{ path: 'layers', component: LayersComponent },
+			{ path: 'events', component: EventsComponent },
+			{ path: 'categories', component: CategoriesComponent }
 		]
 	},
 	{

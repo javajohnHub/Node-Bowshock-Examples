@@ -54,6 +54,10 @@ import { PanelModule } from 'primeng/panel';
 import { EPICComponent } from './components/epic/epic.component';
 import { NaturalComponent } from './components/epic/natural/natural.component';
 import { EnhancedComponent } from './components/epic/enhanced/enhanced.component';
+import { EONETComponent } from './components/eonet/eonet.component';
+import { CategoriesComponent } from './components/eonet/categories/categories.component';
+import { LayersComponent } from './components/eonet/layers/layers.component';
+import { EventsComponent } from './components/eonet/events/events.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -85,7 +89,11 @@ import { EnhancedComponent } from './components/epic/enhanced/enhanced.component
 		NotificationsComponent,
 		EPICComponent,
 		NaturalComponent,
-		EnhancedComponent
+		EnhancedComponent,
+		EONETComponent,
+		CategoriesComponent,
+		LayersComponent,
+		EventsComponent
 	],
 	imports: [
 		BrowserModule,

@@ -188,6 +188,32 @@ export class NavbarComponent {
 						]
 					},
 					{
+						label: 'EONET',
+						items: [
+							{
+								label: 'Events',
+								routerLink: ['/eonet/events'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
+							},
+							{
+								label: 'Categories',
+								routerLink: ['/eonet/categories'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
+							},
+							{
+								label: 'layers',
+								routerLink: ['/eonet/layers'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
+							}
+						]
+					},
+					{
 						label: 'EPIC',
 						items: [
 							{
