@@ -283,7 +283,7 @@ module.exports = function(io) {
     socket.on("get events", obj => {
       console.log(obj);
       if (obj != null) {
-        bowshock.eonet.events(obj).then(events => {
+        bowshock.eonet.events().then(events => {
           socket.emit("send events", events);
         });
       } else {
