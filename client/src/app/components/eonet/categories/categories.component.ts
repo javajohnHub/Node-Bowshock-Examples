@@ -19,11 +19,11 @@ export class CategoriesComponent {
 		);
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
-		this.socket.on('recieve categories', categories => {
+		this.socket.on('send categories', categories => {
 			this.categories = categories;
 			this.isLoading = false;
 		});
 
-		this.socket.emit('request categories');
+		this.socket.emit('get categories');
 	}
 }

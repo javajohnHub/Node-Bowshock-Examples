@@ -19,11 +19,11 @@ export class LayersComponent {
 		);
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
-		this.socket.on('recieve layers', layers => {
+		this.socket.on('send layers', layers => {
 			this.layers = layers;
 			this.isLoading = false;
 		});
 
-		this.socket.emit('request layers');
+		this.socket.emit('get layers', 8);
 	}
 }

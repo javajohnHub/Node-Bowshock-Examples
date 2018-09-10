@@ -19,11 +19,11 @@ export class EventsComponent {
 		);
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
-		this.socket.on('recieve events', events => {
+		this.socket.on('send events', events => {
 			this.events = events;
 			this.isLoading = false;
 		});
 
-		this.socket.emit('request events');
+		this.socket.emit('get events');
 	}
 }
