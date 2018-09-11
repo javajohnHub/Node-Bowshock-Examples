@@ -54,6 +54,13 @@ export class NavbarComponent {
 						}
 					},
 					{
+						label: 'GeneLab',
+						routerLink: ['/genelab'],
+						command: (event: any) => {
+							this.el.model[0].expanded = false;
+						}
+					},
+					{
 						label: 'DONKI',
 						items: [
 							{

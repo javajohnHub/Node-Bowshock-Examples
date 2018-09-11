@@ -1,0 +1,63 @@
+<div class="ui-g center-item" *ngIf="isLoading">
+    <div class="ui-g-12">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<form [formGroup]="geneLabForm">
+    <div class="ui-g-12">
+        <input pInput type="text" id="keyw" class="ui-g-6" formControlName="keyword" placeholder="Keyword ex. gene">
+    </div>
+</form>
+<div *ngIf="!isLoading && gene">
+    <h5>Search completed in {{gene.took}} - Hits: {{gene.hits.total}} - Max Score: {{gene.hits.max_score}}</h5>
+    <ng-container *ngIf="gene.hits">
+        <div *ngFor="let hit of gene.hits.hits">
+            <p-accordion>
+                <p-accordionTab header="{{hit._source['Authoritative Source URL']}}">
+                    <div class="border">
+                        Authoritative Source URL: {{hit._source["Authoritative Source URL"]}}<br />
+                        Flight Program: {{hit._source["Flight Program"]}}<br />
+                        Material Type: {{hit._source["Material Type"]}}<br />
+                        Project Identifier: {{hit._source["Project Identifier"]}}<br />
+                        Accession: {{hit._source["Accession"]}}<br />
+                        Project Link: {{hit._source["Project Link"]}}<br />
+                        Study Identifier: {{hit._source["Study Identifier"]}}<br />
+                        Study Protocol Name: {{hit._source["Study Protocol Name"]}}<br />
+                        Study Assay Technology Type: {{hit._source["Study Assay Technology Type"]}}<br />
+                        Acknowledgments: {{hit._source["Acknowledgments"]}}<br />
+                        Study Assay Technology Platform: {{hit._source["Study Assay Technology Platform"]}}<br />
+                        Study Person:<br />
+                        {{hit._source["Study Person"]['Last Name']}}, {{hit._source["Study Person"]['First Name']}}
+                        {{hit._source["Study Person"]["Middle Initials"]}}<br />
+                        Study Protocol Type: {{hit._source["Study Protocol Type"]}}<br />
+                        Space Program: {{hit._source["Space Program"]}}<br />
+                        Study Title: {{hit._source["Study Title"]}}<br />
+                        Study Factor Type: {{hit._source["Study Factor Type"]}}<br />
+                        Study Public Release Date: {{hit._source["Study Public Release Date"]}}<br />
+                        Parameter Value: {{hit._source["Parameter Value"]}}<br />
+                        thumbnail: {{hit._source["thumbnail"]}}<br />
+                        Study Assay Measurement Type: {{hit._source["Study Assay Measurement Type"]}}<br />
+                        Project Type: {{hit._source["Project Type"]}}<br />
+                        Factor Value: {{hit._source["Factor Value"]}}<br />
+                        Data Source Accession: {{hit._source["Data Source Accession"]}}<br />
+                        Project Title: {{hit._source["Project Title"]}}<br />
+                        Study Funding Agency: {{hit._source["Study Funding Agency"]}}<br />
+                        Study Protocol Description: {{hit._source["Study Protocol Description"]}}<br />
+                        Experiment Platform: {{hit._source["Experiment Platform"]}}<br />
+                        Characteristics: {{hit._source["Characteristics"]}}<br />
+                        Study Grant Number: {{hit._source["Study Grant Number"]}}<br />
+                        Study Publication Author List: {{hit._source["Study Publication Author List"]}}<br />
+                        Mission End Date: {{hit._source["Mission"]["End Date"]}}<br />
+                        Mission Start Date: {{hit._source["Mission"]["Start Date"]}}<br />
+                        Mission Name: {{hit._source["Mission"]["Name"]}}<br />
+                        Study Publication Title: {{hit._source["Study Publication Title"]}}<br />
+                        Managing NASA Center: {{hit._source["Managing NASA Center"]}}<br />
+                        Study Description: {{hit._source["Study Description"]}}<br />
+                        organism: {{hit._source["organism"]}}<br />
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </div><br />
+    </ng-container>
+
+</div>

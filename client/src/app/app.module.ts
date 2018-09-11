@@ -59,6 +59,7 @@ import { CategoriesComponent } from './components/eonet/categories/categories.co
 import { LayersComponent } from './components/eonet/layers/layers.component';
 import { EventsComponent } from './components/eonet/events/events.component';
 import { SourcesComponent } from './components/eonet/sources/sources.component';
+import { GeneLabComponent } from './components/geneLab/geneLab.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -95,7 +96,8 @@ import { SourcesComponent } from './components/eonet/sources/sources.component';
 		CategoriesComponent,
 		LayersComponent,
 		EventsComponent,
-		SourcesComponent
+		SourcesComponent,
+		GeneLabComponent
 	],
 	imports: [
 		BrowserModule,
