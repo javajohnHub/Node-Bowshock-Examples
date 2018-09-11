@@ -301,6 +301,7 @@ module.exports = function(io) {
     socket.on("get earth imagery", obj => {
       console.log(obj);
       bowshock.earth.imagery(obj).then(images => {
+        console.log(images);
         socket.emit("send earth imagery", images);
       });
     });
