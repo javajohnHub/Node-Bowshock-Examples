@@ -1,12 +1,24 @@
-<button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-<button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-<button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-<button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-<button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-<button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-<button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-<button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-<button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-<button pButton type="button" (click)="getAllPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K()"
-    label="All Planetary Candidates Smaller Than 2Re With Equilibrium Temperatures Between 180 and 303K"></button>
-{{exoPlanetData | json}}
+<div class="ui-g-12 ui-md-4">
+    <div class="ui-inputgroup">
+        <button pButton type="button" label="Search" (click)="getSingleKOI(myInput)"></button>
+        <input type="text" pInputText placeholder="KOI ex. K00007.01" [(ngModel)]="myInput">
+    </div>
+</div>
+<div class="ui-g-12 ui-inputgroup">
+    <button pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
+    <button pButton type="button" (click)="getAllPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K()"
+        label="All Planetary Candidates Smaller Than 2Re With Equilibrium Temperatures Between 180 and 303K"></button>
+    <button pButton type="button" (click)="getConfirmedPlanetsInKeplerField()" label="Confirmed Planets In Kepler Field"></button>
+    <button pButton type="button" (click)="getStarsKnownToHostExoPlanets()" label="Stars Known To Host ExoPlanets"></button>
+    <button pButton type="button" (click)="getConfirmedPlanetsThatTransitHostStars()" label="Confirmed Planets That Transit Host Stars"></button>
+    <button pButton type="button" (click)="getCurrentNonConfirmedPlanetCandidates()" label="Current Non Confirmed Planet Candidates"></button>
+    <button pButton type="button" (click)="k2TargetsFromCampaign9()" label="k2 Targets From Campaign9"></button>
+    <button pButton type="button" (click)="getConfirmedPlanetsInMissionStarList()" label="Confirmed Planets In Mission Star List"></button>
+    <button pButton type="button" (click)="getAllMicrolensingPlanetsWithTimeSeries()" label="All Microlensing Planets With Time Series"></button>
+</div>
+
+
+
+<div class="ui-g-12">
+    <pre>{{exoPlanetData | json}}</pre>
+</div>
