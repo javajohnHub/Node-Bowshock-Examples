@@ -34,6 +34,7 @@ import { LayersComponent } from './components/eonet/layers/layers.component';
 import { CategoriesComponent } from './components/eonet/categories/categories.component';
 import { SourcesComponent } from './components/eonet/sources/sources.component';
 import { GeneLabComponent } from './components/geneLab/geneLab.component';
+import { PatentComponent } from './components/patents/patent.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -50,6 +51,10 @@ const routes: Routes = [
 	{
 		path: 'genelab',
 		component: GeneLabComponent
+	},
+	{
+		path: 'patents',
+		component: PatentComponent
 	},
 	{
 		path: 'mars',

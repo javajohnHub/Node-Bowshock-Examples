@@ -60,6 +60,7 @@ import { LayersComponent } from './components/eonet/layers/layers.component';
 import { EventsComponent } from './components/eonet/events/events.component';
 import { SourcesComponent } from './components/eonet/sources/sources.component';
 import { GeneLabComponent } from './components/geneLab/geneLab.component';
+import { PatentComponent } from './components/patents/patent.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -97,7 +98,8 @@ import { GeneLabComponent } from './components/geneLab/geneLab.component';
 		LayersComponent,
 		EventsComponent,
 		SourcesComponent,
-		GeneLabComponent
+		GeneLabComponent,
+		PatentComponent
 	],
 	imports: [
 		BrowserModule,

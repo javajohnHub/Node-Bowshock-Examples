@@ -317,6 +317,17 @@ module.exports = function(io) {
     });
 
     //end of geneLab
+
+    //start of patents
+    socket.on("get patent", obj => {
+      console.log(obj);
+      bowshock.geneLab.search(obj).then(patent => {
+        console.log(gene);
+        socket.emit("send patent", patent);
+      });
+    });
+
+    //end of patents
   });
 
   function format_date(date) {

@@ -1,0 +1,23 @@
+<div class="ui-g center-item" *ngIf="isLoading">
+    <div class="ui-g-12">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div class="ui-g">
+    <form [formGroup]="patentForm">
+        <div class="ui-g-12">
+            <input pInput type="text" formControlName="query" placeholder="Query">
+            <input pInput type="text" formControlName="conceptTags" placeholder="Concept Tags">
+            <input pInput type="number" formControlName="limit" placeholder="Limit">
+        </div>
+    </form>
+    <div class="ui-g-12" *ngIf="!isLoading && patent.length > 0">
+        <p-accordion>
+            <p-accordionTab header="Patents">
+                <div class="border">
+                    {{patent | json}}
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+</div>

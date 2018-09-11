@@ -54,6 +54,13 @@ export class NavbarComponent {
 						}
 					},
 					{
+						label: 'Patents',
+						routerLink: ['/patents'],
+						command: (event: any) => {
+							this.el.model[0].expanded = false;
+						}
+					},
+					{
 						label: 'GeneLab',
 						routerLink: ['/genelab'],
 						command: (event: any) => {
