@@ -322,7 +322,7 @@ module.exports = function(io) {
     socket.on("get patent", obj => {
       console.log(obj);
       bowshock.geneLab.search(obj).then(patent => {
-        console.log(gene);
+        console.log(patent);
         socket.emit("send patent", patent);
       });
     });
