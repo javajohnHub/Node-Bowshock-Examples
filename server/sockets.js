@@ -389,10 +389,10 @@ module.exports = function(io) {
         socket.emit("send k2TargetsFromCampaign9", data);
       });
     });
-    socket.on("get exoPlanetconfirmedPlanetsInMissionStarList", koi => {
+    socket.on("get confirmedPlanetsInMissionStarList", koi => {
       bowshock.exoPlanetconfirmedPlanetsInMissionStarList().then(data => {
         console.log(data);
-        socket.emit("send exoPlanetconfirmedPlanetsInMissionStarList", data);
+        socket.emit("send confirmedPlanetsInMissionStarList", data);
       });
     });
     socket.on("get allMicrolensingPlanetsWithTimeSeries", () => {
