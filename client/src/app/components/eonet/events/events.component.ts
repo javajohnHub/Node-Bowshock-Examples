@@ -9,6 +9,7 @@ import { SocketService } from '../../../shared/socket.service';
 export class EventsComponent {
 	socket: any;
 	events: any = {};
+	imageUrl: any = [];
 	isLoading: boolean = false;
 
 	constructor(private _sharedService: SharedService) {}
@@ -24,6 +25,19 @@ export class EventsComponent {
 			this.isLoading = false;
 		});
 
+		this.socket.on('send earth imagery', imageUrl => {
+			this.imageUrl = imageUrl;
+			this.isLoading = false;
+		});
+
 		this.socket.emit('get events');
+	}
+
+	getImages(geometries, x) {
+		console.log(geometries[x]);
+		this.socket.emit('get earth imagery', {
+			lon: geometries[x].coordinates[0],
+			lat: geometries[x].coordinates[1]
+		});
 	}
 }

@@ -2,29 +2,40 @@
     <div class="ui-g-12">
         <h1>{{events.title}}</h1>
         <h3>{{events.description}}</h3>
-        <ng-container *ngFor="let event of events.events">
-            <div class="border">
-                Id: {{event.id}}<br />
-                Title: {{event.title}}<br />
-                Description: {{event.description}}<br />
-                Categories:<br />
-                <ng-container *ngFor="let cat of event.categories">
-                    Id: {{cat.id}}<br />
-                    Title: {{cat.title}}<br />
-                </ng-container><br /><br />
-                Sources:<br />
-                <ng-container *ngFor="let source of event.sources">
-                    Id: {{source.id}}<br />
-                    <a href="{{source.url}}" target="_blank">source</a><br />
-                </ng-container><br />
-                Geometries:<br />
-                <ng-container *ngFor="let geo of event.geometries">
-                    Date: {{geo.date}}<br />
-                    Type: {{geo.type}}<br />
-                    Lat: {{geo.coordinates[0]}}<br />
-                    Lon: {{geo.coordinates[1]}}<br /><br />
-                </ng-container>
-            </div>
+        <ng-container *ngFor="let event of events.events; let y=index">
+            <p-accordion>
+                <p-accordionTab header="{{event.title}}">
+                    <div class="border">
+                        Id: {{event.id}}<br />
+                        Title: {{event.title}}<br />
+                        Description: {{event.description}}<br />
+                        Categories:<br />
+                        <ng-container *ngFor="let cat of event.categories">
+                            Id: {{cat.id}}<br />
+                            Title: {{cat.title}}<br />
+                        </ng-container><br /><br />
+                        Sources:<br />
+                        <ng-container *ngFor="let source of event.sources">
+                            Id: {{source.id}}<br />
+                            <a href="{{source.url}}" target="_blank">source</a><br />
+                        </ng-container><br />
+                        Geometries:<br />
+                        <ng-container *ngFor="let geo of event.geometries; let x=index">
+                            Date: {{geo.date}}<br />
+                            Type: {{geo.type}}<br />
+                            {{imageUrl}}
+                            <ng-container *ngIf="imageUrl">
+                                <img src="{{imageUrl}}">
+                            </ng-container>
+
+                            <button pButton (click)="getImages(event.geometries, x)" type="button" label="get image"></button>
+                            Lat: {{geo.coordinates[0]}}<br />
+                            Lon: {{geo.coordinates[1]}}<br /><br />
+                        </ng-container>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+
         </ng-container>
 
     </div>
