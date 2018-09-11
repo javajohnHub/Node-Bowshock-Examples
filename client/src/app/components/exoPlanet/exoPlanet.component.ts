@@ -20,6 +20,7 @@ export class ExoPlanetComponent {
 		this.socket = SocketService.getInstance();
 		this.socket.on('send allConfirmedPlanetsAndCols', data => {
 			this.exoPlanetData = data;
+			console.log(data);
 			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 			this.isLoading = false;
@@ -29,6 +30,7 @@ export class ExoPlanetComponent {
 			'send allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K',
 			data => {
 				this.exoPlanetData = data;
+				console.log(data);
 				this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 				this.isLoading = false;
@@ -37,20 +39,23 @@ export class ExoPlanetComponent {
 
 		this.socket.on('send getSingleKOI', data => {
 			this.exoPlanetData = data;
+			console.log(data);
 			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 			this.isLoading = false;
 		});
 
-		this.socket.on('send getConfirmedPlanetsInKeplerField', data => {
+		this.socket.on('send confirmedPlanetsInKeplerField', data => {
 			this.exoPlanetData = data;
+			console.log(data);
 			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 			this.isLoading = false;
 		});
 
-		this.socket.on('send getStarsKnownToHostExoPlanets', data => {
+		this.socket.on('send starsKnownToHostExoPlanets', data => {
 			this.exoPlanetData = data;
+			console.log(data);
 			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 			this.isLoading = false;
@@ -58,6 +63,7 @@ export class ExoPlanetComponent {
 
 		this.socket.on('send confirmedPlanetsThatTransitHostStars', data => {
 			this.exoPlanetData = data;
+			console.log(data);
 			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 			this.isLoading = false;
@@ -65,6 +71,7 @@ export class ExoPlanetComponent {
 
 		this.socket.on('send currentNonConfirmedPlanetCandidates', data => {
 			this.exoPlanetData = data;
+			console.log(data);
 			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 			this.isLoading = false;
@@ -72,6 +79,7 @@ export class ExoPlanetComponent {
 
 		this.socket.on('send k2TargetsFromCampaign9', data => {
 			this.exoPlanetData = data;
+			console.log(data);
 			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 			this.isLoading = false;
@@ -79,6 +87,7 @@ export class ExoPlanetComponent {
 
 		this.socket.on('send confirmedPlanetsInMissionStarList', data => {
 			this.exoPlanetData = data;
+			console.log(data);
 			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 			this.isLoading = false;
@@ -86,6 +95,7 @@ export class ExoPlanetComponent {
 
 		this.socket.on('send allMicrolensingPlanetsWithTimeSeries', data => {
 			this.exoPlanetData = data;
+			console.log(data);
 			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
 
 			this.isLoading = false;
