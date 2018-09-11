@@ -34,14 +34,14 @@
                         <div class="ui-g">
                             <div class="ui-g-12">
                                 <ng-template let-walk pTemplate="item">
-                                    <div class="ui-g">
+                                    <div class="ui-g border">
                                         <div class="ui-g-4">
-                                            <div class="border">
+                                            <div>
                                                 <div class="ui-g-6 ui-sm-12">Rover: </div>
                                                 <div class="ui-g-6 ui-sm-12" style="color: white">{{manifest.name}}
                                                     <span [style.color]="getColor(manifest.status)">{{manifest.status}}</span></div>
                                             </div>
-                                            <div class="border">
+                                            <div>
                                                 <div class="ui-g-6 ui-sm-12">Landing Date: </div>
                                                 <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.landing_date}}</div>
                                             </div>
@@ -50,21 +50,21 @@
 
                                         <div class="ui-g-4">
 
-                                            <div class="border">
+                                            <div>
                                                 <div class="ui-g-6 ui-sm-12">Launch Date: </div>
                                                 <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.launch_date}}</div>
                                             </div>
-                                            <div class="border">
+                                            <div>
                                                 <div class="ui-g-6 ui-sm-12">Max Sol: </div>
                                                 <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.max_sol}}</div>
                                             </div>
                                         </div>
                                         <div class="ui-g-4">
-                                            <div class="border">
+                                            <div>
                                                 <div class="ui-g-6 ui-sm-12">Max Date: </div>
                                                 <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.max_date}}</div>
                                             </div>
-                                            <div class="border">
+                                            <div>
                                                 <div class="ui-g-6 ui-sm-12">Total Photos: </div>
                                                 <div style="color: white" class="ui-g-6 ui-sm-12">{{manifest.total_photos}}</div>
                                             </div>

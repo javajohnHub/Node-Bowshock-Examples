@@ -5,6 +5,9 @@
         <ng-container *ngFor="let event of events.events; let y=index">
             <p-accordion>
                 <p-accordionTab header="{{event.title}}">
+                    <ng-container *ngIf="imageUrl">
+                        <img src="{{imageUrl}}">
+                    </ng-container>
                     <div class="border">
                         Id: {{event.id}}<br />
                         Title: {{event.title}}<br />
@@ -23,11 +26,6 @@
                         <ng-container *ngFor="let geo of event.geometries; let x=index">
                             Date: {{geo.date}}<br />
                             Type: {{geo.type}}<br />
-                            {{imageUrl}}
-                            <ng-container *ngIf="imageUrl">
-                                <img src="{{imageUrl}}">
-                            </ng-container>
-
                             <button pButton (click)="getImages(event.geometries, x)" type="button" label="get image"></button>
                             Lat: {{geo.coordinates[0]}}<br />
                             Lon: {{geo.coordinates[1]}}<br /><br />
