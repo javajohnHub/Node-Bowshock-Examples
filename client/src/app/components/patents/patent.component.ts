@@ -26,8 +26,8 @@ export class PatentComponent {
 		this._sharedService.subTitleSubject$.next('Patent');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send patent', patent => {
+			console.log(patent);
 			this.patent = patent;
-			this.model = 0;
 			this.copy = JSON.parse(JSON.stringify(this.patent));
 
 			this.isLoading = false;

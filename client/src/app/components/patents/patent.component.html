@@ -6,12 +6,12 @@
 <div class="ui-g">
     <form [formGroup]="patentForm">
         <div class="ui-g-12">
-            <input pInput type="text" formControlName="query" placeholder="Query">
-            <input pInput type="text" formControlName="conceptTags" placeholder="Concept Tags">
-            <input pInput type="number" formControlName="limit" placeholder="Limit">
+            <input pInput type="text" class="ui-g-4" formControlName="query" placeholder="Query">
+            <input pInput type="text" class="ui-g-4" formControlName="conceptTags" placeholder="Concept Tags">
+            <input pInput type="number" class="ui-g-4" formControlName="limit" placeholder="Limit">
         </div>
     </form>
-    <div class="ui-g-12" *ngIf="!isLoading && patent.length > 0">
+    <div class="ui-g-12" *ngIf="!isLoading && patent">
         <p-accordion>
             <p-accordionTab header="Patents">
                 <div class="border">
