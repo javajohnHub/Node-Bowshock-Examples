@@ -306,6 +306,17 @@ module.exports = function(io) {
       });
     });
     //end of eonet
+
+    //start of geneLab
+    socket.on("get geneLab", obj => {
+      console.log(obj);
+      bowshock.geneLab.search(obj).then(gene => {
+        console.log(gene);
+        socket.emit("send geneLab", gene);
+      });
+    });
+
+    //end of geneLab
   });
 
   function format_date(date) {
