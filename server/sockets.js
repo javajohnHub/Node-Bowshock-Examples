@@ -302,7 +302,7 @@ module.exports = function(io) {
       console.log(obj);
       bowshock.earth.imagery(obj).then(images => {
         console.log(images);
-        socket.emit("send earth imagery", images);
+        socket.emit("send earth imagery", images.url);
       });
     });
     //end of eonet
