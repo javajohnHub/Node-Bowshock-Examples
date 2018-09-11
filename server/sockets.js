@@ -298,9 +298,9 @@ module.exports = function(io) {
       });
     });
 
-    socket.on("get earth imagary", obj => {
+    socket.on("get earth imagery", obj => {
       bowshock.earth.imagery(obj).then(images => {
-        socket.emit("send earth imagary", images);
+        socket.emit("send earth imagery", images);
       });
     });
     //end of eonet
