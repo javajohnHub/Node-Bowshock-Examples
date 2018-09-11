@@ -352,6 +352,56 @@ module.exports = function(io) {
       });
     });
 
+    socket.on("get getSingleKOI", koi => {
+      bowshock.exoPlanet.getSingleKOI(koi).then(data => {
+        console.log(data);
+        socket.emit("send getSingleKOI", data);
+      });
+    });
+
+    socket.on("get confirmedPlanetsInKeplerField", () => {
+      bowshock.exoPlanet.confirmedPlanetsInKeplerField().then(data => {
+        console.log(data);
+        socket.emit("send confirmedPlanetsInKeplerField", data);
+      });
+    });
+    socket.on("get starsKnownToHostExoPlanets", () => {
+      bowshock.exoPlanet.starsKnownToHostExoPlanets().then(data => {
+        console.log(data);
+        socket.emit("send starsKnownToHostExoPlanets", data);
+      });
+    });
+    socket.on("get confirmedPlanetsThatTransitHostStars", () => {
+      bowshock.exoPlanet.confirmedPlanetsThatTransitHostStars().then(data => {
+        console.log(data);
+        socket.emit("send confirmedPlanetsThatTransitHostStars", data);
+      });
+    });
+    socket.on("get currentNonConfirmedPlanetCandidates", () => {
+      bowshock.exoPlanet.currentNonConfirmedPlanetCandidates().then(data => {
+        console.log(data);
+        socket.emit("send currentNonConfirmedPlanetCandidates", data);
+      });
+    });
+    socket.on("get k2TargetsFromCapaign9", () => {
+      bowshock.exoPlanet.k2TargetsFromCapaign9().then(data => {
+        console.log(data);
+        socket.emit("send k2TargetsFromCapaign9", data);
+      });
+    });
+    socket.on("get exoPlanetconfirmedPlanetsInMissionStarList", koi => {
+      bowshock.exoPlanetconfirmedPlanetsInMissionStarList().then(data => {
+        console.log(data);
+        socket.emit("send exoPlanetconfirmedPlanetsInMissionStarList", data);
+      });
+    });
+    socket.on("get allMicrolensingPlanetsWithTimeSeries", () => {
+      bowshock.exoPlanet.allMicrolensingPlanetsWithTimeSeries().then(data => {
+        console.log(data);
+        socket.emit("send allMicrolensingPlanetsWithTimeSeries", data);
+      });
+    });
+
     //end of ExoPlanet
   });
 
