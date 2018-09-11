@@ -100,45 +100,56 @@ export class ExoPlanetComponent {
 
 			this.isLoading = false;
 		});
+		this.isLoading = false;
 	}
 
 	getAllConfirmedPlanetsAndCols() {
+		this.isLoading = true;
 		this.socket.emit('get allConfirmedPlanetsAndCols');
 	}
 
 	getAllPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K() {
+		this.isLoading = true;
 		this.socket.emit(
 			'get allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K'
 		);
 	}
 
 	getSingleKOI(koi) {
+		this.isLoading = true;
 		this.socket.emit('get getSingleKOI', koi);
 	}
 
 	getConfirmedPlanetsInKeplerField() {
+		this.isLoading = true;
 		this.socket.emit('get confirmedPlanetsInKeplerField');
 	}
 	getStarsKnownToHostExoPlanets() {
+		this.isLoading = true;
 		this.socket.emit('get starsKnownToHostExoPlanets');
 	}
 	getConfirmedPlanetsThatTransitHostStars() {
+		this.isLoading = true;
 		this.socket.emit('get confirmedPlanetsThatTransitHostStars');
 	}
 
 	getCurrentNonConfirmedPlanetCandidates() {
+		this.isLoading = true;
 		this.socket.emit('get currentNonConfirmedPlanetCandidates');
 	}
 
 	k2TargetsFromCampaign9() {
+		this.isLoading = true;
 		this.socket.emit('get k2TargetsFromCampaign9');
 	}
 
 	getConfirmedPlanetsInMissionStarList() {
+		this.isLoading = true;
 		this.socket.emit('get confirmedPlanetsInMissionStarList');
 	}
 
 	getAllMicrolensingPlanetsWithTimeSeries() {
+		this.isLoading = true;
 		this.socket.emit('get allMicrolensingPlanetsWithTimeSeries');
 	}
 }

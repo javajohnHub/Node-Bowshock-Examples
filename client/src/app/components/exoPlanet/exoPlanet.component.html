@@ -6,7 +6,7 @@
         </div>
     </div>
 </div>
-<div class="ui-g ui-inputgroup">
+<div class="ui-g ui-inputgroup" *ngIf="!isLoading">
     <div class="ui-g-12">
         <button class="ui-g-4" pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
         <button class="ui-g-4" pButton type="button" (click)="getAllPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K()"
@@ -27,6 +27,12 @@
 
 
 
-<div class="ui-g-12">
+<div class="ui-g-12" *ngIf="exoPlanetData.length > 0">
     <pre>{{exoPlanetData | json}}</pre>
+</div>
+
+<div class="ui-g center-item" *ngIf="isLoading">
+    <div class="ui-g-12">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
 </div>
