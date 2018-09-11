@@ -61,6 +61,13 @@ export class NavbarComponent {
 						}
 					},
 					{
+						label: 'ExoPlanets',
+						routerLink: ['/exoplanets'],
+						command: (event: any) => {
+							this.el.model[0].expanded = false;
+						}
+					},
+					{
 						label: 'GeneLab',
 						routerLink: ['/genelab'],
 						command: (event: any) => {

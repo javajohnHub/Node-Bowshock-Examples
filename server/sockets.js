@@ -330,6 +330,21 @@ module.exports = function(io) {
     //end of patents
 
     //start of ExoPlanet
+    socket.on(
+      "get allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K",
+      () => {
+        bowshock.exoPlanet
+          .allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K()
+          .then(data => {
+            console.log(data);
+            socket.emit(
+              "send allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K",
+              data
+            );
+          });
+      }
+    );
+
     socket.on("get allConfirmedPlanetsAndCols", () => {
       bowshock.exoPlanet.allConfirmedPlanetsAndCols().then(data => {
         console.log(data);

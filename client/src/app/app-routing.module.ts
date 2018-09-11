@@ -35,6 +35,7 @@ import { CategoriesComponent } from './components/eonet/categories/categories.co
 import { SourcesComponent } from './components/eonet/sources/sources.component';
 import { GeneLabComponent } from './components/geneLab/geneLab.component';
 import { PatentComponent } from './components/patents/patent.component';
+import { ExoPlanetComponent } from './components/exoPlanet/exoPlanet.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -55,6 +56,10 @@ const routes: Routes = [
 	{
 		path: 'patents',
 		component: PatentComponent
+	},
+	{
+		path: 'exoplanets',
+		component: ExoPlanetComponent
 	},
 	{
 		path: 'mars',
