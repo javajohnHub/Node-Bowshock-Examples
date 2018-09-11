@@ -297,6 +297,12 @@ module.exports = function(io) {
         socket.emit("send sources", sources);
       });
     });
+
+    socket.on("get earth images", obj => {
+      bowshock.earth.imagery(obj).then(images => {
+        socket.emit("send earth images", images);
+      });
+    });
     //end of eonet
   });
 
