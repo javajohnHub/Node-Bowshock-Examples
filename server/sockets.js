@@ -390,7 +390,7 @@ module.exports = function(io) {
       });
     });
     socket.on("get confirmedPlanetsInMissionStarList", koi => {
-      bowshock.exoPlanetconfirmedPlanetsInMissionStarList().then(data => {
+      bowshock.exoPlanet.confirmedPlanetsInMissionStarList().then(data => {
         console.log(data);
         socket.emit("send confirmedPlanetsInMissionStarList", data);
       });
