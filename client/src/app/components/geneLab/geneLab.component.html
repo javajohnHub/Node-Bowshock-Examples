@@ -7,6 +7,10 @@
     <div class="ui-g-12">
         <input pInput type="text" id="keyw" class="ui-g-6" formControlName="keyword" placeholder="Keyword ex. gene">
     </div>
+    <div class="ui-g-12">
+        <p-dropdown [options]="types" formControlName="typesControl"></p-dropdown>
+        <p-dropdown [options]="sizes" formControlName="sizesControl"></p-dropdown>
+    </div>
 </form>
 <div *ngIf="!isLoading && gene">
     <h5>Search completed in {{gene.took}} - Hits: {{gene.hits.total}} - Max Score: {{gene.hits.max_score}}</h5>
