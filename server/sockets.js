@@ -383,10 +383,10 @@ module.exports = function(io) {
         socket.emit("send currentNonConfirmedPlanetCandidates", data);
       });
     });
-    socket.on("get k2TargetsFromCapaign9", () => {
+    socket.on("get k2TargetsFromCampaign9", () => {
       bowshock.exoPlanet.k2TargetsFromCapaign9().then(data => {
         console.log(data);
-        socket.emit("send k2TargetsFromCapaign9", data);
+        socket.emit("send k2TargetsFromCampaign9", data);
       });
     });
     socket.on("get exoPlanetconfirmedPlanetsInMissionStarList", koi => {
