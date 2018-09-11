@@ -58,6 +58,10 @@
                         Managing NASA Center: {{hit._source["Managing NASA Center"]}}<br />
                         Study Description: {{hit._source["Study Description"]}}<br />
                         organism: {{hit._source["organism"]}}<br />
+
+                        <div *ngIf="hit.highlight" [innerHTML]="hit.highlight._all[0]">
+
+                        </div>
                     </div>
                 </p-accordionTab>
             </p-accordion>
