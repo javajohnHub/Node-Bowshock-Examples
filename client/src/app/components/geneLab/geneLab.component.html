@@ -17,7 +17,11 @@
     <ng-container *ngIf="gene.hits">
         <div *ngFor="let hit of gene.hits.hits">
             <p-accordion>
-                <p-accordionTab header="{{hit._source['Authoritative Source URL']}}">
+                <p-accordionTab header="{{hit._source['Accession']}}">
+                    Highlights: <div *ngIf="hit.highlight" style="color: green" [innerHTML]="hit.highlight._all[0]">
+
+                    </div>
+                    Study Description: <span style="color: green">{{hit._source["Study Description"]}}</span><br />
                     <div class="border">
                         Authoritative Source URL: {{hit._source["Authoritative Source URL"]}}<br />
                         Flight Program: {{hit._source["Flight Program"]}}<br />
@@ -56,13 +60,12 @@
                         Mission Name: {{hit._source["Mission"]["Name"]}}<br />
                         Study Publication Title: {{hit._source["Study Publication Title"]}}<br />
                         Managing NASA Center: {{hit._source["Managing NASA Center"]}}<br />
-                        Study Description: {{hit._source["Study Description"]}}<br />
+
                         organism: {{hit._source["organism"]}}<br />
-
-                        <div *ngIf="hit.highlight" [innerHTML]="hit.highlight._all[0]">
-
-                        </div>
                     </div>
+
+
+
                 </p-accordionTab>
             </p-accordion>
         </div><br />

@@ -3,12 +3,13 @@
         <p-progressSpinner></p-progressSpinner>
     </div>
 </div>
+<h1 style="color: red">API is Down!</h1>
 <div class="ui-g">
     <form [formGroup]="patentForm">
         <div class="ui-g-12">
-            <input pInput type="text" class="ui-g-4" formControlName="query" placeholder="Query">
-            <input pInput type="text" class="ui-g-4" formControlName="conceptTags" placeholder="Concept Tags">
-            <input pInput type="number" class="ui-g-4" formControlName="limit" placeholder="Limit">
+            <input pInput type="text" class="ui-g-4" formControlName="query" placeholder="Query" disabled>
+            <input pInput type="text" class="ui-g-4" formControlName="conceptTags" placeholder="Concept Tags" disabled>
+            <input pInput type="number" class="ui-g-4" formControlName="limit" placeholder="Limit" disabled>
         </div>
     </form>
     <div class="ui-g-12" *ngIf="!isLoading && patent">

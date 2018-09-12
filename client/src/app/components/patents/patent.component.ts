@@ -43,7 +43,7 @@ export class PatentComponent {
 				this.socket.emit('get patent', {
 					query: value,
 					concept_tags: this.concept_tags || '',
-					limit: this.limit || 0
+					limit: this.limit || 5
 				});
 			});
 
@@ -56,7 +56,7 @@ export class PatentComponent {
 				this.socket.emit('get patent', {
 					query: this.q,
 					concept_tags: value,
-					limit: this.limit || 0
+					limit: this.limit || 5
 				});
 			});
 
