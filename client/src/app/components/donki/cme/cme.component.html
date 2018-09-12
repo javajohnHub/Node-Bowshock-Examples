@@ -19,13 +19,13 @@
                 (ngModelChange)="change($event)"></p-calendar>
         </div>
     </div>
-    <div class="ui-g-12 " *ngFor="let item of cme">
-        <ng-container *ngIf="longDate && longDate == item.activityID">
-            <p-accordion>
-                <p-accordionTab header="{{item.activityID}}">
-                    <div class="ui-g">
-                        <div class="ui-g-12 border">
-                            <ng-container>
+    <div class="ui-g-12">
+        <ng-container *ngFor="let item of cme">
+            <ng-container *ngIf="longDate && longDate == item.activityID">
+                <p-accordion>
+                    <p-accordionTab header="{{item.activityID}}">
+                        <div class="ui-g">
+                            <div class="ui-g-12 border">
                                 <ng-container>
                                     ActivityID: {{item.activityID}}<br /> Start: {{item.startTime}}<br /> Source
                                     Location:
@@ -61,19 +61,20 @@
                                     </ng-container>
                                     Note: {{item.note}}<br /> Catalog: {{item.catalog}}<br />
                                 </ng-container>
-                            </ng-container>
+                            </div>
                         </div>
-                    </div>
-                </p-accordionTab>
-            </p-accordion>
-        </ng-container>
-        <div class="ui-g-12 ">
-            <ng-container *ngIf="!longDate">
-                <p-accordion>
-                    <p-accordionTab header="{{item.activityID}}">
-                        <div class="ui-g">
-                            <div class="ui-g-12 border">
-                                <ng-container>
+
+
+
+                    </p-accordionTab>
+                </p-accordion>
+            </ng-container>
+            <div class="ui-g-12 ">
+                <ng-container *ngIf="!longDate">
+                    <p-accordion>
+                        <p-accordionTab header="{{item.activityID}}">
+                            <div class="ui-g">
+                                <div class="ui-g-12 border">
                                     <ng-container>
                                         ActivityID: {{item.activityID}}<br /> Start: {{item.startTime}}<br /> Source
                                         Location:
@@ -110,15 +111,16 @@
                                         </ng-container>
                                         Note: {{item.note}}<br /> Catalog: {{item.catalog}}<br />
                                     </ng-container>
-                                </ng-container>
+                                </div>
                             </div>
-                        </div>
-                    </p-accordionTab>
-                </p-accordion>
-            </ng-container>
-        </div>
 
-        <ng-container *ngIf="!isLoading && !cme || cme && cme.length == 0">
-            <h1>No CME Found!</h1>
+                        </p-accordionTab>
+                    </p-accordion>
+                </ng-container>
+            </div>
+
+            <ng-container *ngIf="!isLoading && !cme || cme && cme.length == 0">
+                <h1>No CME Found!</h1>
+            </ng-container>
         </ng-container>
     </div>
