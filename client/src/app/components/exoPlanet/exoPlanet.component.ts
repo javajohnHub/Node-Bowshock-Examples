@@ -8,10 +8,20 @@ import { SharedService } from '../../shared/shared.service';
 })
 export class ExoPlanetComponent {
 	socket: any;
-	exoPlanetData = [];
+	allConfirmedPlanetsAndCols = [];
+	allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+	getSingleKOI = [];
+	confirmedPlanetsInKeplerField = [];
+	starsKnownToHostExoPlanets = [];
+	confirmedPlanetsThatTransitHostStars = [];
+	allMicrolensingPlanetsWithTimeSeries = [];
+	confirmedPlanetsInMissionStarList = [];
+	k2TargetsFromCampaign9 = [];
+	currentNonConfirmedPlanetCandidates = [];
 	isLoading: boolean = false;
 	copy;
 	myInput;
+	collapse: boolean;
 	constructor(private _sharedService: SharedService) {}
 
 	ngOnInit() {
@@ -19,85 +29,147 @@ export class ExoPlanetComponent {
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
 		this.socket.on('send allConfirmedPlanetsAndCols', data => {
-			this.exoPlanetData = data;
 			console.log(data);
-			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+			this.allMicrolensingPlanetsWithTimeSeries = [];
+			this.confirmedPlanetsInMissionStarList = [];
+			this.k2TargetsFromCampaign9 = [];
+			this.currentNonConfirmedPlanetCandidates = [];
+			this.confirmedPlanetsThatTransitHostStars = [];
+			this.starsKnownToHostExoPlanets = [];
+			this.confirmedPlanetsInKeplerField = [];
+			this.getSingleKOI = [];
+			this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+			this.allConfirmedPlanetsAndCols = data;
 			this.isLoading = false;
 		});
 
 		this.socket.on(
 			'send allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K',
 			data => {
-				this.exoPlanetData = data;
-				console.log(data);
-				this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+				this.allMicrolensingPlanetsWithTimeSeries = [];
+				this.confirmedPlanetsInMissionStarList = [];
+				this.k2TargetsFromCampaign9 = [];
+				this.currentNonConfirmedPlanetCandidates = [];
+				this.confirmedPlanetsThatTransitHostStars = [];
+				this.starsKnownToHostExoPlanets = [];
+				this.confirmedPlanetsInKeplerField = [];
+				this.getSingleKOI = [];
+				this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = data;
+				this.allConfirmedPlanetsAndCols = [];
 				this.isLoading = false;
 			}
 		);
 
 		this.socket.on('send getSingleKOI', data => {
-			this.exoPlanetData = data;
 			console.log(data);
-			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+			this.allMicrolensingPlanetsWithTimeSeries = [];
+			this.confirmedPlanetsInMissionStarList = [];
+			this.k2TargetsFromCampaign9 = [];
+			this.currentNonConfirmedPlanetCandidates = [];
+			this.confirmedPlanetsThatTransitHostStars = [];
+			this.starsKnownToHostExoPlanets = [];
+			this.confirmedPlanetsInKeplerField = [];
+			this.getSingleKOI = data;
+			this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+			this.allConfirmedPlanetsAndCols = [];
 			this.isLoading = false;
 		});
 
 		this.socket.on('send confirmedPlanetsInKeplerField', data => {
-			this.exoPlanetData = data;
-			console.log(data);
-			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+			this.allMicrolensingPlanetsWithTimeSeries = [];
+			this.confirmedPlanetsInMissionStarList = [];
+			this.k2TargetsFromCampaign9 = [];
+			this.currentNonConfirmedPlanetCandidates = [];
+			this.confirmedPlanetsThatTransitHostStars = [];
+			this.starsKnownToHostExoPlanets = [];
+			this.confirmedPlanetsInKeplerField = data;
+			this.getSingleKOI = [];
+			this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+			this.allConfirmedPlanetsAndCols = [];
 			this.isLoading = false;
 		});
 
 		this.socket.on('send starsKnownToHostExoPlanets', data => {
-			this.exoPlanetData = data;
-			console.log(data);
-			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+			this.allMicrolensingPlanetsWithTimeSeries = [];
+			this.confirmedPlanetsInMissionStarList = [];
+			this.k2TargetsFromCampaign9 = [];
+			this.currentNonConfirmedPlanetCandidates = [];
+			this.confirmedPlanetsThatTransitHostStars = [];
+			this.starsKnownToHostExoPlanets = data;
+			this.confirmedPlanetsInKeplerField = [];
+			this.getSingleKOI = [];
+			this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+			this.allConfirmedPlanetsAndCols = [];
 			this.isLoading = false;
 		});
 
 		this.socket.on('send confirmedPlanetsThatTransitHostStars', data => {
-			this.exoPlanetData = data;
-			console.log(data);
-			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+			this.allMicrolensingPlanetsWithTimeSeries = [];
+			this.confirmedPlanetsInMissionStarList = [];
+			this.k2TargetsFromCampaign9 = [];
+			this.currentNonConfirmedPlanetCandidates = [];
+			this.confirmedPlanetsThatTransitHostStars = data;
+			this.starsKnownToHostExoPlanets = [];
+			this.confirmedPlanetsInKeplerField = [];
+			this.getSingleKOI = [];
+			this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+			this.allConfirmedPlanetsAndCols = [];
 			this.isLoading = false;
 		});
 
 		this.socket.on('send currentNonConfirmedPlanetCandidates', data => {
-			this.exoPlanetData = data;
-			console.log(data);
-			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+			this.allMicrolensingPlanetsWithTimeSeries = [];
+			this.confirmedPlanetsInMissionStarList = [];
+			this.k2TargetsFromCampaign9 = [];
+			this.currentNonConfirmedPlanetCandidates = data;
+			this.confirmedPlanetsThatTransitHostStars = [];
+			this.starsKnownToHostExoPlanets = [];
+			this.confirmedPlanetsInKeplerField = [];
+			this.getSingleKOI = [];
+			this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+			this.allConfirmedPlanetsAndCols = [];
 			this.isLoading = false;
 		});
 
 		this.socket.on('send k2TargetsFromCampaign9', data => {
-			this.exoPlanetData = data;
-			console.log(data);
-			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+			this.allMicrolensingPlanetsWithTimeSeries = [];
+			this.confirmedPlanetsInMissionStarList = [];
+			this.k2TargetsFromCampaign9 = data;
+			this.currentNonConfirmedPlanetCandidates = [];
+			this.confirmedPlanetsThatTransitHostStars = [];
+			this.starsKnownToHostExoPlanets = [];
+			this.confirmedPlanetsInKeplerField = [];
+			this.getSingleKOI = [];
+			this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+			this.allConfirmedPlanetsAndCols = [];
 			this.isLoading = false;
 		});
 
 		this.socket.on('send confirmedPlanetsInMissionStarList', data => {
-			this.exoPlanetData = data;
-			console.log(data);
-			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+			this.allMicrolensingPlanetsWithTimeSeries = [];
+			this.confirmedPlanetsInMissionStarList = data;
+			this.k2TargetsFromCampaign9 = [];
+			this.currentNonConfirmedPlanetCandidates = [];
+			this.confirmedPlanetsThatTransitHostStars = [];
+			this.starsKnownToHostExoPlanets = [];
+			this.confirmedPlanetsInKeplerField = [];
+			this.getSingleKOI = [];
+			this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+			this.allConfirmedPlanetsAndCols = [];
 			this.isLoading = false;
 		});
 
 		this.socket.on('send allMicrolensingPlanetsWithTimeSeries', data => {
-			this.exoPlanetData = data;
-			console.log(data);
-			this.copy = JSON.parse(JSON.stringify(this.exoPlanetData));
-
+			this.allMicrolensingPlanetsWithTimeSeries = data;
+			this.confirmedPlanetsInMissionStarList = [];
+			this.k2TargetsFromCampaign9 = [];
+			this.currentNonConfirmedPlanetCandidates = [];
+			this.confirmedPlanetsThatTransitHostStars = [];
+			this.starsKnownToHostExoPlanets = [];
+			this.confirmedPlanetsInKeplerField = [];
+			this.getSingleKOI = [];
+			this.allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K = [];
+			this.allConfirmedPlanetsAndCols = [];
 			this.isLoading = false;
 		});
 		this.isLoading = false;
@@ -105,51 +177,61 @@ export class ExoPlanetComponent {
 
 	getAllConfirmedPlanetsAndCols() {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit('get allConfirmedPlanetsAndCols');
 	}
 
 	getAllPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K() {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit(
 			'get allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K'
 		);
 	}
 
-	getSingleKOI(koi) {
+	getgetSingleKOI(koi) {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit('get getSingleKOI', koi);
 	}
 
 	getConfirmedPlanetsInKeplerField() {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit('get confirmedPlanetsInKeplerField');
 	}
 	getStarsKnownToHostExoPlanets() {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit('get starsKnownToHostExoPlanets');
 	}
 	getConfirmedPlanetsThatTransitHostStars() {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit('get confirmedPlanetsThatTransitHostStars');
 	}
 
 	getCurrentNonConfirmedPlanetCandidates() {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit('get currentNonConfirmedPlanetCandidates');
 	}
 
-	k2TargetsFromCampaign9() {
+	getk2TargetsFromCampaign9() {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit('get k2TargetsFromCampaign9');
 	}
 
 	getConfirmedPlanetsInMissionStarList() {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit('get confirmedPlanetsInMissionStarList');
 	}
 
 	getAllMicrolensingPlanetsWithTimeSeries() {
 		this.isLoading = true;
+		this.collapse = true;
 		this.socket.emit('get allMicrolensingPlanetsWithTimeSeries');
 	}
 }

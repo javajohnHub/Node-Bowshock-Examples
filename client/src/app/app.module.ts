@@ -62,6 +62,7 @@ import { SourcesComponent } from './components/eonet/sources/sources.component';
 import { GeneLabComponent } from './components/geneLab/geneLab.component';
 import { PatentComponent } from './components/patents/patent.component';
 import { ExoPlanetComponent } from './components/exoPlanet/exoPlanet.component';
+
 @NgModule({
 	declarations: [
 		AppComponent,

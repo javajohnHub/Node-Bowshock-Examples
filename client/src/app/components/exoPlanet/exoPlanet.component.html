@@ -1,34 +1,211 @@
-<div class="ui-g ui-inputgroup">
-    <div class="ui-g-12 ui-md-4">
-        <div class="ui-inputgroup">
-            <button pButton type="button" label="Search" (click)="getSingleKOI(myInput)"></button>
-            <input type="text" pInputText placeholder="KOI ex. K00007.01" [(ngModel)]="myInput">
+<p-panel header="Options" [toggleable]="true" [collapsed]="collapse">
+    <div class="ui-g ui-inputgroup" *ngIf="!isLoading">
+        <div class="ui-g-12 ui-md-4">
+            <div class="ui-inputgroup">
+                <button pButton type="button" label="Search" (click)="getgetSingleKOI(myInput)"></button>
+                <input type="text" pInputText placeholder="KOI ex. K00007.01" [(ngModel)]="myInput">
+            </div>
         </div>
     </div>
+    <div class="ui-g ui-inputgroup" *ngIf="!isLoading">
+        <div class="ui-g-12">
+            <button class="ui-g-12" pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
+            <button class="ui-g-12" pButton type="button" (click)="getAllPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K()"
+                label="All Planetary Candidates Smaller Than 2Re With Equilibrium Temperatures Between 180 and 303K"></button>
+            <button class="ui-g-12" pButton type="button" (click)="getConfirmedPlanetsInKeplerField()" label="Confirmed Planets In Kepler Field"></button>
+            <button class="ui-g-12" pButton type="button" (click)="getStarsKnownToHostExoPlanets()" label="Stars Known To Host ExoPlanets"></button>
+            <button class="ui-g-12" pButton type="button" (click)="getConfirmedPlanetsThatTransitHostStars()" label="Confirmed Planets That Transit Host Stars"></button>
+            <button class="ui-g-12" pButton type="button" (click)="getCurrentNonConfirmedPlanetCandidates()" label="Current Non Confirmed Planet Candidates"></button>
+            <button class="ui-g-12" pButton type="button" (click)="getk2TargetsFromCampaign9()" label="k2 Targets From Campaign9"></button>
+            <button class="ui-g-12" pButton type="button" (click)="getConfirmedPlanetsInMissionStarList()" label="Confirmed Planets In Mission Star List"></button>
+            <button class="ui-g-12" pButton type="button" (click)="getAllMicrolensingPlanetsWithTimeSeries()" label="All Microlensing Planets With Time Series"></button>
+        </div>
+    </div>
+</p-panel>
+<div class="ui-g-12" *ngIf="allConfirmedPlanetsAndCols.length > 0 && !isLoading">
+    <ng-container>
+        Total: {{allConfirmedPlanetsAndCols.length}}
+        <p-dataScroller [value]="allConfirmedPlanetsAndCols" [rows]="25" [lazy]="true" [totalRecords]="allConfirmedPlanetsAndCols.length">
+            <ng-template let-item pTemplate="item">
+                <p-accordion>
+                    <p-accordionTab header="{{item.pl_hostname}}">
+                        <div class="ui-g">
+                            <div class="ui-g-12 border">
+                                <pre>{{item | json}}</pre>
+                            </div>
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+
+            </ng-template>
+        </p-dataScroller>
+    </ng-container>
+
 </div>
-<div class="ui-g ui-inputgroup" *ngIf="!isLoading">
-    <div class="ui-g-12">
-        <button class="ui-g-4" pButton type="button" (click)="getAllConfirmedPlanetsAndCols()" label="All Confirmed Planets And Cols"></button>
-        <button class="ui-g-4" pButton type="button" (click)="getAllPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K()"
-            label="All Planetary Candidates Smaller Than 2Re With Equilibrium Temperatures Between 180 and 303K"></button>
-        <button class="ui-g-4" pButton type="button" (click)="getConfirmedPlanetsInKeplerField()" label="Confirmed Planets In Kepler Field"></button>
-    </div>
-    <div class="ui-g-12">
-        <button class="ui-g-4" pButton type="button" (click)="getStarsKnownToHostExoPlanets()" label="Stars Known To Host ExoPlanets"></button>
-        <button class="ui-g-4" pButton type="button" (click)="getConfirmedPlanetsThatTransitHostStars()" label="Confirmed Planets That Transit Host Stars"></button>
-        <button class="ui-g-4" pButton type="button" (click)="getCurrentNonConfirmedPlanetCandidates()" label="Current Non Confirmed Planet Candidates"></button>
-    </div>
-    <div class="ui-g-12">
-        <button class="ui-g-4" pButton type="button" (click)="k2TargetsFromCampaign9()" label="k2 Targets From Campaign9"></button>
-        <button class="ui-g-4" pButton type="button" (click)="getConfirmedPlanetsInMissionStarList()" label="Confirmed Planets In Mission Star List"></button>
-        <button class="ui-g-4" pButton type="button" (click)="getAllMicrolensingPlanetsWithTimeSeries()" label="All Microlensing Planets With Time Series"></button>
-    </div>
+
+<div class="ui-g-12" *ngIf="allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K.length > 0 && !isLoading">
+    <ng-container>
+        Total: {{allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K.length}}
+        <p-dataScroller [value]="allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K"
+            [rows]="25" [lazy]="true" [totalRecords]="allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K.length">
+            <ng-template let-item pTemplate="item">
+                <p-accordion>
+                    <p-accordionTab header="{{item.kepoi_name}}">
+                        <div class="ui-g">
+                            <div class="ui-g-12 border">
+                                <pre>{{item | json}}</pre>
+                            </div>
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+
+            </ng-template>
+        </p-dataScroller>
+    </ng-container>
 </div>
 
+<div class="ui-g-12" *ngIf="getSingleKOI.length > 0 && !isLoading">
+    Total: {{getSingleKOI.length}}
+    <p-dataScroller [value]="getSingleKOI" [rows]="25" [lazy]="true" [totalRecords]="getSingleKOI.length">
+        <ng-template let-item pTemplate="item">
+            <p-accordion>
+                <p-accordionTab header="{{item.kepoi_name}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            <pre>{{item | json}}</pre>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
 
+        </ng-template>
+    </p-dataScroller>
+</div>
 
-<div class="ui-g-12" *ngIf="exoPlanetData.length > 0 && !isLoading">
-    <pre>{{exoPlanetData | json}}</pre>
+<div class="ui-g-12" *ngIf="confirmedPlanetsInKeplerField.length > 0 && !isLoading">
+    Total: {{confirmedPlanetsInKeplerField.length}}
+    <p-dataScroller [value]="confirmedPlanetsInKeplerField" [rows]="25" [lazy]="true" [totalRecords]="confirmedPlanetsInKeplerField.length">
+        <ng-template let-item pTemplate="item">
+            <p-accordion>
+                <p-accordionTab header="{{item.pl_hostname}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            <pre>{{item | json}}</pre>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+
+        </ng-template>
+    </p-dataScroller>
+</div>
+
+<div class="ui-g-12" *ngIf="starsKnownToHostExoPlanets.length > 0 && !isLoading">
+    Total: {{starsKnownToHostExoPlanets.length}}
+    <p-dataScroller [value]="starsKnownToHostExoPlanets" [rows]="25" [lazy]="true" [totalRecords]="starsKnownToHostExoPlanets.length">
+        <ng-template let-item pTemplate="item">
+            <p-accordion>
+                <p-accordionTab header="{{item.pl_hostname}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            <pre>{{item | json}}</pre>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+
+        </ng-template>
+    </p-dataScroller>
+</div>
+
+<div class="ui-g-12" *ngIf="confirmedPlanetsThatTransitHostStars.length > 0 && !isLoading">
+    Total: {{confirmedPlanetsThatTransitHostStars.length}}
+    <p-dataScroller [value]="confirmedPlanetsThatTransitHostStars" [rows]="25" [lazy]="true" [totalRecords]="confirmedPlanetsThatTransitHostStars.length">
+        <ng-template let-item pTemplate="item">
+            <p-accordion>
+                <p-accordionTab header="{{item.pl_hostname}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            <pre>{{item | json}}</pre>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+
+        </ng-template>
+    </p-dataScroller>
+</div>
+
+<div class="ui-g-12" *ngIf="currentNonConfirmedPlanetCandidates.length > 0 && !isLoading">
+    Total: {{currentNonConfirmedPlanetCandidates.length}}
+    <p-dataScroller [value]="currentNonConfirmedPlanetCandidates" [rows]="25" [lazy]="true" [totalRecords]="currentNonConfirmedPlanetCandidates.length">
+        <ng-template let-item pTemplate="item">
+            <p-accordion>
+                <p-accordionTab header="{{item.kepoi_name}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            <pre>{{item | json}}</pre>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+
+        </ng-template>
+    </p-dataScroller>
+</div>
+
+<div class="ui-g-12" *ngIf="k2TargetsFromCampaign9.length > 0 && !isLoading">
+    Total: {{k2TargetsFromCampaign9.length}}
+    <p-dataScroller [value]="k2TargetsFromCampaign9" [rows]="25" [lazy]="true" [totalRecords]="k2TargetsFromCampaign9.length">
+        <ng-template let-item pTemplate="item">
+            <p-accordion>
+                <p-accordionTab header="{{item.epic_number}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            <pre>{{item | json}}</pre>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+
+        </ng-template>
+    </p-dataScroller>
+</div>
+
+<div class="ui-g-12" *ngIf="confirmedPlanetsInMissionStarList.length > 0 && !isLoading">
+    Total: {{confirmedPlanetsInMissionStarList.length}}
+    <p-dataScroller [value]="confirmedPlanetsInMissionStarList" [rows]="25" [lazy]="true" [totalRecords]="confirmedPlanetsInMissionStarList.length">
+        <ng-template let-item pTemplate="item">
+            <p-accordion>
+                <p-accordionTab header="{{item.star_name}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            <pre>{{item | json}}</pre>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+
+        </ng-template>
+    </p-dataScroller>
+</div>
+
+<div class="ui-g-12" *ngIf="allMicrolensingPlanetsWithTimeSeries.length > 0 && !isLoading">
+    Total: {{allMicrolensingPlanetsWithTimeSeries.length}}
+    <p-dataScroller [value]="allMicrolensingPlanetsWithTimeSeries" [rows]="25" [lazy]="true" [totalRecords]="allMicrolensingPlanetsWithTimeSeries.length">
+        <ng-template let-item pTemplate="item">
+            <p-accordion>
+                <p-accordionTab header="{{item.pl_hostname}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 border">
+                            <pre>{{item | json}}</pre>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+
+        </ng-template>
+    </p-dataScroller>
 </div>
 
 <div class="ui-g center-item" *ngIf="isLoading">
