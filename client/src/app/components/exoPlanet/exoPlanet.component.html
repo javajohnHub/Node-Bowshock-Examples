@@ -27,7 +27,7 @@
 
 
 
-<div class="ui-g-12" *ngIf="exoPlanetData.length > 0">
+<div class="ui-g-12" *ngIf="exoPlanetData.length > 0 && !isLoading">
     <pre>{{exoPlanetData | json}}</pre>
 </div>
 
