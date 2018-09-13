@@ -10,7 +10,7 @@ export class SearchComponent implements OnInit {
 	socket: any;
 	isLoading: boolean;
 	media;
-	model;
+	model = 'apollo';
 	constructor(private _sharedService: SharedService) {}
 
 	ngOnInit() {
