@@ -62,6 +62,7 @@ import { SourcesComponent } from './components/eonet/sources/sources.component';
 import { GeneLabComponent } from './components/geneLab/geneLab.component';
 import { PatentComponent } from './components/patents/patent.component';
 import { ExoPlanetComponent } from './components/exoPlanet/exoPlanet.component';
+import { SkymorphComponent } from './components/skymorph/skymorph.component';
 
 @NgModule({
 	declarations: [
@@ -102,7 +103,8 @@ import { ExoPlanetComponent } from './components/exoPlanet/exoPlanet.component';
 		SourcesComponent,
 		GeneLabComponent,
 		PatentComponent,
-		ExoPlanetComponent
+		ExoPlanetComponent,
+		SkymorphComponent
 	],
 	imports: [
 		BrowserModule,

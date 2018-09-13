@@ -61,6 +61,13 @@ export class NavbarComponent {
 						}
 					},
 					{
+						label: 'Skymorph',
+						routerLink: ['/skymorph'],
+						command: (event: any) => {
+							this.el.model[0].expanded = false;
+						}
+					},
+					{
 						label: 'ExoPlanets',
 						routerLink: ['/exoplanets'],
 						command: (event: any) => {
