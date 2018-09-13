@@ -9,6 +9,7 @@ import { SocketService } from '../../shared/socket.service';
 export class SkymorphComponent implements OnInit {
 	socket: any;
 	starData: any = {};
+	starImage: string;
 	isLoading: boolean;
 	model: string;
 	constructor(private _sharedService: SharedService) {}
@@ -19,9 +20,11 @@ export class SkymorphComponent implements OnInit {
 		this.socket.on('send star data', starData => {
 			console.log(starData);
 			this.starData = starData;
-			if (this.starData.length > 0) {
-				this.socket.emit('get star image', {
-					key: this.starData.results[0].key
+			if (this.starData.results.length > 0) {
+				this.starData.results.forEach(result => {
+					this.socket.emit('get star image', {
+						key: result.key
+					});
 				});
 			}
 
@@ -30,6 +33,7 @@ export class SkymorphComponent implements OnInit {
 
 		this.socket.on('send star image', starImage => {
 			console.log(starImage);
+			this.starImage = starImage;
 			this.isLoading = false;
 		});
 	}
