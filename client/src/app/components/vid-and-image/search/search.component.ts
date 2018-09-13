@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
 	constructor(private _sharedService: SharedService) {}
 
 	ngOnInit() {
-		this._sharedService.subTitleSubject$.next('Skymorph');
+		this._sharedService.subTitleSubject$.next('Image and Video Search');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send media', media => {
 			this.media = media;
@@ -23,6 +23,6 @@ export class SearchComponent implements OnInit {
 	}
 	getData() {
 		this.isLoading = true;
-		this.socket.emit('get star data', { target: this.model });
+		this.socket.emit('get media', { target: this.model });
 	}
 }

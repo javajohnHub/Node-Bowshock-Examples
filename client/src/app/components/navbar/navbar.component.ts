@@ -62,10 +62,15 @@ export class NavbarComponent {
 					},
 					{
 						label: 'Image and Video',
-						routerLink: ['/img-video-library'],
-						command: (event: any) => {
-							this.el.model[0].expanded = false;
-						}
+						items: [
+							{
+								label: 'Search',
+								routerLink: ['/img-video-library'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
+							}
+						]
 					},
 					{
 						label: 'Skymorph',

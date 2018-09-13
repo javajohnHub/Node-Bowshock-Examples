@@ -2,7 +2,7 @@
     <button pButton type="button" label="Get Media" (click)="getData()"></button>
     <input type="text" pInputText placeholder="Get Media" [(ngModel)]="model">
 </div>
-<div class="ui-g" *ngIf="!isLoading">
+<div class="ui-g" *ngIf="!isLoading && media">
     {{media | json}}
     <!-- <div class="ui-g-12" *ngFor="let url of media">
         <img src="{{url}}">
