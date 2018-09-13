@@ -415,17 +415,21 @@ module.exports = function(io) {
       );
     });
 
-    socket.on("get star image", key => {
-      bowshock.skymorph.search_image(key).then(
-        data => {
-          console.log(data);
-          socket.emit("send star image", data);
-        },
-        err => {
-          console.log(err);
-        }
-      );
-    });
+    socket
+      .on("get star image", key => {
+        bowshock.skymorph.search_image(key).then(
+          data => {
+            console.log(data);
+            socket.emit("send star image", data);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      })
+      .catch(error => {
+        console.log("caught", error.message);
+      });
     //end of Skymorph
   });
 
