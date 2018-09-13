@@ -8,7 +8,7 @@ import { SocketService } from '../../shared/socket.service';
 })
 export class SkymorphComponent implements OnInit {
 	socket: any;
-	starData = [];
+	starData: any = {};
 	isLoading: boolean;
 	model: string;
 	constructor(private _sharedService: SharedService) {}
@@ -19,9 +19,9 @@ export class SkymorphComponent implements OnInit {
 		this.socket.on('send star data', starData => {
 			console.log(starData);
 			this.starData = starData;
-			// this.socket.emit('get star image', {
-			//     key: this.starData
-			// });
+			this.socket.emit('get star image', {
+				key: this.starData.results[0].key
+			});
 			this.isLoading = false;
 		});
 	}
