@@ -19,13 +19,21 @@ export class SkymorphComponent implements OnInit {
 		this.socket.on('send star data', starData => {
 			console.log(starData);
 			this.starData = starData;
-			this.socket.emit('get star image', {
-				key: this.starData.results[0].key
-			});
+			if (this.starData.length > 0) {
+				this.socket.emit('get star image', {
+					key: this.starData.results[0].key
+				});
+			}
+
+			this.isLoading = false;
+		});
+
+		this.socket.on('send star image', starImage => {
+			console.log(starImage);
 			this.isLoading = false;
 		});
 	}
 	getData() {
-		this.socket.emit('get star data', { query: this.model });
+		this.socket.emit('get star data', { target: this.model });
 	}
 }
