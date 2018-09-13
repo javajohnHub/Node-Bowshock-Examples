@@ -21,11 +21,21 @@ export class SkymorphComponent implements OnInit {
 			console.log(starData);
 			this.starData = starData;
 			if (this.starData.results.length > 0) {
-				this.starData.results.forEach(result => {
+				var i = 0,
+					max = this.starData.results.length,
+					delay = 2000,
+					run;
+				run = () => {
+					this.socket = SocketService.getInstance();
 					this.socket.emit('get star image', {
-						key: result.key
+						key: this.starData.results[i].key
 					});
-				});
+					if (i++ < max) {
+						setTimeout(run, delay);
+					}
+				};
+				run();
+				return false;
 			}
 
 			this.isLoading = false;
