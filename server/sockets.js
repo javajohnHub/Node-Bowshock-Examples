@@ -406,10 +406,13 @@ module.exports = function(io) {
 
     //start of Skymorph
     socket.on("get star data", target => {
-      bowshock.skymorph.search_target_obj(target.target).then(data => {
-        console.log(data);
-        socket.emit("send star data", data);
-      });
+      bowshock.skymorph.search_target_obj(target.target).then(
+        data => {
+          console.log(data);
+          socket.emit("send star data", data);
+        },
+        err => console.log(err)
+      );
     });
 
     socket.on("get star image", key => {
