@@ -406,7 +406,7 @@ module.exports = function(io) {
 
     //start of Skymorph
     socket.on("get star data", target => {
-      bowshock.skymorph.search(target).then(data => {
+      bowshock.skymorph.search_target_obj(target).then(data => {
         console.log(data);
         socket.emit("send star data", data);
       });
