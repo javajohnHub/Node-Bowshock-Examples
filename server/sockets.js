@@ -405,37 +405,45 @@ module.exports = function(io) {
     //end of ExoPlanet
 
     //start of Skymorph
-    socket.on("get star data", target => {
-      bowshock.skymorph
-        .search_target_obj(target.target)
-        .then(
-          data => {
-            console.log(data);
-            socket.emit("send star data", data);
-          },
-          err => console.log(err)
-        )
-        .catch(error => {
-          console.log("caught", error.message);
-        });
-    });
+    socket.on(
+      "get star data",
+      target => {
+        bowshock.skymorph
+          .search_target_obj(target.target)
+          .then(
+            data => {
+              console.log(data);
+              socket.emit("send star data", data);
+            },
+            err => console.log(err)
+          )
+          .catch(error => {
+            console.log("caught", error.message);
+          });
+      },
+      err => console.log(err)
+    );
 
-    socket.on("get star image", key => {
-      bowshock.skymorph
-        .search_image(key)
-        .then(
-          data => {
-            console.log(data);
-            socket.emit("send star image", data);
-          },
-          err => {
-            console.log(err);
-          }
-        )
-        .catch(error => {
-          console.log("caught", error.message);
-        });
-    });
+    socket.on(
+      "get star image",
+      key => {
+        bowshock.skymorph
+          .search_image(key)
+          .then(
+            data => {
+              console.log(data);
+              socket.emit("send star image", data);
+            },
+            err => {
+              console.log(err);
+            }
+          )
+          .catch(error => {
+            console.log("caught", error.message);
+          });
+      },
+      err => console.log(err)
+    );
 
     //end of Skymorph
   });
