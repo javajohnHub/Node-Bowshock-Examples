@@ -8,42 +8,35 @@ import { SocketService } from '../../shared/socket.service';
 })
 export class SkymorphComponent implements OnInit {
 	socket: any;
+	dataArr = [];
 	starData: any = {};
-	starImage: string;
+	starImages = [];
 	isLoading: boolean;
-	model: string;
+	model: string = 'J99TS7A';
 	constructor(private _sharedService: SharedService) {}
 
 	ngOnInit() {
 		this._sharedService.subTitleSubject$.next('Skymorph');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send star data', starData => {
-			console.log(starData);
 			this.starData = starData;
 			if (this.starData.results.length > 0) {
-				var i = 0,
-					max = this.starData.results.length,
-					delay = 2000,
-					run;
-				run = () => {
-					this.socket = SocketService.getInstance();
-					this.socket.emit('get star image', {
-						key: this.starData.results[i].key
-					});
-					if (i++ < max) {
-						setTimeout(run, delay);
-					}
-				};
-				run();
-				return false;
+				for (let x = 0; x < this.starData.results.length; x++) {
+					this.dataArr.push(this.starData.results[x].key);
+				}
 			}
-
+			this.dataArr.forEach(key => {
+				setTimeout(() => {
+					this.socket.emit('get star image', {
+						key: key
+					});
+				}, 2500);
+			});
 			this.isLoading = false;
 		});
 
 		this.socket.on('send star image', starImage => {
-			console.log(starImage);
-			this.starImage = starImage;
+			this.starImages.push(starImage);
 			this.isLoading = false;
 		});
 	}

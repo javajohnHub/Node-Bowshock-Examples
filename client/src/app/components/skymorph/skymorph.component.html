@@ -2,5 +2,7 @@
     <button pButton type="button" label="Get Image" (click)="getData()"></button>
     <input type="text" pInputText placeholder="Skymorph id" [(ngModel)]="model">
 </div>
-
+<div *ngFor="let url of starImages">
+    <img src="{{url}}">
+</div>
 <!-- {{starData | json}} -->
