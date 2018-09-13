@@ -403,6 +403,15 @@ module.exports = function(io) {
     });
 
     //end of ExoPlanet
+
+    //start of Skymorph
+    socket.on("get star data", target => {
+      bowshock.skymorph.search(target).then(data => {
+        console.log(data);
+        socket.emit("send star data", data);
+      });
+    });
+    //end of Skymorph
   });
 
   function format_date(date) {
