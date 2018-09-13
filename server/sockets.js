@@ -315,7 +315,13 @@ module.exports = function(io) {
         socket.emit("send geneLab", gene);
       });
     });
-
+    socket.on("get html", obj => {
+      console.log(obj);
+      bowshock.geneLab.htmlSearch(obj).then(html => {
+        console.log(html);
+        socket.emit("send html", html);
+      });
+    });
     //end of geneLab
 
     //start of patents
