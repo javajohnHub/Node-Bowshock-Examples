@@ -63,6 +63,7 @@ import { GeneLabComponent } from './components/geneLab/geneLab.component';
 import { PatentComponent } from './components/patents/patent.component';
 import { ExoPlanetComponent } from './components/exoPlanet/exoPlanet.component';
 import { SkymorphComponent } from './components/skymorph/skymorph.component';
+import { SearchComponent } from './components/vid-and-image/search/search.component';
 
 @NgModule({
 	declarations: [
@@ -104,7 +105,8 @@ import { SkymorphComponent } from './components/skymorph/skymorph.component';
 		GeneLabComponent,
 		PatentComponent,
 		ExoPlanetComponent,
-		SkymorphComponent
+		SkymorphComponent,
+		SearchComponent
 	],
 	imports: [
 		BrowserModule,

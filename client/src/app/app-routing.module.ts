@@ -37,6 +37,7 @@ import { GeneLabComponent } from './components/geneLab/geneLab.component';
 import { PatentComponent } from './components/patents/patent.component';
 import { ExoPlanetComponent } from './components/exoPlanet/exoPlanet.component';
 import { SkymorphComponent } from './components/skymorph/skymorph.component';
+import { SearchComponent } from './components/vid-and-image/search/search.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -57,6 +58,10 @@ const routes: Routes = [
 	{
 		path: 'patents',
 		component: PatentComponent
+	},
+	{
+		path: 'img-video-library',
+		component: SearchComponent
 	},
 	{
 		path: 'exoplanets',

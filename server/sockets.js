@@ -452,6 +452,15 @@ module.exports = function(io) {
     );
 
     //end of Skymorph
+
+    //start of img and vid
+    socket.on("get media", obj => {
+      bowshock.nasaImgVideo.search(obj).then(data => {
+        console.log(data);
+        socket.emit("send media", data);
+      });
+    });
+    //end of img and vid
   });
 
   function format_date(date) {
