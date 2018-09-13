@@ -415,6 +415,7 @@ module.exports = function(io) {
     socket.on("get star image", key => {
       bowshock.skymorph.search_image(key).then(data => {
         console.log(data);
+        socket.emit("send star image", data);
       });
     });
     //end of Skymorph
