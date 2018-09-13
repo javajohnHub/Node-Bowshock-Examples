@@ -18,6 +18,10 @@ export class SkymorphComponent implements OnInit {
 	ngOnInit() {
 		this._sharedService.subTitleSubject$.next('Skymorph');
 		this.socket = SocketService.getInstance();
+		this.socket.on('send star image', starImage => {
+			this.starImages.push(starImage);
+			this.isLoading = false;
+		});
 		this.socket.on('send star data', starData => {
 			this.starData = starData;
 			if (this.starData.results.length > 0) {
@@ -25,22 +29,17 @@ export class SkymorphComponent implements OnInit {
 					this.dataArr.push(this.starData.results[x].key);
 				}
 			}
-			this.dataArr.forEach(key => {
+			this.dataArr.forEach((key, i) => {
 				setTimeout(() => {
 					this.socket.emit('get star image', {
 						key: key
 					});
 				}, 2500);
 			});
-			this.isLoading = false;
-		});
-
-		this.socket.on('send star image', starImage => {
-			this.starImages.push(starImage);
-			this.isLoading = false;
 		});
 	}
 	getData() {
+		this.isLoading = true;
 		this.socket.emit('get star data', { target: this.model });
 	}
 }

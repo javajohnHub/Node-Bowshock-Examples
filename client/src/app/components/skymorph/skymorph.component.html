@@ -2,6 +2,15 @@
     <button pButton type="button" label="Get Image" (click)="getData()"></button>
     <input type="text" pInputText placeholder="Skymorph id" [(ngModel)]="model">
 </div>
-<div *ngFor="let url of starImages">
-    <img src="{{url}}">
+<div class="ui-g" *ngIf="!isLoading">
+    <div class="ui-g-12" *ngFor="let url of starImages">
+        <img src="{{url}}">
+    </div>
+</div>
+
+
+<div class="ui-g center-item" *ngIf="isLoading">
+    <div class="ui-g-12">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
 </div>
