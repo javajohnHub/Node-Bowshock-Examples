@@ -23,6 +23,6 @@ export class SearchComponent implements OnInit {
 	}
 	getData() {
 		this.isLoading = true;
-		this.socket.emit('get media', { target: this.model });
+		this.socket.emit('get media', { query: this.model });
 	}
 }
