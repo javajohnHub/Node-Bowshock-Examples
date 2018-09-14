@@ -305,8 +305,7 @@ module.exports = function(io) {
         .then(
           images => {
             console.log(images);
-            encodeURI(images);
-            socket.emit("send earth imagery", images);
+            // socket.emit("send earth imagery", images);
           },
           err => console.log(err)
         )
