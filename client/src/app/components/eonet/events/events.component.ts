@@ -26,8 +26,9 @@ export class EventsComponent {
 		});
 
 		this.socket.on('send earth imagery', imageUrl => {
-			this.imageUrl = imageUrl;
+			this.imageUrl.push(imageUrl);
 			this.isLoading = false;
+			console.log(this.imageUrl);
 		});
 
 		this.socket.emit('get events');

@@ -2,11 +2,11 @@
     <div class="ui-g-12">
         <h1>{{events.title}}</h1>
         <h3>{{events.description}}</h3>
-        <ng-container *ngFor="let event of events.events; let y=index">
-            <p-accordion>
+        <p-accordion>
+            <ng-container *ngFor="let event of events.events; let y=index">
                 <p-accordionTab header="{{event.title}}">
-                    <ng-container *ngIf="imageUrl">
-                        <img src="{{imageUrl}}">
+                    <ng-container *ngIf="imageUrl.length > 0">
+                        <img src="{{imageUrl[y]}}">
                     </ng-container>
                     <div class="border">
                         Id: {{event.id}}<br />
@@ -32,9 +32,10 @@
                         </ng-container>
                     </div>
                 </p-accordionTab>
-            </p-accordion>
+            </ng-container>
+        </p-accordion>
 
-        </ng-container>
+
 
     </div>
 </div>

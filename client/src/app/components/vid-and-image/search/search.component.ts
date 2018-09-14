@@ -47,9 +47,11 @@ export class SearchComponent implements OnInit {
 						if (this.mp4s) {
 							this.mp4s.forEach(mp4 => {
 								this.mp4 = mp4.split('~');
+
 								if (this.mp4[1] == 'medium.mp4') {
 									this.mp4s.push(mp4);
 								}
+								console.log(this.mp4s);
 							});
 						}
 						if (url.slice(-3) == 'png' || url.slice(-3) == 'jpg') {
