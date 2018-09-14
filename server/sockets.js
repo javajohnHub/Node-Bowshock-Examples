@@ -300,16 +300,10 @@ module.exports = function(io) {
 
     socket.on("get earth imagery", obj => {
       console.log(obj);
-      bowshock.earth
-        .imagery(obj)
-        .then(
-          images => {
-            console.log(images);
-            // socket.emit("send earth imagery", images);
-          },
-          err => console.log(err)
-        )
-        .catch(err => console.log(err));
+      bowshock.earth.imagery(obj).then(images => {
+        console.log(images);
+        socket.emit("send earth imagery", images.url);
+      });
     });
     //end of eonet
 
