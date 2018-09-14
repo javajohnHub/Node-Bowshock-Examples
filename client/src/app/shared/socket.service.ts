@@ -1,80 +1,72 @@
 import * as io from 'socket.io-client';
 
-export class SocketService  {
+export class SocketService {
+	static instance: SocketService = null;
+	static isCreating: Boolean = false;
+	public socket: any;
+	private url = 'localhost:4200'; //'https://node-bowshock.herokuapp.com';
 
-  static instance: SocketService = null;
-  static isCreating: Boolean = false;
-  public socket: any;
-  private url = 'https://node-bowshock.herokuapp.com';
+	/**
+	 * constuctor with control handle, that you can not instantiate by new NodoSocket();
+	 * socket should act as a real singleton, not to have multiple socket connection instances
+	 * within the same application to the same resource
+	 */
+	constructor() {
+		if (!SocketService.isCreating) {
+			throw new Error(
+				'This is a real singleton. Get an instance via var socket = SocketService.getInsance(); !'
+			);
+		}
 
-  /**
-   * constuctor with control handle, that you can not instantiate by new NodoSocket();
-   * socket should act as a real singleton, not to have multiple socket connection instances
-   * within the same application to the same resource
-   */
-  constructor() {
-    if (!SocketService.isCreating) {
-      throw new Error('This is a real singleton. Get an instance via var socket = SocketService.getInsance(); !');
-    }
+		console.info('creating socket object');
 
-    console.info('creating socket object');
+		console.info('establishing connection to server...');
+		this.socket = io.connect(this.url);
+	}
 
-    console.info('establishing connection to server...');
-    this.socket = io.connect(this.url);
+	/**
+	 * receive data form Socket-Server
+	 * @param eventName
+	 * @param callback
+	 */
+	public on(eventName, callback): void {
+		this.socket.on(eventName, function() {
+			const args = arguments;
+			if (typeof callback === 'function') {
+				callback.apply(this.socket, args);
+			}
+		});
+	}
 
-  }
+	/**
+	 * submit data to socket-server
+	 * @param eventName
+	 * @param data
+	 * @param callback
+	 */
+	public emit(eventName, data, callback): void {
+		this.socket.emit(eventName, data, function() {
+			const args = arguments;
+			if (typeof callback === 'function') {
+				callback.apply(this.socket, args);
+			}
+		});
+	}
 
-  /**
-   * receive data form Socket-Server
-   * @param eventName
-   * @param callback
-   */
-  public on(eventName, callback): void {
-    this.socket.on(eventName, function () {
-      const args = arguments;
-      if (typeof callback === 'function') {
-        callback.apply(this.socket, args);
-      }
-    });
-  }
+	/**
+	 * get instance wrapper
+	 * @returns {SocketService}
+	 */
+	public static getInstance(): SocketService {
+		if (SocketService.instance === null) {
+			SocketService.isCreating = true;
+			SocketService.instance = new SocketService();
+			SocketService.isCreating = false;
+		}
 
-  /**
-   * submit data to socket-server
-   * @param eventName
-   * @param data
-   * @param callback
-   */
-  public emit(eventName, data, callback): void {
-    this.socket.emit(eventName, data, function () {
-      const args = arguments;
-      if (typeof callback === 'function') {
-        callback.apply(this.socket, args);
-
-      }
-    });
-  }
-
-
-
-
-  /**
-   * get instance wrapper
-   * @returns {SocketService}
-   */
-  public static getInstance(): SocketService {
-
-    if (SocketService.instance === null) {
-      SocketService.isCreating = true;
-      SocketService.instance = new SocketService();
-      SocketService.isCreating = false;
-    }
-
-    console.log('SocketService.instance', SocketService.instance);
-    return SocketService.instance;
-
-  }
-
-
+		console.log('SocketService.instance', SocketService.instance);
+		return SocketService.instance;
+	}
 }
 
 /**

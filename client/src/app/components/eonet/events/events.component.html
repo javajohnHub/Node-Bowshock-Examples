@@ -9,7 +9,7 @@
                         <img src="{{imageUrl[y]}}">
                     </ng-container>
                     <div class="border">
-                        Id: {{event.id}}<br />
+                        <!-- Id: {{event.id}}<br />
                         Title: {{event.title}}<br />
                         Description: {{event.description}}<br />
                         Categories:<br />
@@ -22,13 +22,13 @@
                             Id: {{source.id}}<br />
                             <a href="{{source.url}}" target="_blank">source</a><br />
                         </ng-container><br />
-                        Geometries:<br />
+                        Geometries:<br /> -->
                         <ng-container *ngFor="let geo of event.geometries; let x=index">
-                            Date: {{geo.date}}<br />
-                            Type: {{geo.type}}<br />
+                            <!-- Date: {{geo.date}}<br />
+                            Type: {{geo.type}}<br /> -->
                             <button pButton (click)="getImages(event.geometries, x)" type="button" label="get image"></button>
-                            Lat: {{geo.coordinates[0]}}<br />
-                            Lon: {{geo.coordinates[1]}}<br /><br />
+                            <!-- Lat: {{geo.coordinates[0]}}<br />
+                            Lon: {{geo.coordinates[1]}}<br /><br /> -->
                         </ng-container>
                     </div>
                 </p-accordionTab>

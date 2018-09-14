@@ -21,6 +21,7 @@ export class EventsComponent {
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
 		this.socket.on('send events', events => {
+			console.log(events);
 			this.events = events;
 			this.isLoading = false;
 		});

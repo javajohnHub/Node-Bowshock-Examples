@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../../shared/shared.service';
 import { SocketService } from '../../../shared/socket.service';
-import VTTConverter from 'srt-webvtt';
 import { HttpClient } from '@angular/common/http';
 @Component({
 	selector: 'app-search',
