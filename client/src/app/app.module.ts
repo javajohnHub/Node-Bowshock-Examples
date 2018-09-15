@@ -65,6 +65,7 @@ import { ExoPlanetComponent } from './components/exoPlanet/exoPlanet.component';
 import { SkymorphComponent } from './components/skymorph/skymorph.component';
 import { SearchComponent } from './components/vid-and-image/search/search.component';
 import { EarthComponent } from './components/Earth/earth.component';
+import { EventComponent } from './components/eonet/events/event/event.component';
 
 @NgModule({
 	declarations: [
@@ -108,7 +109,8 @@ import { EarthComponent } from './components/Earth/earth.component';
 		ExoPlanetComponent,
 		SkymorphComponent,
 		SearchComponent,
-		EarthComponent
+		EarthComponent,
+		EventComponent
 	],
 	imports: [
 		BrowserModule,

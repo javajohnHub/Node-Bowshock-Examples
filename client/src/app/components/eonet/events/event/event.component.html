@@ -1,0 +1,29 @@
+<p-accordionTab header="{{event.title}}">
+
+    <div class="border">
+        Id: {{event.id}}<br />
+        Title: {{event.title}}<br />
+        Description: {{event.description}}<br />
+        Categories:<br />
+        <ng-container *ngFor="let cat of event.categories">
+            Id: {{cat.id}}<br />
+            Title: {{cat.title}}<br />
+        </ng-container><br /><br />
+        Sources:<br />
+        <ng-container *ngFor="let source of event.sources">
+            Id: {{source.id}}<br />
+            <a href="{{source.url}}" target="_blank">source</a><br />
+        </ng-container><br />
+        Geometries:<br />
+        <ng-container *ngFor="let geo of event.geometries; let x=index">
+            Date: {{geo.date}}<br />
+            Type: {{geo.type}}<br />
+
+            <button pButton (click)="getImages(geo)" type="button" label="get image"></button>
+            Lat: {{geo.coordinates[0]}}<br />
+            Lon: {{geo.coordinates[1]}}<br /><br />
+            {{imageUrl | json}}
+            <img src="{{imageUrl.url}}">
+        </ng-container>
+    </div>
+</p-accordionTab>

@@ -29,25 +29,10 @@ export class EventsComponent {
 			});
 			this.isLoading = false;
 		});
-
-		this.socket.on('send earth imagery', imageUrl => {
-			this.imageUrl.push(imageUrl);
-			this.isLoading = false;
-			console.log('i', this.imageUrl);
-		});
-
 		this.socket.emit('get events');
 	}
 
 	open() {
 		console.log('opened');
-		this.imageUrl = [];
-	}
-	getImages(geo) {
-		this.socket.emit('get earth imagery', {
-			lon: geo.coordinates[0],
-			lat: geo.coordinates[1],
-			dim: this.tileDimension
-		});
 	}
 }
