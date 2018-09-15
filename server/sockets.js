@@ -304,7 +304,7 @@ module.exports = function(io) {
         .imagery(obj)
         .then(images => {
           console.log("images", images);
-          if (images != null) {
+          if (images != null || images != undefined) {
             socket.emit("send earth imagery", images);
           }
         })
