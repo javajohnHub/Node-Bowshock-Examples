@@ -303,8 +303,10 @@ module.exports = function(io) {
       bowshock.earth
         .imagery(obj)
         .then(images => {
-          console.log(images);
-          socket.emit("send earth imagery", images);
+          console.log("images", images);
+          if (images != null) {
+            socket.emit("send earth imagery", images);
+          }
         })
         .catch(err => console.log(err));
     });
