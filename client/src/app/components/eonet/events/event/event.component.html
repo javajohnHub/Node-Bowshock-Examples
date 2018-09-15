@@ -22,7 +22,6 @@
             <button pButton (click)="getImages(geo)" type="button" label="get image"></button>
             Lat: {{geo.coordinates[0]}}<br />
             Lon: {{geo.coordinates[1]}}<br /><br />
-            {{imageUrl | json}}
             <img src="{{imageUrl.url}}">
         </ng-container>
     </div>
