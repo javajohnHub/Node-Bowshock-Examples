@@ -13,27 +13,28 @@ export class EventComponent {
 	isLoading: boolean = false;
 	geos = [];
 	tileDimension = 0.145;
+	idx;
+	id;
 	constructor() {}
 
 	ngOnInit() {
 		this.isLoading = true;
 
-		this.socket.on('send earth imagery', imageUrl => {
-			this.imageUrl = imageUrl;
+		this.socket.on('send earth imagery', imageObj => {
+			this.imageUrl.push(imageObj.url);
 			this.isLoading = false;
 		});
 	}
 
-	getImages(geo) {
+	getImages(geo, x, id) {
 		this.isLoading = true;
-		this.socket.emit(
-			'get earth imagery',
-			{
-				lon: geo.coordinates[0],
-				lat: geo.coordinates[1],
-				dim: this.tileDimension
-			},
-			data => console.log(data)
-		);
+		this.idx = x;
+		this.id = id;
+		this.imageUrl = [];
+		this.socket.emit('get earth imagery', {
+			lon: geo.coordinates[0],
+			lat: geo.coordinates[1],
+			dim: this.tileDimension
+		});
 	}
 }

@@ -19,10 +19,13 @@
             Date: {{geo.date}}<br />
             Type: {{geo.type}}<br />
 
-            <button pButton (click)="getImages(geo)" type="button" label="get image"></button>
+            <button pButton (click)="getImages(geo, x, event.id)" type="button" label="get image"></button>
             Lat: {{geo.coordinates[0]}}<br />
             Lon: {{geo.coordinates[1]}}<br /><br />
-            <img src="{{imageUrl.url}}">
+            <ng-container *ngIf="x == idx && id == event.id">
+                <img src="{{imageUrl[x]}}">
+            </ng-container>
+
         </ng-container>
     </div>
 </p-accordionTab>
