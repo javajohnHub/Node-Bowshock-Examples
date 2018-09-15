@@ -11,7 +11,8 @@ export class EventsComponent {
 	events: any = {};
 	imageUrl: any = [];
 	isLoading: boolean = false;
-
+	geos = [];
+	tileDimension = 0.145;
 	constructor(private _sharedService: SharedService) {}
 
 	ngOnInit() {
@@ -22,24 +23,31 @@ export class EventsComponent {
 		this.socket = SocketService.getInstance();
 		this.socket.on('send events', events => {
 			console.log(events);
-			this.events = events;
+			this.events = events.events;
+			this.events.forEach(event => {
+				this.geos.push(event.geometries);
+			});
 			this.isLoading = false;
 		});
 
 		this.socket.on('send earth imagery', imageUrl => {
 			this.imageUrl.push(imageUrl);
 			this.isLoading = false;
-			console.log(this.imageUrl);
+			console.log('i', this.imageUrl);
 		});
 
 		this.socket.emit('get events');
 	}
 
-	getImages(geometries, x) {
-		console.log(geometries[x]);
+	open() {
+		console.log('opened');
+		this.imageUrl = [];
+	}
+	getImages(geo) {
 		this.socket.emit('get earth imagery', {
-			lon: geometries[x].coordinates[0],
-			lat: geometries[x].coordinates[1]
+			lon: geo.coordinates[0],
+			lat: geo.coordinates[1],
+			dim: this.tileDimension
 		});
 	}
 }

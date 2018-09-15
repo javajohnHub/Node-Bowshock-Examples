@@ -2,12 +2,10 @@
     <div class="ui-g-12">
         <h1>{{events.title}}</h1>
         <h3>{{events.description}}</h3>
-        <p-accordion>
-            <ng-container *ngFor="let event of events.events; let y=index">
+        <p-accordion (onOpen)="open()">
+            <ng-container *ngFor="let event of events; let y=index">
                 <p-accordionTab header="{{event.title}}">
-                    <ng-container *ngIf="imageUrl.length > 0">
-                        <img src="{{imageUrl[y]}}">
-                    </ng-container>
+
                     <div class="border">
                         <!-- Id: {{event.id}}<br />
                         Title: {{event.title}}<br />
@@ -26,9 +24,17 @@
                         <ng-container *ngFor="let geo of event.geometries; let x=index">
                             <!-- Date: {{geo.date}}<br />
                             Type: {{geo.type}}<br /> -->
-                            <button pButton (click)="getImages(event.geometries, x)" type="button" label="get image"></button>
+
+                            <button pButton (click)="getImages(geo)" type="button" label="get image"></button>
                             <!-- Lat: {{geo.coordinates[0]}}<br />
                             Lon: {{geo.coordinates[1]}}<br /><br /> -->
+                            <ng-container *ngIf="imageUrl.length > 0">
+
+                                <ng-container *ngFor="let url of imageUrl; let j=index">
+                                    <img src="{{imageUrl[j].url}}">
+                                </ng-container>
+
+                            </ng-container>
                         </ng-container>
                     </div>
                 </p-accordionTab>
