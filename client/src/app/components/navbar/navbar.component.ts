@@ -61,6 +61,13 @@ export class NavbarComponent {
 						}
 					},
 					{
+						label: 'Earth',
+						routerLink: ['/earth'],
+						command: (event: any) => {
+							this.el.model[0].expanded = false;
+						}
+					},
+					{
 						label: 'Image and Video',
 						items: [
 							{

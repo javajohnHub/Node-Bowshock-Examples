@@ -1,0 +1,53 @@
+<form [formGroup]="earthForm">
+    <div class="ui-g-5">
+        <label for="lat"><strong>Latitude: </strong></label>
+        <input pInput type="number" id="lat" formControlName="lat" placeholder="latitude" step="0.01">
+    </div>
+    <div class="ui-g-5">
+        <label for="lon"><strong>Longitude: </strong></label>
+        <input pInput type="number" id="lon" formControlName="lon" placeholder="longitude" step="0.01">
+    </div>
+    <div class="ui-g-5">
+        <label for="lon"><strong>Dim: </strong></label>
+        <input pInput type="number" id="dim" formControlName="dim" placeholder=".145" step="0.001">
+    </div>
+</form>
+<div class="ui-g-12">
+    <div class="ui-g-6">
+        <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
+            (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
+    </div>
+    <button pButton type="button" label="Submit" (click)="getImages()"></button>
+</div>
+<img class="ui-g-12" src="{{image}}">
+
+<div class="ui-g-5 border">
+    <strong>Interesting Places: </strong>
+    <ul>
+        <li>Ceará<br />
+            lat=-3.72168<br />
+            lon=-38.519932<br /></li>
+        <li>Cathedral<br />
+            lat=52.572484<br />
+            lon=-0.23921<br /></li>
+        <li>Chalk man<br />
+            lat=50.8135003<br />
+            lon=-2.4754754<br /></li>
+        <li>TM<br />
+            lat=31.778116<br />
+            lon=35.235993<br /></li>
+        <li>Rain forest<br />
+            lat=-10.141932<br />
+            lon=-75.27832<br /></li>
+        <li>Chernobyl reactor<br />
+            lat=51.389636<br />
+            lon=30.099033<br /></li>
+        <li>Plane grave-yard<br />
+            lat=32.1499889<br />
+            lon=-110.8358417<br /></li>
+        <li>Solar installation in desert.<br />
+            lat = 44.525049<br />
+            lon= -110.83819<br /></li>
+    </ul>
+
+</div>

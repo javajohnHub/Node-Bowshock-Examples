@@ -38,6 +38,7 @@ import { PatentComponent } from './components/patents/patent.component';
 import { ExoPlanetComponent } from './components/exoPlanet/exoPlanet.component';
 import { SkymorphComponent } from './components/skymorph/skymorph.component';
 import { SearchComponent } from './components/vid-and-image/search/search.component';
+import { EarthComponent } from './components/Earth/earth.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -50,6 +51,10 @@ const routes: Routes = [
 	{
 		path: 'eva',
 		component: EvaComponent
+	},
+	{
+		path: 'earth',
+		component: EarthComponent
 	},
 	{
 		path: 'genelab',
