@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { SocketService } from '../../../../shared/socket.service';
 
 @Component({
 	selector: 'app-event',
 	templateUrl: 'event.component.html'
 })
 export class EventComponent {
-	socket = SocketService.getInstance();
 	@Input('event')
 	event: any;
+	@Input('socket')
+	socket: any;
 	imageUrl: any = [];
 	isLoading: boolean = false;
 	geos = [];

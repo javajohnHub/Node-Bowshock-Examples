@@ -2,9 +2,9 @@
     <div class="ui-g-12">
         <h1>{{events.title}}</h1>
         <h3>{{events.description}}</h3>
-        <p-accordion (onOpen)="open()">
+        <p-accordion>
             <ng-container *ngFor="let event of events; let y=index">
-                <app-event [event]="event"></app-event>
+                <app-event [event]="event" [socket]="socket"></app-event>
             </ng-container>
         </p-accordion>
 
