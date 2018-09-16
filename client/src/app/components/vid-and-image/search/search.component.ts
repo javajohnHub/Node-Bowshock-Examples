@@ -38,33 +38,34 @@ export class SearchComponent implements OnInit {
 						this.srts.push(data);
 						if (this.srts[0]) {
 							this.srts.forEach(srt => {
-								srt.forEach(url => {
+								srt.forEach((url, i) => {
 									if (
-										url.slice(-3) == 'mp4' &&
-										url.slice(-10) == 'medium.mp4'
+										(url.slice(-3) == 'mp4' &&
+											url.slice(-10) == 'medium.mp4') ||
+										(url.slice(-3) == 'm4a' &&
+											url.slice(-10) == 'medium.m4a')
 									) {
-										this.mp4s.push(url);
+										if (!this.mp4s.includes(url)) {
+											this.mp4s.push(url);
+										}
 									}
+
 									if (
 										url.slice(-3) == 'png' ||
-										url.slice(-3) == 'jpg'
+										(url.slice(-3) == 'jpg' &&
+											url.slice(-10).split('.')[0] ==
+												'medium')
 									) {
-										this.pngs.push(url);
+										if (!this.pngs.includes(url)) {
+											this.pngs.push(url);
+										}
 									}
 									if (url.slice(-4) == 'json') {
-										this.jsons.push(url);
+										if (!this.jsons.includes(url)) {
+											this.jsons.push(url);
+										}
 									}
 								});
-
-								// if (this.mp4s) {
-								// 	this.mp4s.forEach(mp4 => {
-								// 		this.mp4 = mp4.split('~');
-
-								// 		if (this.mp4[1] == 'medium.m4a') {
-								// 			this.mp4s.push(mp4);
-								// 		}
-								// 	});
-								// }
 							});
 						}
 					});
