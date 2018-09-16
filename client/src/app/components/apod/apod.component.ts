@@ -9,7 +9,7 @@ import { SharedService } from '../../shared/shared.service';
 })
 export class ApodComponent {
 	socket: any;
-	apod: {};
+	apod: any = {};
 	safe_url: any;
 	model: Date;
 	maxDate: Date;
