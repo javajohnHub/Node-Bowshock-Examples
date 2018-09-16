@@ -332,10 +332,13 @@ module.exports = function(io) {
     //start of patents
     socket.on("get patent", obj => {
       console.log(obj);
-      bowshock.geneLab.search(obj).then(patent => {
-        console.log(patent);
-        socket.emit("send patent", patent);
-      });
+      bowshock.geneLab
+        .search(obj)
+        .then(patent => {
+          console.log(patent);
+          socket.emit("send patent", patent);
+        })
+        .catch(err => console.log(err));
     });
 
     //end of patents
