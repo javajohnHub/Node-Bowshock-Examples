@@ -545,7 +545,7 @@ module.exports = function(io) {
     socket.on("get fireballs", () => {
       bowshock.ssd.fireballs().then(data => {
         console.log(data);
-        socket.emit("send cad", data);
+        socket.emit("send fireballs", data);
       });
     });
     socket.on("get nhats", () => {
