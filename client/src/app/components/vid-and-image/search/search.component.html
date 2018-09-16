@@ -7,20 +7,20 @@
 {{jsons | json}} -->
 <div class="ui-g" *ngIf="!isLoading && media">
     <div class="ui-g-12">
-        <div class="ui-g-3">
+        <div class="ui-sm-12 ui-md-12 ui-g-3">
             <p-dataScroller [value]="mp4s" [rows]="25" [lazy]="true" [totalRecords]="mp4s.length">
                 <p-header>
                     mp4s
                 </p-header>
                 <ng-template let-mp4 pTemplate="item">
-                    <video controls="controls" width="320" height="176">
+                    <video controls="controls" class="center">
                         <source src="{{mp4}}" type="video/mp4" />
                         Your browser does not support HTML5 video.
                     </video>
                 </ng-template>
             </p-dataScroller>
         </div>
-        <div class="ui-g-3">
+        <div class="ui-sm-12 ui-md-12 ui-g-3">
             <p-dataScroller [value]="pngs" [rows]="25" [lazy]="true" [totalRecords]="pngs.length">
                 <p-header>
                     pngs
@@ -30,7 +30,7 @@
                 </ng-template>
             </p-dataScroller>
         </div>
-        <div class="ui-g-3">
+        <div class="ui-sm-12 ui-md-12 ui-g-3">
             <p-dataScroller [value]="jsons" [rows]="25" [lazy]="true" [totalRecords]="jsons.length">
                 <p-header>
                     jsons

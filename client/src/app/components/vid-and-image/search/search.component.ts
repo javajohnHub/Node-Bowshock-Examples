@@ -76,6 +76,7 @@ export class SearchComponent implements OnInit {
 	}
 	getData() {
 		this.isLoading = true;
+		this.media = [];
 		this.socket.emit('get media', { q: this.model });
 	}
 }
