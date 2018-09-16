@@ -248,10 +248,10 @@ module.exports = function(io) {
     });
 
     socket.on("get natural image", obj => {
-      console.log(obj);
       bowshock.epic
         .createNaturalImageLink(obj)
         .then(naturalImage => {
+          console.log(naturalImage);
           socket.emit("send natural image", naturalImage);
         })
         .catch(err => {
