@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { SharedService } from '../../../shared/shared.service';
 import { SocketService } from '../../../shared/socket.service';
+
 @Component({
 	selector: 'app-sentry',
 	templateUrl: 'sentry.component.html'
@@ -19,11 +20,13 @@ export class SentryComponent {
 		private _fb: FormBuilder
 	) {}
 
+	ngAfterViewChecked() {}
 	ngOnInit() {
 		this._sharedService.subTitleSubject$.next('Sentry');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send sentry', sentry => {
 			this.sentry = sentry;
+
 			this.isLoading = false;
 		});
 		this.socket.on('send error', error => {

@@ -1,82 +1,79 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "C:/Users/joedw/Desktop",
-  "projects": {
-    "client": {
-      "root": "Desktop/Node-Bowshock-Examples/client/src",
-      "projectType": "application",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "../server/dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets"
-              },
-              {
-                "glob": "favicon.ico",
-                "input": "src",
-                "output": "/"
-              }
-            ],
-            "styles": [
-              "src/app/styles/global.scss",
-              "node_modules/primeicons/primeicons.css",
-  "node_modules/primeng/resources/themes/home/theme.css",
-  "node_modules/primeng/resources/primeng.min.css",
-  "node_modules/normalize.css/normalize.css"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app/styles"
-              ]
-            }
-          },
-          "configurations": {
-            "production": {
-              "optimization": false,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false,
-              "serviceWorker": false,
-              "baseHref": "/",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "client:build",
-            "aot": false
-          }
-        }
-        
-      }
-    }
-  },
-  "defaultProject": "client",
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleext": "css"
-    }
-  }
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "C:/Users/joedw/Desktop",
+	"projects": {
+		"client": {
+			"root": "Desktop/Node-Bowshock-Examples/client/src",
+			"projectType": "application",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "../server/dist",
+						"index": "src/index.html",
+						"main": "src/main.ts",
+						"tsConfig": "src/tsconfig.app.json",
+						"polyfills": "src/polyfills.ts",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "src/assets",
+								"output": "/assets"
+							},
+							{
+								"glob": "favicon.ico",
+								"input": "src",
+								"output": "/"
+							}
+						],
+						"styles": [
+							"src/app/styles/global.scss",
+							"node_modules/primeicons/primeicons.css",
+							"node_modules/primeng/resources/themes/home/theme.css",
+							"node_modules/primeng/resources/primeng.min.css",
+							"node_modules/normalize.css/normalize.css"
+						],
+						"stylePreprocessorOptions": {
+							"includePaths": ["src/app/styles"]
+						}
+					},
+					"configurations": {
+						"production": {
+							"optimization": false,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"extractCss": true,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": false,
+							"serviceWorker": false,
+							"baseHref": "/",
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.prod.ts"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "client:build",
+						"aot": false
+					}
+				}
+			}
+		}
+	},
+	"defaultProject": "client",
+	"schematics": {
+		"@schematics/angular:component": {
+			"styleext": "css"
+		}
+	}
 }

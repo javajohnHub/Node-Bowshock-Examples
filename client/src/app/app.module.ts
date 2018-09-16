@@ -74,7 +74,7 @@ import { CadComponent } from './components/ssd/cad/cad.component';
 import { FireballsComponent } from './components/ssd/fireballs/fireballs.component';
 import { NhatsComponent } from './components/ssd/nhats/nhats.component';
 import { SentryComponent } from './components/ssd/sentry/sentry.component';
-
+import { HighlightJsModule } from 'ngx-highlight-js';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -151,7 +151,8 @@ import { SentryComponent } from './components/ssd/sentry/sentry.component';
 		CheckboxModule,
 		InputSwitchModule,
 		ReactiveFormsModule,
-		PanelModule
+		PanelModule,
+		HighlightJsModule
 	],
 	providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap: [AppComponent]
