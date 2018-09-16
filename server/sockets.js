@@ -338,7 +338,10 @@ module.exports = function(io) {
           console.log(patent);
           socket.emit("send patent", patent);
         })
-        .catch(err => socket.emit("send error", err));
+        .catch(err => {
+          console.log("err", err);
+          socket.emit("send error", err);
+        });
     });
 
     //end of patents
