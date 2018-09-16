@@ -498,6 +498,41 @@ module.exports = function(io) {
         socket.emit("send observatory", data);
       });
     });
+
+    socket.on("get spaseobservatory", () => {
+      bowshock.satelliteSituationCenter.getSpaseObservatories().then(data => {
+        console.log(data);
+        socket.emit("send spaseobservatory", data);
+      });
+    });
+
+    socket.on("get groundstations", () => {
+      bowshock.satelliteSituationCenter.getGroundStations().then(data => {
+        console.log(data);
+        socket.emit("send groundstations", data);
+      });
+    });
+
+    socket.on("get locations", () => {
+      bowshock.satelliteSituationCenter.getLocations().then(data => {
+        console.log(data);
+        socket.emit("send locations", data);
+      });
+    });
+
+    socket.on("get graphs", () => {
+      bowshock.satelliteSituationCenter.getGraphs().then(data => {
+        console.log(data);
+        socket.emit("send groundstations", data);
+      });
+    });
+
+    socket.on("get conjunctions", () => {
+      bowshock.satelliteSituationCenter.getConjunctions().then(data => {
+        console.log(data);
+        socket.emit("send groundstations", data);
+      });
+    });
     //end of ssc
   });
 
