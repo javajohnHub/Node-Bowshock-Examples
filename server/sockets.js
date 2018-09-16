@@ -335,7 +335,7 @@ module.exports = function(io) {
       bowshock
         .patents(obj)
         .then(patent => {
-          console.log(patent);
+          console.log("patent", patent);
           socket.emit("send patent", patent);
         })
         .catch(err => {
