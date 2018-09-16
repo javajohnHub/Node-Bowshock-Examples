@@ -212,12 +212,17 @@ module.exports = function(io) {
     //start of epic
 
     socket.on("get natural by date", date => {
-      bowshock.epic.naturalDate(date).then(naturalByDate => {
-        if (naturalByDate.length == 0) {
-          naturalByDate = [];
-        }
-        socket.emit("send natural by date", naturalByDate);
-      });
+      bowshock.epic
+        .naturalDate(date)
+        .then(naturalByDate => {
+          if (naturalByDate.length == 0) {
+            naturalByDate = [];
+          }
+          socket.emit("send natural by date", naturalByDate);
+        })
+        .catch(err => {
+          socket.emit("send error", err);
+        });
     });
 
     socket.on("get natural available", () => {
@@ -229,19 +234,29 @@ module.exports = function(io) {
       });
     });
     socket.on("get enhanced by date", date => {
-      bowshock.epic.enhancedDate(date).then(enhancedByDate => {
-        if (enhancedByDate.length == 0) {
-          enhancedByDate = [];
-        }
-        socket.emit("send enhanced by date", enhancedByDate);
-      });
+      bowshock.epic
+        .enhancedDate(date)
+        .then(enhancedByDate => {
+          if (enhancedByDate.length == 0) {
+            enhancedByDate = [];
+          }
+          socket.emit("send enhanced by date", enhancedByDate);
+        })
+        .catch(err => {
+          socket.emit("send error", err);
+        });
     });
 
     socket.on("get natural image", obj => {
       console.log(obj);
-      bowshock.epic.createNaturalImageLink(obj).then(naturalImage => {
-        socket.emit("send natural image", naturalImage);
-      });
+      bowshock.epic
+        .createNaturalImageLink(obj)
+        .then(naturalImage => {
+          socket.emit("send natural image", naturalImage);
+        })
+        .catch(err => {
+          socket.emit("send error", err);
+        });
     });
 
     socket.on("get enhanced available", () => {
@@ -254,9 +269,14 @@ module.exports = function(io) {
     });
     socket.on("get enhanced image", obj => {
       console.log(obj);
-      bowshock.epic.createEnhancedImageLink(obj).then(enhancedImage => {
-        socket.emit("send enhanced image", enhancedImage);
-      });
+      bowshock.epic
+        .createEnhancedImageLink(obj)
+        .then(enhancedImage => {
+          socket.emit("send enhanced image", enhancedImage);
+        })
+        .catch(err => {
+          socket.emit("send error", err);
+        });
     });
     //end of epic
     //start of eonet
@@ -339,7 +359,6 @@ module.exports = function(io) {
           socket.emit("send patent", patent);
         })
         .catch(err => {
-          console.log("err", err);
           socket.emit("send error", err);
         });
     });
