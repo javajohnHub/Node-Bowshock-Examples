@@ -224,13 +224,6 @@ export class NavbarComponent {
 								command: (event: any) => {
 									this.el.model[0].expanded = false;
 								}
-							},
-							{
-								label: 'Locations',
-								routerLink: ['/ssc/locations'],
-								command: (event: any) => {
-									this.el.model[0].expanded = false;
-								}
 							}
 						]
 					},
