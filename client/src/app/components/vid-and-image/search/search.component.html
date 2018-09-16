@@ -2,14 +2,48 @@
     <button pButton type="button" label="Get Media" (click)="getData()"></button>
     <input type="text" pInputText placeholder="Get Media" [(ngModel)]="model">
 </div>
+<!-- {{mp4s | json}}
+{{pngs | json}}
+{{jsons | json}} -->
 <div class="ui-g" *ngIf="!isLoading && media">
-    <div class="ui-g-12" *ngFor="let mp4 of mp4s">
-        {{mp4}}
-        <!-- <video controls="controls" width="320" height="176">
-            <source src="{{mp4}}" type="video/mp4" />
-            Your browser does not support HTML5 video.
-        </video> -->
+    <div class="ui-g-12">
+        <div class="ui-g-3">
+            <p-dataScroller [value]="mp4s" [rows]="25" [lazy]="true" [totalRecords]="mp4s.length">
+                <p-header>
+                    mp4s
+                </p-header>
+                <ng-template let-mp4 pTemplate="item">
+                    <video controls="controls" width="320" height="176">
+                        <source src="{{mp4}}" type="video/mp4" />
+                        Your browser does not support HTML5 video.
+                    </video>
+                </ng-template>
+            </p-dataScroller>
+        </div>
+        <div class="ui-g-3">
+            <p-dataScroller [value]="pngs" [rows]="25" [lazy]="true" [totalRecords]="pngs.length">
+                <p-header>
+                    pngs
+                </p-header>
+                <ng-template let-png pTemplate="item">
+                    <img src="{{png}}">
+                </ng-template>
+            </p-dataScroller>
+        </div>
+        <div class="ui-g-3">
+            <p-dataScroller [value]="jsons" [rows]="25" [lazy]="true" [totalRecords]="jsons.length">
+                <p-header>
+                    jsons
+                </p-header>
+                <ng-template let-json pTemplate="item">
+                    {{json | json}}
+                </ng-template>
+            </p-dataScroller>
+        </div>
+
+
     </div>
+
 </div>
 
 

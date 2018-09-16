@@ -36,33 +36,38 @@ export class SearchComponent implements OnInit {
 					.pipe()
 					.subscribe(data => {
 						this.srts.push(data);
-					});
-				if (this.srts[0]) {
-					this.srts[0].forEach(url => {
-						if (url.slice(-3) == 'mp4') {
-							this.mp4s.push(url);
-							console.log('mp4', url);
-						}
-						if (this.mp4s) {
-							this.mp4s.forEach(mp4 => {
-								this.mp4 = mp4.split('~');
+						if (this.srts[0]) {
+							this.srts.forEach(srt => {
+								srt.forEach(url => {
+									if (
+										url.slice(-3) == 'mp4' &&
+										url.slice(-10) == 'medium.mp4'
+									) {
+										this.mp4s.push(url);
+									}
+									if (
+										url.slice(-3) == 'png' ||
+										url.slice(-3) == 'jpg'
+									) {
+										this.pngs.push(url);
+									}
+									if (url.slice(-4) == 'json') {
+										this.jsons.push(url);
+									}
+								});
 
-								if (this.mp4[1] == 'medium.mp4') {
-									this.mp4s.push(mp4);
-								}
-								console.log(this.mp4s);
+								// if (this.mp4s) {
+								// 	this.mp4s.forEach(mp4 => {
+								// 		this.mp4 = mp4.split('~');
+
+								// 		if (this.mp4[1] == 'medium.m4a') {
+								// 			this.mp4s.push(mp4);
+								// 		}
+								// 	});
+								// }
 							});
 						}
-						if (url.slice(-3) == 'png' || url.slice(-3) == 'jpg') {
-							this.pngs.push(url);
-							console.log('png', url);
-						}
-						if (url.slice(-4) == 'json') {
-							this.jsons.push(url);
-							console.log('json', url);
-						}
 					});
-				}
 			});
 
 			this.isLoading = false;
