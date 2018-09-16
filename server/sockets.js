@@ -534,6 +534,33 @@ module.exports = function(io) {
       });
     });
     //end of ssc
+
+    //start ssd
+    socket.on("get cad", () => {
+      bowshock.ssd.cad().then(data => {
+        console.log(data);
+        socket.emit("send cad", data);
+      });
+    });
+    socket.on("get fireballs", () => {
+      bowshock.ssd.fireballs().then(data => {
+        console.log(data);
+        socket.emit("send cad", data);
+      });
+    });
+    socket.on("get nhats", () => {
+      bowshock.ssd.nhats().then(data => {
+        console.log(data);
+        socket.emit("send nhats", data);
+      });
+    });
+    socket.on("get sentry", () => {
+      bowshock.ssd.sentry().then(data => {
+        console.log(data);
+        socket.emit("send sentry", data);
+      });
+    });
+    //end ssd
   });
 
   function format_date(date) {

@@ -228,6 +228,39 @@ export class NavbarComponent {
 						]
 					},
 					{
+						label: 'SSD',
+						items: [
+							{
+								label: 'Cad',
+								routerLink: ['/ssd/cad'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
+							},
+							{
+								label: 'Fireballs',
+								routerLink: ['/ssd/fireballs'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
+							},
+							{
+								label: 'Nhats',
+								routerLink: ['/ssd/nhats'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
+							},
+							{
+								label: 'Sentry',
+								routerLink: ['/ssd/sentry'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
+							}
+						]
+					},
+					{
 						label: 'NEOWS',
 						items: [
 							{

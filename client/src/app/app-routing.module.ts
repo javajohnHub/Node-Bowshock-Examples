@@ -42,6 +42,11 @@ import { EarthComponent } from './components/Earth/earth.component';
 import { SSCComponent } from './components/ssc/ssc.component';
 import { ObservatoryComponent } from './components/ssc/observatory/observatory.component';
 import { SpaseobservatoryComponent } from './components/ssc/spaseobservatory/spaseobservatory.component';
+import { SSDComponent } from './components/ssd/ssd.component';
+import { CadComponent } from './components/ssd/cad/cad.component';
+import { FireballsComponent } from './components/ssd/fireballs/fireballs.component';
+import { NhatsComponent } from './components/ssd/nhats/nhats.component';
+import { SentryComponent } from './components/ssd/sentry/sentry.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -103,6 +108,16 @@ const routes: Routes = [
 		children: [
 			{ path: 'observatory', component: ObservatoryComponent },
 			{ path: 'spaseobservatory', component: SpaseobservatoryComponent }
+		]
+	},
+	{
+		path: 'ssd',
+		component: SSDComponent,
+		children: [
+			{ path: 'cad', component: CadComponent },
+			{ path: 'fireballs', component: FireballsComponent },
+			{ path: 'nhats', component: NhatsComponent },
+			{ path: 'sentry', component: SentryComponent }
 		]
 	},
 	{
