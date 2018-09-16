@@ -12,11 +12,11 @@ export class PatentComponent {
 	patent = [];
 	isLoading: boolean = false;
 	patentForm: FormGroup;
-	concept_tags;
 	q;
 	limit;
 	copy;
 	model;
+	error = false;
 	constructor(
 		private _sharedService: SharedService,
 		private _fb: FormBuilder
@@ -32,8 +32,12 @@ export class PatentComponent {
 
 			this.isLoading = false;
 		});
-
+		this.socket.on('send error', error => {
+			this.error = true;
+			this.isLoading = false;
+		});
 		this._createForm();
+
 		this.patentForm
 			.get('query')
 			.valueChanges.pipe(debounceTime(800))
@@ -42,20 +46,6 @@ export class PatentComponent {
 				this.q = value;
 				this.socket.emit('get patent', {
 					query: value,
-					concept_tags: this.concept_tags || '',
-					limit: this.limit || 5
-				});
-			});
-
-		this.patentForm
-			.get('conceptTags')
-			.valueChanges.pipe(debounceTime(800))
-			.subscribe(value => {
-				this.isLoading = true;
-				this.concept_tags = value;
-				this.socket.emit('get patent', {
-					query: this.q,
-					concept_tags: value,
 					limit: this.limit || 5
 				});
 			});
@@ -68,7 +58,6 @@ export class PatentComponent {
 				this.limit = value;
 				this.socket.emit('get patent', {
 					query: this.q || '',
-					concept_tags: this.concept_tags || '',
 					limit: value
 				});
 			});
