@@ -68,6 +68,7 @@ import { EarthComponent } from './components/Earth/earth.component';
 import { EventComponent } from './components/eonet/events/event/event.component';
 import { SSCComponent } from './components/ssc/ssc.component';
 import { ObservatoryComponent } from './components/ssc/observatory/observatory.component';
+import { SpaseobservatoryComponent } from './components/ssc/spaseobservatory/spaseobservatory.component';
 
 @NgModule({
 	declarations: [
@@ -114,7 +115,8 @@ import { ObservatoryComponent } from './components/ssc/observatory/observatory.c
 		EarthComponent,
 		EventComponent,
 		SSCComponent,
-		ObservatoryComponent
+		ObservatoryComponent,
+		SpaseobservatoryComponent
 	],
 	imports: [
 		BrowserModule,

@@ -41,6 +41,7 @@ import { SearchComponent } from './components/vid-and-image/search/search.compon
 import { EarthComponent } from './components/Earth/earth.component';
 import { SSCComponent } from './components/ssc/ssc.component';
 import { ObservatoryComponent } from './components/ssc/observatory/observatory.component';
+import { SpaseobservatoryComponent } from './components/ssc/spaseobservatory/spaseobservatory.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -99,7 +100,10 @@ const routes: Routes = [
 	{
 		path: 'ssc',
 		component: SSCComponent,
-		children: [{ path: 'observatory', component: ObservatoryComponent }]
+		children: [
+			{ path: 'observatory', component: ObservatoryComponent },
+			{ path: 'spaseobservatory', component: SpaseobservatoryComponent }
+		]
 	},
 	{
 		path: 'eonet',
