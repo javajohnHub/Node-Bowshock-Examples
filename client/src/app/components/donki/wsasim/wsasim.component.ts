@@ -35,7 +35,6 @@ export class WSASimComponent {
 		this._sharedService.subTitleSubject$.next('WSA + Enlil Simulation');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send wsasim', wsasim => {
-			console.log(wsasim);
 			this.wsasim = wsasim;
 			this.isLoading = false;
 		});
@@ -67,11 +66,7 @@ export class WSASimComponent {
 			moment(this.startModel).format('YYYY-MM-DD') ==
 			moment(this.endModel).format('YYYY-MM-DD')
 		) {
-			console.log('1');
 			this.socket.emit('get wsasim', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
-			console.log({
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		} else {
@@ -80,20 +75,12 @@ export class WSASimComponent {
 				moment(this.endModel).format('YYYY-MM-DD')
 			) {
 				this.endModel = new Date();
-				console.log('2');
+
 				this.socket.emit('get wsasim', {
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
-				});
-				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
 				});
 			} else {
-				console.log('else');
 				this.socket.emit('get wsasim', {
-					startDate: moment(this.startModel).format('YYYY-MM-DD')
-				});
-				console.log({
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 			}

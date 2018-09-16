@@ -74,7 +74,7 @@ export class EnhancedComponent {
 		let available = this.enhancedAvailable.find(el => {
 			return el == this.myDate;
 		});
-		console.log(this.myDate, available);
+
 		if (available) {
 			this.getImage(image);
 		} else {
@@ -84,7 +84,5 @@ export class EnhancedComponent {
 
 	close() {}
 
-	imgLoaded() {
-		console.log('loaded');
-	}
+	imgLoaded() {}
 }

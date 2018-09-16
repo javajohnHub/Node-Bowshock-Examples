@@ -21,7 +21,6 @@ export class NavbarComponent {
 			sub => {
 				this._subTitle = sub;
 				this.items[0].title = this._subTitle;
-				console.log(this.items);
 			}
 		);
 
@@ -35,7 +34,6 @@ export class NavbarComponent {
 						routerLink: ['/'],
 						routerLinkActiveOptions: { exact: true },
 						command: (event: any) => {
-							console.log(this.el);
 							this.el.model[0].expanded = false;
 						}
 					},

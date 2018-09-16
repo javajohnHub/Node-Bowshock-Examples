@@ -44,9 +44,8 @@ export class GSTComponent {
 			this.route.snapshot.params['id']
 		) {
 			this.sub = this.route.params.subscribe(params => {
-				console.log(params);
 				this.longDate = this.route.snapshot.params['id'];
-				console.log('ld', this.longDate);
+
 				this.startModel = new Date(
 					moment(params['startDate']).format('YYYY-MM-DD')
 				);
@@ -75,7 +74,6 @@ export class GSTComponent {
 	}
 
 	change(event) {
-		console.log('change', event);
 		if (
 			this.route.snapshot.params['startDate'] ||
 			this.route.snapshot.params['id']
@@ -122,11 +120,7 @@ export class GSTComponent {
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		} else {
-			console.log('else');
 			this.socket.emit('get gst', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
-			console.log({
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		}

@@ -29,7 +29,6 @@ export class ExoPlanetComponent {
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
 		this.socket.on('send allConfirmedPlanetsAndCols', data => {
-			console.log(data);
 			this.allMicrolensingPlanetsWithTimeSeries = [];
 			this.confirmedPlanetsInMissionStarList = [];
 			this.k2TargetsFromCampaign9 = [];
@@ -61,7 +60,6 @@ export class ExoPlanetComponent {
 		);
 
 		this.socket.on('send getSingleKOI', data => {
-			console.log(data);
 			this.allMicrolensingPlanetsWithTimeSeries = [];
 			this.confirmedPlanetsInMissionStarList = [];
 			this.k2TargetsFromCampaign9 = [];

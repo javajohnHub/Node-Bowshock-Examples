@@ -64,11 +64,7 @@ export class NotificationsComponent {
 			moment(this.startModel).format('YYYY-MM-DD') ==
 			moment(this.endModel).format('YYYY-MM-DD')
 		) {
-			console.log('1');
 			this.socket.emit('get notifications', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
-			console.log({
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		} else {
@@ -77,21 +73,12 @@ export class NotificationsComponent {
 				moment(this.endModel).format('YYYY-MM-DD')
 			) {
 				this.endModel = new Date();
-				console.log('2');
+
 				this.socket.emit('get notifications', {
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
-				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
-				});
 			} else {
-				console.log('else');
 				this.socket.emit('get notifications', {
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
-				});
-				console.log({
 					startDate: moment(this.startModel).format('YYYY-MM-DD'),
 					endDate: moment(this.endModel).format('YYYY-MM-DD')
 				});

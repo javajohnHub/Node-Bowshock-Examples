@@ -60,7 +60,6 @@ export class HSSComponent {
 			this.route.snapshot.params['id']
 		) {
 			this.sub = this.route.params.subscribe(params => {
-				console.log(params);
 				this.longDate = this.route.snapshot.params['id'];
 				this.startModel = new Date(
 					moment(params['startDate']).format('YYYY-MM-DD')
@@ -90,7 +89,6 @@ export class HSSComponent {
 	}
 
 	change(event) {
-		console.log('change', event);
 		if (
 			this.route.snapshot.params['startDate'] ||
 			this.route.snapshot.params['id']
@@ -119,11 +117,7 @@ export class HSSComponent {
 			moment(this.startModel).format('YYYY-MM-DD') ==
 			moment(this.endModel).format('YYYY-MM-DD')
 		) {
-			console.log('1');
 			this.socket.emit('get hss', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
-			console.log({
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		} else {
@@ -136,20 +130,12 @@ export class HSSComponent {
 						.subtract(30, 'days')
 						.format()
 				);
-				console.log('2');
+
 				this.socket.emit('get hss', {
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
-				});
-				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
 				});
 			} else {
-				console.log('else');
 				this.socket.emit('get hss', {
-					startDate: moment(this.startModel).format('YYYY-MM-DD')
-				});
-				console.log({
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 			}

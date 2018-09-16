@@ -22,7 +22,6 @@ export class EventsComponent {
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
 		this.socket.on('send events', events => {
-			console.log(events);
 			this.events = events.events;
 			this.events.forEach(event => {
 				this.geos.push(event.geometries);
@@ -32,7 +31,5 @@ export class EventsComponent {
 		this.socket.emit('get events');
 	}
 
-	open() {
-		console.log('opened');
-	}
+	open() {}
 }

@@ -35,7 +35,6 @@ export class MPCComponent {
 		this._sharedService.subTitleSubject$.next('Magnetopause Crossing');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send mpc', mpc => {
-			console.log('mpc', mpc);
 			this.mpc = mpc;
 			this.isLoading = false;
 		});
@@ -45,7 +44,6 @@ export class MPCComponent {
 			this.route.snapshot.params['id']
 		) {
 			this.sub = this.route.params.subscribe(params => {
-				console.log(params);
 				this.longDate = this.route.snapshot.params['id'];
 				this.startModel = new Date(
 					moment(params['startDate']).format('YYYY-MM-DD')
@@ -75,7 +73,6 @@ export class MPCComponent {
 	}
 
 	change(event) {
-		console.log('change', event);
 		if (
 			this.route.snapshot.params['startDate'] ||
 			this.route.snapshot.params['id']
@@ -109,11 +106,7 @@ export class MPCComponent {
 			moment(this.startModel).format('YYYY-MM-DD') ==
 			moment(this.endModel).format('YYYY-MM-DD')
 		) {
-			console.log('1');
 			this.socket.emit('get mpc', {
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
-			console.log({
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
 		} else {
@@ -122,20 +115,12 @@ export class MPCComponent {
 				moment(this.endModel).format('YYYY-MM-DD')
 			) {
 				this.endModel = new Date();
-				console.log('2');
+
 				this.socket.emit('get mpc', {
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
-				});
-				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
 				});
 			} else {
-				console.log('else');
 				this.socket.emit('get mpc', {
-					startDate: moment(this.startModel).format('YYYY-MM-DD')
-				});
-				console.log({
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
 			}

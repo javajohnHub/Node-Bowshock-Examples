@@ -30,7 +30,6 @@ export class EarthComponent {
 		});
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(position => {
-				console.log(position);
 				this.lat.setValue(position.coords.latitude);
 				this.lon.setValue(position.coords.longitude);
 				this.dim.setValue(this.tileDimension);
@@ -53,9 +52,7 @@ export class EarthComponent {
 		});
 	}
 
-	onDateChanged(event) {
-		console.log(event);
-	}
+	onDateChanged(event) {}
 	getImages() {
 		this.socket.emit('get earth imagery', {
 			lon: this.lat.value,
