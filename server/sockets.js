@@ -490,6 +490,15 @@ module.exports = function(io) {
       });
     });
     //end of img and vid
+
+    //start of ssc
+    socket.on("get observatory", () => {
+      bowshock.satelliteSituationCenter.getObservatories().then(data => {
+        console.log(data);
+        socket.emit("send observatory", data);
+      });
+    });
+    //end of ssc
   });
 
   function format_date(date) {

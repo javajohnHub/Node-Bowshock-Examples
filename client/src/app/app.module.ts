@@ -66,6 +66,8 @@ import { SkymorphComponent } from './components/skymorph/skymorph.component';
 import { SearchComponent } from './components/vid-and-image/search/search.component';
 import { EarthComponent } from './components/Earth/earth.component';
 import { EventComponent } from './components/eonet/events/event/event.component';
+import { SSCComponent } from './components/ssc/ssc.component';
+import { ObservatoryComponent } from './components/ssc/observatory/observatory.component';
 
 @NgModule({
 	declarations: [
@@ -110,7 +112,9 @@ import { EventComponent } from './components/eonet/events/event/event.component'
 		SkymorphComponent,
 		SearchComponent,
 		EarthComponent,
-		EventComponent
+		EventComponent,
+		SSCComponent,
+		ObservatoryComponent
 	],
 	imports: [
 		BrowserModule,

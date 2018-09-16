@@ -39,6 +39,8 @@ import { ExoPlanetComponent } from './components/exoPlanet/exoPlanet.component';
 import { SkymorphComponent } from './components/skymorph/skymorph.component';
 import { SearchComponent } from './components/vid-and-image/search/search.component';
 import { EarthComponent } from './components/Earth/earth.component';
+import { SSCComponent } from './components/ssc/ssc.component';
+import { ObservatoryComponent } from './components/ssc/observatory/observatory.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -93,6 +95,11 @@ const routes: Routes = [
 			{ path: 'feed', component: FeedComponent },
 			{ path: 'today', component: TodayComponent }
 		]
+	},
+	{
+		path: 'ssc',
+		component: SSCComponent,
+		children: [{ path: 'observatory', component: ObservatoryComponent }]
 	},
 	{
 		path: 'eonet',

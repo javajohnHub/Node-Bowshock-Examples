@@ -209,6 +209,18 @@ export class NavbarComponent {
 						]
 					},
 					{
+						label: 'SSC',
+						items: [
+							{
+								label: 'Observatory',
+								routerLink: ['/ssc/observatory'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
+							}
+						]
+					},
+					{
 						label: 'NEOWS',
 						items: [
 							{
