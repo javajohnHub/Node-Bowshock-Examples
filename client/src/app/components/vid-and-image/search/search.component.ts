@@ -26,6 +26,8 @@ export class SearchComponent implements OnInit {
 		this._sharedService.subTitleSubject$.next('Image and Video Search');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send media', media => {
+			console.log(media);
+
 			this.media = media.collection.items;
 			this.media.forEach(med => {
 				this.hrefs.push(med.href);
@@ -76,7 +78,12 @@ export class SearchComponent implements OnInit {
 	}
 	getData() {
 		this.isLoading = true;
+		this.jsons = [];
+		this.mp4s = [];
+		this.pngs = [];
 		this.media = [];
+		this.hrefs = [];
+		this.srts = [];
 		this.socket.emit('get media', { q: this.model });
 	}
 }
