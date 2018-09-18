@@ -2,15 +2,14 @@
     <button pButton type="button" label="Get Media" (click)="getData()"></button>
     <input type="text" pInputText placeholder="Get Media" [(ngModel)]="model">
 </div>
-<!-- {{mp4s | json}}
-{{pngs | json}}
-{{jsons | json}} -->
+
 <div class="ui-g" *ngIf="!isLoading && media">
+    Results: {{mp4s.length + m4as.length + pngs.length + jsons.length}}
     <div class="ui-g-12">
         <div class="ui-sm-12 ui-md-12 ui-g-3">
             <p-dataScroller [value]="mp4s" [rows]="25" [lazy]="true" [totalRecords]="mp4s.length">
                 <p-header>
-                    mp4s
+                    mp4s - {{mp4s.length}}
                 </p-header>
                 <ng-template let-mp4 pTemplate="item">
                     <video controls="controls" class="center">
@@ -21,9 +20,24 @@
             </p-dataScroller>
         </div>
         <div class="ui-sm-12 ui-md-12 ui-g-3">
+            <p-dataScroller [value]="m4as" [rows]="25" [lazy]="true" [totalRecords]="m4as.length">
+                <p-header>
+                    m4as - {{m4as.length}}
+                </p-header>
+                <ng-template let-m4a pTemplate="item">
+
+                    <audio controls="controls" class="center">
+                        <source src="{{m4a}}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                </ng-template>
+            </p-dataScroller>
+        </div>
+        <div class="ui-sm-12 ui-md-12 ui-g-3">
             <p-dataScroller [value]="pngs" [rows]="25" [lazy]="true" [totalRecords]="pngs.length">
                 <p-header>
-                    pngs
+                    pngs - {{pngs.length}}
                 </p-header>
                 <ng-template let-png pTemplate="item">
                     <img src="{{png}}">
@@ -33,14 +47,16 @@
         <div class="ui-sm-12 ui-md-12 ui-g-3">
             <p-dataScroller [value]="jsons" [rows]="25" [lazy]="true" [totalRecords]="jsons.length">
                 <p-header>
-                    jsons
+                    jsons - {{jsons.length}}
                 </p-header>
                 <ng-template let-json pTemplate="item">
-                    {{json | json}}
+                    <button pButton (click)="getJson(json)" label="{{json}}"></button>
                 </ng-template>
             </p-dataScroller>
         </div>
-
+        <textarea highlight-js [options]="{}" [lang]="'json'">
+{{jsonData | json}}
+</textarea>
 
     </div>
 
