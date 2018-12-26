@@ -10,10 +10,12 @@ import { SharedService } from '../../../shared/shared.service';
     <p-spinner placeholder="per page" [(ngModel)]="perPage" (onChange)="perPageChanged()"></p-spinner>
     <p-spinner placeholder="page" [(ngModel)]="page" (onChange)="pageChanged()"></p-spinner>
   <div *ngIf="pictures" class="ui-g-12">
-      <ng-container *ngFor="let picture of pictures.photos">
-      <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{picture.img_src}}">
+  Total: {{pictures.total}}
+      <ng-container *ngFor="let picture of pictures.items">
+      <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{picture.url}}">
+      {{picture.description}}
       </ng-container>
-      <div *ngIf="pictures.photos.length == 0">
+      <div *ngIf="pictures.items.length == 0">
         <h1>No Photos Found</h1>
       </div>
     </div>
