@@ -14,7 +14,7 @@ import { SharedService } from '../../../shared/shared.service';
   Total: {{pictures.total}}
       <ng-container *ngFor="let picture of pictures.items">
       <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{picture.url}}">
-      <div class="ui-g" [innerHTML]="picture.description"></div>
+      <div class="ui-g-12" [innerHTML]="picture.description"></div>
       </ng-container>
       <div *ngIf="pictures.items.length == 0">
         <h1>No Photos Found</h1>
