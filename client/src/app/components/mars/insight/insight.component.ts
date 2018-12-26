@@ -9,7 +9,7 @@ import { SharedService } from '../../../shared/shared.service';
     <div class="ui-g-12">
     <div *ngIf="pictures" class="ui-g-12">
     <p-spinner placeholder="per page" [(ngModel)]="perPage" [min]="0" [max]="pictures.total" (onChange)="perPageChanged()"></p-spinner>
-    <p-spinner placeholder="page" [(ngModel)]="page" [min]="0" [max]="pictures.total / perPage " (onChange)="pageChanged()"></p-spinner>
+    <p-spinner placeholder="page" [(ngModel)]="page" [min]="0" [max]="max" (onChange)="pageChanged()"></p-spinner>
 
   Total: {{pictures.total}}
       <ng-container *ngFor="let picture of pictures.items">
@@ -27,7 +27,7 @@ import { SharedService } from '../../../shared/shared.service';
 })
 export class InsightComponent {
 	socket: any;
-  pictures: {};
+  pictures: any;
   perPage;
   page;
 	constructor(private _sharedService: SharedService) {}
@@ -49,5 +49,9 @@ export class InsightComponent {
 
   pageChanged(){
     this.socket.emit('get insight', {perPage: this.perPage, page: this.page});
+  }
+
+  get max(){
+    return Math.ceil(this.pictures.total / this.perPage)
   }
 }
