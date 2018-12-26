@@ -8,6 +8,7 @@ import { MarsComponent } from './components/mars/mars.component';
 import { CuriosityComponent } from './components/mars/curiosity/curiosity.component';
 import { OpportunityComponent } from './components/mars/opportunity/opportunity.component';
 import { SpiritComponent } from './components/mars/spirit/spirit.component';
+import { InsightComponent } from './components/mars/insight/insight.component';
 import { NeowsComponent } from './components/neows/neows.component';
 import { FeedComponent } from './components/neows/feed/feed.component';
 import { EvaComponent } from './components/eva/eva.component';
@@ -90,7 +91,8 @@ const routes: Routes = [
 		children: [
 			{ path: 'curiosity', component: CuriosityComponent },
 			{ path: 'opportunity', component: OpportunityComponent },
-			{ path: 'spirit', component: SpiritComponent },
+      { path: 'spirit', component: SpiritComponent },
+      { path: 'insight', component: InsightComponent },
 			{ path: 'manifest', component: ManifestComponent }
 		]
 	},

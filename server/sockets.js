@@ -23,6 +23,12 @@ module.exports = function(io) {
       });
     });
 
+    socket.on("get insight", object => {
+      bowshock.mars.insight(object).then(rover => {
+        socket.emit("send insight", rover);
+      });
+    });
+
     socket.on("get manifest", rover => {
       console.log(rover);
       if (!rover.sol && !rover.camera) {

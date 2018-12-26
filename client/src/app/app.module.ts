@@ -13,6 +13,7 @@ import { ApodComponent } from './components/apod/apod.component';
 import { MarsComponent } from './components/mars/mars.component';
 import { CuriosityComponent } from './components/mars/curiosity/curiosity.component';
 import { SpiritComponent } from './components/mars/spirit/spirit.component';
+import { InsightComponent } from './components/mars/insight/insight.component';
 import { NeowsComponent } from './components/neows/neows.component';
 import { FeedComponent } from './components/neows/feed/feed.component';
 import { TodayComponent } from './components/neows/today/today.component';
@@ -32,6 +33,7 @@ import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AccordionModule } from 'primeng/accordion';
 import { DataViewModule } from 'primeng/dataview';
+import {SpinnerModule} from 'primeng/spinner';
 
 import { OrderListModule } from 'primeng/orderlist';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -85,7 +87,8 @@ import { HighlightJsModule } from 'ngx-highlight-js';
 		MarsComponent,
 		CuriosityComponent,
 		OpportunityComponent,
-		SpiritComponent,
+    SpiritComponent,
+    InsightComponent,
 		NeowsComponent,
 		FeedComponent,
 		EvaComponent,
@@ -152,7 +155,8 @@ import { HighlightJsModule } from 'ngx-highlight-js';
 		InputSwitchModule,
 		ReactiveFormsModule,
 		PanelModule,
-		HighlightJsModule
+    HighlightJsModule,
+    SpinnerModule
 	],
 	providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap: [AppComponent]

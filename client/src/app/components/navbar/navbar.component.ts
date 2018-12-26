@@ -198,6 +198,13 @@ export class NavbarComponent {
 								command: (event: any) => {
 									this.el.model[0].expanded = false;
 								}
+              },
+              {
+								label: 'Insight',
+								routerLink: ['/mars/insight'],
+								command: (event: any) => {
+									this.el.model[0].expanded = false;
+								}
 							},
 							{
 								label: 'Manifest',
