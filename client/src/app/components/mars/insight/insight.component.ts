@@ -7,9 +7,10 @@ import { SharedService } from '../../../shared/shared.service';
 	template: `
   <div class="ui-g">
     <div class="ui-g-12">
-    <p-spinner placeholder="per page" [(ngModel)]="perPage" (onChange)="perPageChanged()"></p-spinner>
+    <div *ngIf="pictures" class="ui-g-12">
+    <p-spinner placeholder="per page" [(ngModel)]="perPage" [max]="pictures.total" (onChange)="perPageChanged()"></p-spinner>
     <p-spinner placeholder="page" [(ngModel)]="page" (onChange)="pageChanged()"></p-spinner>
-  <div *ngIf="pictures" class="ui-g-12">
+
   Total: {{pictures.total}}
       <ng-container *ngFor="let picture of pictures.items">
       <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{picture.url}}">
