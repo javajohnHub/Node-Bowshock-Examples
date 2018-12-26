@@ -8,8 +8,8 @@ import { SharedService } from '../../../shared/shared.service';
   <div class="ui-g">
     <div class="ui-g-12">
     <div *ngIf="pictures" class="ui-g-12">
-    <p-spinner placeholder="per page" [(ngModel)]="perPage" [max]="pictures.total" (onChange)="perPageChanged()"></p-spinner>
-    <p-spinner placeholder="page" [(ngModel)]="page" (onChange)="pageChanged()"></p-spinner>
+    <p-spinner placeholder="per page" [(ngModel)]="perPage" [min]="0" [max]="pictures.total" (onChange)="perPageChanged()"></p-spinner>
+    <p-spinner placeholder="page" [(ngModel)]="page" [min]="0" [max]="perPage / pictures.total" (onChange)="pageChanged()"></p-spinner>
 
   Total: {{pictures.total}}
       <ng-container *ngFor="let picture of pictures.items">
@@ -28,8 +28,8 @@ import { SharedService } from '../../../shared/shared.service';
 export class InsightComponent {
 	socket: any;
   pictures: {};
-  perPage = 50;
-  page = 0;
+  perPage;
+  page;
 	constructor(private _sharedService: SharedService) {}
 	ngOnInit() {
 		this._sharedService.subTitleSubject$.next('Mars/Insight');
