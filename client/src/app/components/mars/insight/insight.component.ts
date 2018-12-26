@@ -52,6 +52,6 @@ export class InsightComponent {
   }
 
   get max(){
-    return Math.ceil(this.pictures.total / this.perPage)
+    return Math.floor(this.pictures.total / this.perPage).toFixed(0)
   }
 }
