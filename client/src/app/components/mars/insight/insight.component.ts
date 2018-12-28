@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { SocketService } from '../../../shared/socket.service';
 import { SharedService } from '../../../shared/shared.service';
+import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-cinsight',
@@ -8,8 +11,8 @@ import { SharedService } from '../../../shared/shared.service';
   <div class="ui-g">
     <div class="ui-g-12">
     <div *ngIf="pictures" class="ui-g-12">
-    <p-spinner placeholder="per page" [(ngModel)]="perPage" [min]="0" [max]="pictures.total" (onChange)="perPageChanged()"></p-spinner>
-    <p-spinner placeholder="page" [(ngModel)]="page" [min]="0" [max]="max" (onChange)="pageChanged()"></p-spinner>
+    <p-spinner placeholder="per page" formControlName="perPage" [min]="0" [max]="pictures.total" ></p-spinner>
+    <p-spinner placeholder="page" formControlName="page" [min]="0" [max]="max"></p-spinner>
 
   Total: {{pictures.total}}
       <ng-container *ngFor="let picture of pictures.items">
@@ -28,8 +31,10 @@ import { SharedService } from '../../../shared/shared.service';
 export class InsightComponent {
 	socket: any;
   pictures: any;
-  perPage;
-  page;
+  perPage: FormControl = new FormControl();
+  page: FormControl = new FormControl();
+  perPage$: Subscription;
+  page$: Subscription;
 	constructor(private _sharedService: SharedService) {}
 	ngOnInit() {
 		this._sharedService.subTitleSubject$.next('Mars/Insight');
@@ -37,21 +42,24 @@ export class InsightComponent {
 
 		this.socket.on('send insight', data => {
       this.pictures = data;
-      console.log(data)
     });
 
-		this.socket.emit('get insight', {perPage: this.perPage, page: this.page});
+    this.perPage$ = this.perPage.valueChanges.pipe(debounceTime(700)).subscribe((data) => {
+      this.socket.emit('get insight', {perPage: this.perPage.value, page: this.page.value});
+    })
+
+    this.page$ = this.page.valueChanges.pipe(debounceTime(700)).subscribe((data) => {
+      this.socket.emit('get insight', {perPage: this.perPage.value, page: this.page.value});
+    })
+
+		this.socket.emit('get insight', {perPage: this.perPage.value, page: this.page.value});
   }
 
-  perPageChanged(){
-    this.socket.emit('get insight', {perPage: this.perPage, page: this.page});
+  ngOnDestroy(){
+    this.perPage$.unsubscribe();
+    this.page$.unsubscribe();
   }
-
-  pageChanged(){
-    this.socket.emit('get insight', {perPage: this.perPage, page: this.page});
-  }
-
   get max(){
-    return Math.floor(this.pictures.total / this.perPage).toFixed(0)
+    return Math.floor(this.pictures.total / this.perPage.value).toFixed(0)
   }
 }
