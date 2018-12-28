@@ -11,8 +11,8 @@ import { debounceTime } from 'rxjs/operators';
   <div class="ui-g">
     <div class="ui-g-12">
     <div *ngIf="pictures" class="ui-g-12">
-    <p-spinner placeholder="per page" formControlName="perPage" [min]="0" [max]="pictures.total" ></p-spinner>
-    <p-spinner placeholder="page" formControlName="page" [min]="0" [max]="max"></p-spinner>
+    <p-spinner placeholder="per page" [formControl]="perPage" [min]="0" [max]="pictures.total" ></p-spinner>
+    <p-spinner placeholder="page" [formControl]="page" [min]="0" [max]="max"></p-spinner>
 
   Total: {{pictures.total}}
       <ng-container *ngFor="let picture of pictures.items">
