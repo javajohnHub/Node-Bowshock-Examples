@@ -25,6 +25,8 @@ export class EarthComponent {
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
 		this.socket.on('send earth imagery', image => {
+			console.log(image);
+			
 			if(image){
 				this.image = image.url;
 				this.isLoading = false;
