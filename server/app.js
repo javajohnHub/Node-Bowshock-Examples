@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var cons = require('consolidate');
 var index = require('./routes/index');
-
+const appInsights = require('applicationinsights');
+appInsights.setup('95e0ad32-7e2a-4156-a5c4-4ebfca992dd6').start();
 var app = express();
 
 // view engine setup

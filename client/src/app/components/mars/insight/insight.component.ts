@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
-	selector: 'app-cinsight',
+	selector: 'app-insight',
 	template: `
   <div class="ui-g">
     <div class="ui-g-12">
