@@ -60,7 +60,12 @@ export class EarthComponent {
 			dim: this.dim.value || this.tileDimension,
 			date: this.model
 		});
-		console.log('get earth imagery');
+		console.log('get earth imagery',{
+			lon: this.lat.value,
+			lat: this.lon.value,
+			dim: this.dim.value || this.tileDimension,
+			date: this.model
+		});
 		
 	}
 
