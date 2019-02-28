@@ -38,12 +38,12 @@ export class EarthComponent {
 		});
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(position => {
-				this.lat.setValue(position.coords.latitude);
-				this.lon.setValue(position.coords.longitude);
+				this.lat.setValue(position.coords.latitude.toFixed(2));
+				this.lon.setValue(position.coords.longitude.toFixed(2));
 				this.dim.setValue(this.tileDimension);
 				this.socket.emit('get earth imagery', {
-					lat: position.coords.latitude,
-					lon: position.coords.longitude,
+					lat: position.coords.latitude.toFixed(2),
+					lon: position.coords.longitude.toFixed(2),
 					dim: this.tileDimension
 				});
 			});
