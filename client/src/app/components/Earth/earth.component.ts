@@ -60,6 +60,8 @@ export class EarthComponent {
 			dim: this.dim.value || this.tileDimension,
 			date: this.model
 		});
+		console.log('get earth imagery');
+		
 	}
 
 	get lat(): AbstractControl {
