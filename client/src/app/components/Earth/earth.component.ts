@@ -25,7 +25,7 @@ export class EarthComponent {
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
 		this.socket.on('send earth imagery', image => {
-			console.log(image);
+			console.log('image',image);
 			
 			if(image){
 				this.image = image.url;
@@ -69,14 +69,14 @@ export class EarthComponent {
 	onDateChanged(event) {}
 	getImages() {
 		this.socket.emit('get earth imagery', {
-			lon: this.lat.value,
-			lat: this.lon.value,
+			lon: this.lat.value.toString(),
+			lat: this.lon.value.toString(),
 			dim: this.dim.value || this.tileDimension,
 			date: this.model
 		});
 		console.log('get earth imagery',{
-			lon: this.lat.value,
-			lat: this.lon.value,
+			lon: this.lat.value.toString(),
+			lat: this.lon.value.toString(),
 			dim: this.dim.value || this.tileDimension,
 			date: this.model
 		});
