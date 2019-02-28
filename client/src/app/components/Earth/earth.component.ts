@@ -46,6 +46,12 @@ export class EarthComponent {
 					lon: position.coords.longitude.toFixed(2),
 					dim: this.tileDimension
 				});
+				console.log({
+					lat: position.coords.latitude.toFixed(2),
+					lon: position.coords.longitude.toFixed(2),
+					dim: this.tileDimension
+				});
+				
 			});
 		}
 
