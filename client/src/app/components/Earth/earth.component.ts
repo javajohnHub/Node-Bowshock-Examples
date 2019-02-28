@@ -46,11 +46,6 @@ export class EarthComponent {
 					lon: position.coords.longitude.toFixed(2),
 					dim: this.tileDimension
 				});
-				console.log({
-					lat: position.coords.latitude.toFixed(2),
-					lon: position.coords.longitude.toFixed(2),
-					dim: this.tileDimension
-				});
 				
 			});
 		}
@@ -69,16 +64,9 @@ export class EarthComponent {
 	onDateChanged(event) {}
 	getImages() {
 		this.socket.emit('get earth imagery', {
-			lon: this.lat.value.toString(),
-			lat: this.lon.value.toString(),
-			dim: this.dim.value || this.tileDimension,
-			date: this.model
-		});
-		console.log('get earth imagery',{
-			lon: this.lat.value.toString(),
-			lat: this.lon.value.toString(),
-			dim: this.dim.value || this.tileDimension,
-			date: this.model
+			lon: this.lon.value.toString(),
+			lat: this.lat.value.toString(),
+			dim: this.dim.value || this.tileDimension
 		});
 		
 	}

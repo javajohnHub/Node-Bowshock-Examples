@@ -13,10 +13,6 @@
     </div>
 </form>
 <div class="ui-g-12">
-    <div class="ui-g-6">
-        <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
-            (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
-    </div>
     <button pButton type="button" label="Submit" (click)="getImages()"></button>
 </div>
 <img class="ui-g-12" src="{{image}}">
