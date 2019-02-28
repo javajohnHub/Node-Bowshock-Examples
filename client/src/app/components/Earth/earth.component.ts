@@ -25,8 +25,14 @@ export class EarthComponent {
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
 		this.socket.on('send earth imagery', image => {
-			this.image = image.url;
-			this.isLoading = false;
+			if(image){
+				this.image = image.url;
+				this.isLoading = false;
+			}else{
+				this.image = null;
+				this.isLoading = false;
+			}
+			
 		});
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(position => {
