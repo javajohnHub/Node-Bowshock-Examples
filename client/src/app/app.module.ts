@@ -14,6 +14,7 @@ import { MarsComponent } from './components/mars/mars.component';
 import { CuriosityComponent } from './components/mars/curiosity/curiosity.component';
 import { SpiritComponent } from './components/mars/spirit/spirit.component';
 import { InsightComponent } from './components/mars/insight/insight.component';
+import { OpportunityComponent } from './components/mars/opportunity/opportunity.component';
 import { NeowsComponent } from './components/neows/neows.component';
 import { FeedComponent } from './components/neows/feed/feed.component';
 import { TodayComponent } from './components/neows/today/today.component';
@@ -22,7 +23,6 @@ import { ZippyComponent } from './components/zippy/zippy.component';
 
 import { CalendarModule } from 'primeng/calendar';
 import { GalleriaModule } from 'primeng/galleria';
-import { OpportunityComponent } from './components/mars/opportunity/opportunity.component';
 import { CardModule } from 'primeng/card';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DropdownModule } from 'primeng/dropdown';
@@ -77,6 +77,7 @@ import { FireballsComponent } from './components/ssd/fireballs/fireballs.compone
 import { NhatsComponent } from './components/ssd/nhats/nhats.component';
 import { SentryComponent } from './components/ssd/sentry/sentry.component';
 import { HighlightJsModule } from 'ngx-highlight-js';
+
 @NgModule({
 	declarations: [
 		AppComponent,

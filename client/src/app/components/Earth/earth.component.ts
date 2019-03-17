@@ -25,19 +25,28 @@ export class EarthComponent {
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
 		this.socket.on('send earth imagery', image => {
-			this.image = image.url;
-			this.isLoading = false;
+			console.log('image',image);
+			
+			if(image){
+				this.image = image.url;
+				this.isLoading = false;
+			}else{
+				this.image = null;
+				this.isLoading = false;
+			}
+			
 		});
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(position => {
-				this.lat.setValue(position.coords.latitude);
-				this.lon.setValue(position.coords.longitude);
+				this.lat.setValue(position.coords.latitude.toFixed(2));
+				this.lon.setValue(position.coords.longitude.toFixed(2));
 				this.dim.setValue(this.tileDimension);
 				this.socket.emit('get earth imagery', {
-					lat: position.coords.latitude,
-					lon: position.coords.longitude,
+					lat: position.coords.latitude.toFixed(2),
+					lon: position.coords.longitude.toFixed(2),
 					dim: this.tileDimension
 				});
+				
 			});
 		}
 
@@ -55,11 +64,11 @@ export class EarthComponent {
 	onDateChanged(event) {}
 	getImages() {
 		this.socket.emit('get earth imagery', {
-			lon: this.lat.value,
-			lat: this.lon.value,
-			dim: this.dim.value || this.tileDimension,
-			date: this.model
+			lon: this.lon.value.toString(),
+			lat: this.lat.value.toString(),
+			dim: this.dim.value || this.tileDimension
 		});
+		
 	}
 
 	get lat(): AbstractControl {
