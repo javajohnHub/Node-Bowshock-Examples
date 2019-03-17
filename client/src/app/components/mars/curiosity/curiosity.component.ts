@@ -11,7 +11,12 @@ import { SharedService } from '../../../shared/shared.service';
       <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true" [readonlyInput]="true" (onSelect)="onDateChanged($event)" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
   <div *ngIf="pictures" class="ui-g-12">
       <ng-container *ngFor="let picture of pictures.photos">
-      <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{picture.img_src}}">
+      <p-card>
+                <p-header class="square">
+                    <img class="center" src="{{picture.img_src}}">
+                </p-header>
+                <div class="border" style="padding:6px;color: white;">Sol: {{picture.sol}} - {{picture.camera.name}}</div>
+            </p-card>
       </ng-container>
       <div *ngIf="pictures.photos.length == 0">
         <h1>No Photos Found</h1>

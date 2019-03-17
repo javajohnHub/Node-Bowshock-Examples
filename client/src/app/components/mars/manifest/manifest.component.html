@@ -8,14 +8,14 @@
 
     <div *ngIf="photos">
         <button class="ui-g-12" pButton (click)="backClicked()" type="button" label="Back"></button>
-        <div *ngFor="let photo of photos">
-
-            <div class="ui-g">
-                <div class="ui-g-12">
-                    <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{photo.img_src}}">
-                </div>
-            </div>
-        </div>
+        <ng-container *ngFor="let photo of photos">
+          <p-card>
+                    <p-header class="square">
+                        <img class="center" src="{{photo.img_src}}">
+                    </p-header>
+                    <div class="border" style="padding:6px;color: white;">Sol: {{photo.sol}} - {{photo.camera.name}}</div>
+                </p-card>
+          </ng-container>
         <button class="ui-g-12" pButton (click)="backClicked()" type="button" label="Back"></button>
     </div>
     <div *ngIf="!photos && !isLoading">

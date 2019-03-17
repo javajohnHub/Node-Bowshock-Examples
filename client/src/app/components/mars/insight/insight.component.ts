@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
-	selector: 'app-cinsight',
+	selector: 'app-insight',
 	template: `
   <div class="ui-g">
     <div class="ui-g-12">
@@ -16,8 +16,12 @@ import { debounceTime } from 'rxjs/operators';
 
   Total: {{pictures.total}}
       <ng-container *ngFor="let picture of pictures.items">
-      <img class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2" src="{{picture.url}}">
-      <div class="ui-g-12" [innerHTML]="picture.description"></div>
+      <p-card>
+                <p-header class="square">
+                    <img class="center" src="{{picture.url}}">
+                </p-header>
+                <div class="border" style="padding:6px;color: white;" [innerHTML]="picture.description"></div>
+            </p-card>
       </ng-container>
       <div *ngIf="pictures.items.length == 0">
         <h1>No Photos Found</h1>
