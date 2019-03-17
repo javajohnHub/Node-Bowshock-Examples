@@ -14,6 +14,13 @@ module.exports = function(io) {
     });
     //end of apod
 
+    //start helioviewer
+    socket.on("get movie", obj => {
+      bowshock.helioviewer.playMovie(obj).then(movie => {
+        socket.emit("send movie", movie);
+      });
+    });
+    //end helioviewer
     //mars
     socket.on("get curiosity", date => {
       let formatted_date = format_date(date);
