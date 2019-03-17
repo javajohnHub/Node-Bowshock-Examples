@@ -92,6 +92,13 @@ export class NavbarComponent {
 						command: (event: any) => {
 							this.el.model[0].expanded = false;
 						}
+          },
+          {
+						label: 'Helioviewer',
+						routerLink: ['/helioviewer'],
+						command: (event: any) => {
+							this.el.model[0].expanded = false;
+						}
 					},
 					{
 						label: 'DONKI',
