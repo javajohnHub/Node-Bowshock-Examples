@@ -9,6 +9,7 @@ module.exports = function(io) {
     socket.on("get apod", date => {
       let formatted_date = format_date(date);
       bowshock.apod(formatted_date).then(apod => {
+        console.log(apod)
         socket.emit("send apod", apod);
       });
     });
