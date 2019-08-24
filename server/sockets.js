@@ -37,16 +37,13 @@ module.exports = function(io) {
     });
 
     socket.on("get manifest", rover => {
-      console.log(rover);
       if (!rover.sol && !rover.camera) {
         bowshock.mars.manifest(rover).then(manifest => {
-          console.log(manifest);
           socket.emit("send manifest", manifest);
         });
       }
       if (rover.sol || rover.camera) {
         bowshock.mars.manifest(rover).then(photos => {
-          console.log(photos);
           socket.emit("send rover by param", photos);
         });
       }
@@ -280,7 +277,6 @@ module.exports = function(io) {
       });
     });
     socket.on("get enhanced image", obj => {
-      console.log(obj);
       bowshock.epic
         .createEnhancedImageLink(obj)
         .then(enhancedImage => {
@@ -299,7 +295,6 @@ module.exports = function(io) {
     });
 
     socket.on("get categories", obj => {
-      console.log(obj);
       if (obj != null) {
         bowshock.eonet.categories(obj).then(categories => {
           socket.emit("send categories", categories);
@@ -312,7 +307,6 @@ module.exports = function(io) {
     });
 
     socket.on("get events", obj => {
-      console.log(obj);
       if (obj != null) {
         bowshock.eonet.events(obj).then(events => {
           socket.emit("send events", events);
@@ -342,16 +336,12 @@ module.exports = function(io) {
 
     //start of geneLab
     socket.on("get geneLab", obj => {
-      console.log(obj);
       bowshock.geneLab.search(obj).then(gene => {
-        console.log(gene);
         socket.emit("send geneLab", gene);
       });
     });
     socket.on("get html", obj => {
-      console.log(obj);
       bowshock.geneLab.htmlSearch(obj).then(html => {
-        console.log(html);
         socket.emit("send html", html);
       });
     });
@@ -359,11 +349,9 @@ module.exports = function(io) {
 
     //start of patents
     socket.on("get patent", obj => {
-      console.log(obj);
       bowshock
         .patents(obj)
         .then(patent => {
-          console.log("patent", patent);
           socket.emit("send patent", patent);
         })
         .catch(err => {
@@ -380,7 +368,6 @@ module.exports = function(io) {
         bowshock.exoPlanet
           .allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K()
           .then(data => {
-            console.log(data);
             socket.emit(
               "send allPlanetaryCandidatesSmallerThan2ReWithEquilibriumTemperaturesBetween180and303K",
               data
@@ -391,57 +378,56 @@ module.exports = function(io) {
 
     socket.on("get allConfirmedPlanetsAndCols", () => {
       bowshock.exoPlanet.allConfirmedPlanetsAndCols().then(data => {
-        console.log(data);
         socket.emit("send allConfirmedPlanetsAndCols", data);
       });
     });
 
     socket.on("get getSingleKOI", koi => {
       bowshock.exoPlanet.getSingleKOI(koi).then(data => {
-        console.log(data);
+
         socket.emit("send getSingleKOI", data);
       });
     });
 
     socket.on("get confirmedPlanetsInKeplerField", () => {
       bowshock.exoPlanet.confirmedPlanetsInKeplerField().then(data => {
-        console.log(data);
+
         socket.emit("send confirmedPlanetsInKeplerField", data);
       });
     });
     socket.on("get starsKnownToHostExoPlanets", () => {
       bowshock.exoPlanet.starsKnownToHostExoPlanets().then(data => {
-        console.log(data);
+
         socket.emit("send starsKnownToHostExoPlanets", data);
       });
     });
     socket.on("get confirmedPlanetsThatTransitHostStars", () => {
       bowshock.exoPlanet.confirmedPlanetsThatTransitHostStars().then(data => {
-        console.log(data);
+
         socket.emit("send confirmedPlanetsThatTransitHostStars", data);
       });
     });
     socket.on("get currentNonConfirmedPlanetCandidates", () => {
       bowshock.exoPlanet.currentNonConfirmedPlanetCandidates().then(data => {
-        console.log(data);
+
         socket.emit("send currentNonConfirmedPlanetCandidates", data);
       });
     });
     socket.on("get k2TargetsFromCampaign9", () => {
       bowshock.exoPlanet.k2TargetsFromCapaign9().then(data => {
-        console.log(data);
+
         socket.emit("send k2TargetsFromCampaign9", data);
       });
     });
     socket.on("get confirmedPlanetsInMissionStarList", koi => {
       bowshock.exoPlanet.confirmedPlanetsInMissionStarList().then(data => {
-        console.log(data);
+
         socket.emit("send confirmedPlanetsInMissionStarList", data);
       });
     });
     socket.on("get allMicrolensingPlanetsWithTimeSeries", () => {
       bowshock.exoPlanet.allMicrolensingPlanetsWithTimeSeries().then(data => {
-        console.log(data);
+
         socket.emit("send allMicrolensingPlanetsWithTimeSeries", data);
       });
     });
@@ -456,7 +442,7 @@ module.exports = function(io) {
           .search_target_obj(target.target)
           .then(
             data => {
-              console.log(data);
+
               socket.emit("send star data", data);
             },
             err => console.log(err)
@@ -475,7 +461,7 @@ module.exports = function(io) {
           .search_image(key)
           .then(
             data => {
-              console.log(data);
+
               socket.emit("send star image", data);
             },
             err => {
@@ -494,7 +480,7 @@ module.exports = function(io) {
     //start of img and vid
     socket.on("get media", obj => {
       bowshock.nasaImgVideo.search(obj).then(data => {
-        console.log(data);
+
         socket.emit("send media", data);
       });
     });
@@ -503,42 +489,42 @@ module.exports = function(io) {
     //start of ssc
     socket.on("get observatory", () => {
       bowshock.satelliteSituationCenter.getObservatories().then(data => {
-        console.log(data);
+
         socket.emit("send observatory", data);
       });
     });
 
     socket.on("get spaseobservatory", () => {
       bowshock.satelliteSituationCenter.getSpaseObservatories().then(data => {
-        console.log(data);
+
         socket.emit("send spaseobservatory", data);
       });
     });
 
     socket.on("get groundstations", () => {
       bowshock.satelliteSituationCenter.getGroundStations().then(data => {
-        console.log(data);
+
         socket.emit("send groundstations", data);
       });
     });
 
     socket.on("get locations", () => {
       bowshock.satelliteSituationCenter.getLocations().then(data => {
-        console.log(data);
+
         socket.emit("send locations", data);
       });
     });
 
     socket.on("get graphs", () => {
       bowshock.satelliteSituationCenter.getGraphs().then(data => {
-        console.log(data);
+
         socket.emit("send groundstations", data);
       });
     });
 
     socket.on("get conjunctions", () => {
       bowshock.satelliteSituationCenter.getConjunctions().then(data => {
-        console.log(data);
+
         socket.emit("send groundstations", data);
       });
     });
@@ -547,25 +533,25 @@ module.exports = function(io) {
     //start ssd
     socket.on("get cad", () => {
       bowshock.ssd.cad().then(data => {
-        console.log(data);
+
         socket.emit("send cad", data);
       });
     });
     socket.on("get fireballs", () => {
       bowshock.ssd.fireballs().then(data => {
-        console.log(data);
+
         socket.emit("send fireballs", data);
       });
     });
     socket.on("get nhats", () => {
       bowshock.ssd.nhats().then(data => {
-        console.log(data);
+
         socket.emit("send nhats", data);
       });
     });
     socket.on("get sentry", () => {
       bowshock.ssd.sentry().then(data => {
-        console.log(data);
+
         socket.emit("send sentry", data);
       });
     });

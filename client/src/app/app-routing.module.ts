@@ -48,7 +48,7 @@ import { CadComponent } from './components/ssd/cad/cad.component';
 import { FireballsComponent } from './components/ssd/fireballs/fireballs.component';
 import { NhatsComponent } from './components/ssd/nhats/nhats.component';
 import { SentryComponent } from './components/ssd/sentry/sentry.component';
-import { HelioviewerComponent } from './components/helioviewer/helioviewer.component';
+
 const routes: Routes = [
 	{
 		path: '',
@@ -86,10 +86,6 @@ const routes: Routes = [
 		path: 'skymorph',
 		component: SkymorphComponent
   },
-  {
-		path: 'helioviewer',
-		component: HelioviewerComponent
-	},
 	{
 		path: 'mars',
 		component: MarsComponent,

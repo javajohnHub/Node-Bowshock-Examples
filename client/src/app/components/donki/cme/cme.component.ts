@@ -35,7 +35,7 @@ export class CMEComponent {
 		this._sharedService.subTitleSubject$.next('Coronal Mass Ejection');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send cme', cme => {
-			console.log('cme', cme);
+
 			this.cme = cme;
 			this.isLoading = false;
 		});
@@ -45,7 +45,7 @@ export class CMEComponent {
 			this.route.snapshot.params['id']
 		) {
 			this.longDate = this.route.snapshot.params['id'];
-			console.log('params', this.longDate);
+
 			this.startModel = new Date();
 			this.socket.emit('get cme', {
 				startDate: moment(
@@ -54,7 +54,7 @@ export class CMEComponent {
 			});
 			this.sub = this.route.params.subscribe(params => {});
 		} else {
-			console.log('else no params');
+
 			this.startModel = new Date(
 				moment()
 					.subtract(30, 'days')
@@ -73,7 +73,7 @@ export class CMEComponent {
 	}
 
 	change(event) {
-		console.log('change', event);
+
 		if (
 			this.route.snapshot.params['startDate'] ||
 			this.route.snapshot.params['id']
@@ -84,7 +84,7 @@ export class CMEComponent {
 	goToAssoc(date) {
 		this.isLoading = true;
 		let newDate = date.split('T');
-		console.log(this.startModel);
+
 		let type = date.split('-');
 		this.startModel = new Date(moment(newDate[0]).format('YYYY-MM-DD'));
 		this._router.navigate([
@@ -102,35 +102,28 @@ export class CMEComponent {
 			moment(this.startModel).format('YYYY-MM-DD') ==
 			moment(this.endModel).format('YYYY-MM-DD')
 		) {
-			console.log('1');
+
 			this.socket.emit('get cme', {
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
-			console.log({
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
+
 		} else {
 			if (
 				moment(this.startModel).format('YYYY-MM-DD') >
 				moment(this.endModel).format('YYYY-MM-DD')
 			) {
 				this.endModel = new Date();
-				console.log('2');
+
 				this.socket.emit('get cme', {
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
-				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
-				});
+
 			} else {
-				console.log('else');
+
 				this.socket.emit('get cme', {
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
-				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD')
-				});
+
 			}
 		}
 	}
