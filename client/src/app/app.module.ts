@@ -77,7 +77,6 @@ import { FireballsComponent } from './components/ssd/fireballs/fireballs.compone
 import { NhatsComponent } from './components/ssd/nhats/nhats.component';
 import { SentryComponent } from './components/ssd/sentry/sentry.component';
 import { HighlightJsModule } from 'ngx-highlight-js';
-import { HelioviewerComponent } from './components/helioviewer/helioviewer.component';
 
 @NgModule({
 	declarations: [
@@ -131,8 +130,7 @@ import { HelioviewerComponent } from './components/helioviewer/helioviewer.compo
 		CadComponent,
 		FireballsComponent,
 		NhatsComponent,
-    SentryComponent,
-    HelioviewerComponent
+    SentryComponent
 	],
 	imports: [
 		BrowserModule,

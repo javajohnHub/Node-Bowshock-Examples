@@ -49,12 +49,10 @@ export class CMEAComponent {
 
 		this.socket = SocketService.getInstance();
 		this.socket.on('send cmea', cmea => {
-			console.log('cmea', cmea);
 			this.cmea = cmea;
 			this.isLoading = false;
 		});
 
-		console.log(this.route);
 		if (
 			this.route.snapshot.params['startDate'] ||
 			this.route.snapshot.params['id']
@@ -73,7 +71,7 @@ export class CMEAComponent {
 			});
 			this.sub = this.route.params.subscribe(params => {});
 		} else {
-			console.log('else no params');
+
 			this.startModel = new Date(
 				moment()
 					.subtract(30, 'days')
@@ -188,7 +186,7 @@ export class CMEAComponent {
 		}
 	}
 	change(event) {
-		console.log('change', event);
+
 		if (
 			this.route.snapshot.params['startDate'] ||
 			this.route.snapshot.params['id']
@@ -221,35 +219,28 @@ export class CMEAComponent {
 			moment(this.startModel).format('YYYY-MM-DD') ==
 			moment(this.endModel).format('YYYY-MM-DD')
 		) {
-			console.log('1');
+
 			this.socket.emit('get cmea', {
 				startDate: moment(this.startModel).format('YYYY-MM-DD')
 			});
-			console.log({
-				startDate: moment(this.startModel).format('YYYY-MM-DD')
-			});
+
 		} else {
 			if (
 				moment(this.startModel).format('YYYY-MM-DD') >
 				moment(this.endModel).format('YYYY-MM-DD')
 			) {
 				this.endModel = new Date();
-				console.log('2');
+
 				this.socket.emit('get cmea', {
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
-				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD'),
-					endDate: moment(this.endModel).format('YYYY-MM-DD')
-				});
+
 			} else {
-				console.log('else');
+
 				this.socket.emit('get cmea', {
 					startDate: moment(this.startModel).format('YYYY-MM-DD')
 				});
-				console.log({
-					startDate: moment(this.startModel).format('YYYY-MM-DD')
-				});
+
 			}
 		}
 	}

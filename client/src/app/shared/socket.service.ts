@@ -64,7 +64,6 @@ export class SocketService {
 			SocketService.isCreating = false;
 		}
 
-		console.log('SocketService.instance', SocketService.instance);
 		return SocketService.instance;
 	}
 }

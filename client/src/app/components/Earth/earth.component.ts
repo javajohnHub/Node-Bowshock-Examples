@@ -25,8 +25,7 @@ export class EarthComponent {
 		this.isLoading = true;
 		this.socket = SocketService.getInstance();
 		this.socket.on('send earth imagery', image => {
-			console.log('image',image);
-			
+
 			if(image){
 				this.image = image.url;
 				this.isLoading = false;
@@ -34,7 +33,7 @@ export class EarthComponent {
 				this.image = null;
 				this.isLoading = false;
 			}
-			
+
 		});
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(position => {
@@ -46,7 +45,7 @@ export class EarthComponent {
 					lon: position.coords.longitude.toFixed(2),
 					dim: this.tileDimension
 				});
-				
+
 			});
 		}
 
@@ -68,7 +67,7 @@ export class EarthComponent {
 			lat: this.lat.value.toString(),
 			dim: this.dim.value || this.tileDimension
 		});
-		
+
 	}
 
 	get lat(): AbstractControl {
