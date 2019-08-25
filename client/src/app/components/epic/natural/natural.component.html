@@ -1,5 +1,5 @@
 <div class="ui-g-12">
-    <p-calendar [inputStyle]="{'width':'100%', 'margin': 'auto'}" [showIcon]="true" [selectOtherMonths]="true"
+    <p-calendar [showIcon]="true" [selectOtherMonths]="true"
         (onSelect)="onDateChanged($event)" (yearNavigator)="true" [(ngModel)]="model" dateFormat="yy-mm-dd" [maxDate]="maxDate"></p-calendar>
 
     <ng-container *ngFor="let nat of naturalAvailable">
