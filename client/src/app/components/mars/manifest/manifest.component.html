@@ -92,7 +92,7 @@
 
                             <ng-template let-photo pTemplate="item">
                                 <p-card *ngIf="photo.sol != 0" title="Sol {{photo.sol}} ({{photo.earth_date}})"
-                                    subtitle="Total Photos: {{photo.total_photos}}" styleClass="center">
+                                    subheader="Total Photos: {{photo.total_photos}}" styleClass="center">
                                     <div class="ui-g">
 
                                         <button pButton class="ui-g-12" (click)="solChosen(photo.sol)" label="All Photos"></button>

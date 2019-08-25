@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {SocketService} from './shared/socket.service';
 import { Inject} from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import {DOCUMENT} from '@angular/common';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

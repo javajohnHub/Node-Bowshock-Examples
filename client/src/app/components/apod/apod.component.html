@@ -6,7 +6,7 @@
     </div>
     <div *ngIf="apod" class="center ui-sm-12 ui-md-12 ui-lg-10 ui-lg-offset-1 ui-xl-8 ui-xl-offset-2">
         <div *ngIf="apod.media_type == 'image'" style="position: relative">
-            <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}">
+            <p-card title="{{apod.title}}" subheader="{{apod.copyright}} {{apod.date}}">
                 <p-header class="square">
                     <img class="center" src="{{apod.hdurl}}">
                 </p-header>
@@ -16,7 +16,7 @@
         <div *ngIf="apod.media_type == 'video'" class="video-container">
             <iframe class="center" [src]='safe_url'>
             </iframe>
-            <p-card title="{{apod.title}}" subtitle="{{apod.copyright}} {{apod.date}}" styleClass="center">
+            <p-card title="{{apod.title}}" subheader="{{apod.copyright}} {{apod.date}}" styleClass="center">
                 <p-header class="square">
 
                 </p-header>

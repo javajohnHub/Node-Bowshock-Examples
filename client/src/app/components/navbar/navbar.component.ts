@@ -13,7 +13,7 @@ export class NavbarComponent {
 	items: MenuItem[];
 	private _subTitle: string;
 	private _subscription: Subscription;
-	@ViewChild('el')
+	@ViewChild('el',{static: false})
 	el: PanelMenu;
 	constructor(private _sharedService: SharedService) {}
 	ngOnInit() {
