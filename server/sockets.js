@@ -349,11 +349,11 @@ module.exports = function(io) {
     //end of geneLab
 
     //start of patents
-    socket.on("get patent", obj => {
+    socket.on("get patent", () => {
       bowshock
-        .patents(obj)
-        .then(patent => {
-          socket.emit("send patent", patent);
+        .patents()
+        .then(patents => {
+          socket.emit("send patent", patents);
         })
         .catch(err => {
           socket.emit("send error", err);
