@@ -1,0 +1,7 @@
+<div class="ui-g-5">
+    <label for="id"><strong>Id: </strong></label>
+    <input pInput type="text" [(ngModel)]="id" placeholder="Try VXvX5">
+    <button type="button" pButton (click)="chooseMovie()" label="submit"></button>
+</div>
+<br/>
+<a *ngIf="url" href="{{url}}" target="_blank">Play Movie</a>
