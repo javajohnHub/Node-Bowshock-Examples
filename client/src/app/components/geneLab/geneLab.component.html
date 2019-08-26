@@ -28,7 +28,7 @@
                         <span style="color: black">Material Type: </span>{{hit._source["Material Type"]}}<br />
                         <span style="color: black">Project Identifier:</span> {{hit._source["Project Identifier"]}}<br />
                         <span style="color: black">Accession:</span> {{hit._source["Accession"]}}<br />
-                        <span style="color: black"> Project Link: </span><a target="_blank" style="color:burlywood;" href="{{hit._source['Project Link']}}">Project</a><br />
+                        <span *ngIf="hit._source['Project Link']"><span style="color: black"> Project Link: </span><a target="_blank" style="color:burlywood;" href="{{hit._source['Project Link']}}">Project</a><br /></span>
                         <span style="color: black"> Study Identifier:</span> {{hit._source["Study Identifier"]}}<br />
                         <span style="color: black">Study Protocol Name: </span>{{hit._source["Study Protocol Name"]}}<br />
                         <span style="color: black">Study Assay Technology Type:</span> {{hit._source["Study Assay Technology Type"]}}<br />
