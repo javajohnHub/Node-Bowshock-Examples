@@ -9,7 +9,7 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class PatentComponent {
 	socket: any;
-	patent = [];
+	patents = [];
 	isLoading: boolean = false;
 	patentForm: FormGroup;
 	q;
@@ -24,49 +24,15 @@ export class PatentComponent {
 
 	ngOnInit() {
 		this._sharedService.subTitleSubject$.next('Patent');
-		this.socket = SocketService.getInstance();
-		this.socket.on('send patent', patent => {
-			this.patent = patent;
-			this.copy = JSON.parse(JSON.stringify(this.patent));
+    this.socket = SocketService.getInstance();
+    this.isLoading = true;
+		this.socket.on('send patents', patents => {
+			this.patents = patents;
+			this.copy = JSON.parse(JSON.stringify(this.patents));
 
 			this.isLoading = false;
 		});
-		this.socket.on('send error', error => {
-			this.error = true;
-			this.isLoading = false;
-		});
-		this._createForm();
 
-		this.patentForm
-			.get('query')
-			.valueChanges.pipe(debounceTime(800))
-			.subscribe(value => {
-				this.isLoading = true;
-				this.q = value;
-				this.socket.emit('get patent', {
-					query: value,
-					limit: this.limit || 5
-				});
-			});
-
-		this.patentForm
-			.get('limit')
-			.valueChanges.pipe(debounceTime(800))
-			.subscribe(value => {
-				this.isLoading = true;
-				this.limit = value;
-				this.socket.emit('get patent', {
-					query: this.q || '',
-					limit: value
-				});
-			});
-	}
-
-	private _createForm() {
-		this.patentForm = this._fb.group({
-			query: [''],
-			conceptTags: [''],
-			limit: [5]
-		});
+    this.socket.emit('get patents')
 	}
 }

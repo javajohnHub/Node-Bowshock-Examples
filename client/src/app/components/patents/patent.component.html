@@ -6,17 +6,17 @@
 <h1 *ngIf="error" style="color: red">API is Down!</h1>
 
 <div class="ui-g">
-    <form [formGroup]="patentForm">
-        <div *ngIf="!error" class="ui-g-12">
-            <input pInput type="text" class="ui-g-4" formControlName="query" placeholder="Query">
-            <input pInput type="number" class="ui-g-4" formControlName="limit" placeholder="Limit">
-        </div>
-    </form>
-    <div class="ui-g-12" *ngIf="!isLoading && patent">
+    <div class="ui-g-12" *ngIf="!isLoading && patents">
         <p-accordion>
             <p-accordionTab header="Patents">
-                <div class="border">
-                    {{patent | json}}
+                <div class="border" *ngFor="let patent of patents">
+                    <span style="color: black">Center</span>{{patent.center}}<br/>
+                    <span style="color: black">Status</span>{{patent.status}}<br/>
+                    <span style="color: black">Case Number</span>{{patent.case_number}}<br/>
+                    <span style="color: black">Patent Number</span>{{patent.patent_number}}<br/>
+                    <span style="color: black">Serial Number</span>{{patent.application_sn}}<br/>
+                    <span style="color: black">Title</span>{{patent.title}}<br/>
+                    <span style="color: black">Exp. Date</span>{{patent.patent_expiration_date}}<br/>
                 </div>
             </p-accordionTab>
         </p-accordion>
