@@ -37,7 +37,7 @@ export class GeneLabComponent {
 		this._sharedService.subTitleSubject$.next('GeneLab');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send geneLab', gene => {
-			this.gene = gene;
+      this.gene = gene;
 			this.copy = JSON.parse(JSON.stringify(this.gene));
 			this.isLoading = true;
 			for (let x = 0; x < gene.hits.total / 25 + 25; x++) {

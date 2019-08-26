@@ -16,53 +16,52 @@
     <h5>Search completed in {{gene.took}} - Hits: {{gene.hits.total}} - Max Score: {{gene.hits.max_score}}</h5>
     <ng-container *ngIf="gene.hits">
         <div *ngFor="let hit of gene.hits.hits">
+
             <p-accordion>
                 <p-accordionTab header="{{hit._source['Accession']}}">
-                    Highlights: <div *ngIf="hit.highlight" style="color: green" [innerHTML]="hit.highlight._all[0]">
-
-                    </div>
+                    Highlights: <div *ngIf="hit.highlight.all" style="color: green" [innerHTML]="hit.highlight.all[0]"></div>
                     Study Description: <span style="color: green">{{hit._source["Study Description"]}}</span><br />
                     <div class="border">
-                        Authoritative Source URL: {{hit._source["Authoritative Source URL"]}}<br />
-                        Flight Program: {{hit._source["Flight Program"]}}<br />
-                        Material Type: {{hit._source["Material Type"]}}<br />
-                        Project Identifier: {{hit._source["Project Identifier"]}}<br />
-                        Accession: {{hit._source["Accession"]}}<br />
-                        Project Link: {{hit._source["Project Link"]}}<br />
-                        Study Identifier: {{hit._source["Study Identifier"]}}<br />
-                        Study Protocol Name: {{hit._source["Study Protocol Name"]}}<br />
-                        Study Assay Technology Type: {{hit._source["Study Assay Technology Type"]}}<br />
-                        Acknowledgments: {{hit._source["Acknowledgments"]}}<br />
-                        Study Assay Technology Platform: {{hit._source["Study Assay Technology Platform"]}}<br />
-                        Study Person:<br />
+                        <span style="color: black">Authoritative Source URL:</span> {{hit._source["Authoritative Source URL"]}}<br />
+                        <span style="color: black">Flight Program:</span> {{hit._source["Flight Program"]}}<br />
+                        <span style="color: black">Material Type: </span>{{hit._source["Material Type"]}}<br />
+                        <span style="color: black">Project Identifier:</span> {{hit._source["Project Identifier"]}}<br />
+                        <span style="color: black">Accession:</span> {{hit._source["Accession"]}}<br />
+                        <span style="color: black"> Project Link: </span>{{hit._source["Project Link"]}}<br />
+                        <span style="color: black"> Study Identifier:</span> {{hit._source["Study Identifier"]}}<br />
+                        <span style="color: black">Study Protocol Name: </span>{{hit._source["Study Protocol Name"]}}<br />
+                        <span style="color: black">Study Assay Technology Type:</span> {{hit._source["Study Assay Technology Type"]}}<br />
+                        <span style="color: black">Acknowledgments:</span>{{hit._source["Acknowledgments"]}}<br />
+                        <span style="color: black">Study Assay Technology Platform: </span>{{hit._source["Study Assay Technology Platform"]}}<br />
+                        <span style="color: black">Study Person:</span><br />
                         {{hit._source["Study Person"]['Last Name']}}, {{hit._source["Study Person"]['First Name']}}
                         {{hit._source["Study Person"]["Middle Initials"]}}<br />
-                        Study Protocol Type: {{hit._source["Study Protocol Type"]}}<br />
-                        Space Program: {{hit._source["Space Program"]}}<br />
-                        Study Title: {{hit._source["Study Title"]}}<br />
-                        Study Factor Type: {{hit._source["Study Factor Type"]}}<br />
-                        Study Public Release Date: {{hit._source["Study Public Release Date"]}}<br />
-                        Parameter Value: {{hit._source["Parameter Value"]}}<br />
-                        thumbnail: {{hit._source["thumbnail"]}}<br />
-                        Study Assay Measurement Type: {{hit._source["Study Assay Measurement Type"]}}<br />
-                        Project Type: {{hit._source["Project Type"]}}<br />
-                        Factor Value: {{hit._source["Factor Value"]}}<br />
-                        Data Source Accession: {{hit._source["Data Source Accession"]}}<br />
-                        Project Title: {{hit._source["Project Title"]}}<br />
-                        Study Funding Agency: {{hit._source["Study Funding Agency"]}}<br />
-                        Study Protocol Description: {{hit._source["Study Protocol Description"]}}<br />
-                        Experiment Platform: {{hit._source["Experiment Platform"]}}<br />
-                        Characteristics: {{hit._source["Characteristics"]}}<br />
-                        Study Grant Number: {{hit._source["Study Grant Number"]}}<br />
-                        Study Publication Author List: {{hit._source["Study Publication Author List"]}}<br />
-                        Mission End Date: {{hit._source["Mission"]["End Date"]}}<br />
-                        Mission Start Date: {{hit._source["Mission"]["Start Date"]}}<br />
-                        Mission Name: {{hit._source["Mission"]["Name"]}}<br />
-                        Study Publication Title: {{hit._source["Study Publication Title"]}}<br />
-                        Managing NASA Center: {{hit._source["Managing NASA Center"]}}<br />
+                        <span style="color: black">Study Protocol Type:</span> {{hit._source["Study Protocol Type"]}}<br />
+                        <span style="color: black"> Space Program:</span> {{hit._source["Space Program"]}}<br />
+                        <span style="color: black">Study Title: </span>{{hit._source["Study Title"]}}<br />
+                        <span style="color: black">Study Factor Type:</span> {{hit._source["Study Factor Type"]}}<br />
+                        <span style="color: black">Study Public Release Date:</span> {{hit._source["Study Public Release Date"]}}<br />
+                        <span style="color: black">Parameter Value:</span> {{hit._source["Parameter Value"]}}<br />
+                        <span style="color: black">thumbnail:</span> <img src="{{'https://genelab-data.ndc.nasa.gov'  + hit._source['thumbnail']}}"/><br />
+                        <span style="color: black">Study Assay Measurement Type:</span> {{hit._source["Study Assay Measurement Type"]}}<br />
+                        <span style="color: black">Project Type:</span> {{hit._source["Project Type"]}}<br />
+                        <span style="color: black">Factor Value:</span>{{hit._source["Factor Value"]}}<br />
+                        <span style="color: black">Data Source Accession:</span> {{hit._source["Data Source Accession"]}}<br />
+                        <span style="color: black">Project Title:</span>{{hit._source["Project Title"]}}<br />
+                        <span style="color: black">Study Funding Agency:</span> {{hit._source["Study Funding Agency"]}}<br />
+                        <span style="color: black">Study Protocol Description:</span> {{hit._source["Study Protocol Description"]}}<br />
+                        <span style="color: black">Experiment Platform:</span> {{hit._source["Experiment Platform"]}}<br />
+                        <span style="color: black">Characteristics: </span>{{hit._source["Characteristics"]}}<br />
+                        <span style="color: black">Study Grant Number:</span> {{hit._source["Study Grant Number"]}}<br />
+                        <span style="color: black">Study Publication Author List:</span> {{hit._source["Study Publication Author List"]}}<br />
+                        <span style="color: black">Mission End Date:</span> {{hit._source["Mission"]["End Date"]}}<br />
+                        <span style="color: black">Mission Start Date:</span> {{hit._source["Mission"]["Start Date"]}}<br />
+                        <span style="color: black">Mission Name:</span> {{hit._source["Mission"]["Name"]}}<br />
+                        <span style="color: black">Study Publication Title:</span> {{hit._source["Study Publication Title"]}}<br />
+                        <span style="color: black">Managing NASA Center:</span> {{hit._source["Managing NASA Center"]}}<br />
 
-                        organism: {{hit._source["organism"]}}<br />
-                    </div>
+                        <span style="color: black">organism:</span> {{hit._source["organism"]}}<br />
+                 </div>
 
 
 
