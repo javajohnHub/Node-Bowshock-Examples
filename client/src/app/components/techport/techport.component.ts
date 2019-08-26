@@ -19,6 +19,7 @@ export class TechportComponent implements OnInit {
 		this._sharedService.subTitleSubject$.next('Techport');
 		this.socket = SocketService.getInstance();
 		this.socket.on('send techport', (response => {
+      console.log(response)
       this.techport = response;
       this.isLoading = false;
     }))
@@ -26,6 +27,7 @@ export class TechportComponent implements OnInit {
 
   getTechport(){
     this.isLoading = true;
+    console.log(this.id)
     this.socket.emit('get techport', this.id)
   }
 }
