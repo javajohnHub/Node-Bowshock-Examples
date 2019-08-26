@@ -22,13 +22,13 @@
                     Highlights: <div *ngIf="hit.highlight.all" style="color: green" [innerHTML]="hit.highlight.all[0]"></div>
                     Study Description: <span style="color: green">{{hit._source["Study Description"]}}</span><br />
                     <div class="border">
-                        <img src="{{'https://genelab-data.ndc.nasa.gov'  + hit._source['thumbnail']}}"/>
-                        <span style="color: black">Authoritative Source URL:</span> {{hit._source["Authoritative Source URL"]}}<br />
+                        <img src="{{'https://genelab-data.ndc.nasa.gov'  + hit._source['thumbnail']}}"/><br/>
+                        <a target="_blank" style="color:burlywood;" href="{{'https://genelab-data.ndc.nasa.gov/genelab/accession/'  + hit._source['Authoritative Source URL']}}">Authoritative Source URL</a><br />
                         <span style="color: black">Flight Program:</span> {{hit._source["Flight Program"]}}<br />
                         <span style="color: black">Material Type: </span>{{hit._source["Material Type"]}}<br />
                         <span style="color: black">Project Identifier:</span> {{hit._source["Project Identifier"]}}<br />
                         <span style="color: black">Accession:</span> {{hit._source["Accession"]}}<br />
-                        <span style="color: black"> Project Link: </span>{{hit._source["Project Link"]}}<br />
+                        <span style="color: black"> Project Link: </span><a target="_blank" style="color:burlywood;" href="{{hit._source['Project Link']}}">Project</a><br />
                         <span style="color: black"> Study Identifier:</span> {{hit._source["Study Identifier"]}}<br />
                         <span style="color: black">Study Protocol Name: </span>{{hit._source["Study Protocol Name"]}}<br />
                         <span style="color: black">Study Assay Technology Type:</span> {{hit._source["Study Assay Technology Type"]}}<br />
