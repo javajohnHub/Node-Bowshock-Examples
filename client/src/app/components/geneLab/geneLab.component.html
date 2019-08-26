@@ -22,6 +22,7 @@
                     Highlights: <div *ngIf="hit.highlight.all" style="color: green" [innerHTML]="hit.highlight.all[0]"></div>
                     Study Description: <span style="color: green">{{hit._source["Study Description"]}}</span><br />
                     <div class="border">
+                        <img src="{{'https://genelab-data.ndc.nasa.gov'  + hit._source['thumbnail']}}"/>
                         <span style="color: black">Authoritative Source URL:</span> {{hit._source["Authoritative Source URL"]}}<br />
                         <span style="color: black">Flight Program:</span> {{hit._source["Flight Program"]}}<br />
                         <span style="color: black">Material Type: </span>{{hit._source["Material Type"]}}<br />
@@ -42,7 +43,6 @@
                         <span style="color: black">Study Factor Type:</span> {{hit._source["Study Factor Type"]}}<br />
                         <span style="color: black">Study Public Release Date:</span> {{hit._source["Study Public Release Date"]}}<br />
                         <span style="color: black">Parameter Value:</span> {{hit._source["Parameter Value"]}}<br />
-                        <span style="color: black">thumbnail:</span> <img src="{{'https://genelab-data.ndc.nasa.gov'  + hit._source['thumbnail']}}"/><br />
                         <span style="color: black">Study Assay Measurement Type:</span> {{hit._source["Study Assay Measurement Type"]}}<br />
                         <span style="color: black">Project Type:</span> {{hit._source["Project Type"]}}<br />
                         <span style="color: black">Factor Value:</span>{{hit._source["Factor Value"]}}<br />
