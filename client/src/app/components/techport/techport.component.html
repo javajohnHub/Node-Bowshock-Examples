@@ -8,4 +8,4 @@
     <input pInput type="text" [(ngModel)]="id" placeholder="Try 4795">
     <button type="button" pButton (click)="getTechport()" label="submit"></button>
 </div>
-{{techport}}
+{{techport | json}}
