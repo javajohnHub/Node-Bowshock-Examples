@@ -58,13 +58,6 @@ export class NavbarComponent {
 							this.el.model[0].expanded = false;
 						}
           },
-          {
-						label: 'Techport',
-						routerLink: ['/techport'],
-						command: (event: any) => {
-							this.el.model[0].expanded = false;
-						}
-					},
 					{
 						label: 'Earth',
 						routerLink: ['/earth'],

@@ -566,15 +566,6 @@ module.exports = function(io) {
     });
     //end helioviewer
 
-    //start techport
-    socket.on("get techport", (id) => {
-      console.log(id)
-      bowshock.techport(id).then(data => {
-        console.log(data)
-        socket.emit("send techport", data);
-      });
-    });
-    //end techport
   });
 
   function format_date(date) {

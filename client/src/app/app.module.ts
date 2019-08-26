@@ -78,7 +78,6 @@ import { NhatsComponent } from './components/ssd/nhats/nhats.component';
 import { SentryComponent } from './components/ssd/sentry/sentry.component';
 import { HighlightJsModule } from 'ngx-highlight-js';
 import { HelioviewerComponent } from './components/helioviewer/helioviewer.component';
-import { TechportComponent } from './components/techport/techport.component';
 
 @NgModule({
 	declarations: [
@@ -133,8 +132,7 @@ import { TechportComponent } from './components/techport/techport.component';
 		FireballsComponent,
 		NhatsComponent,
     SentryComponent,
-    HelioviewerComponent,
-    TechportComponent
+    HelioviewerComponent
 	],
 	imports: [
 		BrowserModule,

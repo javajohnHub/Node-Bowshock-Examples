@@ -49,7 +49,7 @@ import { FireballsComponent } from './components/ssd/fireballs/fireballs.compone
 import { NhatsComponent } from './components/ssd/nhats/nhats.component';
 import { SentryComponent } from './components/ssd/sentry/sentry.component';
 import { HelioviewerComponent } from './components/helioviewer/helioviewer.component';
-import { TechportComponent } from './components/techport/techport.component';
+
 
 const routes: Routes = [
 	{
@@ -91,10 +91,6 @@ const routes: Routes = [
   {
 		path: 'helioviewer',
 		component: HelioviewerComponent
-  },
-  {
-		path: 'techport',
-		component: TechportComponent
   },
 	{
 		path: 'mars',
