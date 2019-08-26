@@ -557,6 +557,14 @@ module.exports = function(io) {
       });
     });
     //end ssd
+
+    //helioviewer
+    socket.on("play movie", (obj) => {
+      bowshock.helioviewer.playMovie(obj).then(data => {
+        socket.emit("send url", data);
+      });
+    });
+    //end helioviewer
   });
 
   function format_date(date) {
