@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
 	mp4;
 	pngs = [];
 	jsons = [];
+  json;
 	m4as = [];
 	jsonData;
 	constructor(
@@ -71,8 +72,8 @@ export class SearchComponent implements OnInit {
 										}
 									}
 									if (url.slice(-4) == 'json') {
-										if (!this.jsons.includes(url)) {
-											this.jsons.push(url);
+										if (!this.jsons.includes(url.replace(/^http:\/\//i, 'https://'))) {
+											this.jsons.push(url.replace(/^http:\/\//i, 'https://'));
 										}
 									}
 								});

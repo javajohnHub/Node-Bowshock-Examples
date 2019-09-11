@@ -49,10 +49,13 @@
                 <p-header>
                     jsons - {{jsons.length}}
                 </p-header>
-                <ng-template let-json pTemplate="item" >
-                    <a style="word-wrap: break-word;" target="_blank" href="{{json}}">{{json}}</a>
+                <ng-template let-jsonUrl pTemplate="item" >
+                    <button pButton type="button" style="word-wrap: break-word;" label="{{jsonUrl}}" (click)="getJson(jsonUrl)"></button>
                 </ng-template>
             </p-dataScroller>
+            <textarea *ngIf="jsonData" highlight-js [options]="{}" [lang]="'json'">
+                    {{jsonData | json}}
+            </textarea>
         </div>
     </div>
 
